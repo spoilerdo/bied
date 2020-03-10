@@ -1,9 +1,9 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1, 
+  "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "questionnaire-ui": {
+    "questionnaire-walktrough-ui": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/questionnaire-ui",
+            "outputPath": "dist/questionnaire-walktrough-ui",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -66,18 +66,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "questionnaire-ui:build"
+            "browserTarget": "questionnaire-walktrough-ui:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "questionnaire-ui:build:production"
+              "browserTarget": "questionnaire-walktrough-ui:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "questionnaire-ui:build"
+            "browserTarget": "questionnaire-walktrough-ui:build"
           }
         },
         "test": {
@@ -114,15 +114,19 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "questionnaire-ui:serve"
+            "devServerTarget": "questionnaire-walktrough-ui:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "questionnaire-ui:serve:production"
+              "devServerTarget": "questionnaire-walktrough-ui:serve:production"
             }
           }
         }
       }
-    }},
-  "defaultProject": "questionnaire-ui"
+    }
+  },
+  "defaultProject": "questionnaire-walktrough-ui",
+  "cli": {
+    "packageManager": "yarn"
+  }
 }
