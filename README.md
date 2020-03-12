@@ -31,7 +31,7 @@ $ docker-compose up
 
 ## Running the tests
 
-Explain how to run the automated tests for this system
+See the individual service for testing. In JS projects `yarn test` will do the job.
 
 ## Deployment
 
