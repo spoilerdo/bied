@@ -17,7 +17,7 @@
 
 - [user.proto](#user.proto)
 
-- [userInformation](#userInformation.proto)
+- [userInformation.proto](#userInformation.proto)
 
 
 <p align="right"><a href="#top">Top</a></p>
