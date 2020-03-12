@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+import "datasource.proto";
+
+message Research {
+  string id = 1;
+  string name = 2;
+  string description = 3;
+  string imageUrl = 4;
+  int64 startDate = 5;
+  int64 endDate = 6;
+  boolean active = 7;
+  string ownerId = 8;
+  repeated Datasource datasources = 9;
+}

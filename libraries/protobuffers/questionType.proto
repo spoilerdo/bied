@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+enum QuestionType {
+	MULTIPLE_CHOICE = 1;
+	LIKERT = 2;
+	TEXT = 3;
+	NUMERIC = 4;
+	DATE = 5;
+	TIME = 6;
+}

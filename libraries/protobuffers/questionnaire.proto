@@ -1,5 +1,10 @@
-﻿message Questionnaire {
+﻿syntax = "proto3";
+
+import "question.proto";
+
+message Questionnaire {
 	string id = 1;
 	string name = 2;
 	string description = 3;
+	repeated Question question = 4;
 }
