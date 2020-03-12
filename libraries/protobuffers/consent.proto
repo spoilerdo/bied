@@ -5,6 +5,6 @@ import "datasource.proto";
 message Consent {
   string userId = 1;
   Datasource datasource = 2;
-  string consent = 3;
+  bool consent = 3;
   int64 uts = 4;
 }
