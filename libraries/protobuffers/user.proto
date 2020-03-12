@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+import "consent.proto";
+import "userInformation.proto";
+
+message User {
+    string id = 1;
+    string firstname = 2;
+    string lastname = 3;
+    string email = 4;
+    string password = 5;
+    UserInformation userinfo = 6;
+    repeated Consent consents = 7;
+}
