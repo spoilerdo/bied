@@ -1,3 +1,9 @@
+// Import bootstrap grid
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/grid";
+
 @import 'themes';
 
 // framework component styles

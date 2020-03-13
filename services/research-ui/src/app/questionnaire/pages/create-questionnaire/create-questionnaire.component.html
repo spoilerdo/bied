@@ -1,0 +1,43 @@
+<form class="questionnaire-editor">
+  <nb-card>
+    <nb-card-body>
+      <div class="form-control">
+        <label for="questionnaire-title" class="label">Title</label>
+        <input nbInput fullWidth id="questionnaire-title" />
+      </div>
+      <div class="form-control">
+        <label for="questionnaire-description" class="label">Description</label>
+        <textarea nbInput fullWidth id="questionnaire-description"></textarea>
+      </div>
+    </nb-card-body>
+  </nb-card>
+
+  <nb-card>
+    <nb-card-body>
+      <div class="row">
+        <div class="col">
+          <div class="form-control">
+            <label class="label">Question title</label>
+            <input nbInput fullWidth />
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="form-control">
+            <label class="label">Question title</label>
+            <nb-select>
+              <nb-option value="0">Multiple choice</nb-option>
+              <nb-option value="1">Checkboxes</nb-option>
+              <nb-option value="2">Dropdown</nb-option>
+              <nb-option value="3">Upload file</nb-option>
+              <nb-option value="4">Linear scale</nb-option>
+              <nb-option value="5">Multiple choice grid</nb-option>
+              <nb-option value="6">Tick box grid</nb-option>
+              <nb-option value="7">Date</nb-option>
+              <nb-option value="8">Time</nb-option>
+            </nb-select>
+          </div>
+        </div>
+      </div>
+    </nb-card-body>
+  </nb-card>
+</form>
