@@ -12,17 +12,16 @@
           <div class="form-control">
             <label class="label">Question title</label>
             <nb-select formControlName="questionType">
-              <nb-option value="multipleChoice">Multiple choice</nb-option>
-              <nb-option value="checkboxes">Checkboxes</nb-option>
-              <nb-option value="dropdown">Dropdown</nb-option>
-              <nb-option value="uploadFile">Upload file</nb-option>
-              <nb-option value="linearScale">Linear scale</nb-option>
-              <nb-option value="multipleChoiceGrid">Multiple choice grid</nb-option>
-              <nb-option value="tickBoxGrid">Tick box grid</nb-option>
-              <nb-option value="date">Date</nb-option>
-              <nb-option value="time">Time</nb-option>
+              <nb-option *ngFor="let questionType of questionTypes | enumToArray" [value]="questionType.name">
+                {{ questionType.name }}
+              </nb-option>
             </nb-select>
           </div>
+        </div>
+      </div>
+      <div [ngSwitch]="f.questionType.value">
+        <div *ngSwitchCase="questionTypes.MultipleChoice">
+          <h1>Multiple choice</h1>
         </div>
       </div>
     </nb-card-body>

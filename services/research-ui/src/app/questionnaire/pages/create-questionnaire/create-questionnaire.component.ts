@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { QuestionType } from './enums/question-type.enum';
 
 @Component({
   selector: 'app-create-questionnaire',
@@ -23,9 +24,13 @@ export class CreateQuestionnaireComponent implements OnInit {
     this.questions.push(
       this.formBuilder.group({
         question: 'Question',
-        questionType: 'multipleChoice',
+        questionType: QuestionType.MultipleChoice,
       }),
     );
+  }
+
+  onQuestionnaireSubmit() {
+    console.log(this.f);
   }
 
   get f() {
