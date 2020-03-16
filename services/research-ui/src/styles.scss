@@ -1,12 +1,11 @@
 // Import bootstrap grid
-@import "~bootstrap/scss/functions";
-@import "~bootstrap/scss/variables";
-@import "~bootstrap/scss/mixins";
-@import "~bootstrap/scss/grid";
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+@import '~bootstrap/scss/grid';
 
+// Setup Nebular
 @import 'themes';
-
-// framework component styles
 @import '~@nebular/theme/styles/globals';
 
 // install the framework styles

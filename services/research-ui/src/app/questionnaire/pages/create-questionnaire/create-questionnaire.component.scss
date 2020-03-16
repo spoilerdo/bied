@@ -1,6 +1,19 @@
-.questionnaire-editor{
+.questionnaire-editor {
   width: 770px;
   margin: 0 auto;
+  position: relative;
+}
+
+.action-bar-positioner {
+  position: absolute;
+  top: 0;
+  right: -62px;
+
+  .action-bar {
+    width: 48px;
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 textarea {
