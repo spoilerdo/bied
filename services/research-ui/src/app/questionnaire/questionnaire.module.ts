@@ -9,12 +9,24 @@ import {
   NbIconModule,
   NbInputModule,
   NbLayoutModule,
-  NbSelectModule
+  NbSelectModule,
 } from '@nebular/theme';
 import { CreateQuestionnaireComponent } from './pages/create-questionnaire/create-questionnaire.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { QuestionComponent } from './pages/create-questionnaire/question/question.component';
 
 @NgModule({
-  declarations: [QuestionnaireComponent, CreateQuestionnaireComponent],
-  imports: [CommonModule, QuestionnaireRoutingModule, NbLayoutModule, NbCardModule, NbInputModule, NbSelectModule, NbButtonModule, NbIconModule],
+  declarations: [QuestionnaireComponent, CreateQuestionnaireComponent, QuestionComponent],
+  imports: [
+    CommonModule,
+    QuestionnaireRoutingModule,
+    NbLayoutModule,
+    NbCardModule,
+    NbInputModule,
+    NbSelectModule,
+    NbButtonModule,
+    NbIconModule,
+    ReactiveFormsModule,
+  ],
 })
 export class QuestionnaireModule {}

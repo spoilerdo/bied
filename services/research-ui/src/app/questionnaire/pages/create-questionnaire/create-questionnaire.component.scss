@@ -1,7 +1,14 @@
 .questionnaire-editor {
   width: 770px;
   margin: 0 auto;
+}
+
+.action-bar-root {
   position: relative;
+  height: 0;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .action-bar-positioner {
