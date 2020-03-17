@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+message UserInformation {
+  string userId = 1;
+  string id = 2;  
+  string phonenumber = 3;
+}

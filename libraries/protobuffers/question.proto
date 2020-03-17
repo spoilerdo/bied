@@ -1,0 +1,14 @@
+﻿syntax = "proto3";
+
+import "questionType.proto";
+
+message Question {
+	string id = 1;
+	string label = 2;
+	QuestionType type = 3;
+	string description = 4;
+	string data = 5;
+	int32 index = 6;
+	bool required = 7;
+}
+  
