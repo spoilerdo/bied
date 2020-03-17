@@ -55,7 +55,7 @@ Represents editing and creating of a [Consent](#consent.proto)
 | Field      | Type                                    | Label    | Description                               |
 | ---------- | --------------------------------------- | -------- | ----------------------------------------- |
 | userId     | [string](#string)                       | optional | ID of the user that contains this consent |
-| datasource | [DatasourceRequest](#datesourceReqeust) | optional | <mark>Relation to datasourceRequest<mark> |
+| datasource | [DatasourceRequest](#datesourceRequest) | optional | <mark>Relation to datasourceRequest<mark> |
 | consent    | [bool](#bool)                           | optional | Given consent by user                     |
 | uts        | [int64](#int64)                         | optional | Specific time of given consent            |
 
