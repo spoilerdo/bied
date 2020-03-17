@@ -1,0 +1,11 @@
+<nb-list>
+  <nb-list-item *ngFor="let option of options.controls" class="row">
+    <div class="col"><input nbInput fullWidth [value]="option.value" /></div>
+    <div class="col-2">
+      <button nbButton ghost status="danger"><nb-icon icon="close-outline"></nb-icon></button>
+    </div>
+  </nb-list-item>
+  <nb-list-item>
+    <button nbButton (click)="addOption()">Add option</button>
+  </nb-list-item>
+</nb-list>

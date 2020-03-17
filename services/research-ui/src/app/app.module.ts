@@ -3,14 +3,14 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
-
 import { NbThemeModule, NbLayoutModule, NbButtonModule, NbCardModule } from '@nebular/theme';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const nebularModules = [NbThemeModule.forRoot(), NbLayoutModule, NbButtonModule, NbCardModule, NbEvaIconsModule];
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, ...nebularModules],
+  imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, ...nebularModules],
   providers: [],
   bootstrap: [AppComponent],
 })

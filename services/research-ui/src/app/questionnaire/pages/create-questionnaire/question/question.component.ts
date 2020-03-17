@@ -7,14 +7,11 @@ import { QuestionType } from '../enums/question-type.enum';
   templateUrl: './question.component.html',
   styleUrls: ['./question.component.scss'],
 })
-export class QuestionComponent implements OnInit {
+export class QuestionComponent {
   @Input() questionForm: FormGroup;
 
   questionTypes = QuestionType;
-
-  constructor() {}
-
-  ngOnInit(): void {}
+  required = false;
 
   get f() {
     return this.questionForm.controls;

@@ -24,7 +24,8 @@ export class CreateQuestionnaireComponent implements OnInit {
     this.questions.push(
       this.formBuilder.group({
         question: 'Question',
-        questionType: QuestionType.MultipleChoice,
+        questionType: QuestionType.Choice,
+        questionData: this.formBuilder.array([]),
       }),
     );
   }

@@ -10,7 +10,7 @@
         </div>
         <div class="col-4">
           <div class="form-control">
-            <label class="label">Question title</label>
+            <label class="label">Question type</label>
             <nb-select formControlName="questionType">
               <nb-option *ngFor="let questionType of questionTypes | enumToArray" [value]="questionType.name">
                 {{ questionType.name }}
@@ -20,10 +20,14 @@
         </div>
       </div>
       <div [ngSwitch]="f.questionType.value">
-        <div *ngSwitchCase="questionTypes.MultipleChoice">
-          <h1>Multiple choice</h1>
-        </div>
+        <app-choice-question
+          *ngSwitchCase="questionTypes.Choice"
+          [questionDataForm]="questionForm.controls.questionData"
+        ></app-choice-question>
       </div>
     </nb-card-body>
+    <nb-card-footer>
+      <nb-toggle [(checked)]="required" labelPosition="start">Required</nb-toggle>
+    </nb-card-footer>
   </nb-card>
 </form>

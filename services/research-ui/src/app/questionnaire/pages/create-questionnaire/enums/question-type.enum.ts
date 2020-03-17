@@ -1,11 +1,7 @@
 export enum QuestionType {
-  MultipleChoice = 'Multiple choice',
-  CheckBoxes = 'Checkboxes',
-  Dropdown = 'Dropdown',
-  UploadFile = 'Upload file',
-  LinearScale = 'Linear scale',
-  MultipleChoiceGrid = 'Multiple choice grid',
-  TickBoxGrid = 'Tick box grid',
+  Choice = 'Choice',
+  Likert = 'Likert',
+  Text = 'Text',
   Date = 'Date',
   Time = 'Time',
 }

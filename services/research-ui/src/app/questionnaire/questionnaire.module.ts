@@ -9,17 +9,30 @@ import {
   NbIconModule,
   NbInputModule,
   NbLayoutModule,
+  NbListModule,
   NbSelectModule,
+  NbToggleModule,
 } from '@nebular/theme';
 import { CreateQuestionnaireComponent } from './pages/create-questionnaire/create-questionnaire.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { QuestionComponent } from './pages/create-questionnaire/question/question.component';
-import {SharedModule} from "../shared/shared.module";
+import { SharedModule } from '../shared/shared.module';
+import { ChoiceQuestionComponent } from './pages/create-questionnaire/question/choice-question/choice-question.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-const nebularModules = [NbLayoutModule, NbCardModule, NbInputModule, NbSelectModule, NbButtonModule, NbIconModule];
+const nebularModules = [
+  NbLayoutModule,
+  NbCardModule,
+  NbInputModule,
+  NbSelectModule,
+  NbButtonModule,
+  NbIconModule,
+  NbListModule,
+  NbToggleModule,
+];
 
 @NgModule({
-  declarations: [QuestionnaireComponent, CreateQuestionnaireComponent, QuestionComponent],
-  imports: [CommonModule, QuestionnaireRoutingModule, ReactiveFormsModule, ...nebularModules, SharedModule],
+  declarations: [QuestionnaireComponent, CreateQuestionnaireComponent, QuestionComponent, ChoiceQuestionComponent],
+  imports: [CommonModule, QuestionnaireRoutingModule, ReactiveFormsModule, SharedModule, ...nebularModules],
 })
 export class QuestionnaireModule {}
