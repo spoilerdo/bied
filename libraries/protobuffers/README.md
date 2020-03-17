@@ -321,7 +321,7 @@ Service for handling researches
 | DeleteResearch               | [ResearchIdRequest](#researchIdRequest)              | [ResearchEmptyResponse](#researchEmptyResponse) | Delete research                       |
 | AddDatasourceToResearch      | [Datasource](#datesource.proto)                      | [Research](#research.proto)                     | Add a datasource to a research        |
 | RemoveDatasourceFromResearch | [DatasourceIdReqeust](#datasourceIdRequest.research) | [Research](#research.proto)                     | Removing a datasource from a research |
-| InviteUsersToResearch        | [EmailRequest](#emailRequest)                        | [EmptyEmailResponse](#emptyEmailResponse)       | Send an invite to an email            |
+| InviteUsersToResearch        | [EmailRequest](#emailRequest)                        | [EmailEmptyResponse](#EmailEmptyResponse)       | Send an invite to an email            |
 
 <mark>Possibility for sending email to array of emails?</mark>
 
