@@ -43,7 +43,7 @@ message UserReply {
     string lastname = 3;
     string email = 4;
     UserInformation userinfo = 5;
-    repeated Consent consents = 7;
+    repeated Consent consents = 6;
 }
 
 message User {

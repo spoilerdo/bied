@@ -9,8 +9,8 @@ service Research {
   rpc EditResearch(ResearchEditRequest) returns (Research);
   rpc DeleteResearch(ResearchIdRequest) returns (ResearchEmptyResponse);
 
-  rpc AddDataSourceToResearch(Datasource) returns (Research);
-  rpc RemoveDataSourceFromResearch(DatasourceIdRequest) returns (Research);
+  rpc AddDatasourceToResearch(Datasource) returns (Research);
+  rpc RemoveDatasourceFromResearch(DatasourceIdRequest) returns (Research);
   rpc InviteUsersToResearch(EmailRequests) returns (EmailEmptyResponse);
 }
 
