@@ -21,13 +21,7 @@ export class CreateQuestionnaireComponent implements OnInit {
   }
 
   addQuestionnaireItem(): void {
-    this.questions.push(
-      this.formBuilder.group({
-        question: 'Question',
-        questionType: QuestionType.Choice,
-        questionData: this.formBuilder.array([]),
-      }),
-    );
+    this.questions.push(this.formBuilder.group({}));
   }
 
   onQuestionnaireSubmit() {

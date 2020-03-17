@@ -5,11 +5,11 @@ import { QuestionnaireRoutingModule } from './questionnaire-routing.module';
 import { QuestionnaireComponent } from './questionnaire.component';
 import {
   NbButtonModule,
-  NbCardModule,
+  NbCardModule, NbCheckboxModule,
   NbIconModule,
   NbInputModule,
   NbLayoutModule,
-  NbListModule,
+  NbListModule, NbRadioModule,
   NbSelectModule,
   NbToggleModule,
 } from '@nebular/theme';
@@ -33,6 +33,6 @@ const nebularModules = [
 
 @NgModule({
   declarations: [QuestionnaireComponent, CreateQuestionnaireComponent, QuestionComponent, ChoiceQuestionComponent],
-  imports: [CommonModule, QuestionnaireRoutingModule, ReactiveFormsModule, SharedModule, ...nebularModules],
+  imports: [CommonModule, QuestionnaireRoutingModule, ReactiveFormsModule, SharedModule, ...nebularModules, NbCheckboxModule, NbRadioModule],
 })
 export class QuestionnaireModule {}

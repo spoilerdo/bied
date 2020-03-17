@@ -4,8 +4,8 @@
       <div class="row">
         <div class="col">
           <div class="form-control">
-            <label class="label">Question</label>
-            <input nbInput fullWidth formControlName="question" />
+            <label class="label">Label</label>
+            <input nbInput fullWidth formControlName="label" />
           </div>
         </div>
         <div class="col-4">
@@ -27,7 +27,7 @@
       </div>
     </nb-card-body>
     <nb-card-footer>
-      <nb-toggle [(checked)]="required" labelPosition="start">Required</nb-toggle>
+      <nb-toggle labelPosition="start" formControlName="required">Required</nb-toggle>
     </nb-card-footer>
   </nb-card>
 </form>

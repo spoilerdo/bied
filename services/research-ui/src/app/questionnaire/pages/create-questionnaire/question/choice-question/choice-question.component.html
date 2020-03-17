@@ -1,11 +1,19 @@
-<nb-list>
-  <nb-list-item *ngFor="let option of options.controls" class="row">
-    <div class="col"><input nbInput fullWidth [value]="option.value" /></div>
+<nb-list [formGroup]="questionDataForm">
+  <nb-list-item *ngFor="let option of options.controls; let i = index" class="row">
+    <div class="col-1 type-indicator-wrapper">
+      <div class="type-indicator" [ngClass]="f.multi.value ? 'multiple-choice' : 'radio'"></div>
+    </div>
+    <div class="col">
+      <input nbInput fullWidth [value]="option.value.label" />
+    </div>
     <div class="col-2">
-      <button nbButton ghost status="danger"><nb-icon icon="close-outline"></nb-icon></button>
+      <button nbButton ghost status="danger" (click)="removeOption(i)" *ngIf="options.length > 1">
+        <nb-icon icon="close-outline"></nb-icon>
+      </button>
     </div>
   </nb-list-item>
-  <nb-list-item>
+  <nb-list-item class="controls">
     <button nbButton (click)="addOption()">Add option</button>
+    <nb-toggle formControlName="multi" labelPosition="left">Select multiple</nb-toggle>
   </nb-list-item>
 </nb-list>
