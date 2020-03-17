@@ -2,9 +2,30 @@ syntax = "proto3";
 
 import "datasource.proto";
 
-message Consent {
+service Consent {
+  rpc GetConsents (UserIdRequest) returns (stream Consent);
+  rpc CreateConsent (ConsentRequest) returns (Consent);
+  rpc EditConsent (ConsentRequest) returns (Consent);
+  rpc DeleteConsent (UserIdRequest) returns (ConsentEmptyResponse);
+}
+
+message UserIdRequest {
+  string id = 1;
+}
+
+message ConsentRequest {
   string userId = 1;
-  Datasource datasource = 2;
+  DatasourceRequest datasource = 2;
   bool consent = 3;
   int64 uts = 4;
+}
+
+message ConsentEmptyResponse {}
+
+message Consent {
+  string id = 1;
+  string userId = 2;
+  Datasource datasource = 3;
+  bool consent = 4;
+  int64 uts = 5;
 }

@@ -28,7 +28,8 @@ Relational proto for user on a datasource.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| userId | [string](#string) | optional | ID of the consent
+| id | [string](#string) | optional | ID of the consent
+| userId | [string](#string) | optional | ID of the user that contains this consent
 | datasource | [Datasource](#datasource.proto) | optional | Relation to the datasource
 | consent | [bool](#bool) | optional | Given consent by user
 | uts | [int64](#int64) | optional | Specific time of given consent
@@ -94,7 +95,7 @@ This file contains an enum for describing question types.
 <p align="right"><a href="#top">Top</a></p>
 <a name="research.proto"></a>
 
-## Reseach.proto
+## Research.proto
 This file contains a message for describing a research.
 
 | Field | Type | Label | Description |

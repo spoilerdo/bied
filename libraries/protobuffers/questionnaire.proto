@@ -2,6 +2,33 @@
 
 import "question.proto";
 
+service Questionnaire {
+	rpc CreateQuestionnaire(QuestionnaireCreateRequest) returns (Questionnaire);
+	rpc DeleteQuestionnaire(QuestionnaireIdRequest) returns (QuestionnaireEmptyResponse);
+	rpc UpdateQuestionnaire(QuestionnaireEditRequest) returns (Questionnaire);
+	rpc GetQuestionnaire(QuestionnaireIdRequest) returns (Questionnaire);
+
+	//TODO: result gedeelte moet nog komen, nog niet duidelijk gedefinieerd.
+}
+
+message QuestionnaireIdRequest {
+  string id = 1;
+}
+
+message QuestionnaireEmptyResponse {}
+
+message QuestionnaireCreateRequest {
+	string name = 1;
+	string description = 2;
+	repeated QuestionRequest question = 3;
+}
+
+message QuestionnaireEditRequest {
+	string name = 1;
+	string description = 2;
+	repeated QuestionRequest question = 3;
+}
+
 message Questionnaire {
 	string id = 1;
 	string name = 2;

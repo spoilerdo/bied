@@ -2,6 +2,54 @@ syntax = "proto3";
 
 import "datasource.proto";
 
+service Research {
+  rpc GetResearches() returns (stream Research);
+  rpc GetResearch(ResearchIdRequest) returns (Research);
+  rpc CreateResearch(ResearchCreateRequest) returns (Research);
+  rpc EditResearch(ResearchEditRequest) returns (Research);
+  rpc DeleteResearch(ResearchIdRequest) returns (ResearchEmptyResponse);
+
+  rpc AddDataSourceToResearch(Datasource) returns (Research);
+  rpc RemoveDataSourceFromResearch(DatasourceIdRequest) returns (Research);
+  rpc InviteUsersToResearch(EmailRequests) returns (EmailEmptyResponse);
+}
+
+message ResearchIdRequest {
+  string id = 1;
+}
+
+message ResearchCreateRequest {
+  string name = 1;
+  string description = 2;
+  string imageUrl = 3;
+  int64 startDate = 4;
+  int64 endDate = 5;
+  boolean active = 6;
+  string ownerId = 7;
+}
+
+message ResearchEditRequest {
+  string name = 1;
+  string description = 2;
+  string imageUrl = 3;
+  int64 startDate = 4;
+  int64 endDate = 5;
+  boolean active = 6;
+  string ownerId = 7;
+}
+
+message ResearchEmptyResponse {}
+
+message DatasourceIdRequest {
+  string id = 1;
+}
+
+message EmailRequests {
+  repeated string email = 1;
+}
+
+message EmailEmptyResponse {}
+
 message Research {
   string id = 1;
   string name = 2;
