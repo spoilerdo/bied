@@ -5,7 +5,7 @@ import "datasource.proto";
 service Consent {
   rpc GetConsents (UserIdRequest) returns (Consents);
   rpc CreateConsent (ConsentRequest) returns (Consent);
-  rpc EditConsent (ConsentRequest) returns (Consent);
+  rpc EditConsent (ConsentEditRequest) returns (Consent);
   rpc DeleteConsent (UserIdRequest) returns (ConsentEmptyResponse);
 }
 
@@ -22,6 +22,14 @@ message ConsentRequest {
   DatasourceRequest datasource = 2;
   bool consent = 3;
   int64 uts = 4;
+}
+
+message ConsentEditRequest {
+    string id = 1;
+    string userId = 2;
+    DatasourceRequest datasource = 3;
+    bool consent = 4;
+    int64 uts = 5;
 }
 
 message ConsentEmptyResponse {}
