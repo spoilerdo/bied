@@ -3,7 +3,7 @@ syntax = "proto3";
 import "datasource.proto";
 
 service Research {
-  rpc GetResearches () returns (stream Research);
+  rpc GetResearches () returns (Researches);
   rpc GetResearch (ResearchIdRequest) returns (Research);
   rpc CreateResearch (ResearchCreateRequest) returns (Research);
   rpc EditResearch (ResearchEditRequest) returns (Research);
@@ -12,6 +12,10 @@ service Research {
   rpc AddDatasourceToResearch (Datasource) returns (Research);
   rpc RemoveDatasourceFromResearch (DatasourceIdRequest) returns (Research);
   rpc InviteUsersToResearch (EmailRequests) returns (EmailEmptyResponse);
+}
+
+message Researches {
+  repeated Researche researches = 1;
 }
 
 message ResearchIdRequest {

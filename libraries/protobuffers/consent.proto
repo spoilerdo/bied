@@ -3,10 +3,14 @@ syntax = "proto3";
 import "datasource.proto";
 
 service Consent {
-  rpc GetConsents (UserIdRequest) returns (stream Consent);
+  rpc GetConsents (UserIdRequest) returns (Consents);
   rpc CreateConsent (ConsentRequest) returns (Consent);
   rpc EditConsent (ConsentRequest) returns (Consent);
   rpc DeleteConsent (UserIdRequest) returns (ConsentEmptyResponse);
+}
+
+message Consents {
+  repeated Consent consents = 1;
 }
 
 message UserIdRequest {

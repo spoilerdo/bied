@@ -48,6 +48,15 @@ Consent related messages.
 | consent    | [bool](#bool)                   | optional | Given consent by user                     |
 | uts        | [int64](#int64)                 | optional | Specific time of given consent            |
 
+### Consents
+
+Represents a list of [Consent](#consent.proto)
+
+| Field      | Type                                    | Label    | Description                               |
+| ---------- | --------------------------------------- | -------- | ----------------------------------------- |
+| consents | [Consent]
+
+
 ### ConsentRequest
 
 Represents editing and creating of a [Consent](#consent.proto)

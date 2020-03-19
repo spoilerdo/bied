@@ -4,12 +4,16 @@ import "consent.proto";
 import "userInformation.proto";
 
 service User {
-    rpc GetUsers () returns (stream UserReply);
-    rpc GetUser (UserRequest) returns (UserReply);
-    rpc CreateUser (UserCreateRequest) returns (UserReply);
-    rpc EditUser (UserEditRequest) returns (UserReply);
+    rpc GetUsers () returns (UserResponses);
+    rpc GetUser (UserRequest) returns (UserResponse);
+    rpc CreateUser (UserCreateRequest) returns (UserResponse);
+    rpc EditUser (UserEditRequest) returns (UserResponse);
     rpc DeleteUser (UserRequest) returns (UserEmptyResponse);
-    rpc ResetPassword (ResetPasswordRequest) returns (UserReply);
+    rpc ResetPassword (ResetPasswordRequest) returns (UserResponse);
+}
+
+message UserResponses {
+    repeated UserResponse userResponses = 1;
 }
 
 message UserRequest {
@@ -37,7 +41,7 @@ message ResetPasswordRequest {
     string newPasswordConfirmation = 3;
 }
 
-message UserReply {
+message UserResponse {
     string id = 1;
     string firstname = 2;
     string lastname = 3;
