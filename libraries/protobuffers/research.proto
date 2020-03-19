@@ -10,7 +10,7 @@ service ResearchService {
   rpc DeleteResearch (ResearchIdRequest) returns (ResearchEmptyResponse);
 
   rpc AddDatasourceToResearch (Datasource) returns (Research);
-  rpc RemoveDatasourceFromResearch (DatasourceIdRequest) returns (Research);
+  rpc RemoveDatasourceFromResearch (DatasourceIdResearchRequest) returns (Research);
   rpc InviteUsersToResearch (EmailRequests) returns (EmailEmptyResponse);
 }
 
@@ -46,7 +46,7 @@ message ResearchEditRequest {
 
 message ResearchEmptyResponse {}
 
-message DatasourceIdRequest {
+message DatasourceIdResearchRequest {
   string id = 1;
 }
 
