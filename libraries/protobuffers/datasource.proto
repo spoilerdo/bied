@@ -3,7 +3,7 @@ syntax = "proto3";
 service Datasource {
   rpc GetDatasources (GetDatasourcesRequest) returns (Datasources);
   rpc GetDatasource (DatasourceIdRequest) returns (Datasource);
-  rpc CreateDatasource (DatasourceRequest) returns (Datasrouce);
+  rpc CreateDatasource (DatasourceRequest) returns (Datasource);
   rpc EditDatasource (DatasourceRequest) returns (Datasource);
   rpc DeleteDatasource (DatasourceIdRequest) returns (Datasource);
 }
