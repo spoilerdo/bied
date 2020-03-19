@@ -2,6 +2,15 @@
 
 import "questionType.proto";
 
+message QuestionRequest {
+	string label = 1;
+	QuestionType type = 2;
+	string description = 3;
+	string data = 4;
+	int32 index = 5;
+	bool required = 6;
+}
+
 message Question {
 	string id = 1;
 	string label = 2;
