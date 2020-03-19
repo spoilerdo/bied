@@ -3,10 +3,10 @@
 import "question.proto";
 
 service Questionnaire {
-	rpc CreateQuestionnaire(QuestionnaireCreateRequest) returns (Questionnaire);
-	rpc DeleteQuestionnaire(QuestionnaireIdRequest) returns (QuestionnaireEmptyResponse);
-	rpc UpdateQuestionnaire(QuestionnaireEditRequest) returns (Questionnaire);
-	rpc GetQuestionnaire(QuestionnaireIdRequest) returns (Questionnaire);
+	rpc CreateQuestionnaire (QuestionnaireCreateRequest) returns (Questionnaire);
+	rpc DeleteQuestionnaire (QuestionnaireIdRequest) returns (QuestionnaireEmptyResponse);
+	rpc UpdateQuestionnaire (QuestionnaireEditRequest) returns (Questionnaire);
+	rpc GetQuestionnaire (QuestionnaireIdRequest) returns (Questionnaire);
 
 	//TODO: result gedeelte moet nog komen, nog niet duidelijk gedefinieerd.
 }

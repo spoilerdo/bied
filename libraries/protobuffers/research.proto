@@ -3,15 +3,15 @@ syntax = "proto3";
 import "datasource.proto";
 
 service Research {
-  rpc GetResearches() returns (stream Research);
-  rpc GetResearch(ResearchIdRequest) returns (Research);
-  rpc CreateResearch(ResearchCreateRequest) returns (Research);
-  rpc EditResearch(ResearchEditRequest) returns (Research);
-  rpc DeleteResearch(ResearchIdRequest) returns (ResearchEmptyResponse);
+  rpc GetResearches () returns (stream Research);
+  rpc GetResearch (ResearchIdRequest) returns (Research);
+  rpc CreateResearch (ResearchCreateRequest) returns (Research);
+  rpc EditResearch (ResearchEditRequest) returns (Research);
+  rpc DeleteResearch (ResearchIdRequest) returns (ResearchEmptyResponse);
 
-  rpc AddDatasourceToResearch(Datasource) returns (Research);
-  rpc RemoveDatasourceFromResearch(DatasourceIdRequest) returns (Research);
-  rpc InviteUsersToResearch(EmailRequests) returns (EmailEmptyResponse);
+  rpc AddDatasourceToResearch (Datasource) returns (Research);
+  rpc RemoveDatasourceFromResearch (DatasourceIdRequest) returns (Research);
+  rpc InviteUsersToResearch (EmailRequests) returns (EmailEmptyResponse);
 }
 
 message ResearchIdRequest {
