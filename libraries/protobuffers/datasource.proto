@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 service Datasource {
-  rpc GetDatasources () returns (Datasources);
+  rpc GetDatasources (GetDatasourcesRequest) returns (Datasources);
   rpc GetDatasource (DatasourceIdRequest) returns (Datasource);
   rpc CreateDatasource (DatasourceRequest) returns (Datasrouce);
   rpc EditDatasource (DatasourceRequest) returns (Datasource);
@@ -11,6 +11,8 @@ service Datasource {
 message Datasources {
   repeated Datasource datasources = 1;
 }
+
+message GetDatasourcesRequest{}
 
 message DatasourceIdRequest {
   string id = 1;

@@ -291,6 +291,10 @@ Represents editing a request
 | ownerId     | [string](#string)               | optional | User Id of the owner of this research                  |
 | datasources | [datasource](#datasource.proto) | repeated | Datasources coupled to the research                    |
 
+### GetResearchesRequest
+
+empty proto
+
 ### ResearchEmptyResponse
 
 Empty proto

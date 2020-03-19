@@ -4,7 +4,7 @@ import "consent.proto";
 import "userInformation.proto";
 
 service User {
-    rpc GetUsers () returns (UserResponses);
+    rpc GetUsers (GetUsersRequest) returns (UserResponses);
     rpc GetUser (UserRequest) returns (UserResponse);
     rpc CreateUser (UserCreateRequest) returns (UserResponse);
     rpc EditUser (UserEditRequest) returns (UserResponse);
@@ -19,6 +19,8 @@ message UserResponses {
 message UserRequest {
     string id = 1;
 }
+
+message GetUsersRequest {}
 
 message UserCreateRequest {
     string firstname = 1;

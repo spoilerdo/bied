@@ -2,8 +2,8 @@ syntax = "proto3";
 
 import "datasource.proto";
 
-service Research {
-  rpc GetResearches () returns (Researches);
+service ResearchService {
+  rpc GetResearches (GetResearchesRequest) returns (Researches);
   rpc GetResearch (ResearchIdRequest) returns (Research);
   rpc CreateResearch (ResearchCreateRequest) returns (Research);
   rpc EditResearch (ResearchEditRequest) returns (Research);
@@ -15,12 +15,14 @@ service Research {
 }
 
 message Researches {
-  repeated Researche researches = 1;
+  repeated Research researches = 1;
 }
 
 message ResearchIdRequest {
   string id = 1;
 }
+
+message GetResearchesRequest {}
 
 message ResearchCreateRequest {
   string name = 1;
@@ -28,7 +30,7 @@ message ResearchCreateRequest {
   string imageUrl = 3;
   int64 startDate = 4;
   int64 endDate = 5;
-  boolean active = 6;
+  bool active = 6;
   string ownerId = 7;
 }
 
@@ -38,7 +40,7 @@ message ResearchEditRequest {
   string imageUrl = 3;
   int64 startDate = 4;
   int64 endDate = 5;
-  boolean active = 6;
+  bool active = 6;
   string ownerId = 7;
 }
 
@@ -61,7 +63,7 @@ message Research {
   string imageUrl = 4;
   int64 startDate = 5;
   int64 endDate = 6;
-  boolean active = 7;
+  bool active = 7;
   string ownerId = 8;
   repeated Datasource datasources = 9;
 }
