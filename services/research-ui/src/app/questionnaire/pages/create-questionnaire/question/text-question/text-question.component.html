@@ -1,0 +1,15 @@
+<hr />
+
+<div class="row" [formGroup]="questionDataForm">
+  <div class="col">
+    <ng-container *ngIf="!multiLine">
+      <input nbInput fullWidth placeholder="Short-answer placeholder" formControlName="placeholder" />
+    </ng-container>
+    <ng-container *ngIf="multiLine">
+      <textarea nbInput fullWidth placeholder="Long-answer placeholder" formControlName="placeholder"></textarea>
+    </ng-container>
+  </div>
+  <div class="col ">
+    <nb-toggle formControlName="multiLine">Long answer</nb-toggle>
+  </div>
+</div>

@@ -11,7 +11,7 @@ import {
   NbLayoutModule,
   NbListModule, NbRadioModule,
   NbSelectModule,
-  NbToggleModule,
+  NbToggleModule, NbTooltipModule,
 } from '@nebular/theme';
 import { CreateQuestionnaireComponent } from './pages/create-questionnaire/create-questionnaire.component';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -19,6 +19,7 @@ import { QuestionComponent } from './pages/create-questionnaire/question/questio
 import { SharedModule } from '../shared/shared.module';
 import { ChoiceQuestionComponent } from './pages/create-questionnaire/question/choice-question/choice-question.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TextQuestionComponent } from './pages/create-questionnaire/question/text-question/text-question.component';
 
 const nebularModules = [
   NbLayoutModule,
@@ -32,7 +33,7 @@ const nebularModules = [
 ];
 
 @NgModule({
-  declarations: [QuestionnaireComponent, CreateQuestionnaireComponent, QuestionComponent, ChoiceQuestionComponent],
-  imports: [CommonModule, QuestionnaireRoutingModule, ReactiveFormsModule, SharedModule, ...nebularModules, NbCheckboxModule, NbRadioModule],
+  declarations: [QuestionnaireComponent, CreateQuestionnaireComponent, QuestionComponent, ChoiceQuestionComponent, TextQuestionComponent],
+  imports: [CommonModule, QuestionnaireRoutingModule, ReactiveFormsModule, SharedModule, ...nebularModules, NbCheckboxModule, NbRadioModule, NbTooltipModule],
 })
 export class QuestionnaireModule {}

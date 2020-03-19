@@ -24,6 +24,10 @@
           *ngSwitchCase="questionTypes.Choice"
           [questionDataForm]="questionForm.controls.questionData"
         ></app-choice-question>
+        <app-text-question
+          *ngSwitchCase="questionTypes.Text"
+          [questionDataForm]="questionForm.controls.questionData"
+        ></app-text-question>
       </div>
     </nb-card-body>
     <nb-card-footer>
