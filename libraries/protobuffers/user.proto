@@ -30,9 +30,10 @@ message UserCreateRequest {
 }
 
 message UserEditRequest {
-    string firstname = 1;
-    string lastname = 2;
-    string email = 3;
+    string id = 1;
+    string firstname = 2;
+    string lastname = 3;
+    string email = 4;
 }
 
 message UserEmptyResponse {}
