@@ -6,7 +6,8 @@ service Consent {
   rpc GetConsents (UserIdRequest) returns (Consents);
   rpc CreateConsent (ConsentRequest) returns (Consent);
   rpc EditConsent (ConsentRequest) returns (Consent);
-  rpc DeleteConsent (UserIdRequest) returns (ConsentEmptyResponse);
+  rpc DeleteAllConsent (UserIdRequest) returns (ConsentEmptyResponse);
+  rpc DeleteConsent (DeleteConsentRequest) returns (ConsentEmptyResponse);
 }
 
 message Consents {
@@ -22,6 +23,11 @@ message ConsentRequest {
   DatasourceRequest datasource = 2;
   bool consent = 3;
   int64 uts = 4;
+}
+
+message DeleteConsentRequest {
+  string userId = 1;
+  string id = 2;
 }
 
 message ConsentEmptyResponse {}

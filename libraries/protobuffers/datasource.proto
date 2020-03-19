@@ -12,7 +12,7 @@ message Datasources {
   repeated Datasource datasources = 1;
 }
 
-message GetDatasourcesRequest{}
+message GetDatasourcesRequest {}
 
 message DatasourceIdRequest {
   string id = 1;

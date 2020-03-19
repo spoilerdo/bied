@@ -36,7 +36,7 @@
   - [userInformation.service](#userInformation.service)
 
 <p align="right"><a href="#top">Top</a></p>
-<a name="datasource.proto"></a>
+<a name="consent.proto"></a>
 
 ## Consent.proto
 
@@ -50,14 +50,17 @@ Consent related messages.
 | consent    | [bool](#bool)                   | optional | Given consent by user                     |
 | uts        | [int64](#int64)                 | optional | Specific time of given consent            |
 
+<a name="consents"></a>
+
 ### Consents
 
 Represents a list of [Consent](#consent.proto)
 
 | Field      | Type                                    | Label    | Description                               |
 | ---------- | --------------------------------------- | -------- | ----------------------------------------- |
-| consents | [Consent]
+| consents | [Consent](#consent.proto) | repeated | list of consent proto buffers |
 
+<a name="consentRequest"></a>
 
 ### ConsentRequest
 
@@ -66,9 +69,11 @@ Represents editing and creating of a [Consent](#consent.proto)
 | Field      | Type                                    | Label    | Description                               |
 | ---------- | --------------------------------------- | -------- | ----------------------------------------- |
 | userId     | [string](#string)                       | optional | ID of the user that contains this consent |
-| datasource | [DatasourceRequest](#datasourceRequest) | optional | <mark>Relation to datasourceRequest<mark> |
+| datasource | [DatasourceRequest](#datasourceRequest) | optional | Relation to datasourceRequest |
 | consent    | [bool](#bool)                           | optional | Given consent by user                     |
 | uts        | [int64](#int64)                         | optional | Specific time of given consent            |
+
+<a name="userIdRequest-consent"></a>
 
 ### UserIdRequest consent
 
@@ -78,18 +83,34 @@ Represents getting or deleting consent by userId
 | ----- | ----------------- | -------- | ----------------- |
 | id    | [string](#string) | optional | ID of the consent |
 
+<a name="deleteConsentRequest"></a>
+
+### DeleteConsentRequest
+
+Represents deleting a single consent by userId
+
+| Field | Type              | Label    | Description       |
+| ----- | ----------------- | -------- | ----------------- |
+| userId    | [string](#string) | optional | ID of the user |
+| id    | [string](#string) | optional | ID of the consent |
+
+<a name="consentEmptyResponse"></a>
+
+### ConsentEmptyResponse
+
+Represents and empty message that the DeleteConsent in the service will return.
+
 ### Consent.service
 
 Service for handling consents
 
 | Method Name   | Request Type                            | Response Type                    | Description                                         |
 | ------------- | --------------------------------------- | -------------------------------- | --------------------------------------------------- |
-| GetConsents   | [UserIdReqeust](#userIdReqeust-consent) | stream [Consent](#consent.proto) | Used to get all consents for a user                 |
+| GetConsents   | [UserIdReqeust](#userIdReqeust-consent) | [Consents](#consents) | Used to get all consents for a user                 |
 | CreateConsent | [ConsentRequest](#consentRequest)       | [Consent](#consent.proto)        | Used to create a new consent                        |
 | EditConsent   | [ConsentRequest](#consentRequest)       | [Consent](#consent.proto)        | Used to edit a consent                              |
-| DeleteConsent | [UserIdRequest](#userIdRequest-consent) | [Consent](#consent.proto)        | <mark>Used to delete all consents for a user?<mark> |
-
-<mark>Moet er niet ook een methode zijn voor het verwijderen van één consent, de huidige methode lijk all consents te verwijderen<mark>
+| DeleteAllConsent | [UserIdRequest](#userIdRequest-consent) | [ConsentEmptyResponse](#consentEmptyResponse)        | Used to delete all consents of an user |
+| DeleteConsent | [DeleteConsentRequest](#deleteConsentRequest) | [ConsentEmptyResponse](#consentEmptyResponse) | Used to delete a single consent of an user |
 
 <p align="right"><a href="#top">Top</a></p>
 <a name="datasource.proto"></a>
@@ -106,6 +127,8 @@ This file contains a message for describing a datasource.
 | reference   | [string](#string) | optional | Reference to identify the given answers                  |
 | active      | [bool](#bool)     | optional | Boolean indicating if the datasource is currently active |
 
+<a name="datasourceRequest"></a>
+
 ### DataSourceRequest
 
 Represents message for creating a datasource
@@ -116,6 +139,18 @@ Represents message for creating a datasource
 | description | [string](#string) | optional | Description of the datasource                            |
 | reference   | [string](#string) | optional | Reference to identify the given answers                  |
 | active      | [bool](#bool)     | optional | Boolean indicating if the datasource is currently active |
+
+<a name="datasources"></a>
+
+### Datasources
+
+Represents a list of [Datasource](#datasource.proto)
+
+| Field      | Type                                    | Label    | Description                               |
+| ---------- | --------------------------------------- | -------- | ----------------------------------------- |
+| datasources | [Datasource](#datasource.proto) | repeated | list of datasource proto buffers |
+
+<a name="datasourceIdRequest"></a>
 
 ### DatasourceIdRequest
 
@@ -131,7 +166,7 @@ Service for handling datasources
 
 | Method Name      | Request Type                                | Response Type                          | Description          |
 | ---------------- | ------------------------------------------- | -------------------------------------- | -------------------- |
-| GetDataSources   | -                                           | stream [Datasource](#datasource.proto) | Get all datasources  |
+| GetDataSources   | -                                           | [Datasources](#datasources) | Get all datasources  |
 | GetDatasource    | [DatasourceIdRequest](#datasourceIdRequest) | [Datasource](#datasource.proto)        | Get datasource by Id |
 | CreateDatasource | [DatasourceRequest](#datasourceRequest)     | [Datasource](#datasource.proto)        | Create datasource    |
 | EditDatasource   | [DatasourceRequest](#datasourceRequest)     | [Datasource](#datasource.proto)        | Edit datasource      |
@@ -167,10 +202,6 @@ Represents creating, editing, deleting a question
 | index       | [int32](#int32)                     | optional | The index of the question in a questionnaire                    |
 | required    | [bool](#bool)                       | optional | State that the question is required to answer                   |
 
-### Question.service
-
-<mark>Not defined yet</mark>
-
 <p align="right"><a href="#top">Top</a></p>
 <a name="questionnaire.proto"></a>
 
@@ -185,6 +216,8 @@ This file contains a message for describing a questionnaire.
 | description | [string](#string)           | optional | Description of the questionnaire |
 | question    | [question](#question.proto) | repeated | Questionnaire questions          |
 
+<a name="questionnaireCreateRequest"></a>
+
 ### QuestionnaireCreateRequest
 
 Represents creating a questionnaire
@@ -194,6 +227,8 @@ Represents creating a questionnaire
 | name        | [string](#string)                   | optional | Name of the questionnaire                |
 | description | [string](#string)                   | optional | Description of the questionnaire         |
 | question    | [QuestionRequest](#questionRequest) | repeated | Questionnaire questions, QuestionRequest |
+
+<a name="questionnaireEditRequest"></a>
 
 ### QuestionnaireEditRequest
 
@@ -205,6 +240,8 @@ Represents editing a questionnaire
 | description | [string](#string)                   | optional | Description of the questionnaire         |
 | question    | [QuestionRequest](#questionRequest) | repeated | Questionnaire questions, QuestionRequest |
 
+<a name="questionnaireIdRequest"></a>
+
 ### QuestionnaireIdRequest
 
 Represents getting or deleting questionnaire by userId
@@ -212,6 +249,8 @@ Represents getting or deleting questionnaire by userId
 | Field | Type              | Label    | Description             |
 | ----- | ----------------- | -------- | ----------------------- |
 | id    | [string](#string) | optional | ID of the questionnaire |
+
+<a name="questionnaireEmptyResponse"></a>
 
 ### QuestionnaireEmptyResponse
 
@@ -263,6 +302,18 @@ This file contains a message for describing a research.
 | ownerId     | [string](#string)               | optional | User Id of the owner of this research                  |
 | datasources | [datasource](#datasource.proto) | repeated | Datasources coupled to the research                    |
 
+<a name="researches"></a>
+
+### Researches
+
+Represents a list of [Research](#research.proto)
+
+| Field      | Type                                    | Label    | Description                               |
+| ---------- | --------------------------------------- | -------- | ----------------------------------------- |
+| researches | [Research](#research.proto) | repeated | list of research proto buffers |
+
+<a name="researchCreateRequest"></a>
+
 ### ResearchCreateRequest
 
 Represents creating a request
@@ -277,6 +328,8 @@ Represents creating a request
 | active      | [bool](#bool)                   | optional | Boolean indicating if the research is currently active |
 | ownerId     | [string](#string)               | optional | User Id of the owner of this research                  |
 | datasources | [datasource](#datasource.proto) | repeated | Datasources coupled to the research                    |
+
+<a name="researchEditRequest"></a>
 
 ### ResearchEditRequest
 
@@ -293,13 +346,19 @@ Represents editing a request
 | ownerId     | [string](#string)               | optional | User Id of the owner of this research                  |
 | datasources | [datasource](#datasource.proto) | repeated | Datasources coupled to the research                    |
 
+<a name="getResearchesRequest"></a>
+
 ### GetResearchesRequest
 
 empty proto
 
+<a name="researchEmptyResponse"></a>
+
 ### ResearchEmptyResponse
 
 Empty proto
+
+<a name="datasourceIdRequest-research"></a>
 
 ### DatasourceIdRequest research
 
@@ -309,17 +368,19 @@ Represents datasource get by id request
 | ----- | ----------------- | -------- | -------------------- |
 | id    | [string](#string) | optional | ID of the datasource |
 
-### EmailRequest
+<a name="emailRequest-research"></a>
+
+### EmailRequest research
 
 Represents email request with email
 
 | Field | Type              | Label    | Description             |
 | ----- | ----------------- | -------- | ----------------------- |
-| email | [string](#string) | optional | Emailaddress to send to |
+| email | [string](#string) | repeated | Email address to send to |
 
-<mark>how does the function know what kind of email to send, or what template to use</mark>
+<a name="emailEmptyResponse-research"></a>
 
-### EmailEmptyResponse
+### EmailEmptyResponse research
 
 Empty proto
 
@@ -329,16 +390,14 @@ Service for handling researches
 
 | Method Name                  | Request Type                                         | Response Type                                   | Description                           |
 | ---------------------------- | ---------------------------------------------------- | ----------------------------------------------- | ------------------------------------- |
-| GetResearches                | -                                                    | stream [Research](#research.proto)              | Get all researches                    |
+| GetResearches                | -                                                    | [Researches](#researches)              | Get all researches                    |
 | GetResearch                  | [ResearchIdRequest](#researchIdRequest)              | [Research](#research.proto)                     | Get research by Id                    |
 | CreateResearch               | [ResearchCreateRequest](#researchCreateRequest)      | [Research](#research.proto)                     | Create research                       |
 | EditResearch                 | [ResearchEditRequest](#researchEditRequest)          | [Research](#research.proto)                     | Edit research                         |
 | DeleteResearch               | [ResearchIdRequest](#researchIdRequest)              | [ResearchEmptyResponse](#researchEmptyResponse) | Delete research                       |
 | AddDatasourceToResearch      | [Datasource](#datesource.proto)                      | [Research](#research.proto)                     | Add a datasource to a research        |
 | RemoveDatasourceFromResearch | [DatasourceIdReqeust](#datasourceIdRequest.research) | [Research](#research.proto)                     | Removing a datasource from a research |
-| InviteUsersToResearch        | [EmailRequest](#emailRequest)                        | [EmailEmptyResponse](#EmailEmptyResponse)       | Send an invite to an email            |
-
-<mark>Possibility for sending email to array of emails?</mark>
+| InviteUsersToResearch        | [EmailRequest](#emailRequest-research)                        | [EmailEmptyResponse](#EmailEmptyResponse-research)       | Send an invite to an email            |
 
 <p align="right"><a href="#top">Top</a></p>
 <a name="user.proto"></a>
@@ -357,6 +416,18 @@ The user that contains user information and a list of consent for every datasour
 | userInformation | [userInformation](#userInformation.proto) | optional | Link to detailed user information |
 | consents        | [consent](#consent.proto)                 | repeated | A list of consents from the user  |
 
+<a name="userResponses"></a>
+
+### UserResponses
+
+Represents a list of [UserResponse](#userResponse)
+
+| Field      | Type                                    | Label    | Description                               |
+| ---------- | --------------------------------------- | -------- | ----------------------------------------- |
+| userResponses | [UserResponse](#userResponse) | repeated | list of userResponse proto buffers |
+
+<a name="userRequest"></a>
+
 ### UserRequest
 
 Represents user request with userId
@@ -364,6 +435,8 @@ Represents user request with userId
 | Field | Type              | Label    | Description    |
 | ----- | ----------------- | -------- | -------------- |
 | id    | [string](#string) | optional | ID of the user |
+
+<a name="userCreateRequest"></a>
 
 ### UserCreateRequest
 
@@ -376,6 +449,8 @@ Represents creating a user
 | email     | [string](#string) | optional | Email of the user     |
 | password  | [string](#string) | optional | Password of the user  |
 
+<a name="userEditRequest"></a>
+
 ### UserEditRequest
 
 Represents editing a user
@@ -386,9 +461,13 @@ Represents editing a user
 | lastname  | [string](#string) | optional | Lastname of the user  |
 | email     | [string](#string) | optional | Email of the user     |
 
+<a name="userEmptyRequest"></a>
+
 ### UserEmptyResponse
 
 Empty proto
+
+<a name="resetPasswordRequest"></a>
 
 ### ResetPasswordRequest
 
@@ -400,7 +479,9 @@ Represents a password reset request
 | newPassword             | [string](#string) | optional | The new password              |
 | newPasswordConfirmation | [string](#string) | optional | The new password confirmation |
 
-### UserReply
+<a name="userResponse"></a>
+
+### UserResponse
 
 Represents a user, as a response
 
@@ -410,7 +491,7 @@ Represents a user, as a response
 | firstname | [string](#string)                         | optional | Firstname of the user             |
 | lastname  | [string](#string)                         | optional | Lastname of the user              |
 | email     | [string](#string)                         | optional | Email of the user                 |
-| userinfo  | [userInformation](#userInformation.proto) | optional | Link to detailed user information |
+| userInfo  | [userInformation](#userInformation.proto) | optional | Link to detailed user information |
 | consents  | [consent](#consent.proto)                 | repeated | A list of consents from the user  |
 
 ### User.service
@@ -419,12 +500,12 @@ Service for handling users
 
 | Method Name   | Request Type                                  | Response Type                           | Description            |
 | ------------- | --------------------------------------------- | --------------------------------------- | ---------------------- |
-| GetUsers      | -                                             | stream [UserReply](#userreply)          | Get all users          |
-| GetUser       | [UserRequest](#userRequest)                   | [UserReply](#userReply)                 | Get user by ID         |
-| CreateUser    | [UserCreateRequest](#userCreateRequest)       | [UserReply](#userReply)                 | Create user            |
-| EditUser      | [UserEditRequest](#userEditRequest)           | [UserReply](#userReply)                 | Edit user              |
+| GetUsers      | -                                             | [UserResponses](#userResponses)         | Get all users          |
+| GetUser       | [UserRequest](#userRequest)                   | [UserResponse](#userResponse)                 | Get user by ID         |
+| CreateUser    | [UserCreateRequest](#userCreateRequest)       | [UserResponse](#userResponse)                 | Create user            |
+| EditUser      | [UserEditRequest](#userEditRequest)           | [UserResponse](#userResponse)                 | Edit user              |
 | DeleteUser    | [UserRequest](#userRequest)                   | [UserEmptyResponse](#userEmptyResponse) | Delete user            |
-| ResetPassword | [ResetPasswordRequest](#resetPasswordRequest) | [UserReply](#userReply)                 | Request password reset |
+| ResetPassword | [ResetPasswordRequest](#resetPasswordRequest) | [UserResponse](#userResponse)                 | Request password reset |
 
 <p align="right"><a href="#top">Top</a></p>
 <a name="userInformation.proto"></a>
@@ -439,6 +520,8 @@ This file contains a message for describing user information.
 | id          | [string](#string) | optional | ID of the userInformation |
 | phoneNumber | [string](#string) | optional | Phonenumber of the user   |
 
+<a name="userInformationIdRequest"></a>
+
 ### UserInformationIdRequest
 
 Represents userInformation request with userId
@@ -447,6 +530,8 @@ Represents userInformation request with userId
 | ----- | ----------------- | -------- | -------------- |
 | id    | [string](#string) | optional | ID of the user |
 
+<a name="userInformationRequest"></a>
+
 ### UserInformationRequest
 
 Represents userInformation for updating user
@@ -454,7 +539,9 @@ Represents userInformation for updating user
 | Field       | Type              | Label    | Description             |
 | ----------- | ----------------- | -------- | ----------------------- |
 | userId      | [string](#string) | optional | ID of the user          |
-| phoneNumber | [string](#string) | optional | Phonenumber of the user |
+| phoneNumber | [string](#string) | optional | Phone number of the user |
+
+<a name="userInformationEmptyResponse"></a>
 
 ### UserInformationEmptyResponse
 

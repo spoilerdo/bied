@@ -48,7 +48,7 @@ message UserResponse {
     string firstname = 2;
     string lastname = 3;
     string email = 4;
-    UserInformation userinfo = 5;
+    UserInformation userInfo = 5;
     repeated Consent consents = 6;
 }
 
@@ -58,6 +58,6 @@ message User {
     string lastname = 3;
     string email = 4;
     string password = 5;
-    UserInformation userinfo = 6;
+    UserInformation userInfo = 6;
     repeated Consent consents = 7;
 }
