@@ -1,0 +1,37 @@
+.question-column {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 1;
+}
+
+.question-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-direction: column;
+  flex: 1;
+}
+
+.sup {
+  margin: 0px 15px;
+  width: 18px;
+  display: flex;
+  justify-content: center;
+
+  p {
+    text-align: center;
+  }
+}
+
+nb-radio {
+  margin: 0px 15px;
+  ::ng-deep {
+    label {
+      padding: 0px !important;
+    }
+    span {
+      padding-left: 0px !important;
+    }
+  }
+}

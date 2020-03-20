@@ -1,0 +1,14 @@
+<div
+  *ngIf="questionnaireSubject; let questionnaire"
+  style="display: flex; justify-content: center; margin: 0px 400px;"
+>
+<nb-card status="success" style="min-width: 800px;">
+  <nb-card-header>{{ questionnaire.title }}</nb-card-header>
+    <nb-card-body>
+      <quill-view [content]="questionnaire.description" format="text" theme="snow"></quill-view>
+    </nb-card-body>
+    <nb-card-footer style="display: flex; justify-content: flex-end;"
+      ><button nbButton status="basic" (click)="navigateToQuestions()">Verder</button></nb-card-footer
+    >
+  </nb-card>
+</div>

@@ -2,20 +2,49 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { QuillModule } from 'ngx-quill';
 
-import { NbThemeModule, NbLayoutModule, NbSidebarModule, NbButtonModule, NbCardModule } from '@nebular/theme';
+import {
+  NbThemeModule,
+  NbLayoutModule,
+  NbSidebarModule,
+  NbButtonModule,
+  NbCardModule,
+  NbListModule,
+  NbSelectModule,
+  NbInputModule,
+  NbCheckboxModule,
+  NbRadioModule,
+} from '@nebular/theme';
+import { QuestionnaireFlowComponent } from './questionnaire-flow/questionnaire-flow.component';
+import { QuestionsStepComponent } from './questionnaire-flow/questions-step/questions-step.component';
+import { IntroductionStepComponent } from './questionnaire-flow/introduction-step/introduction-step.component';
+import { ResultsStepComponent } from './questionnaire-flow/results-step/results-step.component';
+import { BiedQuestionComponent } from './components/bied-question/bied-question.component';
+
+const nebular = [
+  NbThemeModule.forRoot(),
+  NbLayoutModule,
+  NbSidebarModule.forRoot(),
+  NbButtonModule,
+  NbCardModule,
+  NbListModule,
+  NbSelectModule,
+  NbInputModule,
+  NbCheckboxModule,
+  NbRadioModule
+];
 
 @NgModule({
-  declarations: [AppComponent],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    NbThemeModule.forRoot(),
-    NbLayoutModule,
-    NbSidebarModule.forRoot(),
-    NbButtonModule,
-    NbCardModule,
+  declarations: [
+    AppComponent,
+    QuestionnaireFlowComponent,
+    QuestionsStepComponent,
+    IntroductionStepComponent,
+    ResultsStepComponent,
+    BiedQuestionComponent,
   ],
+  imports: [BrowserModule, AppRoutingModule, QuillModule.forRoot(), nebular],
   providers: [],
   bootstrap: [AppComponent],
 })

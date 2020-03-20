@@ -1,0 +1,79 @@
+<div [ngSwitch]="getQuestionType()" style="flex: 1;">
+  <div *ngSwitchCase="'LIKERT'" class="question">
+    <div style="display: flex; flex-direction: row; align-items: flex-end;">
+      <div style="flex: 1;">{{ question }}</div>
+      <div style="display: flex; flex: 1; flex-direction: column;">
+        <div style="display: flex; justify-content: space-between;">
+          <div class="sup">
+            <p>Sterk mee oneens</p>
+          </div>
+          <div class="sup">
+            <p>Oneens</p>
+          </div>
+          <div class="sup">
+            <p>Neutraal</p>
+          </div>
+          <div class="sup">
+            <p>Eens</p>
+          </div>
+          <div class="sup">
+            <p>Sterk mee eens</p>
+          </div>
+        </div>
+
+        <nb-radio-group
+          [value]="answer"
+          (input)="doThis($event.target.value)"
+          style="display: flex; justify-content: space-between;"
+        >
+          <nb-radio class="radio-button" value="Sterk mee oneens"></nb-radio>
+          <nb-radio class="radio-button" value="Oneens"></nb-radio>
+          <nb-radio class="radio-button" value="Neutraal"></nb-radio>
+          <nb-radio class="radio-button" value="Eens"></nb-radio>
+          <nb-radio class="radio-button" value="Sterk mee eens"></nb-radio>
+        </nb-radio-group>
+      </div>
+    </div>
+  </div>
+
+  <div *ngSwitchCase="'MULTIPLE_CHOICE'" class="question-column">
+    {{ question }}
+    <nb-checkbox *ngFor="let option of options; let i = index" (checkedChange)="toggle($event, i)">{{
+      option.name
+    }}</nb-checkbox>
+  </div>
+
+  <div *ngSwitchCase="'OPEN_TEXT'" class="question-column">
+    {{ question }}
+    <textarea
+      [value]="answer"
+      (input)="doThis($event.target.value)"
+      style="max-width: 100%; max-height: 200px;"
+      nbInput
+      placeholder=""
+    ></textarea>
+  </div>
+
+  <div *ngSwitchCase="'DROPDOWN'" class="question-column">
+    <div>{{ question }}</div>
+    <nb-select placeholder="" [(selected)]="answer">
+      <nb-option *ngFor="let option of options; let i = index" [value]="option.name" (click)="doThis(option.name)">{{
+        option.name
+      }}</nb-option>
+    </nb-select>
+  </div>
+
+  <div *ngSwitchCase="'NUMERICAL'" class="question-column">
+    {{ question }}
+    <input [value]="answer" (input)="doThis($event.target.value)" type="number" nbInput placeholder="" />
+  </div>
+
+  <div *ngSwitchCase="'RADIO'" class="question-column">
+    {{ question }}
+    <nb-radio-group>
+      <nb-radio style="padding-left: 10px;" *ngFor="let option of options; let i = index" [value]="option.name" (click)="doThis(option.name)">{{
+        option.name
+      }}</nb-radio>
+    </nb-radio-group>
+  </div>
+</div>

@@ -1,0 +1,89 @@
+import { Injectable } from '@angular/core';
+import { Questionnaire } from '../models/questionnaire/questionnaire.model';
+import { BehaviorSubject } from 'rxjs';
+import { QuestionType } from '../enums/question-type.enum';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class QuestionnaireStore {
+  public questionnaireStore$: BehaviorSubject<Questionnaire>;
+
+  public initialState: Questionnaire = {
+    id: 'd41d8cd98f00b204e9800998ecf8427e',
+    title: 'Vragenlijst inzicht eenzaamheid',
+    description:
+      '<h2>Vragenlijst eenzaamheid</h2><h6>Wat wordt er in deze vragenlijst gevraagd</h6><p>In deze vragenlijst worden vragen gesteld over de volgende onderwerpen:</p><ul><li>Uw activiteiten buiten huis</li><li>Uw sociale contacten</li><li>Persoonsvragen gericht op eenzaamheid</li></ul><p>Met behulp van dit onderzoek proberen wij de eenzaamheid in de bevolking tegen te gaan. Door deze vragenlijst in te vullen helpt u hierbij het onderzoek. Mocht u de vragen in deze vragenlijst niet begrijpen klik dan op het informatie bolletje naast de vraag, deze geeft extra toelichting.</p><p>Dankuwel voor uw deelname.</p><p>Klik op VERDER om de vragenlijst te beginnen.</p>',
+    questionnaireSections: [
+      {
+        id: 0,
+        title: 'Sectie: persoonlijke vragen',
+        questions: [
+          {
+            id: 0,
+            type: QuestionType.LIKERT,
+            question: 'Ik ben graag samen met anderen',
+            information: 'Er wordt gevragen Of u zich vaak alleen voelt.',
+            answer: '',
+          },
+          {
+            id: 1,
+            type: QuestionType.MULTIPLE_CHOICE,
+            question: 'Welke seizoenen ervaart u als prettig?',
+            options: [{ name: 'Lente' }, { name: 'Zomer' }, { name: 'Herfst' }, { name: 'Winter' }],
+            information: 'Er wordt gevragen hoevaak u uit eten gaat.',
+            answer: '',
+          },
+          {
+            id: 2,
+            type: QuestionType.OPEN_TEXT,
+            question: 'Waarom vind u deze seizoenen prettig?',
+            information: 'Er wordt gevragen hoevaak u uit eten gaat.',
+            answer: '',
+          },
+          {
+            id: 3,
+            type: QuestionType.NUMERICAL,
+            question: 'Hoe vaak per week gaat u op visite?',
+            information: 'Er wordt gevragen hoevaak u uit eten gaat.',
+            answer: '0',
+          },
+          {
+            id: 4,
+            type: QuestionType.NUMERICAL,
+            question: 'Hoe vaak per week komen er mensen bij u op visite?',
+            information: 'Er wordt gevragen hoevaak u uit eten gaat.',
+            answer: '0',
+          },
+          {
+            id: 5,
+            type: QuestionType.DROPDOWN,
+            question: 'Waar gaat u meestal uit eten?',
+            options: [
+              { name: 'Restaurant' },
+              { name: 'All you can eat' },
+              { name: 'Snackbar' },
+            ],
+
+            information: 'Er wordt gevragen hoevaak u uit eten gaat.',
+            answer: '',
+          },
+          {
+            id: 6,
+            type: QuestionType.RADIO,
+            question: 'Hoe ziet uw thuis situatie eruit?',
+            options: [{ name: 'Getrouwd' }, { name: 'Samenwonend' }, { name: 'Alleenstaand' }],
+            information: 'Er wordt gevragen hoevaak u uit eten gaat.',
+            answer: '',
+          },
+        ],
+      },
+    ],
+    currentQuestionnaireSectionId: 0,
+  };
+
+  constructor() {
+    console.log('constructor called');
+    this.questionnaireStore$ = new BehaviorSubject(this.initialState);
+  }
+}
