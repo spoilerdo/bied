@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using research_service.Mapping;
 using research_service.Persistence.Context;
 using research_service.Persistence.Repositories.Researches;
 using research_service.Services;
@@ -28,6 +29,7 @@ namespace research_service
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddGrpc();
+
             services.AddAutoMapper(typeof(Startup));
             services.AddDbContext<ResearchDbContext>(options =>
             {

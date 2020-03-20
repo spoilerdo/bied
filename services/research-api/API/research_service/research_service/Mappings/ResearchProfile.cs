@@ -25,9 +25,8 @@ namespace research_service.Mapping
 
         private DateTime UnixTimeToDateTime(long unixTime)
         {
-            DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
-            dtDateTime = dtDateTime.AddMilliseconds(unixTime).ToLocalTime();
-            return dtDateTime;
+            var DateTime = DateTimeOffset.FromUnixTimeSeconds(unixTime).DateTime.ToLocalTime();
+            return DateTime;
         }
 
         private long DateTimeToUnixTime(DateTime dateTime)
