@@ -5,11 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Protobuf Include="Protos\*.proto" GrpcServices="Server" ProtoRoot="Protos\"/>
+    <Protobuf Include="Protos\*.proto" GrpcServices="Server" ProtoRoot="Protos\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Grpc.AspNetCore" Version="2.24.0" />
+    <PackageReference Include="MongoDB.Driver" Version="2.10.2" />
   </ItemGroup>
 
 </Project>
