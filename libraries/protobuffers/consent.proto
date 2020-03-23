@@ -10,7 +10,7 @@ service Consent {
   rpc DeleteConsent (DeleteConsentRequest) returns (ConsentEmptyResponse);
 }
 
-message Consents {
+message ConsentsService {
   repeated Consent consents = 1;
 }
 

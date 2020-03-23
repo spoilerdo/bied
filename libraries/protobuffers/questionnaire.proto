@@ -2,7 +2,7 @@
 
 import "question.proto";
 
-service Questionnaire {
+service QuestionnaireService {
 	rpc CreateQuestionnaire (QuestionnaireCreateRequest) returns (Questionnaire);
 	rpc DeleteQuestionnaire (QuestionnaireIdRequest) returns (QuestionnaireEmptyResponse);
 	rpc UpdateQuestionnaire (QuestionnaireEditRequest) returns (Questionnaire);

@@ -3,7 +3,7 @@ syntax = "proto3";
 import "consent.proto";
 import "userInformation.proto";
 
-service User {
+service UserService {
     rpc GetUsers (GetUsersRequest) returns (UserResponses);
     rpc GetUser (UserRequest) returns (UserResponse);
     rpc CreateUser (UserCreateRequest) returns (UserResponse);
