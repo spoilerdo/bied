@@ -18,6 +18,7 @@ import {
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { QuestionnaireOverviewComponent } from './pages/questionnaire-overview/questionnaire-overview.component';
+import { QuestionnaireCardComponent } from './pages/questionnaire-overview/questionnaire-card/questionnaire-card.component';
 
 const nebularModules = [
   NbLayoutModule,
@@ -31,7 +32,7 @@ const nebularModules = [
 ];
 
 @NgModule({
-  declarations: [QuestionnaireComponent, QuestionnaireOverviewComponent],
+  declarations: [QuestionnaireComponent, QuestionnaireOverviewComponent, QuestionnaireCardComponent],
   imports: [
     CommonModule,
     QuestionnaireRoutingModule,
