@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-service UserInformation {
+service UserInformation_Service {
   rpc GetUserInformation (UserInformationIdReqeust) returns (UserInformation);
   rpc CreateUserInformation (UserInformationRequest) returns (UserInformation);
   rpc EditUserInformation (UserInformationRequest) returns (UserInformation);
