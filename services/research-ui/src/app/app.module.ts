@@ -2,20 +2,15 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { NbEvaIconsModule } from '@nebular/eva-icons';
+import { NbThemeModule, NbLayoutModule, NbButtonModule, NbCardModule } from '@nebular/theme';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { NbThemeModule, NbLayoutModule, NbSidebarModule, NbButtonModule, NbCardModule } from '@nebular/theme';
+const nebularModules = [NbThemeModule.forRoot(), NbLayoutModule, NbButtonModule, NbCardModule, NbEvaIconsModule];
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    NbThemeModule.forRoot(),
-    NbLayoutModule,
-    NbSidebarModule.forRoot(),
-    NbButtonModule,
-    NbCardModule,
-  ],
+  imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, ...nebularModules],
   providers: [],
   bootstrap: [AppComponent],
 })
