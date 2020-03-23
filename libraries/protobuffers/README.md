@@ -61,7 +61,7 @@ Represents a list of [Consent](#consent.proto)
 
 ### ConsentRequest
 
-Represents editing and creating of a [Consent](#consent.proto)
+Represents creating of a [Consent](#consent.proto)
 
 | Field      | Type                                    | Label    | Description                               |
 | ---------- | --------------------------------------- | -------- | ----------------------------------------- |
@@ -69,6 +69,19 @@ Represents editing and creating of a [Consent](#consent.proto)
 | datasource | [DatasourceRequest](#datasourceRequest) | optional | <mark>Relation to datasourceRequest<mark> |
 | consent    | [bool](#bool)                           | optional | Given consent by user                     |
 | uts        | [int64](#int64)                         | optional | Specific time of given consent            |
+
+### ConsentEditRequest
+Represents editing of a [Consent](#consent.proto)
+
+| Field      | Type                                    | Label    | Description                               |
+| ---------- | --------------------------------------- | -------- | ----------------------------------------- |
+| id         | [string](#string)                       | optional | ID of the consent to edit
+| userId     | [string](#string)                       | optional | ID of the user that contains this consent |
+| datasource | [DatasourceRequest](#datasourceRequest) | optional | <mark>Relation to datasourceRequest<mark> |
+| consent    | [bool](#bool)                           | optional | Given consent by user                     |
+| uts        | [int64](#int64)                         | optional | Specific time of given consent            |
+
+
 
 ### UserIdRequest consent
 
@@ -86,7 +99,7 @@ Service for handling consents
 | ------------- | --------------------------------------- | -------------------------------- | --------------------------------------------------- |
 | GetConsents   | [UserIdReqeust](#userIdReqeust-consent) | stream [Consent](#consent.proto) | Used to get all consents for a user                 |
 | CreateConsent | [ConsentRequest](#consentRequest)       | [Consent](#consent.proto)        | Used to create a new consent                        |
-| EditConsent   | [ConsentRequest](#consentRequest)       | [Consent](#consent.proto)        | Used to edit a consent                              |
+| EditConsent   | [ConsentEditRequest](#ConsentEditRequest)       | [Consent](#consent.proto)        | Used to edit a consent                              |
 | DeleteConsent | [UserIdRequest](#userIdRequest-consent) | [Consent](#consent.proto)        | <mark>Used to delete all consents for a user?<mark> |
 
 <mark>Moet er niet ook een methode zijn voor het verwijderen van één consent, de huidige methode lijk all consents te verwijderen<mark>
@@ -117,6 +130,19 @@ Represents message for creating a datasource
 | reference   | [string](#string) | optional | Reference to identify the given answers                  |
 | active      | [bool](#bool)     | optional | Boolean indicating if the datasource is currently active |
 
+### DatasourceEditRequest
+
+Represents message for editing a datasource
+
+| Field       | Type              | Label    | Description                                              |
+| ----------- | ----------------- | -------- | -------------------------------------------------------- |
+| id        | [string](#string) | optional | id of the datasource to edit                
+| name        | [string](#string) | optional | Name of the datasource                                   |
+| description | [string](#string) | optional | Description of the datasource                            |
+| reference   | [string](#string) | optional | Reference to identify the given answers                  |
+| active      | [bool](#bool)     | optional | Boolean indicating if the datasource is currently active |
+
+
 ### DatasourceIdRequest
 
 Represents getting, editing or deleting datasources by id
@@ -134,7 +160,7 @@ Service for handling datasources
 | GetDataSources   | -                                           | stream [Datasource](#datasource.proto) | Get all datasources  |
 | GetDatasource    | [DatasourceIdRequest](#datasourceIdRequest) | [Datasource](#datasource.proto)        | Get datasource by Id |
 | CreateDatasource | [DatasourceRequest](#datasourceRequest)     | [Datasource](#datasource.proto)        | Create datasource    |
-| EditDatasource   | [DatasourceRequest](#datasourceRequest)     | [Datasource](#datasource.proto)        | Edit datasource      |
+| EditDatasource   | [DatasourceEditRequest](#DatasourceEditRequest) | [Datasource](#datasource.proto)        | Edit datasource      |
 | DeleteDatasource | [DatasourceIdReqeust](#datasourceIdRequest) | [Datasource](#datasource.proto)        | Delete datasource    |
 
 <p align="right"><a href="#top">Top</a></p>
@@ -201,6 +227,8 @@ Represents editing a questionnaire
 
 | Field       | Type                                | Label    | Description                              |
 | ----------- | ----------------------------------- | -------- | ---------------------------------------- |
+| id          | [string](#string)                   | optional | id of the 
+questionnaire
 | name        | [string](#string)                   | optional | Name of the questionnaire                |
 | description | [string](#string)                   | optional | Description of the questionnaire         |
 | question    | [QuestionRequest](#questionRequest) | repeated | Questionnaire questions, QuestionRequest |
@@ -284,6 +312,7 @@ Represents editing a request
 
 | Field       | Type                            | Label    | Description                                            |
 | ----------- | ------------------------------- | -------- | ------------------------------------------------------ |
+| id          | [string](#string)               | optional | Id of the research
 | name        | [string](#string)               | optional | Name of the research                                   |
 | description | [string](#string)               | optional | Description of the research                            |
 | imageUrl    | [string](#string)               | optional | Path to image                                          |
@@ -382,6 +411,7 @@ Represents editing a user
 
 | Field     | Type              | Label    | Description           |
 | --------- | ----------------- | -------- | --------------------- |
+| id        | [string](#string) | optional | id of the user        |
 | firstname | [string](#string) | optional | Firstname of the user |
 | lastname  | [string](#string) | optional | Lastname of the user  |
 | email     | [string](#string) | optional | Email of the user     |

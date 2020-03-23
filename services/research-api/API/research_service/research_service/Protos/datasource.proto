@@ -26,11 +26,11 @@ message DatasourceRequest {
 }
 
 message DatasourceEditRequest {
-    string id = 1;
-    string name = 2;
-    string description = 3;
-    string reference = 4;
-    bool active = 5;
+  string id = 1;
+  string name = 2;
+  string description = 3;
+  string reference = 4;
+  bool active = 5;
 }
 
 message Datasource {
