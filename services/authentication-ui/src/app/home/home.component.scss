@@ -1,0 +1,64 @@
+nb-card-header,
+nb-card-footer {
+  text-align: center;
+}
+
+.login-wrapper {
+  display: flex;
+  flex: 0.5;
+  flex-direction: column-reverse;
+
+  @media screen and (min-width: 376px) {
+    flex-direction: row;
+  }
+
+  &__column {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__information {
+    text-align: center;
+    border-top: 1px solid #b5b8bd;
+    border-right: 0;
+    @media screen and (min-width: 376px) {
+      border-right: 1px solid #b5b8bd;
+      border-top: 0;
+    }
+
+    h1 {
+      font-family: 'Indie Flower', cursive;
+    }
+    h4 {
+      font-size: 18px;
+      line-height: 20px;
+      margin-top: 0;
+      @media screen and (min-width: 376px) {
+        line-height: 2rem;
+      }
+    }
+  }
+
+  &__inputs {
+    padding-bottom: 16px !important;
+
+    input {
+      display: flex;
+      flex: 1;
+      margin: 15px 0;
+      max-width: 20rem;
+      width: 100%;
+    }
+  }
+}
+
+:host {
+  width: 80%;
+  .clickable {
+    cursor: pointer;
+    transition: all 0.25s ease-in-out;
+    &:hover {
+      color: #3366ff !important;
+    }
+  }
+}
