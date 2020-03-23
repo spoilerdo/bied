@@ -5,6 +5,16 @@
   flex: 1;
 }
 
+.likert-labels-outer-contaier {
+  display: flex;
+  justify-content: flex-end;
+  .likert-labels-inner-contaier {
+    display: flex;
+    flex: 0.5;
+    justify-content: space-between;
+  }
+}
+
 .question-row {
   display: flex;
   align-items: flex-start;
@@ -18,10 +28,8 @@
   width: 18px;
   display: flex;
   justify-content: center;
-
-  p {
-    text-align: center;
-  }
+  align-items: flex-end;
+  text-align: center;
 }
 
 nb-radio {
@@ -34,4 +42,8 @@ nb-radio {
       padding-left: 0px !important;
     }
   }
+}
+
+nb-icon {
+  margin-left: 5px;
 }

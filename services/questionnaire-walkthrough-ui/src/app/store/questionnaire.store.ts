@@ -59,11 +59,7 @@ export class QuestionnaireStore {
             id: 5,
             type: QuestionType.DROPDOWN,
             question: 'Waar gaat u meestal uit eten?',
-            options: [
-              { name: 'Restaurant' },
-              { name: 'All you can eat' },
-              { name: 'Snackbar' },
-            ],
+            options: [{ name: 'Restaurant' }, { name: 'All you can eat' }, { name: 'Snackbar' }],
 
             information: 'Er wordt gevragen hoevaak u uit eten gaat.',
             answer: '',
@@ -74,6 +70,50 @@ export class QuestionnaireStore {
             question: 'Hoe ziet uw thuis situatie eruit?',
             options: [{ name: 'Getrouwd' }, { name: 'Samenwonend' }, { name: 'Alleenstaand' }],
             information: 'Er wordt gevragen hoevaak u uit eten gaat.',
+            answer: '',
+          },
+        ],
+      },
+      {
+        id: 1,
+        title: 'Sectie LIKERT vragen',
+        questions: [
+          {
+            id: 7,
+            type: QuestionType.LIKERT_GROUP,
+            question: [
+              {
+                id: 8,
+                question: 'Ik kom graag buiten',
+                answer: '',
+              },
+              {
+                id: 9,
+                question: 'Ik kom graag buiten',
+                answer: '',
+              },
+              {
+                id: 10,
+                question: 'Ik kom graag buiten',
+                answer: '',
+              },
+              {
+                id: 11,
+                question: 'Ik kom graag buiten',
+                answer: '',
+              },
+              {
+                id: 12,
+                question: 'Ik kom graag buiten',
+                answer: '',
+              },
+              {
+                id: 13,
+                question: 'Ik kom graag buiten',
+                answer: '',
+              },
+            ],
+            information: '',
             answer: '',
           },
         ],

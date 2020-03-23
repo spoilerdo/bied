@@ -1,5 +1,6 @@
 export enum QuestionType {
     LIKERT,
+    LIKERT_GROUP,
     RADIO,
     MULTIPLE_CHOICE,
     DROPDOWN,

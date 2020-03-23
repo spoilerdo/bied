@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,7 +16,12 @@ import {
   NbInputModule,
   NbCheckboxModule,
   NbRadioModule,
+  NbTooltipModule,
+  NbIconModule,
 } from '@nebular/theme';
+
+import { NbEvaIconsModule } from '@nebular/eva-icons';
+
 import { QuestionnaireFlowComponent } from './questionnaire-flow/questionnaire-flow.component';
 import { QuestionsStepComponent } from './questionnaire-flow/questions-step/questions-step.component';
 import { IntroductionStepComponent } from './questionnaire-flow/introduction-step/introduction-step.component';
@@ -32,7 +38,10 @@ const nebular = [
   NbSelectModule,
   NbInputModule,
   NbCheckboxModule,
-  NbRadioModule
+  NbRadioModule,
+  NbTooltipModule,
+  NbEvaIconsModule,
+  NbIconModule,
 ];
 
 @NgModule({
@@ -44,7 +53,7 @@ const nebular = [
     ResultsStepComponent,
     BiedQuestionComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, QuillModule.forRoot(), nebular],
+  imports: [BrowserModule, BrowserAnimationsModule, AppRoutingModule, QuillModule.forRoot(), nebular],
   providers: [],
   bootstrap: [AppComponent],
 })

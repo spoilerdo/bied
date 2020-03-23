@@ -36,7 +36,14 @@ export class BiedQuestionComponent implements OnInit {
   }
 
   doThis(event) {
+    console.log(event);
     this.answer = event;
+    this.informationMe();
+  }
+
+  doThisGroup(event, index) {
+    console.log(this.question);
+    this.question[index].answer = event;
     this.informationMe();
   }
 
