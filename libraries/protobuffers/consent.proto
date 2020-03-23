@@ -2,7 +2,7 @@ syntax = "proto3";
 
 import "datasource.proto";
 
-service ConsentService {
+service Consent_Service {
   rpc GetConsents (UserIdRequest) returns (Consents);
   rpc CreateConsent (ConsentRequest) returns (Consent);
   rpc DeleteAllConsent (UserIdRequest) returns (ConsentEmptyResponse);
