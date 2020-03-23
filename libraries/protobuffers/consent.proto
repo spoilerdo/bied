@@ -5,9 +5,9 @@ import "datasource.proto";
 service ConsentService {
   rpc GetConsents (UserIdRequest) returns (Consents);
   rpc CreateConsent (ConsentRequest) returns (Consent);
-  rpc EditConsent (ConsentRequest) returns (Consent);
   rpc DeleteAllConsent (UserIdRequest) returns (ConsentEmptyResponse);
   rpc DeleteConsent (DeleteConsentRequest) returns (ConsentEmptyResponse);
+  rpc EditConsent (ConsentEditRequest) returns (Consent);
 }
 
 message Consents {
@@ -25,9 +25,18 @@ message ConsentRequest {
   int64 uts = 4;
 }
 
+
 message DeleteConsentRequest {
   string userId = 1;
   string id = 2;
+}
+
+message ConsentEditRequest {
+    string id = 1;
+    string userId = 2;
+    DatasourceRequest datasource = 3;
+    bool consent = 4;
+    int64 uts = 5;
 }
 
 message ConsentEmptyResponse {}
