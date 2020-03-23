@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Templating;
 
 namespace EmailService
 {
@@ -31,7 +32,8 @@ namespace EmailService
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGrpcService<GreeterService>();
+                endpoints.MapGrpcService<MailService>();
+                endpoints.MapGrpcService<TemplateService>();
 
                 endpoints.MapGet("/", async context =>
                 {
