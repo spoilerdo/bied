@@ -2,7 +2,7 @@ syntax = "proto3";
 
 import "datasource.proto";
 
-service ResearchService {
+service Research_Service {
   rpc GetResearches (GetResearchesRequest) returns (Researches);
   rpc GetResearch (ResearchIdRequest) returns (Research);
   rpc CreateResearch (ResearchCreateRequest) returns (Research);
