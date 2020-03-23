@@ -7,8 +7,8 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  private form: FormGroup;
-  private submitted: boolean = false;
+  public form: FormGroup;
+  public submitted: boolean = false;
   constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
