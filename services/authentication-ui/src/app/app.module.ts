@@ -4,32 +4,26 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { 
-  NbThemeModule, 
-  NbLayoutModule, 
-  NbButtonModule,
-  NbCardModule,
-  NbInputModule  
-} from '@nebular/theme';
+import { NbThemeModule, NbLayoutModule, NbButtonModule, NbCardModule, NbInputModule } from '@nebular/theme';
 import { HomeComponent } from './home/home.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent
-  ],
+  declarations: [AppComponent, HomeComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
+
+    ReactiveFormsModule,
 
     // Nebular
     NbThemeModule.forRoot(),
     NbLayoutModule,
     NbButtonModule,
     NbCardModule,
-    NbInputModule
+    NbInputModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
