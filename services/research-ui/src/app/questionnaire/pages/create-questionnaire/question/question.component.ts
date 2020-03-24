@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { QuestionType } from '../enums/question-type.enum';
 
 @Component({
@@ -21,7 +21,12 @@ export class QuestionComponent implements OnInit {
 
     this.questionForm.addControl('label', this.formBuilder.control('Question'));
     this.questionForm.addControl('required', this.formBuilder.control(false));
-    this.questionForm.addControl('questionType', this.formBuilder.control(QuestionType.Choice));
+    this.questionForm.addControl('questionType', this.formBuilder.control([null, [Validators.required]]));
+    this.questionForm.addControl('questionData', this.formBuilder.group({}));
+  }
+
+  formTypeChanged(): void {
+    this.questionForm.removeControl('questionData');
     this.questionForm.addControl('questionData', this.formBuilder.group({}));
   }
 

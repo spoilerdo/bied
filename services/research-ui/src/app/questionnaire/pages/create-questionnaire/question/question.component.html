@@ -12,7 +12,11 @@
           <div class="form-control">
             <label class="label">Question type</label>
             <nb-select formControlName="questionType">
-              <nb-option *ngFor="let questionType of questionTypes | enumToArray" [value]="questionType.name">
+              <nb-option
+                *ngFor="let questionType of questionTypes | enumToArray"
+                [value]="questionType.name"
+                (selectionChange)="formTypeChanged()"
+              >
                 {{ questionType.name }}
               </nb-option>
             </nb-select>
