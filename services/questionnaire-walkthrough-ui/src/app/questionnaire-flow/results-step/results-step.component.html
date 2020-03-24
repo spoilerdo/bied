@@ -3,14 +3,37 @@
     <nb-card-header>Resultaat</nb-card-header>
 
     <nb-card-body>
-      <p>Dankuwel voor het invullen van deze vragenlijst! De vragen met uw antwoorden kunt u terug vinden op uw dashboard.</p>
+      <p>
+        Dankuwel voor het invullen van deze vragenlijst! De vragen met uw antwoorden kunt u terug vinden op uw
+        dashboard.
+      </p>
       <nb-list>
-        <nb-list-item style="display: flex; flex-direction: column;" *ngFor="let questionnaireSection of questionnaire.questionnaireSections">
-          <h5>{{questionnaireSection.title}}</h5>
+        <nb-list-item
+          style="display: flex; flex-direction: column;"
+          *ngFor="let questionnaireSection of questionnaire.questionnaireSections"
+        >
+          <h5>{{ questionnaireSection.title }}</h5>
           <nb-list style="width: 100%;">
-            <nb-list-item style="display: flex; flex-direction: row; justify-content: space-between;" *ngFor="let question of questionnaireSection.questions">
-              <h6>{{ question.question }}</h6>
-              <p>{{ question.answer }}</p>
+            <nb-list-item
+              style="display: flex; flex-direction: row; justify-content: space-between;"
+              *ngFor="let question of questionnaireSection.questions"
+            >
+              <div *ngIf="getQuestionType(question) !== 'LIKERT_GROUP'; then thenBlock; else elseBlock"></div>
+
+              <ng-template #thenBlock>
+                {{ getQuestionType(question.type) }}
+                <h6>{{ question.question }}</h6>
+                <p>{{ question.answer }}</p>
+              </ng-template>
+              <ng-template #elseBlock>
+                <div style="display: flex; flex-direction: column; flex: 1;">
+                  {{ getQuestionType(question.type) }}
+                  <div *ngFor="let subQuestion of question.question" style="display: flex; justify-content: space-between;">
+                    <h6>{{ subQuestion.question }}</h6>
+                    <p>{{ subQuestion.answer }}</p>
+                  </div>
+                </div>
+              </ng-template>
             </nb-list-item>
           </nb-list>
         </nb-list-item>

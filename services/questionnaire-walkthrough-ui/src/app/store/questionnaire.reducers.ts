@@ -23,14 +23,18 @@ export class QuestionnaireReducers {
         break;
       }
       case PREVIOUS_SECTION: {
+        console.log('going to previous...')
         const currentState = this.questionnaireStore.questionnaireStore$.value;
         currentState.currentQuestionnaireSectionId--;
         this.questionnaireStore.questionnaireStore$.next(currentState);
+        break;
       }
       case NEXT_SECTION: {
+        console.log('going to next...')
         const currentState = this.questionnaireStore.questionnaireStore$.value;
         currentState.currentQuestionnaireSectionId++;
         this.questionnaireStore.questionnaireStore$.next(currentState);
+        break;
       }
     }
   }

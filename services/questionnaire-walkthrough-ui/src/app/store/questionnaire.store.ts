@@ -84,7 +84,7 @@ export class QuestionnaireStore {
             question: [
               {
                 id: 8,
-                question: 'Ik kom graag buiten',
+                question: 'Ik ga graag uit eten',
                 answer: '',
               },
               {
@@ -94,22 +94,22 @@ export class QuestionnaireStore {
               },
               {
                 id: 10,
-                question: 'Ik kom graag buiten',
+                question: 'Ik ga graag naar sociale activiteiten',
                 answer: '',
               },
               {
                 id: 11,
-                question: 'Ik kom graag buiten',
+                question: 'Ik ga graag naar de bioscoop',
                 answer: '',
               },
               {
                 id: 12,
-                question: 'Ik kom graag buiten',
+                question: 'Ik ben graag alleen',
                 answer: '',
               },
               {
                 id: 13,
-                question: 'Ik kom graag buiten',
+                question: 'Ik ben vaak omringd door anderen',
                 answer: '',
               },
             ],

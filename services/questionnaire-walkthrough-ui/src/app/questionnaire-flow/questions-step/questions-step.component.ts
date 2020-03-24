@@ -7,6 +7,8 @@ import { QuestionnaireService } from 'src/app/services/questionnaire.service';
 import { QuestionnaireStore } from 'src/app/store/questionnaire.store';
 import { QuestionnaireReducers } from 'src/app/store/questionnaire.reducers';
 import { PREVIOUS_SECTION, NEXT_SECTION } from 'src/app/store/questionnaire.actions';
+import { QuestionType } from 'src/app/enums/question-type.enum';
+import { Question } from 'src/app/models/question/question.model';
 
 @Component({
   selector: 'app-questions-step',
@@ -26,7 +28,7 @@ export class QuestionsStepComponent implements OnInit, OnDestroy {
   async ngOnInit(): Promise<void> {
     this.questionnaireSubscription = this.questionnaireStore.questionnaireStore$.subscribe(data => {
       this.questionnaire = data;
-      // console.log('getting updated questionnaire: ', this.questionnaire);
+      console.log('getting updated questionnaire: ', this.questionnaire);
     });
   }
 
@@ -36,12 +38,14 @@ export class QuestionsStepComponent implements OnInit, OnDestroy {
   }
 
   public previousQuestion() {
+    console.log('previous')
     this.questionnaireReducers.questionnaireReducer({
       type: PREVIOUS_SECTION,
     });
   }
 
   public nextQuestion() {
+    console.log('next')
     this.questionnaireReducers.questionnaireReducer({
       type: NEXT_SECTION,
     });
