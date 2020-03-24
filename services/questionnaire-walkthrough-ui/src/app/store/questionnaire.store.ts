@@ -41,7 +41,6 @@ export class QuestionnaireStore {
             id: 2,
             type: QuestionType.OPEN_TEXT,
             question: 'Waarom vind u deze seizoenen prettig?',
-            information: 'Er wordt gevragen hoevaak u uit eten gaat.',
             answer: '',
           },
           {
@@ -94,6 +93,7 @@ export class QuestionnaireStore {
                 id: 9,
                 question: 'Ik kom graag buiten',
                 answer: '',
+                information: 'De stad, wandeling, reis'
               },
               {
                 id: 10,

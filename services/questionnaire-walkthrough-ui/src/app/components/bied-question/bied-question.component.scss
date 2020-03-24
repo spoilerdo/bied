@@ -12,7 +12,55 @@
     display: flex;
     flex: 0.5;
     justify-content: space-between;
+
+    .likert-label {
+      margin: 0px 15px;
+      width: 18px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      text-align: center;
+    }
   }
+}
+
+.likert-answers-outer-container {
+  display: flex;
+  padding: 15px 0px;
+  .likert-answers-question-container {
+    flex: 1;
+    display: flex;
+  }
+
+  .likert-answers-radio-buttons {
+    display: flex;
+    justify-content: space-between;
+    flex: 1;
+
+    nb-radio {
+      margin: 0px 15px;
+      ::ng-deep {
+        label {
+          padding: 0px !important;
+        }
+        span {
+          padding-left: 0px !important;
+        }
+      }
+    }
+  }
+}
+
+.question-container {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+}
+
+textarea {
+  max-width: 100%;
+  max-height: 200px;
+  max-width: 400px;
 }
 
 .question-row {
@@ -21,27 +69,6 @@
   justify-content: space-between;
   flex-direction: column;
   flex: 1;
-}
-
-.sup {
-  margin: 0px 15px;
-  width: 18px;
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  text-align: center;
-}
-
-nb-radio {
-  margin: 0px 15px;
-  ::ng-deep {
-    label {
-      padding: 0px !important;
-    }
-    span {
-      padding-left: 0px !important;
-    }
-  }
 }
 
 nb-icon {

@@ -25,7 +25,7 @@ export class BiedQuestionComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  informationMe() {
+  submitAnswer() {
     this.questionnaireReducers.questionnaireReducer({
       type: ANSWER_QUESTION,
       payload: {
@@ -35,16 +35,14 @@ export class BiedQuestionComponent implements OnInit {
     });
   }
 
-  doThis(event) {
-    console.log(event);
+  setAnswer(event) {
     this.answer = event;
-    this.informationMe();
+    this.submitAnswer();
   }
 
-  doThisGroup(event, index) {
-    console.log(this.question);
+  setAnswerGroup(event, index) {
     this.question[index].answer = event;
-    this.informationMe();
+    this.submitAnswer();
   }
 
   public toggle(event: any, index: any) {
@@ -55,7 +53,7 @@ export class BiedQuestionComponent implements OnInit {
     }
 
     this.answer = this.choosedOptions.map(e => this.options[e].name);
-    this.informationMe();
+    this.submitAnswer();
   }
 
   public getQuestionType(): string {

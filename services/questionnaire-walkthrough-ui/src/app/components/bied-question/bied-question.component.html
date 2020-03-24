@@ -2,63 +2,55 @@
   <div *ngSwitchCase="'LIKERT'">
     <div class="likert-labels-outer-contaier">
       <div class="likert-labels-inner-contaier">
-        <div class="sup">Sterk mee oneens</div>
-        <div class="sup">Oneens</div>
-        <div class="sup">Neutraal</div>
-        <div class="sup">Eens</div>
-        <div class="sup">Sterk mee eens</div>
+        <div class="likert-label">Sterk mee oneens</div>
+        <div class="likert-label">Oneens</div>
+        <div class="likert-label">Neutraal</div>
+        <div class="likert-label">Eens</div>
+        <div class="likert-label">Sterk mee eens</div>
       </div>
     </div>
 
-    <div style="display: flex; padding: 15px 0px;">
-      <div style="flex: 1; display: flex;">
+    <div class="likert-answers-outer-container">
+      <div class="likert-answers-question-container">
         <div>{{ question }}</div>
-        <nb-icon [nbTooltip]="information" nbTooltipStatus="primary" icon="info-outline"></nb-icon>
+        <nb-icon *ngIf="information" [nbTooltip]="information" nbTooltipStatus="primary" icon="info-outline"></nb-icon>
       </div>
-      <nb-radio-group
-        name="likert-group"
-        [value]="answer"
-        style="display: flex; justify-content: space-between; flex: 1;"
-      >
-        <nb-radio class="radio-button" (click)="doThis('Sterk mee oneens')" value="Sterk mee oneens"></nb-radio>
-        <nb-radio class="radio-button" (click)="doThis('Oneens')" value="Oneens"></nb-radio>
-        <nb-radio class="radio-button" (click)="doThis('Neutraal')" value="Neutraal"></nb-radio>
-        <nb-radio class="radio-button" (click)="doThis('Eens')" value="Eens"></nb-radio>
-        <nb-radio class="radio-button" (click)="doThis('Sterk mee eens')" value="Sterk mee eens"></nb-radio>
+      <nb-radio-group name="likert-group" [value]="answer" class="likert-answers-radio-buttons">
+        <nb-radio class="radio-button" (click)="setAnswer('Sterk mee oneens')" value="Sterk mee oneens"></nb-radio>
+        <nb-radio class="radio-button" (click)="setAnswer('Oneens')" value="Oneens"></nb-radio>
+        <nb-radio class="radio-button" (click)="setAnswer('Neutraal')" value="Neutraal"></nb-radio>
+        <nb-radio class="radio-button" (click)="setAnswer('Eens')" value="Eens"></nb-radio>
+        <nb-radio class="radio-button" (click)="setAnswer('Sterk mee eens')" value="Sterk mee eens"></nb-radio>
       </nb-radio-group>
     </div>
   </div>
 
   <div *ngSwitchCase="'LIKERT_GROUP'" class="question">
-    <div style="display: flex; justify-content: flex-end;">
-      <div style="display: flex; flex: 0.5; justify-content: space-between;">
-        <div class="sup">
-          <p>Sterk mee oneens</p>
-        </div>
-        <div class="sup">
-          <p>Oneens</p>
-        </div>
-        <div class="sup">
-          <p>Neutraal</p>
-        </div>
-        <div class="sup">
-          <p>Eens</p>
-        </div>
-        <div class="sup">
-          <p>Sterk mee eens</p>
-        </div>
+    <div class="likert-labels-outer-contaier">
+      <div class="likert-labels-inner-contaier">
+        <div class="likert-label">Sterk mee oneens</div>
+        <div class="likert-label">Oneens</div>
+        <div class="likert-label">Neutraal</div>
+        <div class="likert-label">Eens</div>
+        <div class="likert-label">Sterk mee eens</div>
       </div>
     </div>
 
-    <div *ngFor="let subQuestion of question; let i = index" style="display: flex; padding: 15px 0px;">
-      <div style="flex: 1; display: flex; justify-content: flex-start;">
-        {{ subQuestion.question }}
+    <div *ngFor="let subQuestion of question; let i = index" class="likert-answers-outer-container">
+      <div class="likert-answers-question-container">
+        <div>{{ subQuestion.question }}</div>
+        <nb-icon
+          *ngIf="subQuestion.information"
+          [nbTooltip]="subQuestion.information"
+          nbTooltipStatus="primary"
+          icon="info-outline"
+        ></nb-icon>
       </div>
       <nb-radio-group
-        [name]="'likert group ' + i"
+        [name]="'likert-group ' + i"
         [value]="subQuestion.answer"
-        (input)="doThisGroup($event.target.value, i)"
-        style="display: flex; justify-content: space-between; flex: 1;"
+        (input)="setAnswerGroup($event.target.value, i)"
+        class="likert-answers-radio-buttons"
       >
         <nb-radio class="radio-button" value="Sterk mee oneens"></nb-radio>
         <nb-radio class="radio-button" value="Oneens"></nb-radio>
@@ -70,9 +62,9 @@
   </div>
 
   <div *ngSwitchCase="'MULTIPLE_CHOICE'" class="question-column">
-    <div style="flex: 1; display: flex; justify-content: flex-start;">
+    <div class="question-container">
       {{ question }}
-      <nb-icon [nbTooltip]="information" nbTooltipStatus="primary" icon="info-outline"></nb-icon>
+      <nb-icon *ngIf="information" [nbTooltip]="information" nbTooltipStatus="primary" icon="info-outline"></nb-icon>
     </div>
 
     <div style="display: flex; flex: 1; justify-content: space-between;">
@@ -83,56 +75,51 @@
   </div>
 
   <div *ngSwitchCase="'OPEN_TEXT'" class="question-column">
-    <div style="flex: 1; display: flex; justify-content: flex-start;">
+    <div class="question-container">
       {{ question }}
-      <nb-icon [nbTooltip]="information" nbTooltipStatus="primary" icon="info-outline"></nb-icon>
+      <nb-icon *ngIf="information" [nbTooltip]="information" nbTooltipStatus="primary" icon="info-outline"></nb-icon>
     </div>
 
-    <textarea
-      [value]="answer"
-      (input)="doThis($event.target.value)"
-      style="max-width: 100%; max-height: 200px; max-width: 400px;"
-      nbInput
-      placeholder=""
-    ></textarea>
+    <textarea [value]="answer" (input)="setAnswer($event.target.value)" nbInput placeholder=""></textarea>
   </div>
 
   <div *ngSwitchCase="'DROPDOWN'" class="question-column">
-    <div style="flex: 1; display: flex; justify-content: flex-start;">
+    <div class="question-container">
       {{ question }}
-      <nb-icon [nbTooltip]="information" nbTooltipStatus="primary" icon="info-outline"></nb-icon>
+      <nb-icon *ngIf="information" [nbTooltip]="information" nbTooltipStatus="primary" icon="info-outline"></nb-icon>
     </div>
 
     <nb-select placeholder="" [(selected)]="answer">
-      <nb-option *ngFor="let option of options; let i = index" [value]="option.name" (click)="doThis(option.name)">{{
-        option.name
-      }}</nb-option>
+      <nb-option *ngFor="let option of options" [value]="option.name" (click)="setAnswer(option.name)">
+        {{ option.name }}
+      </nb-option>
     </nb-select>
   </div>
 
   <div *ngSwitchCase="'NUMERICAL'" class="question-column">
-    <div style="flex: 1; display: flex; justify-content: flex-start;">
+    <div class="question-container">
       {{ question }}
-      <nb-icon [nbTooltip]="information" nbTooltipStatus="primary" icon="info-outline"></nb-icon>
+      <nb-icon *ngIf="information" [nbTooltip]="information" nbTooltipStatus="primary" icon="info-outline"></nb-icon>
     </div>
 
-    <input [value]="answer" (input)="doThis($event.target.value)" type="number" nbInput placeholder="" />
+    <input [value]="answer" (input)="setAnswer($event.target.value)" type="number" nbInput placeholder="" />
   </div>
 
   <div *ngSwitchCase="'RADIO'" class="question-column">
-    <div style="flex: 1; display: flex; justify-content: flex-start;">
+    <div class="question-container">
       {{ question }}
-      <nb-icon [nbTooltip]="information" nbTooltipStatus="primary" icon="info-outline"></nb-icon>
+      <nb-icon *ngIf="information" [nbTooltip]="information" nbTooltipStatus="primary" icon="info-outline"></nb-icon>
     </div>
 
     <nb-radio-group [value]="answer" name="radio-group" style="display: flex; flex: 1;">
       <nb-radio
         style="padding-left: 10px;"
-        *ngFor="let option of options; let i = index"
+        *ngFor="let option of options"
         [value]="option.name"
-        (click)="doThis(option.name)"
-        >{{ option.name }}</nb-radio
+        (click)="setAnswer(option.name)"
       >
+        {{ option.name }}
+      </nb-radio>
     </nb-radio-group>
   </div>
 </div>

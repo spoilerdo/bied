@@ -8,6 +8,6 @@ export class Question {
     type: QuestionType
     question: any
     options?: QuestionOptions[]
-    information: string
+    information?: string
     answer: string
 }
