@@ -43,13 +43,14 @@ CMD ["yarn", "start"]
 #
 FROM base as builder
 ARG SERVICE
+ARG BASE_HREF="/"
 
 WORKDIR /usr/src/app
 
 ARG configuration=production
 
 ## Build the angular app in production mode and store the artifacts in dist folder
-RUN yarn build --configuration $configuration
+RUN yarn build --configuration $configuration --baseHref=$BASE_HREF
 
 #
 # STAGE 2: Setup
