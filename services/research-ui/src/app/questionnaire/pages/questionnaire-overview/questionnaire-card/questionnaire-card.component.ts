@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Questionnaire } from 'src/app/models/questionnaire';
 
 @Component({
   selector: 'app-questionnaire-card',
@@ -6,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./questionnaire-card.component.scss'],
 })
 export class QuestionnaireCardComponent implements OnInit {
-  @Input() name: string;
+  @Input() questionnaire: Questionnaire;
 
   constructor() {}
 

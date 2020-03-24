@@ -1,9 +1,9 @@
 <a href="/questionnaire/overview" class="blank-link">
   <!--TODO make link dynamic-->
   <nb-card status="primary" class="questionnaire-card">
-    <nb-card-header>{{ name }}</nb-card-header>
+    <nb-card-header>{{ questionnaire.name }}</nb-card-header>
     <nb-card-body>
-      Very nice description of this very great research
+      {{ questionnaire.description }}
     </nb-card-body>
   </nb-card>
 </a>

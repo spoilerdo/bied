@@ -1,8 +1,4 @@
 <div class="questionnaire-card-container">
-  <app-questionnaire-card name="Questionnaire title"> </app-questionnaire-card>
-  <app-questionnaire-card name="Questionnaire title"> </app-questionnaire-card>
-  <app-questionnaire-card name="Questionnaire title"> </app-questionnaire-card>
-  <app-questionnaire-card name="Questionnaire title"> </app-questionnaire-card>
-  <app-questionnaire-card name="Questionnaire title"> </app-questionnaire-card>
-  <app-questionnaire-card name="Questionnaire title"> </app-questionnaire-card>
+  <app-questionnaire-card [questionnaire]="questionnaire" *ngFor="let questionnaire of questionnaires">
+  </app-questionnaire-card>
 </div>
