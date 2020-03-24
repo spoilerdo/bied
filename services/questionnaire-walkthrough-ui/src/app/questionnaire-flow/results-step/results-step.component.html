@@ -9,31 +9,17 @@
       </p>
       <nb-list>
         <nb-list-item
-          style="display: flex; flex-direction: column;"
-          *ngFor="let questionnaireSection of questionnaire.questionnaireSections"
+          class="questionnaire-section"
+          *ngFor="let questionnaireSection of questionnaire.questionnaireSections; let i = index;"
         >
-          <h5>{{ questionnaireSection.title }}</h5>
+          <div class="questionnaire-section-title">{{ questionnaireSection.title }}</div>
           <nb-list style="width: 100%;">
             <nb-list-item
               style="display: flex; flex-direction: row; justify-content: space-between;"
-              *ngFor="let question of questionnaireSection.questions"
+              *ngFor="let question of getAllQuestionsPerSection(i)"
             >
-              <div *ngIf="getQuestionType(question) !== 'LIKERT_GROUP'; then thenBlock; else elseBlock"></div>
-
-              <ng-template #thenBlock>
-                {{ getQuestionType(question.type) }}
-                <h6>{{ question.question }}</h6>
-                <p>{{ question.answer }}</p>
-              </ng-template>
-              <ng-template #elseBlock>
-                <div style="display: flex; flex-direction: column; flex: 1;">
-                  {{ getQuestionType(question.type) }}
-                  <div *ngFor="let subQuestion of question.question" style="display: flex; justify-content: space-between;">
-                    <h6>{{ subQuestion.question }}</h6>
-                    <p>{{ subQuestion.answer }}</p>
-                  </div>
-                </div>
-              </ng-template>
+              <div>{{ question.question }}</div>
+              <div>{{ question.answer }}</div>
             </nb-list-item>
           </nb-list>
         </nb-list-item>

@@ -1,16 +1,15 @@
 nb-card-body {
   padding: 0 1.25rem;
   margin: 0 1.25rem;
+}
 
-  nb-list-item {
+.questionnaire-section {
+  flex-direction: column;
+  align-items: flex-start;
+  border-top: none !important;
+  border-bottom: none !important;
+
+  .questionnaire-section-title {
     padding: 2rem 1rem;
   }
-}
-
-h6 {
-  margin: 0;
-}
-
-h5 {
-  margin-top: 0;
 }

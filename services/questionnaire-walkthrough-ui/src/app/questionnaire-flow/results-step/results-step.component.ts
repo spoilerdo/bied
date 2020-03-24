@@ -28,6 +28,39 @@ export class ResultsStepComponent implements OnInit {
     console.log('destroying');
   }
 
+  public getAllQuestionsPerSection(sectionId: number) {
+    let questions = [];
+
+    this.questionnaire.questionnaireSections[sectionId].questions.forEach(q => {
+      if (q.type !== QuestionType.LIKERT_GROUP) {
+        questions.push({ question: q.question, answer: q.answer });
+      } else {
+        q.question.forEach(sq => {
+          questions.push({ question: sq.question, answer: sq.answer });
+        });
+      }
+    });
+    return questions;
+  }
+
+  public getAllQuestions() {
+    let questions = [];
+    
+    this.questionnaire.questionnaireSections.forEach(s => {
+      s.questions.forEach(q => {
+        if (q.type !== QuestionType.LIKERT_GROUP) {
+          questions.push({ question: q.question, answer: q.answer });
+        } else {
+          q.question.forEach(sq => {
+            questions.push({ question: sq.question, answer: sq.answer });
+          });
+        }
+      });
+    });
+
+    return questions;
+  }
+
   public getQuestionType(question: Question): string {
     return QuestionType[question.type];
   }
