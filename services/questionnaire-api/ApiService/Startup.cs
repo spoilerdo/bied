@@ -7,8 +7,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Questionnaire.Services;
 
-namespace ApiService
+namespace Questionnaire
 {
   public class Startup
   {
@@ -32,6 +33,7 @@ namespace ApiService
       app.UseEndpoints(endpoints =>
       {
         endpoints.MapGrpcService<GreeterService>();
+        endpoints.MapGrpcService<QuestionnaireService>();
 
         endpoints.MapGet("/", async context =>
               {

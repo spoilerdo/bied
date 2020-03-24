@@ -1,4 +1,5 @@
 syntax = "proto3";
+option csharp_namespace = "Questionnaire.GRPC";
 
 enum QuestionType {
 	MULTIPLE_CHOICE = 0;

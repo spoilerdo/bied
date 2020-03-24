@@ -1,6 +1,5 @@
 syntax = "proto3";
-
-option csharp_namespace = "ApiService";
+option csharp_namespace = "Questionnaire.GRPC";
 
 package greet;
 

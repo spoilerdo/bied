@@ -4,8 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Grpc.Core;
 using Microsoft.Extensions.Logging;
+using Questionnaire.GRPC;
 
-namespace ApiService
+namespace Questionnaire.Services
 {
   public class GreeterService : Greeter.GreeterBase
   {
