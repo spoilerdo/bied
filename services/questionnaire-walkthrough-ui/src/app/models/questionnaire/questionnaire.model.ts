@@ -7,4 +7,5 @@ export class Questionnaire {
   description: string;
   currentQuestionnaireSectionId: 0;
   questionnaireSections: QuestionnaireSection[];
+  startButtonText: string;
 }

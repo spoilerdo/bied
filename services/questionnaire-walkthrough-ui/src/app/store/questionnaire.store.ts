@@ -13,7 +13,9 @@ export class QuestionnaireStore {
     id: 'd41d8cd98f00b204e9800998ecf8427e',
     title: 'Vragenlijst inzicht eenzaamheid',
     description:
-      '<h2>Vragenlijst eenzaamheid</h2><h6>Wat wordt er in deze vragenlijst gevraagd</h6><p>In deze vragenlijst worden vragen gesteld over de volgende onderwerpen:</p><ul><li>Uw activiteiten buiten huis</li><li>Uw sociale contacten</li><li>Persoonsvragen gericht op eenzaamheid</li></ul><p>Met behulp van dit onderzoek proberen wij de eenzaamheid in de bevolking tegen te gaan. Door deze vragenlijst in te vullen helpt u hierbij het onderzoek. Mocht u de vragen in deze vragenlijst niet begrijpen klik dan op het informatie bolletje naast de vraag, deze geeft extra toelichting.</p><p>Dankuwel voor uw deelname.</p><p>Klik op VERDER om de vragenlijst te beginnen.</p>',
+      '<h2>Vragenlijst eenzaamheid</h2><h6>Wat wordt er in deze vragenlijst gevraagd</h6><p>In deze vragenlijst worden vragen gesteld over de volgende onderwerpen:</p><ul><li>Uw activiteiten buiten huis</li><li>Uw sociale contacten</li><li>Persoonsvragen gericht op eenzaamheid</li></ul><p>Met behulp van dit onderzoek proberen wij de eenzaamheid in de bevolking tegen te gaan. Door deze vragenlijst in te vullen helpt u hierbij het onderzoek. Mocht u de vragen in deze vragenlijst niet begrijpen klik dan op het informatie bolletje naast de vraag, deze geeft extra toelichting.</p><p>Dankuwel voor uw deelname.</p><p>Klik op BEGINNEN om de vragenlijst te beginnen.</p>',
+    startButtonText: 'Beginnen',
+
     questionnaireSections: [
       {
         id: 0,
