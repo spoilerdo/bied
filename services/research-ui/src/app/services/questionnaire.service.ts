@@ -8,14 +8,15 @@ import { Questionnaire } from '../models/questionnaire';
 export class QuestionnaireService {
   constructor() {}
 
-  getQuestionnaires(): Observable<Questionnaire[]> {
+  getQuestionnaires(page: number = 0, pagesize: number = 20): Observable<Questionnaire[]> {
     // TODO use actual API endpoint
     const questionnaires: Questionnaire[] = [];
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < pagesize; i++) {
+      const index = page * pagesize + i;
       questionnaires.push({
-        id: i,
-        name: `questionnaire ${i}`,
-        description: `this is the description of questionnaire ${i}`,
+        id: index,
+        name: `questionnaire ${index}`,
+        description: `this is the description of questionnaire ${index}`,
       });
     }
 
