@@ -61,8 +61,8 @@ ARG SERVICE
 ## Copy our default nginx config
 COPY $SERVICE/nginx/default.conf /etc/nginx/conf.d/
 
-## Remove default nginx website
-RUN rm -rf /usr/share/nginx/html/*
+## Remove default nginx index page
+RUN rm -f /usr/share/nginx/html/index.html
 
 ## From ‘builder’ stage copy over the artifacts in dist folder to default nginx public folder
 COPY --from=builder /usr/src/app/dist /usr/share/nginx/html
