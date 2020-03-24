@@ -8,4 +8,5 @@ export class Questionnaire {
   currentQuestionnaireSectionId: 0;
   questionnaireSections: QuestionnaireSection[];
   startButtonText: string;
+  endingMessage: string;
 }

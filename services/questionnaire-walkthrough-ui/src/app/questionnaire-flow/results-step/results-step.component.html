@@ -4,13 +4,12 @@
 
     <nb-card-body>
       <p>
-        Dankuwel voor het invullen van deze vragenlijst! De vragen met uw antwoorden kunt u terug vinden op uw
-        dashboard.
+        {{ questionnaire.endingMessage }}
       </p>
       <nb-list>
         <nb-list-item
           class="questionnaire-section"
-          *ngFor="let questionnaireSection of questionnaire.questionnaireSections; let i = index;"
+          *ngFor="let questionnaireSection of questionnaire.questionnaireSections; let i = index"
         >
           <div class="questionnaire-section-title">{{ questionnaireSection.title }}</div>
           <nb-list style="width: 100%;">
