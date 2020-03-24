@@ -1,10 +1,10 @@
 ARG SERVICE="./services/questionnaire-walkthrough-ui"
 
 #
-# Node modules sta
+# Node modules stage
 #
 FROM node:10 as modules
-# Reuse build-arg
+# Reuse build-arg (ARG's need to be set every build stage.)
 ARG SERVICE
 
 WORKDIR /usr/src/app
@@ -43,13 +43,15 @@ CMD ["yarn", "start"]
 #
 FROM base as builder
 ARG SERVICE
+# Note: BASE_HREF must have a trailing '/' !!!
+ARG BASE_HREF="/"
 
 WORKDIR /usr/src/app
 
 ARG configuration=production
 
 ## Build the angular app in production mode and store the artifacts in dist folder
-RUN yarn build --configuration $configuration
+RUN yarn build --configuration $configuration --baseHref=$BASE_HREF
 
 #
 # STAGE 2: Setup
