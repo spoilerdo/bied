@@ -1,4 +1,8 @@
-<div class="questionnaire-card-container">
-  <app-questionnaire-card [questionnaire]="questionnaire" *ngFor="let questionnaire of questionnaires">
-  </app-questionnaire-card>
+<div class="questionnaire-overview-container">
+  <div class="questionnaire-card-container">
+    <app-questionnaire-card [questionnaire]="questionnaire" *ngFor="let questionnaire of questionnaires">
+    </app-questionnaire-card>
+  </div>
+
+  <app-questionnaire-paginator></app-questionnaire-paginator>
 </div>

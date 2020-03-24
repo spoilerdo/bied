@@ -1,5 +1,13 @@
-.questionnaire-card-container {
+.questionnaire-overview-container {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
+  flex-direction: column;
+  height: 100%;
+  .questionnaire-card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  app-questionnaire-paginator {
+    margin-top: auto;
+  }
 }
