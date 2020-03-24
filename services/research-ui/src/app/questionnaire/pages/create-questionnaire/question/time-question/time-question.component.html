@@ -1,0 +1,20 @@
+<hr />
+
+<div class="row" [formGroup]="questionDataForm">
+  <div class="col">
+    <div class="form-control">
+      <label for="placeholder-input" class="label">Placeholder</label>
+      <input nbInput type="text" id="placeholder-input" fullWidth formControlName="placeholder" />
+    </div>
+  </div>
+  <div class="col ">
+    <div class="form-control">
+      <div class="form-control">
+        <label for="min-input" class="label">Min</label>
+        <input nbInput type="time" id="min-input" fullWidth formControlName="min" />
+      </div>
+      <label for="max-input" class="label">Max</label>
+      <input nbInput type="time" id="max-input" fullWidth formControlName="max" />
+    </div>
+  </div>
+</div>

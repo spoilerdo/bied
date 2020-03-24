@@ -28,6 +28,14 @@
           *ngSwitchCase="questionTypes.Text"
           [questionDataForm]="questionForm.controls.questionData"
         ></app-text-question>
+        <app-date-question
+          *ngSwitchCase="questionTypes.Date"
+          [questionDataForm]="questionForm.controls.questionData"
+        ></app-date-question>
+        <app-time-question
+          *ngSwitchCase="questionTypes.Time"
+          [questionDataForm]="questionForm.controls.questionData"
+        ></app-time-question>
       </div>
     </nb-card-body>
     <nb-card-footer>
