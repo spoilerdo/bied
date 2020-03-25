@@ -1,31 +1,13 @@
-<div style="display: flex; justify-content: center; margin: 0px 400px;">
-  <nb-card status="success" style="min-width: 800px;">
-    <nb-card-header>{{ getTitle(questionnaire.currentQuestionnaireSectionId) }}</nb-card-header>
-    <nb-card-body>
-      <nb-list>
-        <nb-list-item *ngFor="let question of getQuestions(questionnaire.currentQuestionnaireSectionId)">
-          <app-bied-question
-            [options]="question.options"
-            [id]="question.id"
-            [type]="question.type"
-            [question]="question.question"
-            [information]="question.information"
-            style="width: 100%;"
-          ></app-bied-question>
-        </nb-list-item>
-      </nb-list>
-    </nb-card-body>
-    <nb-card-footer style="display: flex; justify-content: space-between;"
-      ><button *ngIf="isFirstQuestion()" nbButton status="basic" (click)="navigateToIntroduction()">
-        Terug naar introductie</button
-      ><button *ngIf="!isFirstQuestion()" nbButton status="basic" (click)="previousQuestion()">
-        Vorige</button
-      ><button *ngIf="isLastQuestion()" nbButton status="basic" (click)="navigateToResults()">
-        Verder naar resultaten
-      </button>
-      <button *ngIf="!isLastQuestion()" nbButton status="basic" (click)="nextQuestion()">
-        Volgende
-      </button>
-    </nb-card-footer>
-  </nb-card>
-</div>
+<nb-list>
+  <nb-list-item *ngFor="let question of getQuestions(questionnaire.currentQuestionnaireSectionId)">
+    <app-bied-question
+      [options]="question.options"
+      [id]="question.id"
+      [type]="question.type"
+      [question]="question.question"
+      [information]="question.information"
+      [answer]="question.answer"
+      style="width: 100%;"
+    ></app-bied-question>
+  </nb-list-item>
+</nb-list>

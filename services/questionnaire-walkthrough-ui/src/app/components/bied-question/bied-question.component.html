@@ -15,12 +15,17 @@
         <div>{{ question }}</div>
         <nb-icon *ngIf="information" [nbTooltip]="information" nbTooltipStatus="primary" icon="info-outline"></nb-icon>
       </div>
-      <nb-radio-group name="likert-group" [value]="answer" class="likert-answers-radio-buttons">
-        <nb-radio class="radio-button" (click)="setAnswer('Sterk mee oneens')" value="Sterk mee oneens"></nb-radio>
-        <nb-radio class="radio-button" (click)="setAnswer('Oneens')" value="Oneens"></nb-radio>
-        <nb-radio class="radio-button" (click)="setAnswer('Neutraal')" value="Neutraal"></nb-radio>
-        <nb-radio class="radio-button" (click)="setAnswer('Eens')" value="Eens"></nb-radio>
-        <nb-radio class="radio-button" (click)="setAnswer('Sterk mee eens')" value="Sterk mee eens"></nb-radio>
+      <nb-radio-group
+        name="likert-group"
+        [value]="answer"
+        (input)="setAnswer($event.target.value)"
+        class="likert-answers-radio-buttons"
+      >
+        <nb-radio class="radio-button" value="Sterk mee oneens"></nb-radio>
+        <nb-radio class="radio-button" value="Oneens"></nb-radio>
+        <nb-radio class="radio-button" value="Neutraal"></nb-radio>
+        <nb-radio class="radio-button" value="Eens"></nb-radio>
+        <nb-radio class="radio-button" value="Sterk mee eens"></nb-radio>
       </nb-radio-group>
     </div>
   </div>
@@ -68,7 +73,7 @@
     </div>
 
     <div style="display: flex; flex: 1; justify-content: space-between;">
-      <nb-checkbox *ngFor="let option of options; let i = index" (checkedChange)="toggle($event, i)">{{
+      <nb-checkbox *ngFor="let option of options; let i = index" [checked]="optionChecked(option.name)" (checkedChange)="toggle($event, i)">{{
         option.name
       }}</nb-checkbox>
     </div>

@@ -19,7 +19,6 @@ export class ResultsStepComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     this.questionnaireSubscription = this.questionnaireStore.questionnaireStore$.subscribe(data => {
       this.questionnaire = data;
-      console.log('getting updated questionnaire: ', this.questionnaire);
     });
   }
 

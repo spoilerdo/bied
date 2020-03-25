@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { QuestionType } from 'src/app/enums/question-type.enum';
 import { QuestionOptions } from 'src/app/models/question-options/question-options.model';
-import { QuestionnaireService } from 'src/app/services/questionnaire.service';
 import { QuestionnaireReducers } from 'src/app/store/questionnaire.reducers';
 import { ANSWER_QUESTION } from 'src/app/store/questionnaire.actions';
 
@@ -11,17 +10,15 @@ import { ANSWER_QUESTION } from 'src/app/store/questionnaire.actions';
   styleUrls: ['./bied-question.component.scss'],
 })
 export class BiedQuestionComponent implements OnInit {
-  @Input() id: string;
-  @Input() type: QuestionType;
-  @Input() information: string;
-  @Input() question: any;
-  @Input() options?: QuestionOptions[];
-  public answer: any = '';
+  @Input() public id: string;
+  @Input() public type: QuestionType;
+  @Input() public information: string;
+  @Input() public question: any;
+  @Input() public options?: QuestionOptions[];
+  @Input() public answer: any;
   public choosedOptions: any = [];
 
-  constructor(
-    private questionnaireReducers: QuestionnaireReducers,
-  ) {}
+  constructor(private questionnaireReducers: QuestionnaireReducers) {}
 
   ngOnInit(): void {}
 
@@ -47,13 +44,15 @@ export class BiedQuestionComponent implements OnInit {
 
   public toggle(event: any, index: any) {
     if (event) {
-      this.choosedOptions.push(index);
+      this.answer.push(this.options[index].name);
     } else {
-      this.choosedOptions.splice(this.choosedOptions.indexOf(index), 1);
+      this.answer.splice(this.answer.indexOf(this.options[index].name), 1);
     }
-
-    this.answer = this.choosedOptions.map(e => this.options[e].name);
     this.submitAnswer();
+  }
+
+  public optionChecked(optionName: string): boolean {
+    return this.answer.includes(optionName);
   }
 
   public getQuestionType(): string {

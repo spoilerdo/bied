@@ -1,28 +1,20 @@
-<div style="display: flex; justify-content: center; margin: 0px 400px;">
-  <nb-card status="success" style="min-width: 800px;">
-    <nb-card-header>Resultaat</nb-card-header>
-
-    <nb-card-body>
-      <p>
-        {{ questionnaire.endingMessage }}
-      </p>
-      <nb-list>
-        <nb-list-item
-          class="questionnaire-section"
-          *ngFor="let questionnaireSection of questionnaire.questionnaireSections; let i = index"
-        >
-          <div class="questionnaire-section-title">{{ questionnaireSection.title }}</div>
-          <nb-list style="width: 100%;">
-            <nb-list-item
-              style="display: flex; flex-direction: row; justify-content: space-between;"
-              *ngFor="let question of getAllQuestionsPerSection(i)"
-            >
-              <div>{{ question.question }}</div>
-              <div>{{ question.answer }}</div>
-            </nb-list-item>
-          </nb-list>
-        </nb-list-item>
-      </nb-list>
-    </nb-card-body>
-  </nb-card>
-</div>
+<p>
+  {{ questionnaire.endingMessage }}
+</p>
+<nb-list>
+  <nb-list-item
+    class="questionnaire-section"
+    *ngFor="let questionnaireSection of questionnaire.questionnaireSections; let i = index"
+  >
+    <div class="questionnaire-section-title">{{ questionnaireSection.title }}</div>
+    <nb-list style="width: 100%;">
+      <nb-list-item
+        style="display: flex; flex-direction: row; justify-content: space-between;"
+        *ngFor="let question of getAllQuestionsPerSection(i)"
+      >
+        <div>{{ question.question }}</div>
+        <div>{{ question.answer }}</div>
+      </nb-list-item>
+    </nb-list>
+  </nb-list-item>
+</nb-list>

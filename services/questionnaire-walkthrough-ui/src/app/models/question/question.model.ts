@@ -9,5 +9,5 @@ export class Question {
     question: any
     options?: QuestionOptions[]
     information?: string
-    answer: string
+    answer: any
 }

@@ -18,6 +18,7 @@ import {
   NbRadioModule,
   NbTooltipModule,
   NbIconModule,
+  NbStepperModule,
 } from '@nebular/theme';
 
 import { NbEvaIconsModule } from '@nebular/eva-icons';
@@ -42,6 +43,7 @@ const nebular = [
   NbTooltipModule,
   NbEvaIconsModule,
   NbIconModule,
+  NbStepperModule
 ];
 
 @NgModule({

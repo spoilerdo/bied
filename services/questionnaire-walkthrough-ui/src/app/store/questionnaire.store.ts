@@ -35,7 +35,7 @@ export class QuestionnaireStore {
             question: 'Welke seizoenen ervaart u als prettig?',
             options: [{ name: 'Lente' }, { name: 'Zomer' }, { name: 'Herfst' }, { name: 'Winter' }],
             information: 'Er wordt gevragen hoevaak u uit eten gaat.',
-            answer: '',
+            answer: [],
           },
           {
             id: 2,
