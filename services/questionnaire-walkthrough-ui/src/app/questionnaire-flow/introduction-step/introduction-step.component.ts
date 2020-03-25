@@ -20,16 +20,10 @@ export class IntroductionStepComponent implements OnInit, OnDestroy {
   async ngOnInit(): Promise<void> {
     this.questionnaireSubscription = this.questionnaireStore.questionnaireStore$.subscribe(data => {
       this.questionnaireSubject = data;
-      // console.log(this.questionnaireSubject);
     });
   }
 
   async ngOnDestroy(): Promise<void> {
     this.questionnaireSubscription.unsubscribe();
-  }
-
-  public navigateToQuestions() {
-    // sessionStorage.setItem('questionnaire', JSON.stringify(this.questionnaireSubject.value));
-    this.router.navigate(['questionnaire/' + this.questionnaireSubject.id + '/questions']);
   }
 }

@@ -26,7 +26,6 @@ export class QuestionsStepComponent implements OnInit, OnDestroy {
   ) {}
 
   async ngOnInit(): Promise<void> {
-    console.log('creating')
     this.questionnaireSubscription = this.questionnaireStore.questionnaireStore$.subscribe(data => {
       this.questionnaire = data;
     });
@@ -34,48 +33,9 @@ export class QuestionsStepComponent implements OnInit, OnDestroy {
 
   async ngOnDestroy(): Promise<void> {
     this.questionnaireSubscription.unsubscribe();
-    console.log('destroying')
-  }
-
-  public previousQuestion() {
-    console.log('previous')
-    this.questionnaireReducers.questionnaireReducer({
-      type: PREVIOUS_SECTION,
-    });
-  }
-
-  public nextQuestion() {
-    console.log('next')
-    this.questionnaireReducers.questionnaireReducer({
-      type: NEXT_SECTION,
-    });
-  }
-
-  public navigateToIntroduction() {
-    this.router.navigate(['questionnaire/' + this.questionnaire.id + '/introduction']);
-  }
-
-  public navigateToResults() {
-    this.router.navigate(['questionnaire/' + this.questionnaire.id + '/results']);
-  }
-
-  public isFirstQuestion(): boolean {
-    return this.questionnaire.currentQuestionnaireSectionId === 0;
-  }
-
-  public isLastQuestion(): boolean {
-    return this.questionnaire.currentQuestionnaireSectionId === this.questionnaire.questionnaireSections.length - 1;
-  }
-
-  public printMe() {
-    console.log(this.questionnaire);
   }
 
   public getQuestions(questionnaireSectionId: number) {
     return this.questionnaire.questionnaireSections[questionnaireSectionId].questions;
-  }
-
-  public getTitle(questionnaireSectionId: number) {
-    return this.questionnaire.questionnaireSections[questionnaireSectionId].title;
   }
 }

@@ -24,7 +24,6 @@ export class ResultsStepComponent implements OnInit {
 
   async ngOnDestroy(): Promise<void> {
     this.questionnaireSubscription.unsubscribe();
-    console.log('destroying');
   }
 
   public getAllQuestionsPerSection(sectionId: number) {
@@ -40,27 +39,5 @@ export class ResultsStepComponent implements OnInit {
       }
     });
     return questions;
-  }
-
-  public getAllQuestions() {
-    let questions = [];
-    
-    this.questionnaire.questionnaireSections.forEach(s => {
-      s.questions.forEach(q => {
-        if (q.type !== QuestionType.LIKERT_GROUP) {
-          questions.push({ question: q.question, answer: q.answer });
-        } else {
-          q.question.forEach(sq => {
-            questions.push({ question: sq.question, answer: sq.answer });
-          });
-        }
-      });
-    });
-
-    return questions;
-  }
-
-  public getQuestionType(question: Question): string {
-    return QuestionType[question.type];
   }
 }

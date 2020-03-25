@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { QuillModule } from 'ngx-quill';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import {
   NbThemeModule,
@@ -43,7 +44,7 @@ const nebular = [
   NbTooltipModule,
   NbEvaIconsModule,
   NbIconModule,
-  NbStepperModule
+  NbStepperModule,
 ];
 
 @NgModule({
@@ -55,7 +56,14 @@ const nebular = [
     ResultsStepComponent,
     BiedQuestionComponent,
   ],
-  imports: [BrowserModule, BrowserAnimationsModule, AppRoutingModule, QuillModule.forRoot(), nebular],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
+    AppRoutingModule,
+    QuillModule.forRoot(),
+    nebular,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
