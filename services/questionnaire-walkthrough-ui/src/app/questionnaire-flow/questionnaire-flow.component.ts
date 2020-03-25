@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { Questionnaire } from '../models/questionnaire/questionnaire.model';
@@ -38,7 +38,7 @@ export class QuestionnaireFlowComponent implements OnInit, OnDestroy {
         break;
       }
       case 'questions': {
-        this.currentStep = 1;
+        this.currentStep = this.questionnaire.currentQuestionnaireSectionId+1;
         break;
       }
       case 'results': {
@@ -51,6 +51,8 @@ export class QuestionnaireFlowComponent implements OnInit, OnDestroy {
         break;
       }
     }
+
+    console.log('current step:',this.currentStep);
   }
 
   async ngOnDestroy(): Promise<void> {
@@ -60,6 +62,11 @@ export class QuestionnaireFlowComponent implements OnInit, OnDestroy {
 
   public getCurrentStep(): number {
     return this.currentStep;
+  }
+
+  public completedStep(index: number): boolean {
+    console.log('step completed?', index, index < this.currentStep)
+    return index < this.currentStep;
   }
 
   public navigateToIntroduction(): void {
@@ -109,12 +116,14 @@ export class QuestionnaireFlowComponent implements OnInit, OnDestroy {
   }
 
   public previousQuestionSection(): void {
+    this.currentStep--;
     this.questionnaireReducers.questionnaireReducer({
       type: PREVIOUS_SECTION,
     });
   }
 
   public nextQuestionSection(): void {
+    this.currentStep++;
     this.questionnaireReducers.questionnaireReducer({
       type: NEXT_SECTION,
     });
