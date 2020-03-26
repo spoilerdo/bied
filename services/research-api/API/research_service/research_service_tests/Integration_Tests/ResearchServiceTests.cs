@@ -2,8 +2,6 @@
 using Grpc.Net.Client;
 using research_service_tests.Fixture;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using Xunit;
 
 namespace research_service_tests.Integration_Tests
@@ -102,7 +100,7 @@ namespace research_service_tests.Integration_Tests
                 HttpClient = _testServer.Client
             };
             var channel = GrpcChannel.ForAddress("http://localhost", options);
-            var researchClient = new ResearchService.ResearchServiceClient(channel);
+            var researchClient = new Research_Service.Research_ServiceClient(channel);
 
             Action act = () =>
             {
@@ -251,7 +249,7 @@ namespace research_service_tests.Integration_Tests
             Assert.Throws<RpcException>(act);
         }
 
-        private ResearchService.ResearchServiceClient getGrpcClient()
+        private Research_Service.Research_ServiceClient getGrpcClient()
         {
             //arrange
             GrpcChannelOptions options = new GrpcChannelOptions()
@@ -259,7 +257,7 @@ namespace research_service_tests.Integration_Tests
                 HttpClient = _testServer.Client
             };
             var channel = GrpcChannel.ForAddress("http://localhost", options);
-            return new ResearchService.ResearchServiceClient(channel);
+            return new Research_Service.Research_ServiceClient(channel);
         }
     }
 }

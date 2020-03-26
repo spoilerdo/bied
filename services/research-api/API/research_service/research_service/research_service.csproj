@@ -15,11 +15,12 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="3.1.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.2" />
+    <PackageReference Include="Nuget.Protobuffers" Version="1.0.0" GeneratePathProperty="true"/>
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.7.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Protobuf Include="Protos\datasource.proto" GrpcServices="Server;Client" ProtoRoot="Protos\" />
-    <Protobuf Include="Protos\research.proto" GrpcServices="Server;Client" ProtoRoot="Protos\" />
+    <Protobuf Include="$(PkgNuget_Protobuffers)/*.proto" GrpcServices="Server;Client"/>
   </ItemGroup>
+
 </Project>

@@ -4,17 +4,16 @@ using research_service.Persistence.Entities;
 using research_service.Persistence.Repositories.Researches;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace research_service.Services
 {
-    public class Research_Service : ResearchService.ResearchServiceBase
+    public class ResearchService : Research_Service.Research_ServiceBase
     {
         private readonly IResearchRepository _researchRepository;
         private readonly IMapper _mapper;
 
-        public Research_Service(IResearchRepository researchRepository, IMapper mapper)
+        public ResearchService(IResearchRepository researchRepository, IMapper mapper)
         {
             _researchRepository = researchRepository;
             _mapper = mapper;
@@ -83,7 +82,7 @@ namespace research_service.Services
             throw new NotImplementedException();
         }
 
-        public override Task<Research> RemoveDatasourceFromResearch(DatasourceIdRequest request, ServerCallContext context)
+        public override Task<Research> RemoveDatasourceFromResearch(DatasourceIdResearchRequest request, ServerCallContext context)
         {
             throw new NotImplementedException();
         }
