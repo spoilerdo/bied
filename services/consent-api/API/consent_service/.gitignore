@@ -22,10 +22,3 @@ msbuild.wrn
 
 # Visual Studio
 .vs/ 
-
-# VS code
-.vscode/
-
-# Ionide
-.ionide/
-*.db
