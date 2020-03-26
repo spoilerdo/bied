@@ -7,12 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Bied.IntegrationTestServer" Version="1.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.TestHost" Version="3.1.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="3.1.2" />
     <PackageReference Include="Microsoft.Extensions.PlatformAbstractions" Version="1.1.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.2.0" />
     <PackageReference Include="Moq" Version="4.13.1" />
-    <PackageReference Include="xunit" Version="2.4.0" />
+    <PackageReference Include="xunit" Version="2.4.1" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0" />
     <PackageReference Include="coverlet.collector" Version="1.0.1" />
   </ItemGroup>
@@ -21,9 +22,5 @@
     <ProjectReference Include="..\research_service\research_service.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Reference Include="IntegrationTestServer">
-      <HintPath>..\..\..\..\..\libraries\IntegrationTestServer\IntegrationTestServer\bin\Release\netcoreapp3.1\IntegrationTestServer.dll</HintPath>
-    </Reference>
-  </ItemGroup>
+
 </Project>

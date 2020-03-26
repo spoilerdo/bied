@@ -1,0 +1,38 @@
+<nb-card>
+  <nb-card-header>Login op het Bied platform</nb-card-header>
+  <nb-card-body class="login-wrapper">
+    <nb-layout-column class="login-wrapper__column login-wrapper__information">
+      <h1>Bied S66</h1>
+      <h4>Big data voor Inzicht en EenzaamheiD</h4>
+    </nb-layout-column>
+    <nb-layout-column class="login-wrapper__column login-wrapper__inputs">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <input type="text" nbInput placeholder="Gebruikersnaam" formControlName="username" required />
+        <span
+          class="caption-2 danger smaller-text"
+          id="FormErrorRequiredTextUsername"
+          *ngIf="submitted && form.controls.username.errors && form.controls.username.errors.required"
+          >Geef een e-mailadres op</span
+        >
+        <span
+          class="caption-2 danger smaller-text"
+          id="FormErrorValidationTextUsername"
+          *ngIf="submitted && form.controls.username.errors && form.controls.username.errors.email"
+          >Geef een geldig e-mailadres op</span
+        >
+
+        <input type="password" nbInput placeholder="Wachtwoord" formControlName="password" required />
+        <span
+          class="caption-2 danger smaller-text"
+          id="FormErrorRequiredTextPassword"
+          *ngIf="submitted && form.controls.password.errors && form.controls.password.errors.required"
+          >Geef een wachtwoord op</span
+        >
+
+        <input type="submit" nbButton value="Log in" status="info" />
+      </form>
+      <span class="caption-2 text-hint clickable">Login gegevens vergeten?</span>
+    </nb-layout-column>
+  </nb-card-body>
+  <nb-card-footer>Door Fontys S66</nb-card-footer>
+</nb-card>
