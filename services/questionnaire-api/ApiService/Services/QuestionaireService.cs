@@ -17,11 +17,10 @@ namespace Questionnaire.Services
     private readonly IQuestionnaireRepository _repository;
     private readonly IMapper _mapper;
 
-    public QuestionnaireService(ILogger<QuestionnaireService> logger, IMapper mapper)
+    public QuestionnaireService(ILogger<QuestionnaireService> logger, IMapper mapper, IQuestionnaireRepository repository)
     {
       _logger = logger;
-      // TODO QuestionnaireRepository dependency injection
-      _repository = new QuestionnaireRepository();
+      _repository = repository;
       _mapper = mapper;
     }
 

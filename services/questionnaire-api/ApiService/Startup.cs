@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Questionnaire.Services;
+using Questionnaire.Persistence.Repositories;
 
 namespace Questionnaire
 {
@@ -18,6 +19,7 @@ namespace Questionnaire
     public void ConfigureServices(IServiceCollection services)
     {
       services.AddGrpc();
+      services.AddScoped<IQuestionnaireRepository, QuestionnaireRepository>();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
