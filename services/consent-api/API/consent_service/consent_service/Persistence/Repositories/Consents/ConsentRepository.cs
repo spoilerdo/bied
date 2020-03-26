@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using consent_service.Common;
 using consent_service.Persistence.Context;
 using consent_service.Persistence.Entities;
+using System.Linq;
 using Microsoft.EntityFrameworkCore;
 
 namespace consent_service.Persistence.Repositories.Consents
@@ -19,15 +20,12 @@ namespace consent_service.Persistence.Repositories.Consents
 
         public async Task<DataResponseObject<ConsentEntity>> CreateConsent(ConsentEntity consent)
         {
-            _context.Consents.Add(consent);
-            await _context.SaveChangesAsync();
-            return new DataResponseObject<ConsentEntity>(consent);
+            throw new NotImplementedException();
         }
 
         public async Task<DataResponseObject<IEnumerable<ConsentEntity>>> GetConsents(Guid id)
-        {
-            var consents = await _context.Consents.ToListAsync();
-            return new DataResponseObject<IEnumerable<ConsentEntity>>(consents);
+        {            
+            throw new NotImplementedException();
         }
 
         public Task<DataResponseObject<ConsentEntity>> EditConsent(ConsentEntity consent)

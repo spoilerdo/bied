@@ -11,7 +11,7 @@ namespace consent_service.Persistence.Entities
         public Guid Id {get; set;}
         public string userId {get; set;}
         public bool Consent {get; set;}
-        public Int64 Uts {get; set;}
+        public DateTime Uts {get; set;}
         public virtual ConsentDatasource Datasource {get; set;}
     }
 }

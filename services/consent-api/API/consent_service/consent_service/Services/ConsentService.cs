@@ -21,26 +21,12 @@ namespace consent_service.Services
 
         public override async Task<Consents> GetConsents(UserIdRequest request, ServerCallContext context)
         {
-            var consents = await _consentRepository.GetConsents(new Guid(request.Id));
-            if (!consents.Success)
-            {
-                throw new RpcException(new Status(StatusCode.NotFound, "No consents where found!"));
-            }
-            return new Consents
-            {
-                Consents_ = { _mapper.Map<IEnumerable<Consent>>(consents.Data) }
-            };
+            
+            throw new NotImplementedException();
         }
 
         public override async Task<Consent> CreateConsent(ConsentRequest request, ServerCallContext context)
-        {
-            // var createdConsent = await _consentRepository.CreateConsent(_mapper.Map<ConsentEntity>(request));
-
-            // if(!createdConsent.Success)
-            // {
-            //     throw new RpcException(new Status(StatusCode.Internal, "Could not create the consent!"));
-            // }
-            // return _mapper.Map<Consent>(createdConsent.Data);
+        {           
             throw new NotImplementedException();
         }
 
