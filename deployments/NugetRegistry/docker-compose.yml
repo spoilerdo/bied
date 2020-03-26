@@ -1,0 +1,11 @@
+version: "3.7"
+
+services:
+  baget:
+    build: .
+    environment:
+        env-file: "./baget.env"
+        v: "/baget-data:/var/baget"
+    ports:
+      - "5555:80"
+    
