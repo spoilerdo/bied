@@ -133,7 +133,7 @@ namespace research_service.Services
         /// <param name="request">data source to remove from research</param>
         /// <param name="context">the server context</param>
         /// <returns>updated research or message indicating failure</returns>
-        public override Task<Research> RemoveDatasourceFromResearch(DatasourceIdRequest request, ServerCallContext context)
+        public override Task<Research> RemoveDatasourceFromResearch(DatasourceIdResearchRequest request, ServerCallContext context)
         {
             throw new NotImplementedException();
         }
