@@ -1,0 +1,2 @@
+obj/Debug/netcoreapp3.1/Datasource.cs \
+obj/Debug/netcoreapp3.1/DatasourceGrpc.cs: Protos/datasource.proto
