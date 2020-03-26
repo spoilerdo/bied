@@ -1,3 +1,4 @@
+using System;
 using System.Net.Mail;
 using System.Collections.Generic;
 
@@ -15,14 +16,20 @@ namespace email_service.Logic
         public bool SendMail(List<string> addresses, List<string> values, string template)
         {
             this.CheckMailAddresses(addresses);
-            
+
             return true;
         }
 
-        private void CheckMailAddresses(List<string> mails) {
-                foreach(string mail in mails) {
-                    MailAddress m = new MailAddress(mail);
-                }
+        private void CheckMailAddresses(List<string> mails)
+        {
+            if (mails.Count <= 0)
+            {
+                throw new Exception("No email addresses are given.");
+            }
+            foreach (string mail in mails)
+            {
+                MailAddress m = new MailAddress(mail);
+            }
         }
     }
 }
