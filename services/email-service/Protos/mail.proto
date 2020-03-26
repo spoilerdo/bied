@@ -5,26 +5,14 @@ option csharp_namespace = "EmailService";
 package Email;
 
 service Mailer {
-  // Sends a greeting
-  rpc SayHello (HelloRequest) returns (HelloReply);
   // Sends a mail and returns status
   rpc SendMail (SendMailRequest) returns (SendMailReply);
 }
 
-// The request message containing the user's name.
-message HelloRequest {
-  string name = 1;
-}
-
-// The response message containing the greetings.
-message HelloReply {
-  string message = 1;
-}
-
 message SendMailRequest {
-  repeated string emailAddresses = 1;
+  repeated string addresses = 1;
   string template = 2;
-  string message = 3;
+  repeated string values = 3;
 }
 
 message SendMailReply {
