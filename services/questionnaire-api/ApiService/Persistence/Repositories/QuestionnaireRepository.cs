@@ -18,52 +18,32 @@ namespace Questionnaire.Persistence.Repositories
       _db = new DB("Questionnaire", System.Configuration.ConfigurationManager.ConnectionStrings["DbConnection"].ConnectionString, 27017);
     }
 
-    public Task<QuestionnaireEntity> GetQuestionnaireById(String id)
+    public async Task<QuestionnaireEntity> GetQuestionnaireById(String id)
     {
-      Task<QuestionnaireEntity> task = new Task<QuestionnaireEntity>(() =>
-     {
-       return _db.Find<QuestionnaireEntity>().One(id);
-     });
-      return task;
+      return await _db.Find<QuestionnaireEntity>().OneAsync(id);
     }
-    public Task<IEnumerable<QuestionnaireEntity>> GetQuestionnaires()
+    public async Task<IEnumerable<QuestionnaireEntity>> GetQuestionnaires()
     {
-      Task<IEnumerable<QuestionnaireEntity>> task = new Task<IEnumerable<QuestionnaireEntity>>(() =>
-     {
-       return _db.Find<QuestionnaireEntity>().Many(q => true);
-     });
-      return task;
+      return await _db.Find<QuestionnaireEntity>().ManyAsync(q => true);
     }
-    public Task<QuestionnaireEntity> CreateQuestionnaire(QuestionnaireEntity questionnaire)
+    public async Task<QuestionnaireEntity> CreateQuestionnaire(QuestionnaireEntity questionnaire)
     {
-      Task<QuestionnaireEntity> task = new Task<QuestionnaireEntity>(() =>
-     {
-       questionnaire.Save();
-       return questionnaire;
-     });
-      return task;
+      await questionnaire.SaveAsync();
+      return questionnaire;
     }
-    public Task<QuestionnaireEntity> UpdateQuestionnaire(String id, QuestionnaireEntity questionnaire)
+    public async Task<QuestionnaireEntity> UpdateQuestionnaire(QuestionnaireEntity questionnaire)
     {
-      Task<QuestionnaireEntity> task = new Task<QuestionnaireEntity>(() =>
-     {
-       QuestionnaireEntity e = _db.Find<QuestionnaireEntity>().One(id);
-       e.Name = questionnaire.Name;
-       e.Description = questionnaire.Description;
-       e.Questions = questionnaire.Questions;
-       e.Save();
-       return e;
-     });
-      return task;
+      QuestionnaireEntity e = await _db.Find<QuestionnaireEntity>().OneAsync(questionnaire.ID);
+      e.Name = questionnaire.Name;
+      e.Description = questionnaire.Description;
+      e.Questions = questionnaire.Questions;
+      await e.SaveAsync();
+      return e;
     }
-    public Task DeleteQuestionnaire(string id)
+    public async Task DeleteQuestionnaire(string id)
     {
-      Task task = new Task(() =>
-     {
-       QuestionnaireEntity e = _db.Find<QuestionnaireEntity>().One(id);
-       e.Delete();
-     });
-      return task;
+      QuestionnaireEntity e = await _db.Find<QuestionnaireEntity>().OneAsync(id);
+      await e.DeleteAsync();
     }
   }
 }

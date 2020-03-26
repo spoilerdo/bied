@@ -11,7 +11,7 @@ namespace Questionnaire.Persistence.Repositories
     Task<QuestionnaireEntity> GetQuestionnaireById(String id);
     Task<IEnumerable<QuestionnaireEntity>> GetQuestionnaires();
     Task<QuestionnaireEntity> CreateQuestionnaire(QuestionnaireEntity questionnaire);
-    Task<QuestionnaireEntity> UpdateQuestionnaire(String id, QuestionnaireEntity questionnaire);
+    Task<QuestionnaireEntity> UpdateQuestionnaire(QuestionnaireEntity questionnaire);
     Task DeleteQuestionnaire(String id);
   }
 }
