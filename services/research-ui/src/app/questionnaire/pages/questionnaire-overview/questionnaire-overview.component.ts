@@ -31,7 +31,7 @@ export class QuestionnaireOverviewComponent implements OnInit {
 
   getQueryParams() {
     this.route.queryParamMap.subscribe(params => {
-      this.page = +params.get('page') || 0;
+      this.page = +params.get('page') || 1;
     });
   }
 

@@ -22,7 +22,7 @@ export class QuestionnairePaginatorComponent implements OnInit {
   }
 
   selectPage(page: number) {
-    page = page <= 0 ? 0 : page;
+    page = page <= 1 ? 1 : page;
     this.router.navigate(['/questionnaire/overview'], { queryParams: { page } });
   }
 }
