@@ -5,8 +5,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Protobuf Include="../../../../../libraries/protobuffers/consent.proto" GrpcServices="Server;Client" ProtoRoot="Protos\" />
-        <Protobuf Include="../../../../../libraries/protobuffers/datasource.proto" GrpcServices="Server;Client" ProtoRoot="Protos\" />        
+        <Protobuf Include="Protos\consent.proto" GrpcServices="Server;Client" ProtoRoot="Protos\" />
+        <Protobuf Include="Protos\datasource.proto" GrpcServices="Server;Client" ProtoRoot="Protos\" />        
     </ItemGroup>
 
     <ItemGroup>
