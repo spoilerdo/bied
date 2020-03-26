@@ -6,7 +6,7 @@ import { QuestionnaireReducers } from 'src/app/store/questionnaire.reducers';
 @Component({
   selector: 'app-radio',
   templateUrl: './radio.component.html',
-  styleUrls: ['./radio.component.scss'],
+  styleUrls: ['./radio.component.scss', '../bied-question/bied-question.component.scss'],
 })
 export class RadioComponent extends BiedQuestionComponent implements OnInit {
   constructor(public questionnaireReducers: QuestionnaireReducers) {

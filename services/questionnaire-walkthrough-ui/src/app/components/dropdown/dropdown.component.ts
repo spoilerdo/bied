@@ -5,7 +5,7 @@ import { QuestionnaireReducers } from 'src/app/store/questionnaire.reducers';
 @Component({
   selector: 'app-dropdown',
   templateUrl: './dropdown.component.html',
-  styleUrls: ['./dropdown.component.scss'],
+  styleUrls: ['./dropdown.component.scss', '../bied-question/bied-question.component.scss'],
 })
 export class DropdownComponent extends BiedQuestionComponent implements OnInit {
   constructor(public questionnaireReducers: QuestionnaireReducers) {

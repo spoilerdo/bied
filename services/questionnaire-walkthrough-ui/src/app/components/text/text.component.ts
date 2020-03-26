@@ -5,7 +5,7 @@ import { QuestionnaireReducers } from 'src/app/store/questionnaire.reducers';
 @Component({
   selector: 'app-text',
   templateUrl: './text.component.html',
-  styleUrls: ['./text.component.scss'],
+  styleUrls: ['./text.component.scss', '../bied-question/bied-question.component.scss'],
 })
 export class TextComponent extends BiedQuestionComponent implements OnInit {
   constructor(public questionnaireReducers: QuestionnaireReducers) {

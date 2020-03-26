@@ -5,7 +5,7 @@ import { BiedQuestionComponent } from '../bied-question/bied-question.component'
 @Component({
   selector: 'app-numeric',
   templateUrl: './numeric.component.html',
-  styleUrls: ['./numeric.component.scss'],
+  styleUrls: ['./numeric.component.scss', '../bied-question/bied-question.component.scss'],
 })
 export class NumericComponent extends BiedQuestionComponent implements OnInit {
   constructor(public questionnaireReducers: QuestionnaireReducers) {
