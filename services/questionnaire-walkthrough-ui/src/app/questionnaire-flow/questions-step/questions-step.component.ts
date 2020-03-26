@@ -15,7 +15,7 @@ export class QuestionsStepComponent implements OnInit, OnDestroy {
   public questionnaire: Questionnaire;
   private questionnaireSubscription: Subscription;
 
-  @ViewChild('yeet', {static: true}) myList: TestingComponent;
+  @ViewChild('yeet', { static: true }) myList: TestingComponent;
 
   constructor(
     private questionnaireStore: QuestionnaireStore,
@@ -26,16 +26,6 @@ export class QuestionsStepComponent implements OnInit, OnDestroy {
     this.questionnaireSubscription = this.questionnaireStore.questionnaireStore$.subscribe(data => {
       this.questionnaire = data;
     });
-
-    console.log(window)
-
-    // console.log(Object.create("QuestionsStepComponent"))
-    // const componentFactory = this.componentFactoryResolver.resolveComponentFactory((Component as any)["TextComponent"]);
-
-    // const viewContainerRef = this.myList.viewContainerRef;
-    // viewContainerRef.clear();
-    // const componentRef = viewContainerRef.createComponent(componentFactory);
-    // (<TextComponent>componentRef.instance).answer = "NOYOUDIDNOT"
   }
 
   async ngOnDestroy(): Promise<void> {

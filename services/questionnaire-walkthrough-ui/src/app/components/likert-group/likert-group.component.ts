@@ -1,21 +1,14 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { BiedQuestionComponent } from '../bied-question/bied-question.component';
+import { QuestionnaireReducers } from 'src/app/store/questionnaire.reducers';
 
 @Component({
   selector: 'app-likert-group',
   templateUrl: './likert-group.component.html',
   styleUrls: ['./likert-group.component.scss'],
 })
-export class LikertGroupComponent implements OnInit {
-  @Input() public question: any;
-  @Input() public answer: any;
-  @Input() public information: string;
-
-  constructor() {}
-
-  ngOnInit(): void {}
-
-  setAnswer(event) {
-    this.answer = event;
-    // this.submitAnswer();
+export class LikertGroupComponent extends BiedQuestionComponent implements OnInit {
+  constructor(public questionnaireReducers: QuestionnaireReducers) {
+    super(questionnaireReducers);
   }
 }

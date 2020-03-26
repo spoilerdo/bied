@@ -11,5 +11,4 @@ export class LikertComponent extends BiedQuestionComponent implements OnInit {
   constructor(public questionnaireReducers: QuestionnaireReducers) {
     super(questionnaireReducers);
   }
-  ngOnInit(): void {}
 }

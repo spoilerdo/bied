@@ -1,36 +1,15 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { QuestionOptions } from 'src/app/models/question-options/question-options.model';
+import { BiedQuestionComponent } from '../bied-question/bied-question.component';
+import { QuestionnaireReducers } from 'src/app/store/questionnaire.reducers';
 
 @Component({
   selector: 'app-multiple-choice',
   templateUrl: './multiple-choice.component.html',
   styleUrls: ['./multiple-choice.component.scss'],
 })
-export class MultipleChoiceComponent implements OnInit {
-  @Input() public question: any;
-  @Input() public answer: any;
-  @Input() public information: string;
-  @Input() public options?: QuestionOptions[];
-
-  constructor() {}
-
-  ngOnInit(): void {}
-
-  public toggle(event: any, index: any) {
-    if (event) {
-      this.answer.push(this.options[index].name);
-    } else {
-      this.answer.splice(this.answer.indexOf(this.options[index].name), 1);
-    }
-    // this.submitAnswer();
-  }
-
-  public optionChecked(optionName: string): boolean {
-    return this.answer.includes(optionName);
-  }
-
-  setAnswer(event) {
-    this.answer = event;
-    // this.submitAnswer();
+export class MultipleChoiceComponent extends BiedQuestionComponent implements OnInit {
+  constructor(public questionnaireReducers: QuestionnaireReducers) {
+    super(questionnaireReducers);
   }
 }

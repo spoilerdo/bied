@@ -12,6 +12,7 @@
 
       <app-likert-group
         *ngSwitchCase="'LIKERT_GROUP'"
+        [id]="question.id"
         [information]="question.information"
         [answer]="question.answer"
         [question]="question.question"
@@ -21,6 +22,7 @@
 
       <app-multiple-choice
         *ngSwitchCase="'MULTIPLE_CHOICE'"
+        [id]="question.id"
         [information]="question.information"
         [answer]="question.answer"
         [question]="question.question"
@@ -30,6 +32,7 @@
 
       <app-text
         *ngSwitchCase="'OPEN_TEXT'"
+        [id]="question.id"
         [information]="question.information"
         [answer]="question.answer"
         [question]="question.question"
@@ -38,6 +41,7 @@
 
       <app-dropdown
         *ngSwitchCase="'DROPDOWN'"
+        [id]="question.id"
         [information]="question.information"
         [answer]="question.answer"
         [question]="question.question"
@@ -48,6 +52,7 @@
 
       <app-numeric
         *ngSwitchCase="'NUMERICAL'"
+        [id]="question.id"
         [information]="question.information"
         [answer]="question.answer"
         [question]="question.question"
@@ -56,6 +61,7 @@
 
       <app-radio
         *ngSwitchCase="'RADIO'"
+        [id]="question.id"
         [information]="question.information"
         [answer]="question.answer"
         [question]="question.question"
