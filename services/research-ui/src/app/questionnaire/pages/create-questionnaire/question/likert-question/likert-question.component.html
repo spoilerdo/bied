@@ -1,0 +1,32 @@
+<hr />
+
+<div class="row" [formGroup]="questionDataForm">
+  <div class="col">
+    <nb-list>
+      <nb-list-item *ngFor="let row of rows.controls; let i = index">
+        <span class="row-number">{{ i + 1 }}.</span>
+        <input nbInput fullWidth [value]="row.value" [formControl]="row" />
+        <button nbButton ghost type="button" status="danger" class="remove" (click)="removeRow(i)">
+          <nb-icon icon="close-outline"></nb-icon>
+        </button>
+      </nb-list-item>
+      <nb-list-item>
+        <button nbButton fullWidth type="button" (click)="addRow()">Add row</button>
+      </nb-list-item>
+    </nb-list>
+  </div>
+  <div class="col">
+    <nb-list>
+      <nb-list-item *ngFor="let column of columns.controls; let i = index">
+        <div class="type-indicator"></div>
+        <input nbInput [value]="column.value" [formControl]="column" />
+        <button nbButton ghost type="button" status="danger" class="remove" (click)="removeColumn(i)">
+          <nb-icon icon="close-outline"></nb-icon>
+        </button>
+      </nb-list-item>
+      <nb-list-item>
+        <button nbButton fullWidth type="button" (click)="addColumn()">Add column</button>
+      </nb-list-item>
+    </nb-list>
+  </div>
+</div>

@@ -13,16 +13,6 @@ nb-list {
   justify-content: center;
   align-items: center;
 
-  nb-radio ::ng-deep label {
-    padding: 0;
-  }
-
-  nb-checkbox {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
   .type-indicator {
     display: block;
     background-color: rgba(143, 155, 179, 0.16);

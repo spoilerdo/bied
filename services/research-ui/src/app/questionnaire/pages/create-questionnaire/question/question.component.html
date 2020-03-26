@@ -40,6 +40,10 @@
           *ngSwitchCase="questionTypes.Time"
           [questionDataForm]="questionForm.controls.questionData"
         ></app-time-question>
+        <app-likert-question
+          *ngSwitchCase="questionTypes.Likert"
+          [questionDataForm]="questionForm.controls.questionData"
+        ></app-likert-question>
       </div>
     </nb-card-body>
     <nb-card-footer>

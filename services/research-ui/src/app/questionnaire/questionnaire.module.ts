@@ -21,6 +21,7 @@ import { ChoiceQuestionComponent } from './pages/create-questionnaire/question/c
 import { TextQuestionComponent } from './pages/create-questionnaire/question/text-question/text-question.component';
 import { DateQuestionComponent } from './pages/create-questionnaire/question/date-question/date-question.component';
 import { TimeQuestionComponent } from './pages/create-questionnaire/question/time-question/time-question.component';
+import { LikertQuestionComponent } from './pages/create-questionnaire/question/likert-question/likert-question.component';
 
 const nebularModules = [
   NbLayoutModule,
@@ -34,7 +35,7 @@ const nebularModules = [
 ];
 
 @NgModule({
-  declarations: [QuestionnaireComponent, CreateQuestionnaireComponent, QuestionComponent, ChoiceQuestionComponent, TextQuestionComponent, DateQuestionComponent, TimeQuestionComponent],
+  declarations: [QuestionnaireComponent, CreateQuestionnaireComponent, QuestionComponent, ChoiceQuestionComponent, TextQuestionComponent, DateQuestionComponent, TimeQuestionComponent, LikertQuestionComponent],
   imports: [CommonModule, QuestionnaireRoutingModule, ReactiveFormsModule, SharedModule, ...nebularModules, NbCheckboxModule, NbRadioModule, NbTooltipModule, NbDatepickerModule],
 })
 export class QuestionnaireModule {}
