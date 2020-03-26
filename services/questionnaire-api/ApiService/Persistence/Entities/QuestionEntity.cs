@@ -4,14 +4,12 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
+using MongoDB.Entities.Core;
 
 namespace Questionnaire.Persistence.Entities
 {
-  public class QuestionEntity
+  public class QuestionEntity : Entity
   {
-    [Key]
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public Guid Id { get; set; }
     public string Label { get; set; }
     // public string Type { get; set; }
     public string Description { get; set; }

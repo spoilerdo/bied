@@ -4,27 +4,25 @@ using System.Linq;
 using System.Threading.Tasks;
 using MongoDB.Driver;
 using MongoDB.Bson;
-using MongoDB.Bson.Serialization;
+using MongoDB.Entities;
 using Questionnaire.Persistence.Entities;
 
 namespace Questionnaire.Persistence.Repositories
 {
   public class QuestionnaireRepository : IQuestionnaireRepository
   {
-    private MongoClient _dbClient;
+    private DB _db;
 
     public QuestionnaireRepository()
     {
-      _dbClient = new MongoClient(System.Configuration.ConfigurationManager.ConnectionStrings["DbConnection"].ConnectionString);
+      _db = new DB("Questionnaire", System.Configuration.ConfigurationManager.ConnectionStrings["DbConnection"].ConnectionString, 27017);
     }
 
-    public Task<QuestionnaireEntity> GetQuestionnaireById(Guid id)
+    public Task<QuestionnaireEntity> GetQuestionnaireById(String id)
     {
       Task<QuestionnaireEntity> task = new Task<QuestionnaireEntity>(() =>
      {
-       var filter = Builders<QuestionnaireEntity>.Filter.Eq("id", id.ToString());
-       var document = GetCollection<QuestionnaireEntity>("Questionnaire", "Questionnaire").Find(filter).FirstOrDefault();
-       return document;
+       return _db.Find<QuestionnaireEntity>().One(id);
      });
       return task;
     }
@@ -32,8 +30,7 @@ namespace Questionnaire.Persistence.Repositories
     {
       Task<IEnumerable<QuestionnaireEntity>> task = new Task<IEnumerable<QuestionnaireEntity>>(() =>
      {
-       var documents = GetCollection<QuestionnaireEntity>("Questionnaire", "Questionnaire").Find(new BsonDocument()).ToList();
-       return documents;
+       return _db.Find<QuestionnaireEntity>().Many(q => true);
      });
       return task;
     }
@@ -41,36 +38,32 @@ namespace Questionnaire.Persistence.Repositories
     {
       Task<QuestionnaireEntity> task = new Task<QuestionnaireEntity>(() =>
      {
-       // TODO: GUID
-       GetCollection<QuestionnaireEntity>("Questionnaire", "Questionnaire").InsertOne(questionnaire);
+       questionnaire.Save();
        return questionnaire;
      });
       return task;
     }
-    public Task<QuestionnaireEntity> UpdateQuestionnaire(Guid id, QuestionnaireEntity questionnaire)
+    public Task<QuestionnaireEntity> UpdateQuestionnaire(String id, QuestionnaireEntity questionnaire)
     {
       Task<QuestionnaireEntity> task = new Task<QuestionnaireEntity>(() =>
      {
-       var filter = Builders<QuestionnaireEntity>.Filter.Eq("id", id.ToString());
-       GetCollection<QuestionnaireEntity>("Questionnaire", "Questionnaire").ReplaceOne(filter, questionnaire);
-       return questionnaire;
+       QuestionnaireEntity e = _db.Find<QuestionnaireEntity>().One(id);
+       e.Name = questionnaire.Name;
+       e.Description = questionnaire.Description;
+       e.Questions = questionnaire.Questions;
+       e.Save();
+       return e;
      });
       return task;
     }
-    public Task DeleteQuestionnaire(Guid id)
+    public Task DeleteQuestionnaire(string id)
     {
       Task task = new Task(() =>
      {
-       var filter = Builders<QuestionnaireEntity>.Filter.Eq("id", id.ToString());
-       GetCollection<QuestionnaireEntity>("Questionnaire", "Questionnaire").DeleteOne(filter);
+       QuestionnaireEntity e = _db.Find<QuestionnaireEntity>().One(id);
+       e.Delete();
      });
       return task;
-    }
-
-    private IMongoCollection<T> GetCollection<T>(String db, String col)
-    {
-      IMongoDatabase database = _dbClient.GetDatabase(db);
-      return database.GetCollection<T>(col);
     }
   }
 }
