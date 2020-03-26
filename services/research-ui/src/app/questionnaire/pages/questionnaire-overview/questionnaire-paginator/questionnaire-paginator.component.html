@@ -1,9 +1,16 @@
 <div class="questionnaire-overview-paginator">
-  <button nbButton status="primary" class="page-button"><nb-icon icon="arrow-left-outline"></nb-icon></button>
+  <button nbButton status="primary" class="page-button" (click)="selectPage(this.currentPage - 1)">
+    <nb-icon icon="arrow-left-outline"></nb-icon>
+  </button>
   <ng-container *ngFor="let i of [1, 2, 3, 4, 5]">
-    <button nbButton status="control" class="page-button">{{ i }}</button>
+    <ng-container *ngIf="this.currentPage !== i; else active_button">
+      <button nbButton status="primary" outline class="page-button" (click)="selectPage(i)">{{ i }}</button>
+    </ng-container>
+    <ng-template #active_button>
+      <button nbButton status="primary" class="page-button" (click)="selectPage(i)">{{ i }}</button>
+    </ng-template>
   </ng-container>
-  <button nbButton status="primary" class="page-button">
+  <button nbButton status="primary" class="page-button" (click)="selectPage(this.currentPage + 1)">
     <nb-icon icon="arrow-right-outline"></nb-icon>
   </button>
 </div>

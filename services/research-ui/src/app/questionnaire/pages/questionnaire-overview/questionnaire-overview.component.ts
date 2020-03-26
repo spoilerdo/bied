@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Questionnaire } from 'src/app/models/questionnaire';
 import { QuestionnaireService } from 'src/app/services/questionnaire.service';
 
@@ -12,9 +12,19 @@ export class QuestionnaireOverviewComponent implements OnInit {
   questionnaires: Questionnaire[];
   page: number;
 
-  constructor(private questionnaireService: QuestionnaireService, private route: ActivatedRoute) {}
+  constructor(
+    private questionnaireService: QuestionnaireService,
+    private route: ActivatedRoute,
+    private router: Router,
+  ) {
+    router.events.subscribe(val => {
+      this.changePage();
+    });
+  }
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  changePage() {
     this.getQueryParams();
     this.getQuestionnaires();
   }
