@@ -29,6 +29,12 @@ import { QuestionsStepComponent } from './questionnaire-flow/questions-step/ques
 import { IntroductionStepComponent } from './questionnaire-flow/introduction-step/introduction-step.component';
 import { ResultsStepComponent } from './questionnaire-flow/results-step/results-step.component';
 import { BiedQuestionComponent } from './components/bied-question/bied-question.component';
+import { MultipleChoiceComponent } from './components/multiple-choice/multiple-choice.component';
+import { LikertComponent } from './components/likert/likert.component';
+import { TextComponent } from './components/text/text.component';
+import { NumericComponent } from './components/numeric/numeric.component';
+import { DateComponent } from './components/date/date.component';
+import { TimeComponent } from './components/time/time.component';
 
 const nebular = [
   NbThemeModule.forRoot(),
@@ -55,6 +61,12 @@ const nebular = [
     IntroductionStepComponent,
     ResultsStepComponent,
     BiedQuestionComponent,
+    MultipleChoiceComponent,
+    LikertComponent,
+    TextComponent,
+    NumericComponent,
+    DateComponent,
+    TimeComponent,
   ],
   imports: [
     BrowserModule,

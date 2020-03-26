@@ -1,34 +1,6 @@
 <div [ngSwitch]="getQuestionType()" style="flex: 1;">
-  <div *ngSwitchCase="'LIKERT'">
-    <div class="likert-labels-outer-contaier">
-      <div class="likert-labels-inner-contaier">
-        <div class="likert-label">Sterk mee oneens</div>
-        <div class="likert-label">Oneens</div>
-        <div class="likert-label">Neutraal</div>
-        <div class="likert-label">Eens</div>
-        <div class="likert-label">Sterk mee eens</div>
-      </div>
-    </div>
-
-    <div class="likert-answers-outer-container">
-      <div class="likert-answers-question-container">
-        <div>{{ question }}</div>
-        <nb-icon *ngIf="information" [nbTooltip]="information" nbTooltipStatus="primary" icon="info-outline"></nb-icon>
-      </div>
-      <nb-radio-group
-        name="likert-group"
-        [value]="answer"
-        (input)="setAnswer($event.target.value)"
-        class="likert-answers-radio-buttons"
-      >
-        <nb-radio class="radio-button" value="Sterk mee oneens"></nb-radio>
-        <nb-radio class="radio-button" value="Oneens"></nb-radio>
-        <nb-radio class="radio-button" value="Neutraal"></nb-radio>
-        <nb-radio class="radio-button" value="Eens"></nb-radio>
-        <nb-radio class="radio-button" value="Sterk mee eens"></nb-radio>
-      </nb-radio-group>
-    </div>
-  </div>
+  <app-likert *ngSwitchCase="'LIKERT'" [information]="information" [answer]="answer" [question]="question">
+  </app-likert>
 
   <div *ngSwitchCase="'LIKERT_GROUP'" class="question">
     <div class="likert-labels-outer-contaier">
@@ -66,27 +38,22 @@
     </div>
   </div>
 
-  <div *ngSwitchCase="'MULTIPLE_CHOICE'" class="question-column">
-    <div class="question-container">
-      {{ question }}
-      <nb-icon *ngIf="information" [nbTooltip]="information" nbTooltipStatus="primary" icon="info-outline"></nb-icon>
-    </div>
+  <app-multiple-choice
+    *ngSwitchCase="'MULTIPLE_CHOICE'"
+    [information]="information"
+    [answer]="answer"
+    [question]="question"
+    [options]="options"
+    class="question-column"
+  ></app-multiple-choice>
 
-    <div style="display: flex; flex: 1; justify-content: space-between;">
-      <nb-checkbox *ngFor="let option of options; let i = index" [checked]="optionChecked(option.name)" (checkedChange)="toggle($event, i)">{{
-        option.name
-      }}</nb-checkbox>
-    </div>
-  </div>
-
-  <div *ngSwitchCase="'OPEN_TEXT'" class="question-column">
-    <div class="question-container">
-      {{ question }}
-      <nb-icon *ngIf="information" [nbTooltip]="information" nbTooltipStatus="primary" icon="info-outline"></nb-icon>
-    </div>
-
-    <textarea [value]="answer" (input)="setAnswer($event.target.value)" nbInput placeholder=""></textarea>
-  </div>
+  <app-text
+    *ngSwitchCase="'OPEN_TEXT'"
+    [information]="information"
+    [answer]="answer"
+    [question]="question"
+    class="question-column"
+  ></app-text>
 
   <div *ngSwitchCase="'DROPDOWN'" class="question-column">
     <div class="question-container">
@@ -101,14 +68,13 @@
     </nb-select>
   </div>
 
-  <div *ngSwitchCase="'NUMERICAL'" class="question-column">
-    <div class="question-container">
-      {{ question }}
-      <nb-icon *ngIf="information" [nbTooltip]="information" nbTooltipStatus="primary" icon="info-outline"></nb-icon>
-    </div>
-
-    <input [value]="answer" (input)="setAnswer($event.target.value)" type="number" nbInput placeholder="" />
-  </div>
+  <app-numeric
+    *ngSwitchCase="'NUMERICAL'"
+    [information]="information"
+    [answer]="answer"
+    [question]="question"
+    class="question-column"
+  ></app-numeric>
 
   <div *ngSwitchCase="'RADIO'" class="question-column">
     <div class="question-container">
