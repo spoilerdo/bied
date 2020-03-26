@@ -1,13 +1,68 @@
 <nb-list>
   <nb-list-item *ngFor="let question of getQuestions(questionnaire.currentQuestionnaireSectionId)">
-    <app-bied-question
-      [options]="question.options"
-      [id]="question.id"
-      [type]="question.type"
-      [question]="question.question"
-      [information]="question.information"
-      [answer]="question.answer"
-      style="width: 100%;"
-    ></app-bied-question>
+    <div [ngSwitch]="getQuestionType(question)" style="flex: 1;">
+      <app-likert
+        *ngSwitchCase="'LIKERT'"
+        [id]="question.id"
+        [information]="question.information"
+        [answer]="question.answer"
+        [question]="question.question"
+      >
+      </app-likert>
+
+      <app-likert-group
+        *ngSwitchCase="'LIKERT_GROUP'"
+        [information]="question.information"
+        [answer]="question.answer"
+        [question]="question.question"
+        class="question"
+      >
+      </app-likert-group>
+
+      <app-multiple-choice
+        *ngSwitchCase="'MULTIPLE_CHOICE'"
+        [information]="question.information"
+        [answer]="question.answer"
+        [question]="question.question"
+        [options]="question.options"
+        class="question-column"
+      ></app-multiple-choice>
+
+      <app-text
+        *ngSwitchCase="'OPEN_TEXT'"
+        [information]="question.information"
+        [answer]="question.answer"
+        [question]="question.question"
+        class="question-column"
+      ></app-text>
+
+      <app-dropdown
+        *ngSwitchCase="'DROPDOWN'"
+        [information]="question.information"
+        [answer]="question.answer"
+        [question]="question.question"
+        [options]="question.options"
+        class="question-column"
+      >
+      </app-dropdown>
+
+      <app-numeric
+        *ngSwitchCase="'NUMERICAL'"
+        [information]="question.information"
+        [answer]="question.answer"
+        [question]="question.question"
+        class="question-column"
+      ></app-numeric>
+
+      <app-radio
+        *ngSwitchCase="'RADIO'"
+        [information]="question.information"
+        [answer]="question.answer"
+        [question]="question.question"
+        [options]="question.options"
+        class="question-column"
+      >
+      </app-radio>
+    </div>
   </nb-list-item>
 </nb-list>

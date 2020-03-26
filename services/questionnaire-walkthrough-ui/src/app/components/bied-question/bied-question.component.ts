@@ -18,7 +18,7 @@ export class BiedQuestionComponent implements OnInit {
   @Input() public answer: any;
   public choosedOptions: any = [];
 
-  constructor(private questionnaireReducers: QuestionnaireReducers) {}
+  constructor(public questionnaireReducers: QuestionnaireReducers) {}
 
   ngOnInit(): void {}
 
