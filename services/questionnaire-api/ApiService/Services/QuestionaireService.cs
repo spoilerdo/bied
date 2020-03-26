@@ -11,10 +11,12 @@ namespace Questionnaire.Services
   public class QuestionnaireService : Questionnaire_Service.Questionnaire_ServiceBase
   {
     private readonly ILogger<QuestionnaireService> _logger;
+
     public QuestionnaireService(ILogger<QuestionnaireService> logger)
     {
       _logger = logger;
     }
+
     public override Task<QuestionnaireResponse> CreateQuestionnaire(QuestionnaireCreateRequest request, ServerCallContext context)
     {
       // TODO: Validate questionnaire.
