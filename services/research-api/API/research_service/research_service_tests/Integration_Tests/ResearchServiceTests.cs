@@ -95,12 +95,7 @@ namespace research_service_tests.Integration_Tests
         [Fact]
         public void ShouldGetResearchThatDoesNotExist()
         {
-            GrpcChannelOptions options = new GrpcChannelOptions()
-            {
-                HttpClient = _testServer.Client
-            };
-            var channel = GrpcChannel.ForAddress("http://localhost", options);
-            var researchClient = new Research_Service.Research_ServiceClient(channel);
+            var researchClient = getGrpcClient();
 
             Action act = () =>
             {
