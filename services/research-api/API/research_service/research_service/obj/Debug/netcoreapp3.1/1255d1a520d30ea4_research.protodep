@@ -1,3 +1,0 @@
-obj/Debug/netcoreapp3.1/Research.cs \
-obj/Debug/netcoreapp3.1/ResearchGrpc.cs: Protos/datasource.proto\
- Protos/research.proto
