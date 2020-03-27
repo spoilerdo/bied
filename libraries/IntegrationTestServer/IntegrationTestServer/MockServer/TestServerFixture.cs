@@ -4,7 +4,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.PlatformAbstractions;
-using research_service_tests.Fixture.MockServer;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -12,7 +11,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 
-namespace research_service_tests.Fixture
+namespace MockServer
 {
     /// <summary>
     /// Taken from https://github.com/P7CoreOrg/gRPC-dotnetcore-play/tree/master/src , minor edits made.
@@ -82,7 +81,6 @@ namespace research_service_tests.Fixture
             }
 
             _environmentUrl = environmentUrl;
-
         }
 
         protected abstract void ConfigureAppConfiguration(

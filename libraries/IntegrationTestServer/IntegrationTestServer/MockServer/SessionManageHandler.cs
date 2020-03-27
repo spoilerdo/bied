@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace research_service_tests.Fixture.MockServer
+namespace MockServer
 {
     /// <summary>
     /// An <see cref="HttpMessageHandler"/> that maintains session consistency between requests.

@@ -9,8 +9,9 @@
     <PackageLicenseExpression>AGPL-3.0-or-later</PackageLicenseExpression>
     <Authors>Bied</Authors>
     <Product>Bied</Product>
-    <PackageReleaseNotes>initial build of package</PackageReleaseNotes>
+    <PackageReleaseNotes>Updated namespace</PackageReleaseNotes>
     <IsPackable>true</IsPackable>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
