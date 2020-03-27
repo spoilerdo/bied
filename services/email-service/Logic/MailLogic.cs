@@ -1,9 +1,7 @@
 using System;
 using System.Net.Mail;
 using System.Collections.Generic;
-using Microsoft.Extensions.Configuration;
 using EmailService;
-using Microsoft.Extensions.Options;
 
 namespace email_service.Logic
 {
@@ -26,9 +24,32 @@ namespace email_service.Logic
         public bool SendMail(List<string> addresses, List<string> values, string template)
         {
             this.CheckMailAddresses(addresses);
-            // SmtpClient client = new SmtpClient(SMTPSERVER);
+
+            MailMessage mail = this.CreateMail(addresses, values, template);
+
+            using (SmtpClient client = new SmtpClient(this._appSettings.SmtpConfig.Server))
+            {
+                client.Port = this._appSettings.SmtpConfig.Port;
+                client.UseDefaultCredentials = false;
+                client.Credentials = new System.Net.NetworkCredential(this._appSettings.SmtpConfig.Credentials.Username, this._appSettings.SmtpConfig.Credentials.Password);
+                client.EnableSsl = true;
+                client.Send(mail);
+            }
 
             return true;
+        }
+
+        private MailMessage CreateMail(List<string> addresses, List<string> values, string template)
+        {
+            MailMessage mail = new MailMessage();
+            mail.From = new MailAddress(this._appSettings.SmtpConfig.Credentials.Username);
+            mail.Subject = "Test mail Bied";
+            mail.Body = values[0];
+            foreach (string address in addresses)
+            {
+                mail.To.Add(address);
+            }
+            return mail;
         }
 
         private void CheckMailAddresses(List<string> mails)
