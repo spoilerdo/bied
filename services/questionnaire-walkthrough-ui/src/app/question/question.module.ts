@@ -35,20 +35,22 @@ const nebular = [
   NbInputModule,
 ];
 
+export const questionComponents = [
+  BiedQuestionComponent,
+  MultipleChoiceComponent,
+  LikertComponent,
+  TextComponent,
+  NumericComponent,
+  DateComponent,
+  TimeComponent,
+  DropdownComponent,
+  RadioComponent,
+  LikertGroupComponent,
+  TestingComponent,
+];
+
 @NgModule({
-  declarations: [
-    BiedQuestionComponent,
-    MultipleChoiceComponent,
-    LikertComponent,
-    TextComponent,
-    NumericComponent,
-    DateComponent,
-    TimeComponent,
-    DropdownComponent,
-    RadioComponent,
-    LikertGroupComponent,
-    TestingComponent,
-  ],
+  declarations: [questionComponents],
   imports: [CommonModule, nebular],
   entryComponents: [
     NbListItemComponent,

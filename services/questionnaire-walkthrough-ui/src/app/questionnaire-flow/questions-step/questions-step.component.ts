@@ -4,9 +4,7 @@ import {
   OnDestroy,
   ComponentFactoryResolver,
   ViewChild,
-  ComponentFactory,
   ViewContainerRef,
-  AfterContentInit,
   AfterViewInit,
   ComponentRef,
   ChangeDetectorRef,
@@ -15,20 +13,13 @@ import {
 import { Subscription } from 'rxjs';
 import { Questionnaire } from 'src/app/models/questionnaire/questionnaire.model';
 import { QuestionnaireStore } from 'src/app/store/questionnaire.store';
-import { TestingComponent } from 'src/app/components/testing/testing.component';
 import { QuestionType } from 'src/app/enums/question-type.enum';
 import { Question } from 'src/app/models/question/question.model';
 import { LikertComponent } from 'src/app/components/likert/likert.component';
-import 'reflect-metadata';
-import { NbListComponent, NbListItemComponent } from '@nebular/theme';
-import { LikertGroupComponent } from 'src/app/components/likert-group/likert-group.component';
 import { QUESTION_TYPE_DECORATOR_KEY } from 'src/app/decorators/question-type.decorator';
-import { RadioComponent } from 'src/app/components/radio/radio.component';
-import { TextComponent } from 'src/app/components/text/text.component';
-import { MultipleChoiceComponent } from 'src/app/components/multiple-choice/multiple-choice.component';
-import { DropdownComponent } from 'src/app/components/dropdown/dropdown.component';
-import { NumericComponent } from 'src/app/components/numeric/numeric.component';
 import { BiedQuestionComponent } from 'src/app/components/bied-question/bied-question.component';
+import 'reflect-metadata';
+import { questionComponents } from 'src/app/question/question.module';
 
 @Component({
   selector: 'app-questions-step',
@@ -39,16 +30,6 @@ import { BiedQuestionComponent } from 'src/app/components/bied-question/bied-que
 export class QuestionsStepComponent implements OnInit, OnDestroy, AfterViewInit {
   public questionnaire: Questionnaire;
   private questionnaireSubscription: Subscription;
-
-  private questionComponents: any[] = [
-    LikertComponent,
-    LikertGroupComponent,
-    MultipleChoiceComponent,
-    DropdownComponent,
-    NumericComponent,
-    RadioComponent,
-    TextComponent,
-  ];
 
   @ViewChild('yeet', { read: ViewContainerRef }) questionList: ViewContainerRef;
 
@@ -69,9 +50,7 @@ export class QuestionsStepComponent implements OnInit, OnDestroy, AfterViewInit 
 
     this.questionList.clear();
     this.getQuestions(this.questionnaire.currentQuestionnaireSectionId).forEach(q => {
-      const component = this.questionComponents.find(
-        i => Reflect.getMetadata(QUESTION_TYPE_DECORATOR_KEY, i) === q.type,
-      );
+      const component = questionComponents.find(i => Reflect.getMetadata(QUESTION_TYPE_DECORATOR_KEY, i) === q.type);
 
       const factory = this.componentFactoryResolver.resolveComponentFactory(component);
       let questionRef = this.questionList.createComponent(factory) as ComponentRef<BiedQuestionComponent>;
