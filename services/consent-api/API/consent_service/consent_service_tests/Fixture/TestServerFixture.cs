@@ -1,8 +1,12 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
+using MockServer;
 using consent_service;
 using consent_service.Persistence.Context;
-using research_service_tests.Fixture;
+using System;
+using System.Collections.Generic;
+using System.Text;
+
 
 namespace consent_service_tests.Fixture
 {
