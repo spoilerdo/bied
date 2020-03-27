@@ -14,6 +14,8 @@ import {
   NbRadioModule,
   NbSelectModule,
   NbToggleModule,
+  NbContextMenuModule,
+  NbActionsModule,
 } from '@nebular/theme';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -30,10 +32,17 @@ const nebularModules = [
   NbIconModule,
   NbListModule,
   NbToggleModule,
+  NbContextMenuModule,
+  NbActionsModule,
 ];
 
 @NgModule({
-  declarations: [QuestionnaireComponent, QuestionnaireOverviewComponent, QuestionnaireCardComponent, QuestionnairePaginatorComponent],
+  declarations: [
+    QuestionnaireComponent,
+    QuestionnaireOverviewComponent,
+    QuestionnaireCardComponent,
+    QuestionnairePaginatorComponent,
+  ],
   imports: [
     CommonModule,
     QuestionnaireRoutingModule,

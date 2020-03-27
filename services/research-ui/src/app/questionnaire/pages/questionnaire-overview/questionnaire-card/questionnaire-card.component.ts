@@ -8,6 +8,7 @@ import { Questionnaire } from 'src/app/models/questionnaire';
 })
 export class QuestionnaireCardComponent implements OnInit {
   @Input() questionnaire: Questionnaire;
+  cardContextItems = [{ title: 'Rename' }, { title: 'Duplicate' }, { title: 'Delete' }];
 
   constructor() {}
 

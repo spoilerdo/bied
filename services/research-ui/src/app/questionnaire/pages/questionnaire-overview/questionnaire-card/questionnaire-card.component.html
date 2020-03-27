@@ -1,9 +1,22 @@
-<a href="/questionnaire/overview" class="blank-link">
-  <!--TODO make link dynamic-->
-  <nb-card status="primary" class="questionnaire-card">
-    <nb-card-header>{{ questionnaire.name }}</nb-card-header>
-    <nb-card-body>
-      {{ questionnaire.description }}
-    </nb-card-body>
-  </nb-card>
-</a>
+<!--TODO make links dynamic-->
+<nb-card status="primary" class="questionnaire-card">
+  <nb-card-header routerLink="/">{{ questionnaire.name }}</nb-card-header>
+  <nb-card-body routerLink="/">
+    {{ questionnaire.description }}
+  </nb-card-body>
+
+  <nb-actions class="card-actions" size="small">
+    <nb-action class="card-action">
+      <nb-icon class="icon edit" icon="edit-outline"></nb-icon>
+    </nb-action>
+    <nb-action class="card-action">
+      <nb-icon class="icon copy" icon="copy-outline"></nb-icon>
+    </nb-action>
+    <nb-action class="card-action">
+      <nb-icon class="icon remove" icon="trash-2-outline"></nb-icon>
+    </nb-action>
+    <nb-action class="card-action" [nbContextMenu]="cardContextItems">
+      <nb-icon class="icon option" icon="more-vertical-outline"></nb-icon>
+    </nb-action>
+  </nb-actions>
+</nb-card>
