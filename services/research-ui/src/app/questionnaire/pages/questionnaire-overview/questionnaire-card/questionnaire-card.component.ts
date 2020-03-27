@@ -8,9 +8,13 @@ import { Questionnaire } from 'src/app/models/questionnaire';
 })
 export class QuestionnaireCardComponent implements OnInit {
   @Input() questionnaire: Questionnaire;
+  url = '';
   cardContextItems = [{ title: 'Rename' }, { title: 'Duplicate' }, { title: 'Delete' }];
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // Match URL with real url
+    this.url = `/questionnaire/${this.questionnaire.id}`;
+  }
 }
