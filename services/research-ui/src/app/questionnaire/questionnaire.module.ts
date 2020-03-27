@@ -16,6 +16,7 @@ import {
   NbToggleModule,
   NbContextMenuModule,
   NbActionsModule,
+  NbTooltipModule,
 } from '@nebular/theme';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -34,6 +35,7 @@ const nebularModules = [
   NbToggleModule,
   NbContextMenuModule,
   NbActionsModule,
+  NbTooltipModule,
 ];
 
 @NgModule({
