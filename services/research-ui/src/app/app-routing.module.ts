@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ResearchListComponent } from './research-list/research-list.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 const routes: Routes = [
   {
-    path: 'researches',
-    component: ResearchListComponent,
+    path: '',
+    component: DashboardComponent,
   },
 ];
 
