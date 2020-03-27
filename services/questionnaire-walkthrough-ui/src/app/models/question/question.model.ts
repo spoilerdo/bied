@@ -4,7 +4,7 @@ import { MultipleChoiceQuestion } from './question-types/multiple-choice-questio
 import { QuestionOptions } from '../question-options/question-options.model'
 
 export class Question {
-    id: number
+    id: string
     type: QuestionType
     question: any
     options?: QuestionOptions[]

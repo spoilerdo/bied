@@ -23,14 +23,14 @@ export class QuestionnaireStore {
         title: 'Sectie: persoonlijke vragen',
         questions: [
           {
-            id: 0,
+            id: "0",
             type: QuestionType.LIKERT,
             question: 'Ik ben graag samen met anderen',
             information: 'Er wordt gevragen Of u zich vaak alleen voelt.',
             answer: '',
           },
           {
-            id: 1,
+            id: "1",
             type: QuestionType.MULTIPLE_CHOICE,
             question: 'Welke seizoenen ervaart u als prettig?',
             options: [{ name: 'Lente' }, { name: 'Zomer' }, { name: 'Herfst' }, { name: 'Winter' }],
@@ -38,27 +38,27 @@ export class QuestionnaireStore {
             answer: [],
           },
           {
-            id: 2,
+            id: "2",
             type: QuestionType.OPEN_TEXT,
             question: 'Waarom vind u deze seizoenen prettig?',
             answer: '',
           },
           {
-            id: 3,
+            id: "3",
             type: QuestionType.NUMERICAL,
             question: 'Hoe vaak per week gaat u op visite?',
             information: 'Er wordt gevragen hoevaak u uit eten gaat.',
             answer: '',
           },
           {
-            id: 4,
+            id: "4",
             type: QuestionType.NUMERICAL,
             question: 'Hoe vaak per week komen er mensen bij u op visite?',
             information: 'Er wordt gevragen hoevaak u uit eten gaat.',
             answer: '',
           },
           {
-            id: 5,
+            id: "5",
             type: QuestionType.DROPDOWN,
             question: 'Waar gaat u meestal uit eten?',
             options: [{ name: 'Restaurant' }, { name: 'All you can eat' }, { name: 'Snackbar' }],
@@ -67,7 +67,7 @@ export class QuestionnaireStore {
             answer: '',
           },
           {
-            id: 6,
+            id: "6",
             type: QuestionType.RADIO,
             question: 'Hoe ziet uw thuis situatie eruit?',
             options: [{ name: 'Getrouwd' }, { name: 'Samenwonend' }, { name: 'Alleenstaand' }],
@@ -81,37 +81,37 @@ export class QuestionnaireStore {
         title: 'Sectie LIKERT vragen',
         questions: [
           {
-            id: 7,
+            id: "7",
             type: QuestionType.LIKERT_GROUP,
             question: [
               {
-                id: 8,
+                id: "8",
                 question: 'Ik ga graag uit eten',
                 answer: '',
               },
               {
-                id: 9,
+                id: "9",
                 question: 'Ik kom graag buiten',
                 answer: '',
                 information: 'De stad, wandeling, reis'
               },
               {
-                id: 10,
+                id: "10",
                 question: 'Ik ga graag naar sociale activiteiten',
                 answer: '',
               },
               {
-                id: 11,
+                id: "11",
                 question: 'Ik ga graag naar de bioscoop',
                 answer: '',
               },
               {
-                id: 12,
+                id: "12",
                 question: 'Ik ben graag alleen',
                 answer: '',
               },
               {
-                id: 13,
+                id: "13",
                 question: 'Ik ben vaak omringd door anderen',
                 answer: '',
               },

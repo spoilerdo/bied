@@ -20,6 +20,7 @@ import {
   NbTooltipModule,
   NbIconModule,
   NbStepperModule,
+  NbListItemComponent,
 } from '@nebular/theme';
 
 import { NbEvaIconsModule } from '@nebular/eva-icons';
@@ -86,6 +87,17 @@ const nebular = [
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [TextComponent],
+  entryComponents: [
+    NbListItemComponent,
+    MultipleChoiceComponent,
+    LikertComponent,
+    TextComponent,
+    NumericComponent,
+    DateComponent,
+    TimeComponent,
+    DropdownComponent,
+    RadioComponent,
+    LikertGroupComponent,
+  ],
 })
 export class AppModule {}

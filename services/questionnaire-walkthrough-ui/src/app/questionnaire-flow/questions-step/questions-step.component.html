@@ -1,5 +1,6 @@
-<nb-list>
-  <nb-list-item *ngFor="let question of getQuestions(questionnaire.currentQuestionnaireSectionId)">
+<div>
+  <ng-container #yeet></ng-container>
+  <!-- <nb-list-item *ngFor="let question of getQuestions(questionnaire.currentQuestionnaireSectionId)">
     <div [ngSwitch]="getQuestionType(question)" style="flex: 1;">
       <app-likert
         *ngSwitchCase="'LIKERT'"
@@ -69,5 +70,5 @@
       >
       </app-radio>
     </div>
-  </nb-list-item>
-</nb-list>
+  </nb-list-item> -->
+</div>

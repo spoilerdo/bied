@@ -37,7 +37,7 @@ export class QuestionnaireFlowComponent implements OnInit, OnDestroy {
         break;
       }
       case 'questions': {
-        this.currentStep = this.questionnaire.currentQuestionnaireSectionId+1;
+        this.currentStep = this.questionnaire.currentQuestionnaireSectionId + 1;
         break;
       }
       case 'results': {
