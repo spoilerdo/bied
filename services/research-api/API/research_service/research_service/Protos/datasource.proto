@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-service DatasourceService {
+service Datasource_Service {
   rpc GetDatasources (GetDatasourcesRequest) returns (Datasources);
   rpc GetDatasource (DatasourceIdRequest) returns (Datasource);
   rpc CreateDatasource (DatasourceRequest) returns (Datasource);
