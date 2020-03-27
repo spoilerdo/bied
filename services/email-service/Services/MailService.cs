@@ -5,21 +5,27 @@ using System.Threading.Tasks;
 using Grpc.Core;
 using Microsoft.Extensions.Logging;
 using email_service.Logic;
+using Microsoft.Extensions.Configuration;
+using System.Configuration;
+using Microsoft.Extensions.Options;
 
 namespace EmailService
 {
     public class MailService : Mailer.MailerBase
     {
+
+        private readonly AppSettings _appSettings;
         private IMailLogic mailLogic;
         private readonly ILogger<MailService> _logger;
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="logger"></param>
-        public MailService(ILogger<MailService> logger)
+        public MailService(ILogger<MailService> logger, IOptions<AppSettings> appSettings)
         {
             _logger = logger;
-            mailLogic = new MailLogic();
+            _appSettings = appSettings.Value;
+            this.mailLogic = new MailLogic(_appSettings);
         }
 
         /// <summary>

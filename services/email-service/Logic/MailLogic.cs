@@ -1,11 +1,21 @@
 using System;
 using System.Net.Mail;
 using System.Collections.Generic;
+using Microsoft.Extensions.Configuration;
+using EmailService;
+using Microsoft.Extensions.Options;
 
 namespace email_service.Logic
 {
     public class MailLogic : IMailLogic
     {
+        private readonly AppSettings _appSettings;
+
+        public MailLogic(AppSettings appSettings)
+        {
+            _appSettings = appSettings;
+        }
+
         /// <summary>
         /// Send an email to all the given addresses and replaces all the values of the chosen template with the given values.
         /// </summary>
@@ -16,6 +26,7 @@ namespace email_service.Logic
         public bool SendMail(List<string> addresses, List<string> values, string template)
         {
             this.CheckMailAddresses(addresses);
+            // SmtpClient client = new SmtpClient(SMTPSERVER);
 
             return true;
         }
