@@ -13,27 +13,27 @@ export class QuestionnaireReducers {
         //TODO Api call met het antwoord
         let payload = action.payload;
 
-        const currentState = this.questionnaireStore.questionnaireStore$.value;
+        const currentState = this.questionnaireStore.questionnaireStore$.value.questionnaire;
 
         currentState.questionnaireSections[currentState.currentQuestionnaireSectionId].questions.find(
           q => q.id === payload.id,
         ).answer = payload.answer;
 
-        this.questionnaireStore.questionnaireStore$.next(currentState);
+        this.questionnaireStore.questionnaireStore$.next({questionnaire: currentState, command: action.type});
         break;
       }
       case PREVIOUS_SECTION: {
         console.log('going to previous...')
-        const currentState = this.questionnaireStore.questionnaireStore$.value;
+        const currentState = this.questionnaireStore.questionnaireStore$.value.questionnaire;
         currentState.currentQuestionnaireSectionId--;
-        this.questionnaireStore.questionnaireStore$.next(currentState);
+        this.questionnaireStore.questionnaireStore$.next({questionnaire: currentState, command: action.type});
         break;
       }
       case NEXT_SECTION: {
         console.log('going to next...')
-        const currentState = this.questionnaireStore.questionnaireStore$.value;
+        const currentState = this.questionnaireStore.questionnaireStore$.value.questionnaire;
         currentState.currentQuestionnaireSectionId++;
-        this.questionnaireStore.questionnaireStore$.next(currentState);
+        this.questionnaireStore.questionnaireStore$.next({questionnaire: currentState, command: action.type});
         break;
       }
     }

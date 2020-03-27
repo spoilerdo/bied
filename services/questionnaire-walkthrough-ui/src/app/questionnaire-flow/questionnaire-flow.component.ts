@@ -28,7 +28,7 @@ export class QuestionnaireFlowComponent implements OnInit, OnDestroy {
 
   async ngOnInit(): Promise<void> {
     this.questionnaireSubscription = this.questionnaireStore.questionnaireStore$.subscribe(data => {
-      this.questionnaire = data;
+      this.questionnaire = data.questionnaire;
     });
 
     switch (this.router.url.split('/').pop()) {

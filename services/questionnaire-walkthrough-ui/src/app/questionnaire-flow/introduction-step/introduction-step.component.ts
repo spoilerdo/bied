@@ -19,7 +19,7 @@ export class IntroductionStepComponent implements OnInit, OnDestroy {
 
   async ngOnInit(): Promise<void> {
     this.questionnaireSubscription = this.questionnaireStore.questionnaireStore$.subscribe(data => {
-      this.questionnaireSubject = data;
+      this.questionnaireSubject = data.questionnaire;
     });
   }
 

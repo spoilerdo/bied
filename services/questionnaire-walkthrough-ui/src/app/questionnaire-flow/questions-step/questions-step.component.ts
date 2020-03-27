@@ -9,6 +9,8 @@ import {
   ComponentRef,
   ChangeDetectorRef,
   ChangeDetectionStrategy,
+  ViewChildren,
+  QueryList,
 } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Questionnaire } from 'src/app/models/questionnaire/questionnaire.model';
@@ -20,6 +22,8 @@ import { QUESTION_TYPE_DECORATOR_KEY } from 'src/app/decorators/question-type.de
 import { BiedQuestionComponent } from 'src/app/components/bied-question/bied-question.component';
 import 'reflect-metadata';
 import { questionComponents } from 'src/app/question/question.module';
+import { NbListItemComponent } from '@nebular/theme';
+import { NEXT_SECTION, PREVIOUS_SECTION } from 'src/app/store/questionnaire.actions';
 
 @Component({
   selector: 'app-questions-step',
@@ -31,7 +35,7 @@ export class QuestionsStepComponent implements OnInit, OnDestroy, AfterViewInit 
   public questionnaire: Questionnaire;
   private questionnaireSubscription: Subscription;
 
-  @ViewChild('yeet', { read: ViewContainerRef }) questionList: ViewContainerRef;
+  @ViewChildren('container', { read: ViewContainerRef }) containerList!: QueryList<ViewContainerRef>;
 
   constructor(
     private questionnaireStore: QuestionnaireStore,
@@ -41,31 +45,40 @@ export class QuestionsStepComponent implements OnInit, OnDestroy, AfterViewInit 
 
   ngOnInit(): void {
     this.questionnaireSubscription = this.questionnaireStore.questionnaireStore$.subscribe(data => {
-      this.questionnaire = data;
+      this.questionnaire = data.questionnaire;
+
+      if (data.command === NEXT_SECTION || data.command === PREVIOUS_SECTION) {
+        this.ref.detectChanges();
+        this.generateQuestionComponents();
+      }
     });
   }
 
-  ngAfterViewInit(): void {
-    console.log(this.questionList);
+  generateQuestionComponents(): void {
+    for (let i = 0; i < this.containerList.length; i++) {
+      let container = this.containerList.toArray()[i];
+      let question = this.getQuestions(this.questionnaire.currentQuestionnaireSectionId)[i];
 
-    this.questionList.clear();
-    this.getQuestions(this.questionnaire.currentQuestionnaireSectionId).forEach(q => {
-      const component = questionComponents.find(i => Reflect.getMetadata(QUESTION_TYPE_DECORATOR_KEY, i) === q.type);
+      const component = questionComponents.find(
+        q => Reflect.getMetadata(QUESTION_TYPE_DECORATOR_KEY, q) === question.type,
+      );
 
       const factory = this.componentFactoryResolver.resolveComponentFactory(component);
-      let questionRef = this.questionList.createComponent(factory) as ComponentRef<BiedQuestionComponent>;
+      let questionReference = container.createComponent(factory) as ComponentRef<BiedQuestionComponent>;
 
-      questionRef.instance.id = q.id;
-      questionRef.instance.information = q.information;
-      questionRef.instance.options = q.options;
-      questionRef.instance.question = q.question;
-      questionRef.instance.answer = q.answer;
-      questionRef.instance.type = q.type;
-
-      const secondfoktory = this.componentFactoryResolver.resolveComponentFactory(LikertComponent);
-    });
+      questionReference.instance.id = question.id;
+      questionReference.instance.information = question.information;
+      questionReference.instance.options = question.options;
+      questionReference.instance.question = question.question;
+      questionReference.instance.answer = question.answer;
+      questionReference.instance.type = question.type;
+    }
 
     this.ref.detectChanges();
+  }
+
+  ngAfterViewInit(): void {
+    this.generateQuestionComponents();
   }
 
   async ngOnDestroy(): Promise<void> {

@@ -18,7 +18,7 @@ export class ResultsStepComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.questionnaireSubscription = this.questionnaireStore.questionnaireStore$.subscribe(data => {
-      this.questionnaire = data;
+      this.questionnaire = data.questionnaire;
     });
   }
 

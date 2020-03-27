@@ -2,12 +2,14 @@ import { Injectable } from '@angular/core';
 import { Questionnaire } from '../models/questionnaire/questionnaire.model';
 import { BehaviorSubject } from 'rxjs';
 import { QuestionType } from '../enums/question-type.enum';
+import { CREATE_QUESTIONNAIRE } from './questionnaire.actions';
+
 
 @Injectable({
   providedIn: 'root',
 })
 export class QuestionnaireStore {
-  public questionnaireStore$: BehaviorSubject<Questionnaire>;
+  public questionnaireStore$: BehaviorSubject<{questionnaire: Questionnaire, command: string}>;
 
   public initialState: Questionnaire = {
     id: 'd41d8cd98f00b204e9800998ecf8427e',
@@ -126,7 +128,6 @@ export class QuestionnaireStore {
   };
 
   constructor() {
-    console.log('constructor called');
-    this.questionnaireStore$ = new BehaviorSubject(this.initialState);
+    this.questionnaireStore$ = new BehaviorSubject({questionnaire: this.initialState, command: CREATE_QUESTIONNAIRE});
   }
 }
