@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace research_service_tests.Fixture.MockServer
+namespace MockServer
 {
     internal class SuppressExecutionContextHandler : DelegatingHandler
     {

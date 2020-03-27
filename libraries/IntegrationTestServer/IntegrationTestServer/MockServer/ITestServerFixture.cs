@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 
-namespace research_service_tests.Fixture.MockServer
+namespace MockServer
 {
     public interface ITestServerFixture
     {
