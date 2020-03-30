@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, HostBinding } from '@angular/core';
+import { Component, OnInit, HostBinding } from '@angular/core';
 import { BiedQuestionComponent } from '../bied-question/bied-question.component';
 import { QuestionnaireReducers } from 'src/app/store/questionnaire.reducers';
 import { QuestionTypeDecorator } from 'src/app/decorators/question-type.decorator';

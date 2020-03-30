@@ -1,9 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { QuestionnaireStore } from 'src/app/store/questionnaire.store';
 import { Questionnaire } from 'src/app/models/questionnaire/questionnaire.model';
-import { Subscription } from 'rxjs';
 import { QuestionType } from 'src/app/enums/question-type.enum';
-import { Question } from 'src/app/models/question/question.model';
 
 @Component({
   selector: 'app-results-step',

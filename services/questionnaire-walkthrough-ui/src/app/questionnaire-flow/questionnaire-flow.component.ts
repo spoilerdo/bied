@@ -33,7 +33,7 @@ export class QuestionnaireFlowComponent implements OnInit, OnDestroy {
 
   async ngOnInit(): Promise<void> {
     this.questionnaireSubscription = this.questionnaireStore.questionnaireStore$.subscribe(data => {
-      if (data.command === NEXT_SECTION || (data.command === PREVIOUS_SECTION && this.questionnaire !== undefined)) {
+      if ((data.command === NEXT_SECTION || data.command === PREVIOUS_SECTION) && this.questionnaire !== undefined) {
         let sectionComponent = this.questionSectionList.toArray()[this.questionnaire.currentQuestionnaireSectionId];
         sectionComponent.generateQuestionComponents();
       }
