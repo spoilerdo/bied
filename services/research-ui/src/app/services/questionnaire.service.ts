@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Questionnaire } from '../models/questionnaire';
+import { questionnaires } from './mock-questionnaires';
 
 @Injectable({
   providedIn: 'root',
@@ -8,18 +9,10 @@ import { Questionnaire } from '../models/questionnaire';
 export class QuestionnaireService {
   constructor() {}
 
-  getQuestionnaires(page: number = 1, pagesize: number = 20): Observable<Questionnaire[]> {
+  getQuestionnaires(page: number = 1, pagesize: number = 10): Observable<Questionnaire[]> {
     // TODO use actual API endpoint
-    const questionnaires: Questionnaire[] = [];
-    for (let i = 0; i < pagesize; i++) {
-      const index = (page - 1) * pagesize + i;
-      questionnaires.push({
-        id: index,
-        name: `questionnaire ${index}`,
-        description: `this is the description of questionnaire ${index}`,
-      });
-    }
 
-    return of(questionnaires);
+    const startIndex = (page - 1) * pagesize;
+    return of(questionnaires.slice(startIndex, startIndex + pagesize));
   }
 }
