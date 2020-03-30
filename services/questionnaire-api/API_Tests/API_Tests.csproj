@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ApiService\ApiService.csproj" />
+    <ProjectReference Include="..\API\API.csproj" />
   </ItemGroup>
 
 </Project>
