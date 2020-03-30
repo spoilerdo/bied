@@ -1,0 +1,15 @@
+// system colors
+$system-black: rgb(0, 0, 0);
+$system-white: rgb(255, 255, 255);
+$blue: rgb(26, 181, 254);
+
+// status colors
+$danger: rgb(208, 0, 14);
+$warning: rgb(241, 90, 35);
+$success: rgb(45, 204, 112);
+
+// base colors
+$base-color: rgb(236, 0, 65);
+$base-color-dark: mix($base-color, $system-black, 80%);
+$base-color-darker: mix($base-color, $system-black, 70%);
+$base-color-fade: mix($base-color, $system-white, 20%);

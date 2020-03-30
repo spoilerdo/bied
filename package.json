@@ -1,7 +1,0 @@
-{
-    "name": "Bied",
-    "private": true,
-    "workspaces": [
-        "services/*"
-    ]
-}

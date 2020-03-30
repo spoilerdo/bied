@@ -21,20 +21,26 @@ node {
                 def buildStatus = load 'ci/scripts/groovy/buildStatus.groovy'
 
                 buildStatus.setBuildStatus('Checking out SCM', 'PENDING')
+
+                sh 'kip check'
             }
             stage('Build libraries & services') {
-                echo 'Build libraries & services'
-
                 def buildStatus = load 'ci/scripts/groovy/buildStatus.groovy'
 
                 buildStatus.setBuildStatus('Building', 'PENDING')
+
+                sh 'kip build -e prod'
             }
             stage('Run tests') {
-                echo 'Run tests'
-
                 def buildStatus = load 'ci/scripts/groovy/buildStatus.groovy'
 
                 buildStatus.setBuildStatus('Testing', 'PENDING')
+            }
+            stage('Push images') {
+                echo 'Push images'
+            }
+            stage('Deploy') {
+                echo 'Deploy'
             }
         } finally {
             def buildStatus = load 'ci/scripts/groovy/buildStatus.groovy'

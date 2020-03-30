@@ -1,13 +1,13 @@
 syntax = "proto3";
 
 service UserInformation_Service {
-  rpc GetUserInformation (UserInformationIdReqeust) returns (UserInformation);
+  rpc GetUserInformation (UserInformationIdRequest) returns (UserInformation);
   rpc CreateUserInformation (UserInformationRequest) returns (UserInformation);
   rpc EditUserInformation (UserInformationRequest) returns (UserInformation);
   rpc DeleteUserInformation (UserInformationIdRequest) returns (UserInformationEmptyResponse);
 }
 
-message UserInformationIdReqeust {
+message UserInformationIdRequest {
   string id = 1;
 }
 
