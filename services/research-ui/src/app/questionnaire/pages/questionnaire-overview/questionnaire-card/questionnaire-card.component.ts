@@ -12,8 +12,8 @@ import { RenameDialogComponent } from './rename-dialog/rename-dialog.component';
 })
 export class QuestionnaireCardComponent implements OnInit {
   @Input() questionnaire: Questionnaire;
-  @Output() removeQuestionnaire: EventEmitter<any> = new EventEmitter();
-  @Output() renameQuestionnaire: EventEmitter<any> = new EventEmitter();
+  @Output() removeQuestionnaireCallback: EventEmitter<any> = new EventEmitter();
+  @Output() renameQuestionnaireCallback: EventEmitter<any> = new EventEmitter();
 
   url = '';
   cardContextItems = [{ title: 'Edit' }, { title: 'View data' }, { title: 'Download data' }];
@@ -28,24 +28,24 @@ export class QuestionnaireCardComponent implements OnInit {
   openRemoveConfirmation() {
     this.dialogService
       .open(RemoveDialogComponent, { context: { questionnaire: this.questionnaire } })
-      .onClose.subscribe(removable => removable && this.remove(removable));
+      .onClose.subscribe(removable => removable && this.removeQuestionnaire(removable));
   }
 
   openRenameDialog() {
     this.dialogService
       .open(RenameDialogComponent, { context: { questionnaire: this.questionnaire } })
-      .onClose.subscribe(name => name && this.rename(name));
+      .onClose.subscribe(name => name && this.renameQuestionnaire(name));
   }
 
-  remove(remove: boolean) {
+  removeQuestionnaire(remove: boolean) {
     if (remove === true) {
-      this.removeQuestionnaire.emit(this.questionnaire.id);
+      this.removeQuestionnaireCallback.emit(this.questionnaire.id);
     }
   }
 
-  rename(newName: string) {
+  renameQuestionnaire(newName: string) {
     if (newName) {
-      this.renameQuestionnaire.emit({ name: newName, id: this.questionnaire.id });
+      this.renameQuestionnaireCallback.emit({ name: newName, id: this.questionnaire.id });
     }
   }
 }

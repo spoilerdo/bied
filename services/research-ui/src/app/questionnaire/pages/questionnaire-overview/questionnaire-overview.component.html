@@ -2,8 +2,8 @@
   <div class="questionnaire-card-container">
     <app-questionnaire-card
       [questionnaire]="questionnaire"
-      (removeQuestionnaire)="removeQuestionnaire($event)"
-      (renameQuestionnaire)="renameQuestionnaire($event)"
+      (removeQuestionnaireCallback)="removeQuestionnaire($event)"
+      (renameQuestionnaireCallback)="renameQuestionnaire($event)"
       *ngFor="let questionnaire of questionnaires"
     >
     </app-questionnaire-card>
