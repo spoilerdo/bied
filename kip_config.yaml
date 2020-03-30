@@ -1,3 +1,14 @@
+buildpath: <projectDir>
+environment: dev
+scripts:
+  - name: start-minikube
+    command: bash
+    args: ["./scripts/start-minikube"]
+    bindings: []
+  - name: set-docker-env
+    command: minikube
+    args: ["docker-env", "-p", "bied-dev", "--shell", "none"]
+    bindings: ["pre-build", "pre-deploy"]
+    environments: ["dev"]
 template: project
 version: v0.0.0+unreleased
-buildPath: "<projectDir>"

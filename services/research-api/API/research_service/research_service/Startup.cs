@@ -50,7 +50,7 @@ namespace research_service
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGrpcService<Research_Service>();
+                endpoints.MapGrpcService<ResearchService>();
 
                 endpoints.MapGet("/", async context =>
                 {

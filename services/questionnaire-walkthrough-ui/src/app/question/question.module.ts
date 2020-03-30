@@ -66,3 +66,5 @@ export const questionComponents = [
   ],
 })
 export class QuestionModule {}
+
+//TODO QuestionModule als forRoot kunnen gebruiken zodat je in die call nieuwe question components kan toevoegen
