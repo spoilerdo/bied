@@ -69,7 +69,7 @@ Represents creating of a [Consent](#consent.proto)
 | Field      | Type                                    | Label    | Description                               |
 | ---------- | --------------------------------------- | -------- | ----------------------------------------- |
 | userId     | [string](#string)                       | optional | ID of the user that contains this consent |
-| datasource | [DatasourceRequest](#datasourceRequest) | optional | Relation to datasourceRequest |
+| datasourceId | [string](#string) |  | Relation to datasource |
 | consent    | [bool](#bool)                           | optional | Given consent by user                     |
 | uts        | [int64](#int64)                         | optional | Specific time of given consent            |
 
@@ -83,7 +83,7 @@ Represents editing of a [Consent](#consent.proto)
 | ---------- | --------------------------------------- | -------- | ----------------------------------------- |
 | id         | [string](#string)                       | optional | ID of the consent to edit
 | userId     | [string](#string)                       | optional | ID of the user that contains this consent |
-| datasource | [DatasourceRequest](#datasourceRequest) | optional | <mark>Relation to datasourceRequest<mark> |
+| datasourceId | [string](#string) | | Relation to datasource |
 | consent    | [bool](#bool)                           | optional | Given consent by user                     |
 | uts        | [int64](#int64)                         | optional | Specific time of given consent            |
 
