@@ -3,6 +3,7 @@
     <app-questionnaire-card
       [questionnaire]="questionnaire"
       (removeQuestionnaire)="removeQuestionnaire($event)"
+      (renameQuestionnaire)="renameQuestionnaire($event)"
       *ngFor="let questionnaire of questionnaires"
     >
     </app-questionnaire-card>

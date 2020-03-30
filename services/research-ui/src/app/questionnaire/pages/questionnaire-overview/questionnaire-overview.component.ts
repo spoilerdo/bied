@@ -47,4 +47,11 @@ export class QuestionnaireOverviewComponent implements OnInit {
 
     this.questionnaireService.removeQuestionnaire(id);
   }
+
+  renameQuestionnaire(response: any) {
+    const index = this.questionnaires.findIndex(questionnaire => questionnaire.id === response.id);
+    this.questionnaires[index].name = response.name;
+
+    this.questionnaireService.renameQuestionnaire(response.id, response.name);
+  }
 }

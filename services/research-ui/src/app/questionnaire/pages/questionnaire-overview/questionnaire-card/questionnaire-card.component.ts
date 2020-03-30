@@ -3,6 +3,7 @@ import { Questionnaire } from 'src/app/models/questionnaire';
 import { NbDialogService } from '@nebular/theme';
 import { RemoveDialogComponent } from './remove-dialog/remove-dialog.component';
 import { EventEmitter } from '@angular/core';
+import { RenameDialogComponent } from './rename-dialog/rename-dialog.component';
 
 @Component({
   selector: 'app-questionnaire-card',
@@ -12,6 +13,7 @@ import { EventEmitter } from '@angular/core';
 export class QuestionnaireCardComponent implements OnInit {
   @Input() questionnaire: Questionnaire;
   @Output() removeQuestionnaire: EventEmitter<any> = new EventEmitter();
+  @Output() renameQuestionnaire: EventEmitter<any> = new EventEmitter();
 
   url = '';
   cardContextItems = [{ title: 'Edit' }, { title: 'View data' }, { title: 'Download data' }];
@@ -29,9 +31,21 @@ export class QuestionnaireCardComponent implements OnInit {
       .onClose.subscribe(removable => removable && this.remove(removable));
   }
 
+  openRenameDialog() {
+    this.dialogService
+      .open(RenameDialogComponent, { context: { questionnaire: this.questionnaire } })
+      .onClose.subscribe(name => name && this.rename(name));
+  }
+
   remove(remove: boolean) {
     if (remove === true) {
       this.removeQuestionnaire.emit(this.questionnaire.id);
+    }
+  }
+
+  rename(newName: string) {
+    if (newName) {
+      this.renameQuestionnaire.emit({ name: newName, id: this.questionnaire.id });
     }
   }
 }

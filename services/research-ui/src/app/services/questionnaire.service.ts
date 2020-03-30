@@ -21,4 +21,10 @@ export class QuestionnaireService {
     const index = questionnaires.findIndex(questionnaire => questionnaire.id === id);
     questionnaires.splice(index, 1);
   }
+
+  renameQuestionnaire(id: number, name: string) {
+    // TODO use actual API endpoint
+    const index = questionnaires.findIndex(questionnaire => questionnaire.id === id);
+    questionnaires[index].name = name;
+  }
 }
