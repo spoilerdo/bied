@@ -14,7 +14,7 @@ export class QuestionnaireCardComponent implements OnInit {
   @Output() removeQuestionnaire: EventEmitter<any> = new EventEmitter();
 
   url = '';
-  cardContextItems = [{ title: 'Rename' }, { title: 'Duplicate' }, { title: 'Delete' }];
+  cardContextItems = [{ title: 'Edit' }, { title: 'View data' }, { title: 'Download data' }];
 
   constructor(private dialogService: NbDialogService) {}
 
