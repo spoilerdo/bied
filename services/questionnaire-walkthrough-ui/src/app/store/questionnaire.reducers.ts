@@ -23,14 +23,12 @@ export class QuestionnaireReducers {
         break;
       }
       case PREVIOUS_SECTION: {
-        console.log('going to previous...')
         const currentState = this.questionnaireStore.questionnaireStore$.value.questionnaire;
         currentState.currentQuestionnaireSectionId--;
         this.questionnaireStore.questionnaireStore$.next({questionnaire: currentState, command: action.type});
         break;
       }
       case NEXT_SECTION: {
-        console.log('going to next...')
         const currentState = this.questionnaireStore.questionnaireStore$.value.questionnaire;
         currentState.currentQuestionnaireSectionId++;
         this.questionnaireStore.questionnaireStore$.next({questionnaire: currentState, command: action.type});

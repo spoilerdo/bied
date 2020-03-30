@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChildren, QueryList } from '@angular/core';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { Questionnaire } from '../models/questionnaire/questionnaire.model';
@@ -8,6 +8,7 @@ import { QuestionnaireReducers } from '../store/questionnaire.reducers';
 import { PREVIOUS_SECTION, NEXT_SECTION } from '../store/questionnaire.actions';
 import { QuestionnaireSection } from '../models/questionnaire-section/questionnaire-section.model';
 import { QuestionType } from '../enums/question-type.enum';
+import { QuestionsStepComponent } from './questions-step/questions-step.component';
 
 @Component({
   selector: 'app-questionnaire-flow',
@@ -18,7 +19,11 @@ import { QuestionType } from '../enums/question-type.enum';
 export class QuestionnaireFlowComponent implements OnInit, OnDestroy {
   public questionnaire: Questionnaire;
   private questionnaireSubscription: Subscription;
-  public currentStep = 0;
+  public currentStep = -1;
+
+  @ViewChildren('questionSection', { read: QuestionsStepComponent }) questionSectionList!: QueryList<
+    QuestionsStepComponent
+  >;
 
   constructor(
     private router: Router,
@@ -28,6 +33,11 @@ export class QuestionnaireFlowComponent implements OnInit, OnDestroy {
 
   async ngOnInit(): Promise<void> {
     this.questionnaireSubscription = this.questionnaireStore.questionnaireStore$.subscribe(data => {
+      if (data.command === NEXT_SECTION || (data.command === PREVIOUS_SECTION && this.questionnaire !== undefined)) {
+        let sectionComponent = this.questionSectionList.toArray()[this.questionnaire.currentQuestionnaireSectionId];
+        sectionComponent.generateQuestionComponents();
+      }
+
       this.questionnaire = data.questionnaire;
     });
 
@@ -108,6 +118,30 @@ export class QuestionnaireFlowComponent implements OnInit, OnDestroy {
     });
 
     return completed;
+  }
+
+  public navigateBack(): void {
+    if (this.isFirstSection()) {
+      this.navigateToIntroduction();
+    } else {
+      this.previousQuestionSection();
+    }
+  }
+
+  public navigateForward(): void {
+    if (this.isLastSection()) {
+      this.navigateToResults();
+    } else {
+      this.nextQuestionSection();
+    }
+  }
+
+  public getPreviousButtonText(): string {
+    return 'Vorige';
+  }
+
+  public getNextButtonText(): string {
+    return 'Volgende';
   }
 
   public previousQuestionSection(): void {

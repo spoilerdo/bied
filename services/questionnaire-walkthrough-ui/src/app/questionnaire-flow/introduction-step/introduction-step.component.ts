@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef, ChangeDetectionStrategy, Input } from '@angular/core';
 import { Questionnaire } from 'src/app/models/questionnaire/questionnaire.model';
 import { Subject, BehaviorSubject, Subscription } from 'rxjs';
 import { Router } from '@angular/router';
@@ -11,19 +11,11 @@ import { QuestionnaireStore } from 'src/app/store/questionnaire.store';
   styleUrls: ['./introduction-step.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class IntroductionStepComponent implements OnInit, OnDestroy {
-  public questionnaireSubject: Questionnaire;
-  private questionnaireSubscription: Subscription;
+export class IntroductionStepComponent implements OnInit {
+  @Input()
+  public questionnaire: Questionnaire;
 
-  constructor(private router: Router, private questionnaireStore: QuestionnaireStore) {}
+  constructor() {}
 
-  async ngOnInit(): Promise<void> {
-    this.questionnaireSubscription = this.questionnaireStore.questionnaireStore$.subscribe(data => {
-      this.questionnaireSubject = data.questionnaire;
-    });
-  }
-
-  async ngOnDestroy(): Promise<void> {
-    this.questionnaireSubscription.unsubscribe();
-  }
+  async ngOnInit(): Promise<void> {}
 }

@@ -3,7 +3,7 @@
     <nb-card-body>
       <nb-stepper [selectedIndex]="currentStep" orientation="horizontal" disableStepNavigation>
         <nb-step [completed]="completedStep(0)" label="Introduction">
-          <app-introduction-step></app-introduction-step>
+          <app-introduction-step [questionnaire]="questionnaire"></app-introduction-step>
           <nb-card-footer style="display: flex; justify-content: flex-end;"
             ><button nbButton status="basic" (click)="navigateToQuestions()">
               {{ questionnaire.startButtonText }}
@@ -15,29 +15,21 @@
           [completed]="completedStep(1 + i)"
           [label]="questionSection.title"
         >
-          <app-questions-step></app-questions-step>
+          <app-questions-step #questionSection [questionnaire]="questionnaire"></app-questions-step>
           <nb-card-footer style="display: flex; justify-content: space-between;">
-            <button *ngIf="isFirstSection()" nbButton status="basic" (click)="navigateToIntroduction()">
-              Terug naar introductie
-            </button>
-            <button *ngIf="!isFirstSection()" nbButton status="basic" (click)="previousQuestionSection()">
-              Vorige</button
-            ><button *ngIf="!isLastSection()" nbButton status="basic" (click)="nextQuestionSection()">
-              Volgende
-            </button>
+            <button nbButton status="basic" (click)="navigateBack()">{{ getPreviousButtonText() }}</button>
             <button
-              *ngIf="isLastSection()"
               nbButton
-              [disabled]="!validateQuestionnaire()"
               status="basic"
-              (click)="navigateToResults()"
+              [disabled]="isLastSection() && !validateQuestionnaire()"
+              (click)="navigateForward()"
             >
-              Verder naar resultaten
+              {{ getNextButtonText() }}
             </button>
           </nb-card-footer>
         </nb-step>
         <nb-step label="results">
-          <app-results-step></app-results-step>
+          <app-results-step [questionnaire]="questionnaire"></app-results-step>
           <nb-card-footer>
             <button nbButton status="basic" (click)="navigateToQuestions()">
               Vorige

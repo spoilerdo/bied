@@ -1,60 +1,41 @@
 import {
   Component,
   OnInit,
-  OnDestroy,
   ComponentFactoryResolver,
-  ViewChild,
   ViewContainerRef,
   AfterViewInit,
   ComponentRef,
   ChangeDetectorRef,
-  ChangeDetectionStrategy,
   ViewChildren,
   QueryList,
+  Input,
 } from '@angular/core';
-import { Subscription } from 'rxjs';
 import { Questionnaire } from 'src/app/models/questionnaire/questionnaire.model';
-import { QuestionnaireStore } from 'src/app/store/questionnaire.store';
 import { QuestionType } from 'src/app/enums/question-type.enum';
 import { Question } from 'src/app/models/question/question.model';
-import { LikertComponent } from 'src/app/components/likert/likert.component';
 import { QUESTION_TYPE_DECORATOR_KEY } from 'src/app/decorators/question-type.decorator';
 import { BiedQuestionComponent } from 'src/app/components/bied-question/bied-question.component';
 import 'reflect-metadata';
 import { questionComponents } from 'src/app/question/question.module';
-import { NbListItemComponent } from '@nebular/theme';
-import { NEXT_SECTION, PREVIOUS_SECTION } from 'src/app/store/questionnaire.actions';
 
 @Component({
   selector: 'app-questions-step',
   templateUrl: './questions-step.component.html',
   styleUrls: ['./questions-step.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class QuestionsStepComponent implements OnInit, OnDestroy, AfterViewInit {
+export class QuestionsStepComponent implements OnInit, AfterViewInit {
+  @Input()
   public questionnaire: Questionnaire;
-  private questionnaireSubscription: Subscription;
 
   @ViewChildren('container', { read: ViewContainerRef }) containerList!: QueryList<ViewContainerRef>;
 
-  constructor(
-    private questionnaireStore: QuestionnaireStore,
-    private componentFactoryResolver: ComponentFactoryResolver,
-    private ref: ChangeDetectorRef,
-  ) {}
+  constructor(private componentFactoryResolver: ComponentFactoryResolver, private ref: ChangeDetectorRef) {}
 
-  ngOnInit(): void {
-    this.questionnaireSubscription = this.questionnaireStore.questionnaireStore$.subscribe(data => {
-      this.questionnaire = data.questionnaire;
+  ngOnInit(): void {}
 
-      if (data.command === NEXT_SECTION || data.command === PREVIOUS_SECTION) {
-        this.ref.detectChanges();
-        this.generateQuestionComponents();
-      }
-    });
-  }
+  public generateQuestionComponents(): void {
+    this.ref.detectChanges();
 
-  generateQuestionComponents(): void {
     for (let i = 0; i < this.containerList.length; i++) {
       let container = this.containerList.toArray()[i];
       let question = this.getQuestions(this.questionnaire.currentQuestionnaireSectionId)[i];
@@ -79,10 +60,6 @@ export class QuestionsStepComponent implements OnInit, OnDestroy, AfterViewInit 
 
   ngAfterViewInit(): void {
     this.generateQuestionComponents();
-  }
-
-  async ngOnDestroy(): Promise<void> {
-    this.questionnaireSubscription.unsubscribe();
   }
 
   public getQuestions(questionnaireSectionId: number) {

@@ -1,5 +1,5 @@
 <div>
-  <nb-list-item *ngFor="let question of getQuestions(questionnaire.currentQuestionnaireSectionId)">
+  <nb-list-item *ngFor="let question of questionnaire.questionnaireSections[questionnaire.currentQuestionnaireSectionId].questions">
     <ng-container #container></ng-container>
   </nb-list-item>
 </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { QuestionnaireStore } from 'src/app/store/questionnaire.store';
 import { Questionnaire } from 'src/app/models/questionnaire/questionnaire.model';
 import { Subscription } from 'rxjs';
@@ -11,20 +11,12 @@ import { Question } from 'src/app/models/question/question.model';
   styleUrls: ['./results-step.component.scss'],
 })
 export class ResultsStepComponent implements OnInit {
+  @Input()
   public questionnaire: Questionnaire;
-  private questionnaireSubscription: Subscription;
 
-  constructor(private questionnaireStore: QuestionnaireStore) {}
+  constructor() {}
 
-  async ngOnInit(): Promise<void> {
-    this.questionnaireSubscription = this.questionnaireStore.questionnaireStore$.subscribe(data => {
-      this.questionnaire = data.questionnaire;
-    });
-  }
-
-  async ngOnDestroy(): Promise<void> {
-    this.questionnaireSubscription.unsubscribe();
-  }
+  async ngOnInit(): Promise<void> {}
 
   public getAllQuestionsPerSection(sectionId: number) {
     let questions = [];
