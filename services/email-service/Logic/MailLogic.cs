@@ -1,3 +1,4 @@
+using System.Linq;
 using System;
 using System.Net.Mail;
 using System.Collections.Generic;
@@ -39,12 +40,27 @@ namespace email_service.Logic
             return true;
         }
 
+        /// <summary>
+        /// Creates a new MailMessage
+        /// </summary>
+        /// <param name="addresses"></param>
+        /// <param name="values"></param>
+        /// <param name="template"></param>
+        /// <returns>New MailMessage</returns>
         private MailMessage CreateMail(List<string> addresses, List<string> values, string template)
         {
+            //TODO: Implement templating
+
             MailMessage mail = new MailMessage();
             mail.From = new MailAddress(this._appSettings.SmtpConfig.Credentials.Username);
             mail.Subject = "Test mail Bied";
-            mail.Body = values[0];
+            string fullMessage = "";
+
+            foreach (string val in values)
+            {
+                fullMessage = fullMessage + val + " ";
+            }
+            mail.Body = fullMessage;
             foreach (string address in addresses)
             {
                 mail.To.Add(address);
@@ -52,6 +68,10 @@ namespace email_service.Logic
             return mail;
         }
 
+        /// <summary>
+        /// Checks if there are any addresses given and loops over addresses to check if its correct format.
+        /// </summary>
+        /// <param name="mails"></param>
         private void CheckMailAddresses(List<string> mails)
         {
             if (mails.Count <= 0)
