@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Grpc.Core;
 using Microsoft.Extensions.Logging;
-using email_service.Logic;
+using EmailService.Logic;
 using Microsoft.Extensions.Configuration;
 using System.Configuration;
 using Microsoft.Extensions.Options;

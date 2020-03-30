@@ -2,9 +2,8 @@ using System.Linq;
 using System;
 using System.Net.Mail;
 using System.Collections.Generic;
-using EmailService;
 
-namespace email_service.Logic
+namespace EmailService.Logic
 {
     public class MailLogic : IMailLogic
     {

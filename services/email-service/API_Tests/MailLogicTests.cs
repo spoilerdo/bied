@@ -3,11 +3,11 @@ using System.Net.Mail;
 using System.Collections.Generic;
 using System;
 using Xunit;
-using email_service.Logic;
+using EmailService.Logic;
 using EmailService;
-using email_service.Domain;
+using EmailService.Domain;
 
-namespace API_Tests
+namespace ApiTests
 {
     public class MailLogicTests
     {

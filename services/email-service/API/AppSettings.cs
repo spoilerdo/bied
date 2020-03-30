@@ -1,4 +1,4 @@
-using email_service.Domain;
+using EmailService.Domain;
 
 namespace EmailService
 {

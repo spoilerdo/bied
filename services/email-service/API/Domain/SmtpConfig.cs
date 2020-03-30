@@ -1,4 +1,4 @@
-namespace email_service.Domain
+namespace EmailService.Domain
 {
     public class SmtpConfig
     {

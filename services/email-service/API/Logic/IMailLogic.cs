@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Net.Mail;
 
-namespace email_service.Logic
+namespace EmailService.Logic
 {
     public interface IMailLogic
     {
