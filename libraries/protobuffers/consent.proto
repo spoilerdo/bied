@@ -20,7 +20,7 @@ message UserIdRequest {
 
 message ConsentRequest {
   string userId = 1;
-  DatasourceRequest datasource = 2;
+  string datasourceId = 2;
   bool consent = 3;
   int64 uts = 4;
 }
@@ -34,7 +34,7 @@ message DeleteConsentRequest {
 message ConsentEditRequest {
     string id = 1;
     string userId = 2;
-    DatasourceRequest datasource = 3;
+    string datasourceId = 3;
     bool consent = 4;
     int64 uts = 5;
 }
