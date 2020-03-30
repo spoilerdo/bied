@@ -18,11 +18,12 @@ import {
   NbActionsModule,
   NbTooltipModule,
 } from '@nebular/theme';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { QuestionnaireOverviewComponent } from './pages/questionnaire-overview/questionnaire-overview.component';
 import { QuestionnaireCardComponent } from './pages/questionnaire-overview/questionnaire-card/questionnaire-card.component';
 import { QuestionnairePaginatorComponent } from './pages/questionnaire-overview/questionnaire-paginator/questionnaire-paginator.component';
+import { RemoveDialogComponent } from './pages/questionnaire-overview/questionnaire-card/remove-dialog/remove-dialog.component';
 
 const nebularModules = [
   NbLayoutModule,
@@ -44,10 +45,12 @@ const nebularModules = [
     QuestionnaireOverviewComponent,
     QuestionnaireCardComponent,
     QuestionnairePaginatorComponent,
+    RemoveDialogComponent,
   ],
   imports: [
     CommonModule,
     QuestionnaireRoutingModule,
+    FormsModule,
     ReactiveFormsModule,
     ...nebularModules,
     NbCheckboxModule,

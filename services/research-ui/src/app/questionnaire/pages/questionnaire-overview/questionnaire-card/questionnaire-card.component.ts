@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Questionnaire } from 'src/app/models/questionnaire';
+import { NbDialogService } from '@nebular/theme';
+import { RemoveDialogComponent } from './remove-dialog/remove-dialog.component';
 
 @Component({
   selector: 'app-questionnaire-card',
@@ -11,10 +13,14 @@ export class QuestionnaireCardComponent implements OnInit {
   url = '';
   cardContextItems = [{ title: 'Rename' }, { title: 'Duplicate' }, { title: 'Delete' }];
 
-  constructor() {}
+  constructor(private dialogService: NbDialogService) {}
 
   ngOnInit(): void {
     // Match URL with real url
     this.url = `/questionnaire/${this.questionnaire.id}`;
+  }
+
+  openRemoveConfirmation() {
+    this.dialogService.open(RemoveDialogComponent, { context: { questionnaire: this.questionnaire } });
   }
 }

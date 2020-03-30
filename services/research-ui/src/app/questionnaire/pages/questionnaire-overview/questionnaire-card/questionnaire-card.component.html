@@ -11,7 +11,7 @@
     <nb-action class="card-action">
       <nb-icon class="icon copy" icon="copy-outline" nbTooltip="Duplicate"></nb-icon>
     </nb-action>
-    <nb-action class="card-action">
+    <nb-action class="card-action" (click)="openRemoveConfirmation()">
       <nb-icon class="icon remove" icon="trash-2-outline" nbTooltip="Remove"></nb-icon>
     </nb-action>
     <nb-action class="card-action" [nbContextMenu]="cardContextItems">
