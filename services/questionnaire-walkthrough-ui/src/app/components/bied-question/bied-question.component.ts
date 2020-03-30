@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, HostBinding } from '@angular/core';
 import { QuestionType } from 'src/app/enums/question-type.enum';
 import { QuestionOptions } from 'src/app/models/question-options/question-options.model';
 import { QuestionnaireReducers } from 'src/app/store/questionnaire.reducers';
@@ -16,6 +16,13 @@ export class BiedQuestionComponent implements OnInit {
   @Input() public question: any;
   @Input() public options?: QuestionOptions[];
   @Input() public answer: any;
+
+  @HostBinding('style.display')
+  public display: string = 'flex';
+
+  @HostBinding('style.flex')
+  public flex: number = 1;
+
   public choosedOptions: any = [];
 
   constructor(public questionnaireReducers: QuestionnaireReducers) {}
