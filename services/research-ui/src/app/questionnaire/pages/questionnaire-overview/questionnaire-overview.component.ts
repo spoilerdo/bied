@@ -40,4 +40,11 @@ export class QuestionnaireOverviewComponent implements OnInit {
       .getQuestionnaires(this.page)
       .subscribe(questionnaires => (this.questionnaires = questionnaires));
   }
+
+  removeQuestionnaire(id: number) {
+    const index = this.questionnaires.findIndex(questionnaire => questionnaire.id === id);
+    this.questionnaires.splice(index, 1);
+
+    this.questionnaireService.removeQuestionnaire(id);
+  }
 }

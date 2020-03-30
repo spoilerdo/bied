@@ -20,8 +20,6 @@ export class RemoveDialogComponent implements OnInit {
   }
 
   remove() {
-    // TODO Remove via service
-    console.log(`Removed "${this.questionnaire.name}"`);
-    this.dialogRef.close();
+    this.dialogRef.close(true);
   }
 }

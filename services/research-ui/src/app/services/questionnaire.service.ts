@@ -9,10 +9,16 @@ import { questionnaires } from './mock-questionnaires';
 export class QuestionnaireService {
   constructor() {}
 
-  getQuestionnaires(page: number = 1, pagesize: number = 10): Observable<Questionnaire[]> {
+  getQuestionnaires(page: number = 1, pagesize: number = 20): Observable<Questionnaire[]> {
     // TODO use actual API endpoint
 
     const startIndex = (page - 1) * pagesize;
     return of(questionnaires.slice(startIndex, startIndex + pagesize));
+  }
+
+  removeQuestionnaire(id: number) {
+    // TODO use actual API endpoint
+    const index = questionnaires.findIndex(questionnaire => questionnaire.id === id);
+    questionnaires.splice(index, 1);
   }
 }
