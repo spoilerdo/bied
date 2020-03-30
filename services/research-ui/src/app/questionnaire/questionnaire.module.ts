@@ -24,6 +24,7 @@ import { QuestionnaireOverviewComponent } from './pages/questionnaire-overview/q
 import { QuestionnaireCardComponent } from './pages/questionnaire-overview/questionnaire-card/questionnaire-card.component';
 import { QuestionnairePaginatorComponent } from './pages/questionnaire-overview/questionnaire-paginator/questionnaire-paginator.component';
 import { RemoveDialogComponent } from './pages/questionnaire-overview/questionnaire-card/remove-dialog/remove-dialog.component';
+import { TruncatePipe } from './utils/TruncatePipe';
 
 const nebularModules = [
   NbLayoutModule,
@@ -46,6 +47,7 @@ const nebularModules = [
     QuestionnaireCardComponent,
     QuestionnairePaginatorComponent,
     RemoveDialogComponent,
+    TruncatePipe,
   ],
   imports: [
     CommonModule,

@@ -14,7 +14,6 @@ import {
 } from '@nebular/theme';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RemoveDialogComponent } from './questionnaire/pages/questionnaire-overview/questionnaire-card/remove-dialog/remove-dialog.component';
-import { FormsModule } from '@angular/forms';
 
 const nebularModules = [
   NbThemeModule.forRoot(),

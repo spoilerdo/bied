@@ -1,7 +1,7 @@
 <nb-card status="primary" class="questionnaire-card">
   <nb-card-header routerLink="{{ url }}">{{ questionnaire.name }}</nb-card-header>
   <nb-card-body routerLink="{{ url }}">
-    {{ questionnaire.description }}
+    {{ questionnaire.description | truncate: 100:true }}
   </nb-card-body>
 
   <nb-actions class="card-actions" size="small">
