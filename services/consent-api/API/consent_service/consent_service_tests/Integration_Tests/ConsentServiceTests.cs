@@ -4,6 +4,7 @@ using Grpc.Net.Client;
 using System;
 using consent_service_tests.Fixture;
 using Xunit;
+using consent_service.Services;
 
 namespace consent_service_tests.Integration_Tests
 {
@@ -25,14 +26,14 @@ namespace consent_service_tests.Integration_Tests
             Assert.NotNull(client);
         }
 
-        private ConsentService.ConsentServiceClient getGrpcClient()
+        private Consent_Service.Consent_ServiceClient getGrpcClient()
         {            
             GrpcChannelOptions options = new GrpcChannelOptions()
             {
                 HttpClient = _testServer.Client
             };
             var channel = GrpcChannel.ForAddress("http://localhost", options);
-            return new ConsentService.ConsentServiceClient(channel);
+            return new Consent_Service.Consent_ServiceClient(channel);
         }
     }
 }

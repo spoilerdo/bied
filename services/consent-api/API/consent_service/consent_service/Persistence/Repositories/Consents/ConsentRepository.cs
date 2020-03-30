@@ -20,12 +20,17 @@ namespace consent_service.Persistence.Repositories.Consents
 
         public async Task<DataResponseObject<ConsentEntity>> CreateConsent(ConsentEntity consent)
         {
-            throw new NotImplementedException();
+            _context.Consents.Add(consent);
+            await _context.SaveChangesAsync();
+            return new DataResponseObject<ConsentEntity>(consent);
         }
+        
 
         public async Task<DataResponseObject<IEnumerable<ConsentEntity>>> GetConsents(Guid id)
-        {            
-            throw new NotImplementedException();
+        {                                    
+        //    var consents = await _context.Consents.ToListAsync();
+            var consents = _context.Consents.Where(b => b.userId == id.ToString()).ToList();
+            return new DataResponseObject<IEnumerable<ConsentEntity>>(consents);
         }
 
         public Task<DataResponseObject<ConsentEntity>> EditConsent(ConsentEntity consent)

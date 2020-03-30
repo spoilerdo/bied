@@ -53,7 +53,7 @@ namespace consent_service
 
             app.UseEndpoints(endpoints =>
             {                
-                endpoints.MapGrpcService<Consent_Service>();
+                endpoints.MapGrpcService<ConsentService>();
 
                 endpoints.MapGet("/", async context =>
                 {
