@@ -47,10 +47,9 @@ namespace email_service.Logic
         /// <param name="values"></param>
         /// <param name="template"></param>
         /// <returns>New MailMessage</returns>
-        private MailMessage CreateMail(List<string> addresses, List<string> values, string template)
+        public MailMessage CreateMail(List<string> addresses, List<string> values, string template)
         {
             //TODO: Implement templating
-
             MailMessage mail = new MailMessage();
             mail.From = new MailAddress(this._appSettings.SmtpConfig.Credentials.Username);
             mail.Subject = "Test mail Bied";
@@ -72,7 +71,7 @@ namespace email_service.Logic
         /// Checks if there are any addresses given and loops over addresses to check if its correct format.
         /// </summary>
         /// <param name="mails"></param>
-        private void CheckMailAddresses(List<string> mails)
+        public void CheckMailAddresses(List<string> mails)
         {
             if (mails.Count <= 0)
             {
