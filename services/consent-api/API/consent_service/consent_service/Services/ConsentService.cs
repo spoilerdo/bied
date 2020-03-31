@@ -81,9 +81,9 @@ namespace consent_service.Services
         /// <param name="request">The parameters on which to delete a consent</param>
         /// <param name="context">The server context</param>
         /// <returns>A response indicating success/failure</returns>
-        public override async Task<ConsentEmptyResponse> DeleteConsent(DeleteConsentRequest request, ServerCallContext context)
-        {
-            var deletedConsent = await _consentRepository.DeleteConsent(new Guid(request.Id));
+        public override async Task<ConsentEmptyResponse> DeleteConsent(ConsentIdRequest request, ServerCallContext context)
+        {            
+            var deletedConsent = await _consentRepository.DeleteConsent(new Guid(request.ConsentId));
             if (!deletedConsent.Success)
             {
                 throw new RpcException(new Status(StatusCode.NotFound, deletedConsent.Message));

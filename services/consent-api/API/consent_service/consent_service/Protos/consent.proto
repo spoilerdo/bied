@@ -6,7 +6,7 @@ service Consent_Service {
   rpc GetConsents (UserIdRequest) returns (Consents);
   rpc CreateConsent (ConsentRequest) returns (Consent);
   rpc DeleteAllConsent (UserIdRequest) returns (ConsentEmptyResponse);
-  rpc DeleteConsent (DeleteConsentRequest) returns (ConsentEmptyResponse);
+  rpc DeleteConsent (ConsentIdRequest) returns (ConsentEmptyResponse);
   rpc EditConsent (ConsentEditRequest) returns (Consent);
 }
 
@@ -25,10 +25,8 @@ message ConsentRequest {
   int64 uts = 4;
 }
 
-
-message DeleteConsentRequest {
-  string userId = 1;
-  string id = 2;
+message ConsentIdRequest {
+  string consentId = 1;
 }
 
 message ConsentEditRequest {
