@@ -4,7 +4,7 @@ import "datasource.proto";
 
 service Consent_Service {
   rpc GetConsents (UserIdRequest) returns (Consents);
-  rpc GetConsent (ConsentIdReqeust) returns (Consent);
+  rpc GetConsent (ConsentIdRequest) returns (Consent);
   rpc CreateConsent (ConsentRequest) returns (Consent);
   rpc DeleteAllConsent (UserIdRequest) returns (ConsentEmptyResponse);
   rpc DeleteConsent (ConsentIdRequest) returns (ConsentEmptyResponse);
