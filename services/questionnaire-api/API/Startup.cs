@@ -24,14 +24,19 @@ namespace Questionnaire
 
         public IConfiguration Configuration { get; }
 
-        public void ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services, IWebHostEnvironment env)
         {
             services.AddGrpc();
             services.AddScoped<IQuestionnaireRepository, QuestionnaireRepository>();
-            services.AddMongoDBEntities(
-              MongoClientSettings.FromConnectionString(
-                (String)Configuration.GetSection("MongoDB").Get(typeof(String))
-              ), "DatabaseName");
+
+            if(env.IsDevelopment()) {
+                services.AddMongoDBEntities("Questionnaire");
+            } else {
+                services.AddMongoDBEntities(
+                MongoClientSettings.FromConnectionString(
+                    (String)Configuration.GetSection("MongoDB").Get(typeof(String))
+                ), "Questionnaire");
+            }
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
