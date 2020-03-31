@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="authentication.proto" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Google.Api.Gax" Version="3.0.0" />
+    <PackageReference Include="Google.Api.Gax.Grpc" Version="3.0.0" />
+    <PackageReference Include="Grpc" Version="2.27.0" />
+    <PackageReference Include="Grpc.Core" Version="2.27.0" />
+    <PackageReference Include="Grpc.Tools" Version="2.27.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PersistenceLayer\PersistenceLayer.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+      <Protobuf Include="../../../libraries/protobuffers/authentication.proto" />
+      <Protobuf Include="../../../libraries/protobuffers/user.proto" />
+      <Protobuf Include="../../../libraries/protobuffers/userInformation.proto" />
+  </ItemGroup>
+
+</Project>

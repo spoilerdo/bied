@@ -1,0 +1,20 @@
+{
+  "profiles": {
+    "AuthenticationService": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "http://localhost:5002"
+    },
+    "Docker": {
+      "commandName": "Docker",
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
+      "publishAllPorts": true,
+      "useSSL": true
+    }
+  },
+  "settings": {
+    "sqlconnectionstring": "Server=localhost,2434;User Id=SA;Password=password1!"
+  }
+}
