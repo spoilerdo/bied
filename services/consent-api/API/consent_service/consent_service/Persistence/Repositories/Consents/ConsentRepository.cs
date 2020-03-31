@@ -44,9 +44,16 @@ namespace consent_service.Persistence.Repositories.Consents
             return new DataResponseObject<ConsentEntity>(foundConsent);
         }
 
-        public Task<DataResponseObject<ConsentEntity>> DeleteConsent(Guid id)
+        public async Task<DataResponseObject<ConsentEntity>> DeleteConsent(Guid id)
         {
-            throw new NotImplementedException();
+            ConsentEntity foundConsent = await _context.Consents.FindAsync(id);
+            if(foundConsent == null)
+            {
+                return new DataResponseObject<ConsentEntity>("Consent could not be found");
+            }
+            _context.Consents.Remove(foundConsent);
+            await _context.SaveChangesAsync();
+            return new DataResponseObject<ConsentEntity>(true);
         }
 
 
