@@ -77,6 +77,32 @@ namespace consent_service_tests.Unit_Tests.ConsentUnitTests
         }
 
         [Fact]
+        public async void ShouldGetConsent()
+        {
+
+            ConsentEntity consent = new ConsentEntity
+            {
+                userId = "f5235866-6b81-413b-ae89-4a5f44da78ea",
+                Consent = true,
+                DatasourceId = "ee1b957f-d490-4229-b489-885565cb5b0d",
+                Uts = DateTime.Now
+            };
+            var response = await _consentRepository.CreateConsent(consent);
+            Assert.NotNull(response);
+
+            var getResult = await _consentRepository.GetConsent(response.Data.Id);
+            Assert.NotNull(getResult);
+            Assert.Equal(consent, getResult.Data);
+        }
+
+         [Fact]
+        public async void ShouldFailToGetConsent()
+        {
+            var getResult = await _consentRepository.GetConsent(new Guid("e8802d57-c1b9-4d08-b4b4-bbf3de9ff202"));
+            Assert.False(getResult.Success);
+        }
+
+        [Fact]
         public async void ShouldGetConsentsNoResults()
         {
             //assert

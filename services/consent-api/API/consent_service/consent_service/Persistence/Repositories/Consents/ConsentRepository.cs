@@ -32,6 +32,16 @@ namespace consent_service.Persistence.Repositories.Consents
             return new DataResponseObject<IEnumerable<ConsentEntity>>(consents);
         }
 
+        public async Task<DataResponseObject<ConsentEntity>> GetConsent(Guid id)
+        {
+            var consent = await _context.Consents.FindAsync(id);
+            if (consent == null)
+            {
+                return new DataResponseObject<ConsentEntity>("Consent could not be found");
+            }
+            return new DataResponseObject<ConsentEntity>(consent);
+        }
+
         public async Task<DataResponseObject<ConsentEntity>> EditConsent(ConsentEntity consent)
         {
             ConsentEntity foundConsent = await _context.Consents.FindAsync(consent.Id);

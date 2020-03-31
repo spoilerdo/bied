@@ -41,6 +41,22 @@ namespace consent_service.Services
             };
         }
 
+         /// <summary>
+        /// Delete all consents for a given user
+        /// </summary>
+        /// <param name="request">The userId on which to delete all consents</param>
+        /// <param name="context">The server context</param>
+        /// <returns>A response indicating success/failure</returns>
+        public override async Task<Consent> GetConsent(ConsentIdRequest request, ServerCallContext context)
+        {
+            var consent = await _consentRepository.GetConsent(new Guid(request.ConsentId));
+            if (!consent.Success)
+            {
+                throw new RpcException(new Status(StatusCode.NotFound, consent.Message));
+            }
+            return _mapper.Map<Consent>(consent.Data);
+        }
+
         /// <summary>
         /// Create a consent with the given parameters
         /// </summary>
