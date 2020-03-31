@@ -24,12 +24,11 @@ namespace consent_service.Persistence.Repositories.Consents
             await _context.SaveChangesAsync();
             return new DataResponseObject<ConsentEntity>(consent);
         }
-        
+
 
         public async Task<DataResponseObject<IEnumerable<ConsentEntity>>> GetConsents(Guid id)
-        {                                    
-        //    var consents = await _context.Consents.ToListAsync();
-            var consents = _context.Consents.Where(b => b.userId == id.ToString()).ToList();
+        {            
+            var consents = await _context.Consents.Where(b => b.userId == id.ToString()).ToListAsync();
             return new DataResponseObject<IEnumerable<ConsentEntity>>(consents);
         }
 

@@ -47,5 +47,34 @@ namespace consent_service_tests.Unit_Tests.ConsentUnitTests
             Assert.Equal(results.Data.First(), response.Data);
         }
 
+        [Fact]
+        public async void GetConsents()
+        {
+            //arrange
+            ConsentEntity consent = new ConsentEntity
+            {
+                userId = "f5235866-6b81-413b-ae89-4a5f44da78ea",
+                Consent = true,
+                DatasourceId = "ee1b957f-d490-4229-b489-885565cb5b0d",
+                Uts = DateTime.Now
+            };
+
+            ConsentEntity consent2 = new ConsentEntity
+            {
+                userId = "f5235866-6b81-413b-ae89-4a5f44da78ea",
+                Consent = true,
+                DatasourceId = "ee1b957f-d490-4229-b489-885565cb5b0b",
+                Uts = DateTime.Now
+            };
+
+            //act
+            await _consentRepository.CreateConsent(consent);
+            await _consentRepository.CreateConsent(consent2);
+
+            //assert
+            var result = await _consentRepository.GetConsents(new Guid("f5235866-6b81-413b-ae89-4a5f44da78ea"));
+            Assert.Equal(2, result.Data.Count());
+        }
+
     }
 }

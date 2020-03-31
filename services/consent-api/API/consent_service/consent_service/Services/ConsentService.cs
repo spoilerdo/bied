@@ -29,8 +29,7 @@ namespace consent_service.Services
         /// <param name="context">The server context</param>
         /// <returns>The found consents for the specific user, or an grpc error indicating the reason for failure</returns>
         public override async Task<Consents> GetConsents(UserIdRequest request, ServerCallContext context)
-        {
-            Console.WriteLine("TESTING --------------------------");
+        {            
             var consents = await _consentRepository.GetConsents(new Guid(request.Id));
             if (!consents.Success)
             {
@@ -49,9 +48,7 @@ namespace consent_service.Services
         /// <param name="context">The server context</param>
         /// <returns>The created consent, or an grpc error indicating the reason for failure</returns>
         public override async Task<Consent> CreateConsent(ConsentRequest request, ServerCallContext context)
-        {            
-            var consent = _mapper.Map<ConsentEntity>(request);            
-            Console.WriteLine(consent.ToString());
+        {
             var createdConsent = await _consentRepository.CreateConsent(_mapper.Map<ConsentEntity>(request));
 
             if (!createdConsent.Success)
@@ -79,7 +76,7 @@ namespace consent_service.Services
         /// <param name="request">The parameters on which to delete a consent</param>
         /// <param name="context">The server context</param>
         /// <returns>A response indicating success/failure</returns>
-        public override Task<ConsentEmptyResponse> DeleteConsent(DeleteConsentRequest request, ServerCallContext context) 
+        public override Task<ConsentEmptyResponse> DeleteConsent(DeleteConsentRequest request, ServerCallContext context)
         {
             throw new NotImplementedException();
         }
