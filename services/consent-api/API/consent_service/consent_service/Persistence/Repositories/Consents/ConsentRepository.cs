@@ -27,14 +27,21 @@ namespace consent_service.Persistence.Repositories.Consents
 
 
         public async Task<DataResponseObject<IEnumerable<ConsentEntity>>> GetConsents(Guid id)
-        {            
+        {
             var consents = await _context.Consents.Where(b => b.userId == id.ToString()).ToListAsync();
             return new DataResponseObject<IEnumerable<ConsentEntity>>(consents);
         }
 
-        public Task<DataResponseObject<ConsentEntity>> EditConsent(ConsentEntity consent)
+        public async Task<DataResponseObject<ConsentEntity>> EditConsent(ConsentEntity consent)
         {
-            throw new NotImplementedException();
+            ConsentEntity foundConsent = await _context.Consents.FindAsync(consent.Id);
+            if (foundConsent == null)
+            {
+                return new DataResponseObject<ConsentEntity>("Consent could not be found");
+            }
+            _context.Entry(foundConsent).CurrentValues.SetValues(consent);
+            await _context.SaveChangesAsync();
+            return new DataResponseObject<ConsentEntity>(foundConsent);
         }
 
         public Task<DataResponseObject<ConsentEntity>> DeleteConsent(Guid id)

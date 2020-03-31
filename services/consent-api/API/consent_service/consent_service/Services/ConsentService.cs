@@ -29,7 +29,7 @@ namespace consent_service.Services
         /// <param name="context">The server context</param>
         /// <returns>The found consents for the specific user, or an grpc error indicating the reason for failure</returns>
         public override async Task<Consents> GetConsents(UserIdRequest request, ServerCallContext context)
-        {            
+        {
             var consents = await _consentRepository.GetConsents(new Guid(request.Id));
             if (!consents.Success)
             {
@@ -65,9 +65,14 @@ namespace consent_service.Services
         /// <param name="request">The parameters to update the consent with</param>
         /// <param name="context">The server context</param>
         /// <returns>The edited consent, or an grpc error indicating the reason for failure</returns>
-        public override Task<Consent> EditConsent(ConsentEditRequest request, ServerCallContext context)
+        public override async Task<Consent> EditConsent(ConsentEditRequest request, ServerCallContext context)
         {
-            throw new NotImplementedException();
+            var editedConsent = await _consentRepository.EditConsent(_mapper.Map<ConsentEntity>(request));
+            if (!editedConsent.Success)
+            {
+                throw new RpcException(new Status(StatusCode.NotFound, editedConsent.Message));
+            }
+            return _mapper.Map<Consent>(editedConsent.Data);
         }
 
         /// <summary>
