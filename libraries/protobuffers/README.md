@@ -74,7 +74,7 @@ Represents creating of a [Consent](#consent.proto)
 | uts        | [int64](#int64)                         | optional | Specific time of given consent            |
 
 
-<a name="userIdRequest-consent"></a>
+<a name="consentEditRequest"></a>
 
 ### ConsentEditRequest
 Represents editing of a [Consent](#consent.proto)
@@ -87,7 +87,7 @@ Represents editing of a [Consent](#consent.proto)
 | consent    | [bool](#bool)                           | optional | Given consent by user                     |
 | uts        | [int64](#int64)                         | optional | Specific time of given consent            |
 
-
+<a name="userIdRequest-consent"></a>
 
 ### UserIdRequest consent
 
@@ -97,16 +97,15 @@ Represents getting or deleting consent by userId
 | ----- | ----------------- | -------- | ----------------- |
 | id    | [string](#string) | optional | ID of the consent |
 
-<a name="deleteConsentRequest"></a>
+<a name="consentIdRequest"></a>
 
-### DeleteConsentRequest
+### ConsentIdRequest
 
-Represents deleting a single consent by userId
+Represents getting/updating/deleting a single consent by Id
 
 | Field | Type              | Label    | Description       |
 | ----- | ----------------- | -------- | ----------------- |
-| userId    | [string](#string) | optional | ID of the user |
-| id    | [string](#string) | optional | ID of the consent |
+| consentId    | [string](#string) | | ID of the consent |
 
 <a name="consentEmptyResponse"></a>
 
@@ -121,10 +120,11 @@ Service for handling consents
 | Method Name   | Request Type                            | Response Type                    | Description                                         |
 | ------------- | --------------------------------------- | -------------------------------- | --------------------------------------------------- |
 | GetConsents   | [UserIdReqeust](#userIdReqeust-consent) | [Consents](#consents) | Used to get all consents for a user                 |
+| GetConsent | [ConsentIdReqeust](#consentIdRequest) | [ConsentEmptyResponse](#consentEmptyResponse) | Used to get a single consent |
 | CreateConsent | [ConsentRequest](#consentRequest)       | [Consent](#consent.proto)        | Used to create a new consent                        |                       |
 | DeleteAllConsent | [UserIdRequest](#userIdRequest-consent) | [ConsentEmptyResponse](#consentEmptyResponse)        | Used to delete all consents of an user |
-| DeleteConsent | [DeleteConsentRequest](#deleteConsentRequest) | [ConsentEmptyResponse](#consentEmptyResponse) | Used to delete a single consent of an user |
-| EditConsent   | [ConsentEditRequest](#ConsentEditRequest)       | [Consent](#consent.proto)        | Used to edit a consent                              |
+| DeleteConsent | [ConsentIdRequest](#consentIdRequest) | [ConsentEmptyResponse](#consentEmptyResponse) | Used to delete a single consent of an user |
+| EditConsent   | [ConsentEditRequest](#consentEditRequest)       | [Consent](#consent.proto)        | Used to edit a consent                              |
 
 
 
