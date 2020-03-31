@@ -17,25 +17,38 @@ namespace Questionnaire
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
             Configuration = configuration;
+            CurrentEnvironment = env;
         }
 
         public IConfiguration Configuration { get; }
+        private IWebHostEnvironment CurrentEnvironment{ get; set; } 
 
-        public void ConfigureServices(IServiceCollection services, IWebHostEnvironment env)
+        public void ConfigureServices(IServiceCollection services)
         {
             services.AddGrpc();
             services.AddScoped<IQuestionnaireRepository, QuestionnaireRepository>();
 
-            if(env.IsDevelopment()) {
+            Console.WriteLine(CurrentEnvironment.ApplicationName);
+            Console.WriteLine(CurrentEnvironment.EnvironmentName);
+            if(CurrentEnvironment.IsDevelopment()) {
+                // use a memory context.
                 services.AddMongoDBEntities("Questionnaire");
             } else {
+                // Use the production DB.
                 services.AddMongoDBEntities(
-                MongoClientSettings.FromConnectionString(
-                    (String)Configuration.GetSection("MongoDB").Get(typeof(String))
-                ), "Questionnaire");
+                    new MongoClientSettings() {
+                        Server = new MongoServerAddress(
+                            (String)Configuration.GetSection("MongoDB_host").Get(typeof(String)),
+                            (int)Configuration.GetSection("MongoDB_port").Get(typeof(int))),
+                        Credential = MongoCredential.CreateCredential(
+                            (String)Configuration.GetSection("MongoDB_database").Get(typeof(String)), 
+                            (String)Configuration.GetSection("MongoDB_user").Get(typeof(String)), 
+                            (String)Configuration.GetSection("MongoDB_pass").Get(typeof(String)))
+                    }, "Questionnaire"
+                );
             }
         }
 
