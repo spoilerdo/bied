@@ -25,10 +25,8 @@ message ConsentRequest {
   int64 uts = 4;
 }
 
-
-message DeleteConsentRequest {
-  string userId = 1;
-  string id = 2;
+message ConsentIdRequest {
+  string consentId = 1;
 }
 
 message ConsentEditRequest {
