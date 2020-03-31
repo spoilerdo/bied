@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+service UserInformation_Service {
+  rpc GetUserInformation (UserInformationIdRequest) returns (UserInformation);
+  rpc CreateUserInformation (UserInformationRequest) returns (UserInformation);
+  rpc EditUserInformation (UserInformationRequest) returns (UserInformation);
+  rpc DeleteUserInformation (UserInformationIdRequest) returns (UserInformationEmptyResponse);
+}
+
+message UserInformationIdRequest {
+  string id = 1;
+}
+
+message UserInformationRequest {
+  string userId = 1;
+  string phonenumber = 2;
+}
+
+message UserInformationEmptyResponse {}
+
+message UserInformation {
+  string userId = 1;
+  string id = 2;  
+  string phonenumber = 3;
+}
