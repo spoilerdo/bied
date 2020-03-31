@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+option csharp_namespace = "Templating";
+
+package Templates;
+
+service Template {
+// Creates a new mail templates
+  rpc CreateTemplate (CreateTemplateRequest) returns (CreateTemplateReply);
+// Gets all available templates
+  rpc getTemplates (getTemplatesRequest) returns (getTemplatesReply);
+}
+
+message CreateTemplateRequest {
+    string templateName = 1;
+    string templateHtml = 2;
+}
+
+message CreateTemplateReply{
+    string status = 1;
+    string message = 2;
+}
+
+message getTemplatesRequest {}
+
+message getTemplatesReply {
+    repeated string templates = 1;
+}

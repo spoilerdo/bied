@@ -12,3 +12,4 @@ scripts:
     environments: ["dev"]
 template: project
 version: v0.0.0+unreleased
+buildPath: "<projectDir>"
