@@ -4,6 +4,7 @@
       [questionnaire]="questionnaire"
       (removeQuestionnaireCallback)="removeQuestionnaire($event)"
       (renameQuestionnaireCallback)="renameQuestionnaire($event)"
+      (duplicateQuestionnaireCallback)="duplicateQuestionnaire($event)"
       *ngFor="let questionnaire of questionnaires"
     >
     </app-questionnaire-card>

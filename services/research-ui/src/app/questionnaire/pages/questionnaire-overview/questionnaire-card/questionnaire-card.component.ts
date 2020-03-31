@@ -14,6 +14,7 @@ export class QuestionnaireCardComponent implements OnInit {
   @Input() questionnaire: Questionnaire;
   @Output() removeQuestionnaireCallback: EventEmitter<any> = new EventEmitter();
   @Output() renameQuestionnaireCallback: EventEmitter<any> = new EventEmitter();
+  @Output() duplicateQuestionnaireCallback: EventEmitter<any> = new EventEmitter();
 
   url = '';
   cardContextItems = [{ title: 'Share' }, { title: 'Edit' }, { title: 'View data' }, { title: 'Download data' }];
@@ -59,5 +60,9 @@ export class QuestionnaireCardComponent implements OnInit {
     if (newName) {
       this.renameQuestionnaireCallback.emit({ name: newName, id: this.questionnaire.id });
     }
+  }
+
+  duplicateQuestionnaire() {
+    this.duplicateQuestionnaireCallback.emit(this.questionnaire.id);
   }
 }

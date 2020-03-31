@@ -54,4 +54,11 @@ export class QuestionnaireOverviewComponent implements OnInit {
 
     this.questionnaireService.renameQuestionnaire(response.id, response.name);
   }
+
+  duplicateQuestionnaire(id: number) {
+    const index = this.questionnaires.findIndex(questionnaire => questionnaire.id === id);
+    const dupQuestionnaire = this.questionnaires[index];
+    dupQuestionnaire.id = this.questionnaireService.duplicateQuestionnaire(id);
+    this.questionnaires.push(dupQuestionnaire);
+  }
 }

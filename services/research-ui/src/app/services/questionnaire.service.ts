@@ -27,4 +27,14 @@ export class QuestionnaireService {
     const index = questionnaires.findIndex(questionnaire => questionnaire.id === id);
     questionnaires[index].name = name;
   }
+
+  duplicateQuestionnaire(id: number): number {
+    const index = questionnaires.findIndex(questionnaire => questionnaire.id === id);
+
+    const dupQuestionnaire = { ...questionnaires[index] };
+    dupQuestionnaire.id = questionnaires[questionnaires.length - 1].id + 1;
+    questionnaires.push(dupQuestionnaire);
+
+    return dupQuestionnaire.id;
+  }
 }
