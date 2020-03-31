@@ -47,7 +47,7 @@ namespace consent_service.Persistence.Repositories.Consents
         public async Task<DataResponseObject<ConsentEntity>> DeleteConsent(Guid id)
         {
             ConsentEntity foundConsent = await _context.Consents.FindAsync(id);
-            if(foundConsent == null)
+            if (foundConsent == null)
             {
                 return new DataResponseObject<ConsentEntity>("Consent could not be found");
             }
@@ -56,6 +56,18 @@ namespace consent_service.Persistence.Repositories.Consents
             return new DataResponseObject<ConsentEntity>(true);
         }
 
+        public async Task<DataResponseObject<ConsentEntity>> DeleteAllConsent(Guid id)
+        {
+            IEnumerable<ConsentEntity> foundConsents = await _context.Consents.Where(b => b.userId == id.ToString()).ToListAsync();
+            if (foundConsents == null)
+            {
+                return new DataResponseObject<ConsentEntity>("Consents could not be found");
+            }
+            _context.Consents.RemoveRange(foundConsents);
+            await _context.SaveChangesAsync();
+            return new DataResponseObject<ConsentEntity>(true);
+
+        }
 
     }
 }

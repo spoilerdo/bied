@@ -82,11 +82,27 @@ namespace consent_service.Services
         /// <param name="context">The server context</param>
         /// <returns>A response indicating success/failure</returns>
         public override async Task<ConsentEmptyResponse> DeleteConsent(ConsentIdRequest request, ServerCallContext context)
-        {            
+        {
             var deletedConsent = await _consentRepository.DeleteConsent(new Guid(request.ConsentId));
             if (!deletedConsent.Success)
             {
                 throw new RpcException(new Status(StatusCode.NotFound, deletedConsent.Message));
+            }
+            return new ConsentEmptyResponse();
+        }
+
+        /// <summary>
+        /// Delete all consents for a given user
+        /// </summary>
+        /// <param name="request">The userId on which to delete all consents</param>
+        /// <param name="context">The server context</param>
+        /// <returns>A response indicating success/failure</returns>
+        public override async Task<ConsentEmptyResponse> DeleteAllConsent(UserIdRequest request, ServerCallContext context)
+        {
+            var deletedConsents = await _consentRepository.DeleteAllConsent(new Guid(request.Id));
+            if (!deletedConsents.Success)
+            {
+                throw new RpcException(new Status(StatusCode.NotFound, deletedConsents.Message));
             }
             return new ConsentEmptyResponse();
         }

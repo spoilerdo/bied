@@ -13,5 +13,6 @@ namespace consent_service.Persistence.Repositories.Consents
         Task<DataResponseObject<ConsentEntity>> CreateConsent(ConsentEntity consent);
         Task<DataResponseObject<ConsentEntity>> EditConsent(ConsentEntity consent);
         Task<DataResponseObject<ConsentEntity>> DeleteConsent(Guid id);
+        Task<DataResponseObject<ConsentEntity>> DeleteAllConsent(Guid id);
     }
 }
