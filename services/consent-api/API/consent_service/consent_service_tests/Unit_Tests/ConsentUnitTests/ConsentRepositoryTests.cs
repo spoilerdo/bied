@@ -48,7 +48,7 @@ namespace consent_service_tests.Unit_Tests.ConsentUnitTests
         }
 
         [Fact]
-        public async void GetConsents()
+        public async void ShouldGetConsents()
         {
             //arrange
             ConsentEntity consent = new ConsentEntity
@@ -74,6 +74,160 @@ namespace consent_service_tests.Unit_Tests.ConsentUnitTests
             //assert
             var result = await _consentRepository.GetConsents(new Guid("f5235866-6b81-413b-ae89-4a5f44da78ea"));
             Assert.Equal(2, result.Data.Count());
+        }
+
+        [Fact]
+        public async void ShouldGetConsentsNoResults()
+        {
+            //assert
+            var result = await _consentRepository.GetConsents(new Guid("f5235866-6b81-413b-ae89-4a5f44da78ea"));
+            Assert.Equal(0, result.Data.Count());
+        }
+
+        [Fact]
+        public async void ShouldEditConsent()
+        {
+            ConsentEntity consent = new ConsentEntity
+            {
+                userId = "f5235866-6b81-413b-ae89-4a5f44da78ea",
+                Consent = true,
+                DatasourceId = "ee1b957f-d490-4229-b489-885565cb5b0d",
+                Uts = DateTime.Now
+            };
+
+            var reponse = await _consentRepository.CreateConsent(consent);
+            reponse.Data.Consent = false;
+
+            var editResult = await _consentRepository.EditConsent(consent);
+            Assert.NotNull(editResult);
+            Assert.Equal(false, editResult.Data.Consent);
+        }
+
+        [Fact]
+        public async void FailToEdit()
+        {
+            ConsentEntity consent = new ConsentEntity
+            {
+                userId = "f5235866-6b81-413b-ae89-4a5f44da78ea",
+                Consent = true,
+                DatasourceId = "ee1b957f-d490-4229-b489-885565cb5b0d",
+                Uts = DateTime.Now
+            };
+
+            // Consent not created, should fail
+
+            var editResult = await _consentRepository.EditConsent(consent);
+            Assert.False(editResult.Success);
+        }
+
+        [Fact]
+        public async void ShouldDeleteConsent()
+        {
+            ConsentEntity consent = new ConsentEntity
+            {
+                userId = "f5235866-6b81-413b-ae89-4a5f44da78ea",
+                Consent = true,
+                DatasourceId = "ee1b957f-d490-4229-b489-885565cb5b0d",
+                Uts = DateTime.Now
+            };
+
+            var response = await _consentRepository.CreateConsent(consent);
+            Assert.NotNull(response.Data);
+
+            var deleteResult = await _consentRepository.DeleteConsent(response.Data.Id);
+            Assert.True(deleteResult.Success);
+
+            var getResults = await _consentRepository.GetConsents(new Guid(response.Data.userId));
+            Assert.Equal(0, getResults.Data.Count());
+        }
+
+        [Fact]
+        public async void FailDeleteConsent()
+        {
+            ConsentEntity consent = new ConsentEntity
+            {
+                userId = "f5235866-6b81-413b-ae89-4a5f44da78ea",
+                Consent = true,
+                DatasourceId = "ee1b957f-d490-4229-b489-885565cb5b0d",
+                Uts = DateTime.Now
+            };
+
+            var response = await _consentRepository.CreateConsent(consent);
+            Assert.NotNull(response.Data);
+
+            var deleteResult = await _consentRepository.DeleteConsent(new Guid("ee1b957f-d490-4229-b489-885565cb5b0d"));
+            Assert.False(deleteResult.Success);
+
+            var getResults = await _consentRepository.GetConsents(new Guid(response.Data.userId));
+            Assert.Equal(1, getResults.Data.Count());
+        }
+
+        [Fact]
+        public async void ShouldDeleteAllConsent()
+        {
+            ConsentEntity consent = new ConsentEntity
+            {
+                userId = "f5235866-6b81-413b-ae89-4a5f44da78ea",
+                Consent = true,
+                DatasourceId = "ee1b957f-d490-4229-b489-885565cb5b0d",
+                Uts = DateTime.Now
+            };
+
+            ConsentEntity consent2 = new ConsentEntity
+            {
+                userId = "f5235866-6b81-413b-ae89-4a5f44da78ea",
+                Consent = false,
+                DatasourceId = "ee1b957f-d490-4229-b489-885565cb5b0b",
+                Uts = DateTime.Now
+            };
+
+
+            var response = await _consentRepository.CreateConsent(consent);
+            Assert.NotNull(response.Data);
+
+            var response2 = await _consentRepository.CreateConsent(consent2);
+            Assert.NotNull(response2.Data);
+
+            var getResultsBefore = await _consentRepository.GetConsents(new Guid(response.Data.userId));
+            Assert.Equal(2, getResultsBefore.Data.Count());
+
+            var deleteResult = await _consentRepository.DeleteAllConsent(new Guid(response.Data.userId));
+            Assert.True(deleteResult.Success);
+
+            var getResults = await _consentRepository.GetConsents(new Guid(response.Data.userId));
+            Assert.Equal(0, getResults.Data.Count());
+        }
+
+        [Fact]
+        public async void FailDeleteAllConsent()
+        {
+            ConsentEntity consent = new ConsentEntity
+            {
+                userId = "f5235866-6b81-413b-ae89-4a5f44da78ea",
+                Consent = true,
+                DatasourceId = "ee1b957f-d490-4229-b489-885565cb5b0d",
+                Uts = DateTime.Now
+            };
+
+            ConsentEntity consent2 = new ConsentEntity
+            {
+                userId = "f5235866-6b81-413b-ae89-4a5f44da78ea",
+                Consent = false,
+                DatasourceId = "ee1b957f-d490-4229-b489-885565cb5b0b",
+                Uts = DateTime.Now
+            };
+
+            var response = await _consentRepository.CreateConsent(consent);
+            Assert.NotNull(response.Data);
+
+            var response2 = await _consentRepository.CreateConsent(consent2);
+            Assert.NotNull(response2.Data);
+
+            var deleteResult = await _consentRepository.DeleteConsent(new Guid("ee1b957f-d490-4229-b489-885565cb5b0d"));
+            Assert.False(deleteResult.Success);
+
+            var getResults = await _consentRepository.GetConsents(new Guid(response.Data.userId));
+            Assert.Equal(2, getResults.Data.Count());
         }
 
     }
