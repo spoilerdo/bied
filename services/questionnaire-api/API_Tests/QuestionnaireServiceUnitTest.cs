@@ -30,8 +30,8 @@ namespace ApiService_tests
         {
             // ARRANGE
             QuestionnaireCreateRequest request = new QuestionnaireCreateRequest{
-             Name = "Request",
-             Description = "request desc"
+                Name = "Request",
+                Description = "request desc"
             };
             QuestionnaireEntity entity = new QuestionnaireEntity{
                 ID = "realid",
@@ -50,6 +50,84 @@ namespace ApiService_tests
 
             // ACT
             QuestionnaireResponse result = await _questionnaireService.CreateQuestionnaire(request, _mockContext.Object);
+
+            //ASSERT
+            Assert.NotNull(result);
+            Assert.Equal("Request", response.Name);
+        }
+
+        [Fact]
+        public async void getQuestionnaire()
+        {
+            // ARRANGE
+            QuestionnaireIdRequest request = new QuestionnaireIdRequest{
+                Id = "realid"
+            };
+            QuestionnaireEntity entity = new QuestionnaireEntity{
+                ID = "realid",
+                Name = "Request",
+                Description = "request desc",
+                Questions = new List<QuestionEntity>(),
+                ModifiedOn = new DateTime()
+            };
+            QuestionnaireResponse response = new QuestionnaireResponse{
+                Id = "realid",
+                Name = "Request",
+                Description = "request desc"
+            };
+
+            _mockMapper.Setup(x => x.Map<QuestionnaireResponse>(It.IsAny<QuestionnaireEntity>())).Returns(response);
+
+            // ACT
+            QuestionnaireResponse result = await _questionnaireService.GetQuestionnaire(request, _mockContext.Object);
+
+            //ASSERT
+            Assert.NotNull(result);
+            Assert.Equal("Request", response.Name);
+        }
+
+        [Fact]
+        public async void deleteQuestionnaire()
+        {
+            // ARRANGE
+            QuestionnaireIdRequest request = new QuestionnaireIdRequest{
+                Id = "realid"
+            };
+            QuestionnaireEmptyResponse response = new QuestionnaireEmptyResponse{};
+
+            // ACT
+            QuestionnaireEmptyResponse result = await _questionnaireService.DeleteQuestionnaire(request, _mockContext.Object);
+
+            //ASSERT
+            Assert.NotNull(result);
+        }
+
+        [Fact]
+        public async void updateQuestionnaire()
+        {
+            // ARRANGE
+            QuestionnaireEditRequest request = new QuestionnaireEditRequest{
+                Id = "realid",
+                Description = "real deal",
+                Name = "keyboard warrior",
+            };
+            QuestionnaireEntity entity = new QuestionnaireEntity{
+                ID = "realid",
+                Name = "Request",
+                Description = "request desc",
+                Questions = new List<QuestionEntity>(),
+                ModifiedOn = new DateTime()
+            };
+            QuestionnaireResponse response = new QuestionnaireResponse{
+                Id = "realid",
+                Name = "Request",
+                Description = "request desc"
+            };
+
+            _mockMapper.Setup(x => x.Map<QuestionnaireResponse>(It.IsAny<QuestionnaireEntity>())).Returns(response);
+
+            // ACT
+            QuestionnaireResponse result = await _questionnaireService.UpdateQuestionnaire(request, _mockContext.Object);
 
             //ASSERT
             Assert.NotNull(result);
