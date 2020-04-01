@@ -15,7 +15,7 @@
           [completed]="completedStep(1 + i)"
           [label]="questionSection.title"
         >
-          <app-questions-step #questionSection [questionnaire]="questionnaire"></app-questions-step>
+          <app-questions-step #questionSections [questionnaire]="questionnaire"></app-questions-step>
           <nb-card-footer style="display: flex; justify-content: space-between;">
             <button nbButton status="basic" (click)="navigateBack()">{{ getPreviousButtonText() }}</button>
             <button

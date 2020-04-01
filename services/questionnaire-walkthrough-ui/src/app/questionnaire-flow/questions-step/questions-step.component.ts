@@ -27,7 +27,7 @@ export class QuestionsStepComponent implements OnInit, AfterViewInit {
   @Input()
   public questionnaire: Questionnaire;
 
-  @ViewChildren('container', { read: ViewContainerRef }) containerList!: QueryList<ViewContainerRef>;
+  @ViewChildren('containers', { read: ViewContainerRef }) containerList!: QueryList<ViewContainerRef>;
 
   constructor(private componentFactoryResolver: ComponentFactoryResolver, private ref: ChangeDetectorRef) {}
 

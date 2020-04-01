@@ -21,6 +21,7 @@ import {
   NbSelectModule,
   NbListItemComponent,
   NbInputModule,
+  NbPositionBuilderService,
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 
@@ -52,6 +53,7 @@ export const questionComponents = [
 @NgModule({
   declarations: [questionComponents],
   imports: [CommonModule, nebular],
+  // providers: [NbPositionBuilderService],
   entryComponents: [
     NbListItemComponent,
     MultipleChoiceComponent,

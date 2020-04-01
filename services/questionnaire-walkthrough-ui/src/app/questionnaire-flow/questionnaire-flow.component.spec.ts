@@ -5,6 +5,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { QuestionnaireFlowComponent } from './questionnaire-flow.component';
 import { QuestionType } from '../enums/question-type.enum';
 import { Questionnaire } from '../models/questionnaire/questionnaire.model';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 let mockQuestionnaire: Questionnaire = {
   id: '0',
@@ -56,7 +57,7 @@ let mockQuestionnaire: Questionnaire = {
   title: 'title',
 };
 
-describe('QuestionnaireFlowComponent', () => {
+fdescribe('QuestionnaireFlowComponent', () => {
   let component: QuestionnaireFlowComponent;
   let fixture: ComponentFixture<QuestionnaireFlowComponent>;
 
@@ -64,6 +65,7 @@ describe('QuestionnaireFlowComponent', () => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule],
       declarations: [QuestionnaireFlowComponent],
+      schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
   }));
 

@@ -14,6 +14,7 @@ import {
   NbCardModule,
   NbListModule,
   NbStepperModule,
+  NbPositionBuilderService,
 } from '@nebular/theme';
 
 import { QuestionnaireFlowComponent } from './questionnaire-flow/questionnaire-flow.component';

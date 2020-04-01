@@ -21,7 +21,7 @@ export class QuestionnaireFlowComponent implements OnInit, OnDestroy {
   private questionnaireSubscription: Subscription;
   public currentStep = -1;
 
-  @ViewChildren('questionSection', { read: QuestionsStepComponent }) questionSectionList!: QueryList<
+  @ViewChildren('questionSections', { read: QuestionsStepComponent }) questionSectionList!: QueryList<
     QuestionsStepComponent
   >;
 
