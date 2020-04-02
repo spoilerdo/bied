@@ -21,9 +21,7 @@ export class QuestionnaireFlowComponent implements OnInit, OnDestroy {
   private questionnaireSubscription: Subscription;
   public currentStep = -1;
 
-  @ViewChildren('questionSections', { read: QuestionsStepComponent }) questionSectionList!: QueryList<
-    QuestionsStepComponent
-  >;
+  @ViewChildren('questionSections') questionSectionList: QueryList<QuestionsStepComponent>;
 
   constructor(
     private router: Router,
@@ -41,6 +39,10 @@ export class QuestionnaireFlowComponent implements OnInit, OnDestroy {
       this.questionnaire = data.questionnaire;
     });
 
+    this.parseRouter();
+  }
+
+  private async parseRouter(): Promise<void> {
     switch (this.router.url.split('/').pop()) {
       case 'introduction': {
         this.currentStep = 0;
