@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { ThemeModule } from './@theme/theme.module';
 import { NbSidebarModule, NbLayoutModule } from '@nebular/theme';
+import { NbEvaIconsModule } from '@nebular/eva-icons';
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,6 +16,7 @@ import { NbSidebarModule, NbLayoutModule } from '@nebular/theme';
     ThemeModule.forRoot(),
     NbLayoutModule,
     NbSidebarModule.forRoot(),
+    NbEvaIconsModule,
 
     // Pages
     DashboardModule,
