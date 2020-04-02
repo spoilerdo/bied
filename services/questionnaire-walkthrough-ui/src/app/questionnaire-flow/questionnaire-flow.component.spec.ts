@@ -57,7 +57,7 @@ let mockQuestionnaire: Questionnaire = {
   title: 'title',
 };
 
-fdescribe('QuestionnaireFlowComponent', () => {
+describe('QuestionnaireFlowComponent', () => {
   let component: QuestionnaireFlowComponent;
   let fixture: ComponentFixture<QuestionnaireFlowComponent>;
 

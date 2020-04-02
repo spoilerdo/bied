@@ -3,6 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IntroductionStepComponent } from './introduction-step.component';
 import { Questionnaire } from 'src/app/models/questionnaire/questionnaire.model';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { QuillViewComponent, QuillModule } from 'ngx-quill';
 
 let mockQuestionnaire: Questionnaire = {
   id: '0',
@@ -14,14 +15,14 @@ let mockQuestionnaire: Questionnaire = {
   title: 'title',
 };
 
-fdescribe('IntroductionStepComponent', () => {
+describe('IntroductionStepComponent', () => {
   let component: IntroductionStepComponent;
   let fixture: ComponentFixture<IntroductionStepComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [IntroductionStepComponent],
-      schemas: [NO_ERRORS_SCHEMA],
+      declarations: [IntroductionStepComponent, QuillViewComponent],
+      imports: [QuillModule.forRoot()],
     }).compileComponents();
   }));
 

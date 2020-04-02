@@ -4,11 +4,11 @@ import { AppComponent } from './app.component';
 import { NbLayoutColumnComponent } from '@nebular/theme';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 
-fdescribe('AppComponent', () => {
+describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule],
-      declarations: [AppComponent, NbLayoutColumnComponent],
+      declarations: [AppComponent],
       schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
   }));

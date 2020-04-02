@@ -5,7 +5,7 @@ import { Questionnaire } from 'src/app/models/questionnaire/questionnaire.model'
 import { QuestionType } from 'src/app/enums/question-type.enum';
 import { NO_ERRORS_SCHEMA, InjectionToken } from '@angular/core';
 import { AppModule } from 'src/app/app.module';
-import { NbRadioGroupComponent, NbPositionBuilderService, NbThemeModule } from '@nebular/theme';
+import { NbRadioGroupComponent, NbPositionBuilderService, NbThemeModule, NbListItemComponent } from '@nebular/theme';
 import { QuestionModule } from 'src/app/question/question.module';
 import { LikertComponent } from 'src/app/components/likert/likert.component';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
@@ -34,15 +34,14 @@ let mockQuestionnaire: Questionnaire = {
   title: 'title',
 };
 
-fdescribe('QuestionsStepComponent', () => {
+describe('QuestionsStepComponent', () => {
   let component: QuestionsStepComponent;
   let fixture: ComponentFixture<QuestionsStepComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [QuestionsStepComponent],
-      imports: [NbThemeModule.forRoot(), NbEvaIconsModule],
-      schemas: [NO_ERRORS_SCHEMA],
+      declarations: [QuestionsStepComponent, NbListItemComponent],
+      imports: [NbThemeModule.forRoot()],
     }).compileComponents();
   }));
 

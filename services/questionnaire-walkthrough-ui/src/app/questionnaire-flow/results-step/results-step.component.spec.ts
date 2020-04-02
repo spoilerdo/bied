@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ResultsStepComponent } from './results-step.component';
-import { NbListComponent } from '@nebular/theme';
+import { NbListComponent, NbListItemComponent } from '@nebular/theme';
 import { QuestionType } from 'src/app/enums/question-type.enum';
 import { Questionnaire } from 'src/app/models/questionnaire/questionnaire.model';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
@@ -30,14 +30,13 @@ let mockQuestionnaire: Questionnaire = {
   title: 'title',
 };
 
-fdescribe('ResultsStepComponent', () => {
+describe('ResultsStepComponent', () => {
   let component: ResultsStepComponent;
   let fixture: ComponentFixture<ResultsStepComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ResultsStepComponent, NbListComponent],
-      schemas: [NO_ERRORS_SCHEMA],
+      declarations: [ResultsStepComponent, NbListComponent, NbListItemComponent],
     }).compileComponents();
   }));
 
