@@ -152,8 +152,6 @@ namespace consent_service_tests.Integration_Tests
         {
             var client = getGrpcClient();
 
-            Console.WriteLine("Succesfully got the client");
-
             var createConsent = await client.CreateConsentAsync(
                 new ConsentRequest
                 {
@@ -164,8 +162,6 @@ namespace consent_service_tests.Integration_Tests
                 }
             );
             Assert.NotNull(createConsent);
-
-            Console.WriteLine("After first Assert");
 
             var response = await client.GetConsentsAsync(new UserIdRequest { Id = "631ae791-a25c-4268-a06e-4bb7fe0989aa" });
             Assert.NotNull(response);
