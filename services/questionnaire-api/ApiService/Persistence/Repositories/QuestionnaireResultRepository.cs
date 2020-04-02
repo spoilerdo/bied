@@ -22,7 +22,6 @@ namespace Questionnaire.Persistence.Repositories
         {
             //TODO implement
             //* throw new NotImplementedException();
-
             return await _db.Find<QuestionnaireResponseEntity>().OneAsync(id);
         }
     }

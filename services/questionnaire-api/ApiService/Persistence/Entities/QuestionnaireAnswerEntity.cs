@@ -15,5 +15,4 @@ namespace Questionnaire.Persistence.Entities
         public string UserID { get; set; }
         public virtual ICollection<QuestionEntity> Questions { get; set; }
     }
-
 }
