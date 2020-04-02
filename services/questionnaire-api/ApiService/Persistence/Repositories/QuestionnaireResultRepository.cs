@@ -18,10 +18,12 @@ namespace Questionnaire.Persistence.Repositories
             this._db = db;
         }
 
-        public Task<QuestionnaireEntity> GetQuestionnaireById(String id)
+        public async Task<QuestionnaireResponseEntity> GetQuestionnaireById(String id)
         {
             //TODO implement
-            throw new NotImplementedException();
+            //* throw new NotImplementedException();
+
+            return await _db.Find<QuestionnaireResponseEntity>().OneAsync(id);
         }
     }
 }

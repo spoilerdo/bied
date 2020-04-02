@@ -8,6 +8,6 @@ namespace Questionnaire.Persistence.Repositories
 {
     public interface IQuestionnaireResultRepository
     {
-        Task<QuestionnaireEntity> GetQuestionnaireById(String id);
+        Task<QuestionnaireResponseEntity> GetQuestionnaireById(String id);
     }
 }
