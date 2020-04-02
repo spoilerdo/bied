@@ -47,6 +47,9 @@
       </div>
     </nb-card-body>
     <nb-card-footer>
+      <button nbButton ghost status="danger">
+        <nb-icon icon="trash-2-outline" (click)="removeQuestion()"></nb-icon>
+      </button>
       <nb-toggle labelPosition="start" formControlName="required">Required</nb-toggle>
     </nb-card-footer>
   </nb-card>

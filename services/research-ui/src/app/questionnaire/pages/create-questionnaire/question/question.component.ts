@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { QuestionType } from '../enums/question-type.enum';
 
@@ -9,6 +9,7 @@ import { QuestionType } from '../enums/question-type.enum';
 })
 export class QuestionComponent implements OnInit {
   @Input() questionForm: FormGroup;
+  @Output() remove: EventEmitter<number> = new EventEmitter<number>();
 
   questionTypes = QuestionType;
 
@@ -28,6 +29,10 @@ export class QuestionComponent implements OnInit {
   formTypeChanged(): void {
     this.questionForm.removeControl('questionData');
     this.questionForm.addControl('questionData', this.formBuilder.group({}));
+  }
+
+  removeQuestion() {
+    this.remove.emit(this.f.id.value);
   }
 
   get f() {

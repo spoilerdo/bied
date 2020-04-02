@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
-import { QuestionType } from './enums/question-type.enum';
 
 @Component({
   selector: 'app-create-questionnaire',
@@ -21,11 +20,19 @@ export class CreateQuestionnaireComponent implements OnInit {
   }
 
   addQuestionnaireItem(): void {
-    this.questions.push(this.formBuilder.group({}));
+    const { controls } = this.questions;
+    const id = controls[controls.length - 1] ? controls[controls.length - 1].value.id + 1 : 0;
+    this.questions.push(this.formBuilder.group({ id }));
   }
 
   onQuestionnaireSubmit() {
     console.log(this.f);
+  }
+
+  onRemoveQuestion(id: number) {
+    const questionToRemove = this.questions.controls.find(question => question.value.id === id);
+    const questionIndex = this.questions.controls.indexOf(questionToRemove);
+    this.questions.removeAt(questionIndex);
   }
 
   get f() {

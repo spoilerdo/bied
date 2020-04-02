@@ -5,7 +5,13 @@
         <button nbButton ghost (click)="addQuestionnaireItem()" nbTooltip="Add question" nbTooltipPlacement="right">
           <nb-icon icon="plus-circle-outline"></nb-icon>
         </button>
-        <button nbButton ghost (click)="onQuestionnaireSubmit()" nbTooltip="Save questionnaire" nbTooltipPlacement="right">
+        <button
+          nbButton
+          ghost
+          (click)="onQuestionnaireSubmit()"
+          nbTooltip="Save questionnaire"
+          nbTooltipPlacement="right"
+        >
           <nb-icon icon="save-outline"></nb-icon>
         </button>
       </nb-card>
@@ -25,6 +31,10 @@
       </nb-card-body>
     </nb-card>
 
-    <app-question *ngFor="let question of questions.controls" [questionForm]="question"></app-question>
+    <app-question
+      *ngFor="let question of questions.controls"
+      [questionForm]="question"
+      (remove)="onRemoveQuestion($event)"
+    ></app-question>
   </form>
 </div>
