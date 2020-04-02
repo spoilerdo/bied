@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CreateQuestionnaireComponent } from './create-questionnaire.component';
+import { NbThemeModule } from '@nebular/theme';
+import { FormBuilder } from '@angular/forms';
 
 describe('CreateQuestionnaireComponent', () => {
   let component: CreateQuestionnaireComponent;
@@ -8,9 +10,10 @@ describe('CreateQuestionnaireComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CreateQuestionnaireComponent ]
-    })
-    .compileComponents();
+      imports: [NbThemeModule],
+      declarations: [CreateQuestionnaireComponent],
+      providers: [FormBuilder],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { QuestionComponent } from './question.component';
+import { FormBuilder } from '@angular/forms';
+import { NbCardModule, NbSelectModule, NbThemeModule } from '@nebular/theme';
 
 describe('QuestionComponent', () => {
   let component: QuestionComponent;
@@ -8,9 +10,10 @@ describe('QuestionComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ QuestionComponent ]
-    })
-    .compileComponents();
+      imports: [NbThemeModule, NbCardModule, NbSelectModule],
+      declarations: [QuestionComponent],
+      providers: [FormBuilder],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
