@@ -36,6 +36,21 @@ export class ResearchMockProvider extends ResearchProvider {
       active: true,
       ownerId: 0,
     }),
+    2: Object.assign(new Research(), {
+      id: 2,
+      name: 'Invloed van Lockdown op sociaal contact',
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In fringilla tincidunt orci, eget tristique magna finibus nec. Pellentesque nec finibus dolor, vel commodo ligula. Sed vulputate non metus mollis accumsan. Proin vel elit nec tellus dapibus placerat. Nullam porta dui id elit venenatis, in porta urna fringilla.',
+      imageUrl: 'https://picsum.photos/200/300?random=3',
+      startDate: moment()
+        .subtract(2, 'days')
+        .toDate(),
+      endDate: moment()
+        .add(3, 'days')
+        .toDate(),
+      active: true,
+      ownerId: 0,
+    }),
   };
 
   GetResearches(): Research[] {

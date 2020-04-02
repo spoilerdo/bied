@@ -4,15 +4,21 @@
 </div>
 <!-- Details (right container) -->
 <div class="details">
-  <!-- Title & Status (top container) -->
+  <!-- (top container) -->
   <div class="title-container">
+    <!-- Title -->
     <a href="/researches/{{ research.id }}" class="title h5">{{ research.name }}</a>
-    <div class="status">Actief</div>
+    <!-- Status -->
+    <div class="status-container">
+      <ngx-research-status [startDate]="research.startDate" [endDate]="research.endDate"></ngx-research-status>
+    </div>
   </div>
+
   <!-- Metadata -->
   <div>
     <span class="metadata">Onderzoeker: {{ research.ownerId }}</span>
   </div>
+
   <!-- Description (bottom-container) -->
   <p class="description">{{ research.description }}</p>
 </div>
