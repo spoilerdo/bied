@@ -1,0 +1,32 @@
+nb-list {
+  margin-top: 15px;
+  overflow: hidden;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+}
+
+.type-indicator-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .type-indicator {
+    display: block;
+    background-color: rgba(143, 155, 179, 0.16);
+    width: 1.125rem;
+    height: 1.125rem;
+    border: 1px solid rgba(143, 155, 179, 0.24);
+    transition: border-radius 300ms;
+  }
+
+  .type-indicator.multiple-choice {
+    border-radius: 3px;
+  }
+
+  .type-indicator.radio {
+    border-radius: 50%;
+  }
+}

@@ -1,0 +1,40 @@
+<div class="questionnaire-editor">
+  <div class="action-bar-root">
+    <div class="action-bar-positioner">
+      <nb-card class="action-bar">
+        <button nbButton ghost (click)="addQuestionnaireItem()" nbTooltip="Add question" nbTooltipPlacement="right">
+          <nb-icon icon="plus-circle-outline"></nb-icon>
+        </button>
+        <button
+          nbButton
+          ghost
+          (click)="onQuestionnaireSubmit()"
+          nbTooltip="Save questionnaire"
+          nbTooltipPlacement="right"
+        >
+          <nb-icon icon="save-outline"></nb-icon>
+        </button>
+      </nb-card>
+    </div>
+  </div>
+  <form [formGroup]="questionnaireForm">
+    <nb-card>
+      <nb-card-body>
+        <div class="form-control">
+          <label for="questionnaire-title" class="label">Title</label>
+          <input nbInput fullWidth id="questionnaire-title" formControlName="title" />
+        </div>
+        <div class="form-control">
+          <label for="questionnaire-description" class="label">Description</label>
+          <textarea nbInput fullWidth id="questionnaire-description" formControlName="description"></textarea>
+        </div>
+      </nb-card-body>
+    </nb-card>
+
+    <app-question
+      *ngFor="let question of questions.controls"
+      [questionForm]="question"
+      (remove)="onRemoveQuestion($event)"
+    ></app-question>
+  </form>
+</div>

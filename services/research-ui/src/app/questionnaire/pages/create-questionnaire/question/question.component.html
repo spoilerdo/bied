@@ -1,0 +1,56 @@
+<form [formGroup]="questionForm">
+  <nb-card>
+    <nb-card-body>
+      <div class="row">
+        <div class="col">
+          <div class="form-control">
+            <label class="label">Label</label>
+            <input nbInput fullWidth formControlName="label" />
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="form-control">
+            <label class="label">Question type</label>
+            <nb-select formControlName="questionType">
+              <nb-option
+                *ngFor="let questionType of questionTypes | enumToArray"
+                [value]="questionType.name"
+                (selectionChange)="formTypeChanged()"
+              >
+                {{ questionType.name }}
+              </nb-option>
+            </nb-select>
+          </div>
+        </div>
+      </div>
+      <div [ngSwitch]="f.questionType.value">
+        <app-choice-question
+          *ngSwitchCase="questionTypes.Choice"
+          [questionDataForm]="questionForm.controls.questionData"
+        ></app-choice-question>
+        <app-text-question
+          *ngSwitchCase="questionTypes.Text"
+          [questionDataForm]="questionForm.controls.questionData"
+        ></app-text-question>
+        <app-date-question
+          *ngSwitchCase="questionTypes.Date"
+          [questionDataForm]="questionForm.controls.questionData"
+        ></app-date-question>
+        <app-time-question
+          *ngSwitchCase="questionTypes.Time"
+          [questionDataForm]="questionForm.controls.questionData"
+        ></app-time-question>
+        <app-likert-question
+          *ngSwitchCase="questionTypes.Likert"
+          [questionDataForm]="questionForm.controls.questionData"
+        ></app-likert-question>
+      </div>
+    </nb-card-body>
+    <nb-card-footer>
+      <button nbButton ghost status="danger" (click)="removeQuestion()">
+        <nb-icon icon="trash-2-outline"></nb-icon>
+      </button>
+      <nb-toggle labelPosition="start" formControlName="required">Required</nb-toggle>
+    </nb-card-footer>
+  </nb-card>
+</form>

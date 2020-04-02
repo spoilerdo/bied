@@ -1,0 +1,22 @@
+<hr />
+
+<div class="row" [formGroup]="questionDataForm">
+  <div class="col">
+    <div class="form-control">
+      <label for="placeholder-input" class="label">Placeholder</label>
+      <input nbInput type="text" id="placeholder-input" fullWidth formControlName="placeholder" />
+    </div>
+  </div>
+  <div class="col ">
+    <div class="form-control">
+      <div class="form-control">
+        <label for="min-input" class="label">Min</label>
+        <nb-datepicker #datepickerMin></nb-datepicker>
+        <input nbInput id="min-input" [nbDatepicker]="datepickerMin" fullWidth formControlName="min" />
+      </div>
+      <label for="max-input" class="label">Max</label>
+      <nb-datepicker #datepickerMax></nb-datepicker>
+      <input nbInput id="max-input" [nbDatepicker]="datepickerMax" fullWidth formControlName="max" />
+    </div>
+  </div>
+</div>

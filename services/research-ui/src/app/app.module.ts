@@ -9,8 +9,8 @@ import {
   NbButtonModule,
   NbCardModule,
   NbMenuModule,
-  NbContextMenuModule,
   NbDialogModule,
+  NbDatepickerModule,
 } from '@nebular/theme';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RemoveDialogComponent } from './questionnaire/pages/questionnaire-overview/questionnaire-card/remove-dialog/remove-dialog.component';
@@ -20,6 +20,7 @@ const nebularModules = [
   NbThemeModule.forRoot(),
   NbMenuModule.forRoot(),
   NbDialogModule.forRoot(),
+  NbDatepickerModule.forRoot(),
   NbLayoutModule,
   NbButtonModule,
   NbCardModule,
