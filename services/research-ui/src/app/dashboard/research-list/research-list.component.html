@@ -1,10 +1,10 @@
-<nb-card size="small">
+<nb-card class="list">
   <nb-card-header>
     Recente onderzoeken
   </nb-card-header>
   <nb-list>
     <nb-list-item *ngFor="let research of service.GetResearches()">
-      <div>{{ research.name }}</div>
+      <research-list-item [research]="research"></research-list-item>
     </nb-list-item>
   </nb-list>
 </nb-card>

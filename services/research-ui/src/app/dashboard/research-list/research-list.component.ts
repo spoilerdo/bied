@@ -7,5 +7,5 @@ import { ResearchProvider } from '../research.provider';
   templateUrl: './research-list.component.html',
 })
 export class ResearchListComponent {
-  constructor(private readonly service: ResearchProvider) {}
+  constructor(readonly service: ResearchProvider) {}
 }

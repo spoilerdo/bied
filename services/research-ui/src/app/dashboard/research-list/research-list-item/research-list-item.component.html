@@ -1,0 +1,18 @@
+<!-- Thumbnail (left container) -->
+<div class="thumbnail-container">
+  <img src="{{ research.imageUrl }}" alt="{{ research.name }}" class="thumbnail" />
+</div>
+<!-- Details (right container) -->
+<div class="details">
+  <!-- Title & Status (top container) -->
+  <div class="title-container">
+    <a href="/researches/{{ research.id }}" class="title h5">{{ research.name }}</a>
+    <div class="status">Actief</div>
+  </div>
+  <!-- Metadata -->
+  <div>
+    <span class="metadata">Onderzoeker: {{ research.ownerId }}</span>
+  </div>
+  <!-- Description (bottom-container) -->
+  <p class="description">{{ research.description }}</p>
+</div>

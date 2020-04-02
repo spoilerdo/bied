@@ -1,0 +1,11 @@
+@import '../../@theme/styles/themes';
+
+@include nb-install-component() {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+
+  .list {
+    flex: 1;
+  }
+}

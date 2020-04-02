@@ -11,7 +11,7 @@ export class ResearchMockProvider extends ResearchProvider {
       name: 'Identifying the mockability of services',
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In fringilla tincidunt orci, eget tristique magna finibus nec. Pellentesque nec finibus dolor, vel commodo ligula. Sed vulputate non metus mollis accumsan. Proin vel elit nec tellus dapibus placerat. Nullam porta dui id elit venenatis, in porta urna fringilla.',
-      imageUrl: null,
+      imageUrl: 'https://picsum.photos/200/300?random=1',
       startDate: moment()
         .subtract(10, 'days')
         .toDate(),
@@ -26,7 +26,7 @@ export class ResearchMockProvider extends ResearchProvider {
       name: 'Spreading and containing a global pandemic',
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In fringilla tincidunt orci, eget tristique magna finibus nec. Pellentesque nec finibus dolor, vel commodo ligula. Sed vulputate non metus mollis accumsan. Proin vel elit nec tellus dapibus placerat. Nullam porta dui id elit venenatis, in porta urna fringilla.',
-      imageUrl: null,
+      imageUrl: 'https://picsum.photos/200/300?random=2',
       startDate: moment()
         .add(5, 'days')
         .toDate(),
