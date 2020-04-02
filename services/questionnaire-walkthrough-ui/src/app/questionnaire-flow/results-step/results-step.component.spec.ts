@@ -4,6 +4,7 @@ import { ResultsStepComponent } from './results-step.component';
 import { NbListComponent } from '@nebular/theme';
 import { QuestionType } from 'src/app/enums/question-type.enum';
 import { Questionnaire } from 'src/app/models/questionnaire/questionnaire.model';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 let mockQuestionnaire: Questionnaire = {
   id: '0',
@@ -29,15 +30,15 @@ let mockQuestionnaire: Questionnaire = {
   title: 'title',
 };
 
-describe('ResultsStepComponent', () => {
+fdescribe('ResultsStepComponent', () => {
   let component: ResultsStepComponent;
   let fixture: ComponentFixture<ResultsStepComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ResultsStepComponent, NbListComponent ]
-    })
-    .compileComponents();
+      declarations: [ResultsStepComponent, NbListComponent],
+      schemas: [NO_ERRORS_SCHEMA],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
