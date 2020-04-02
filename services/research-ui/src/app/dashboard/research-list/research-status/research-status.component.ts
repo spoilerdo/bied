@@ -40,7 +40,7 @@ export class ResearchStatusComponent {
     // If ended
     if (now > end) {
       const fromNow = end.fromNow();
-      this.statusText = `Beeindigt ${fromNow}`;
+      this.statusText = `${fromNow} beëindigt`;
       this.statusColor = 'danger';
     }
   }

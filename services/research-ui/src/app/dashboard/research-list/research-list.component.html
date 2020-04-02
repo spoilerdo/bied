@@ -3,7 +3,7 @@
     Recente onderzoeken
   </nb-card-header>
   <nb-list>
-    <nb-list-item *ngFor="let research of service.GetResearches()">
+    <nb-list-item *ngFor="let research of service.GetResearches()" style="padding: 0.1rem 1rem;">
       <research-list-item [research]="research"></research-list-item>
     </nb-list-item>
   </nb-list>

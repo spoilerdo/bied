@@ -51,6 +51,17 @@ export class ResearchMockProvider extends ResearchProvider {
       active: true,
       ownerId: 0,
     }),
+    3: Object.assign(new Research(), {
+      id: 3,
+      name: 'Gedrag jongeren naar aanleiding van vuurwerkverbod',
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In fringilla tincidunt orci, eget tristique magna finibus nec. Pellentesque nec finibus dolor, vel commodo ligula. Sed vulputate non metus mollis accumsan. Proin vel elit nec tellus dapibus placerat. Nullam porta dui id elit venenatis, in porta urna fringilla.',
+      imageUrl: 'https://picsum.photos/200/300?random=4',
+      startDate: moment('2019-12-25', 'YYYY-MM-DD'),
+      endDate: moment('2020-01-15', 'YYYY-MM-DD'),
+      active: true,
+      ownerId: 0,
+    }),
   };
 
   GetResearches(): Research[] {

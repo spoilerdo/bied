@@ -31,18 +31,9 @@
         text-decoration: none;
         margin: 0;
       }
-
-      .status-container {
-        font-weight: 600;
-        display: flex;
-        flex: 1;
-        justify-content: flex-end;
-        align-content: center;
-      }
     }
 
     .metadata {
-      color: nb-theme(text-hint-color);
       padding-right: 1rem;
     }
   }
