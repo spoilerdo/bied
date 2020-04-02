@@ -41,7 +41,7 @@ namespace consent_service.Services
             };
         }
 
-         /// <summary>
+        /// <summary>
         /// Delete all consents for a given user
         /// </summary>
         /// <param name="request">The userId on which to delete all consents</param>
@@ -69,7 +69,7 @@ namespace consent_service.Services
 
             if (!createdConsent.Success)
             {
-                throw new RpcException(new Status(StatusCode.Internal, "Could not create the consent!"));
+                throw new RpcException(new Status(StatusCode.InvalidArgument, createdConsent.Message));
             }
             return _mapper.Map<Consent>(createdConsent.Data);
 
