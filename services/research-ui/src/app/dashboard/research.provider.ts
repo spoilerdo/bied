@@ -6,7 +6,7 @@ export class ResearchProvider {
   GetResearches(): Research[] {
     throw new Error('Method not implemented.');
   }
-  GetResearch(): Research {
+  GetResearch(id: number): Research {
     throw new Error('Method not implemented.');
   }
   CreateResearch(): Research {

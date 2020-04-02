@@ -3,17 +3,8 @@
     Recente onderzoeken
   </nb-card-header>
   <nb-list>
-    <nb-list-item>
-      <div>research item</div>
-    </nb-list-item>
-    <nb-list-item>
-      <div>research item</div>
-    </nb-list-item>
-    <nb-list-item>
-      <div>research item</div>
-    </nb-list-item>
-    <nb-list-item>
-      <div>research item</div>
+    <nb-list-item *ngFor="let research of service.GetResearches()">
+      <div>{{ research.name }}</div>
     </nb-list-item>
   </nb-list>
 </nb-card>
