@@ -2,21 +2,35 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { NbEvaIconsModule } from '@nebular/eva-icons';
+import {
+  NbThemeModule,
+  NbLayoutModule,
+  NbButtonModule,
+  NbCardModule,
+  NbMenuModule,
+  NbContextMenuModule,
+  NbDialogModule,
+} from '@nebular/theme';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RemoveDialogComponent } from './questionnaire/pages/questionnaire-overview/questionnaire-card/remove-dialog/remove-dialog.component';
+import { RenameDialogComponent } from './questionnaire/pages/questionnaire-overview/questionnaire-card/rename-dialog/rename-dialog.component';
 
-import { NbThemeModule, NbLayoutModule, NbSidebarModule, NbButtonModule, NbCardModule } from '@nebular/theme';
+const nebularModules = [
+  NbThemeModule.forRoot(),
+  NbMenuModule.forRoot(),
+  NbDialogModule.forRoot(),
+  NbLayoutModule,
+  NbButtonModule,
+  NbCardModule,
+  NbEvaIconsModule,
+];
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    NbThemeModule.forRoot(),
-    NbLayoutModule,
-    NbSidebarModule.forRoot(),
-    NbButtonModule,
-    NbCardModule,
-  ],
+  imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, ...nebularModules],
   providers: [],
   bootstrap: [AppComponent],
+  entryComponents: [RemoveDialogComponent, RenameDialogComponent],
 })
 export class AppModule {}
