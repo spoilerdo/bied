@@ -1,0 +1,9 @@
+export enum QuestionType {
+    LIKERT = "LIKERT",
+    LIKERT_GROUP = "LIKERT_GROUP",
+    RADIO = "RADIO",
+    MULTIPLE_CHOICE = "MULTIPLE_CHOICE",
+    DROPDOWN = "DROPDOWN",
+    NUMERICAL = "NUMERICAL",
+    OPEN_TEXT = "OPEN_TEXT"
+}

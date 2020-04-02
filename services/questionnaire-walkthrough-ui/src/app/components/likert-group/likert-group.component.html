@@ -1,0 +1,33 @@
+<div class="likert-labels-outer-contaier">
+    <div class="likert-labels-inner-contaier">
+      <div class="likert-label">Sterk mee oneens</div>
+      <div class="likert-label">Oneens</div>
+      <div class="likert-label">Neutraal</div>
+      <div class="likert-label">Eens</div>
+      <div class="likert-label">Sterk mee eens</div>
+    </div>
+  </div>
+
+  <div *ngFor="let subQuestion of question; let i = index" class="likert-answers-outer-container">
+    <div class="likert-answers-question-container">
+      <div>{{ subQuestion.question }}</div>
+      <nb-icon
+        *ngIf="subQuestion.information"
+        [nbTooltip]="subQuestion.information"
+        nbTooltipStatus="primary"
+        icon="info-outline"
+      ></nb-icon>
+    </div>
+    <nb-radio-group
+      [name]="'likert-group ' + i"
+      [value]="subQuestion.answer"
+      (input)="setAnswerGroup($event.target.value, i)"
+      class="likert-answers-radio-buttons"
+    >
+      <nb-radio class="radio-button" value="Sterk mee oneens"></nb-radio>
+      <nb-radio class="radio-button" value="Oneens"></nb-radio>
+      <nb-radio class="radio-button" value="Neutraal"></nb-radio>
+      <nb-radio class="radio-button" value="Eens"></nb-radio>
+      <nb-radio class="radio-button" value="Sterk mee eens"></nb-radio>
+    </nb-radio-group>
+  </div>

@@ -1,0 +1,10 @@
+<div class="question-container">
+    {{ question }}
+    <nb-icon *ngIf="information" [nbTooltip]="information" nbTooltipStatus="primary" icon="info-outline"></nb-icon>
+  </div>
+
+  <nb-select placeholder="" [(selected)]="answer">
+    <nb-option *ngFor="let option of options" [value]="option.name" (click)="setAnswer(option.name)">
+      {{ option.name }}
+    </nb-option>
+  </nb-select>
