@@ -31,8 +31,11 @@ namespace research_service
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddGrpc();
+
             services.AddGrpc(options => options.EnableMessageValidation());
             services.AddValidator<ResearchIdRequestValidator>();
+            services.AddValidator<ResearchCreateRequestValidator>();
+            services.AddValidator<ResearchEditRequestValidator>();
             services.AddGrpcValidation();
             services.AddSingleton<IValidatorErrorMessageHandler>(new CustomErrorMessageHandler());
 

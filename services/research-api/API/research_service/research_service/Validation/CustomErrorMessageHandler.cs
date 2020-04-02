@@ -11,9 +11,7 @@ namespace research_service.Validation
     {
         public Task<string> HandleAsync(IList<ValidationFailure> failures)
         {
-            return Task.FromResult(@$"
-            The following validation errors occured: 
-            {string.Join(" - ", failures.Where(f => f.ErrorMessage != null).Select(f => f.ErrorMessage))}");
+            return Task.FromResult(@$"The following validation errors occured: {string.Join(" - ", failures.Where(f => f.ErrorMessage != null).Select(f => f.ErrorMessage))}");
         }
     }
 }
