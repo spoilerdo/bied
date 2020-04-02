@@ -1,0 +1,27 @@
+version: "3.7"
+
+services:
+   #Data store for the user service. 
+  user-database:
+    image: "mcr.microsoft.com/mssql/server:2017-latest"
+    ports:
+      - "1433:1433"
+    environment:
+      SA_PASSWORD: "password1!"
+      ACCEPT_EULA: "y"
+    volumes:
+      - "user_database_data:/var/lib/database/data"
+  
+  # Data store for the authentication service. 
+  authentication-database:
+    image: "mcr.microsoft.com/mssql/server:2017-latest"
+    ports:
+      - "2434:1433"
+    environment:
+      SA_PASSWORD: "password1!"
+      ACCEPT_EULA: "y"
+    volumes:
+      - "authentication_database_data:/var/lib/database/data"
+volumes:
+  user_database_data:
+  authentication_database_data:
