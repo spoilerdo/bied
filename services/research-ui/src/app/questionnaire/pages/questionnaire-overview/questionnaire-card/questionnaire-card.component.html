@@ -1,0 +1,21 @@
+<nb-card status="primary" class="questionnaire-card">
+  <nb-card-header routerLink="{{ url }}">{{ questionnaire.name | truncate: 20 }}</nb-card-header>
+  <nb-card-body routerLink="{{ url }}">
+    {{ questionnaire.description | truncate: 100:true }}
+  </nb-card-body>
+
+  <nb-actions class="card-actions" size="small">
+    <nb-action class="card-action" (click)="openRenameDialog()">
+      <nb-icon class="icon edit" icon="edit-outline" nbTooltip="Rename"></nb-icon>
+    </nb-action>
+    <nb-action class="card-action" (click)="duplicateQuestionnaire()">
+      <nb-icon class="icon copy" icon="copy-outline" nbTooltip="Duplicate"></nb-icon>
+    </nb-action>
+    <nb-action class="card-action" (click)="openRemoveConfirmation()">
+      <nb-icon class="icon remove" icon="trash-2-outline" nbTooltip="Remove"></nb-icon>
+    </nb-action>
+    <nb-action class="card-action" [nbContextMenu]="cardContextItems">
+      <nb-icon class="icon option" icon="more-vertical-outline" nbTooltip="More options"></nb-icon>
+    </nb-action>
+  </nb-actions>
+</nb-card>

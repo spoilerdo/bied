@@ -1,2 +1,15 @@
+// Setup Nebular
+@import 'themes';
+@import '~@nebular/theme/styles/globals';
+
 /* You can add global styles to this file, and also import other style files */
 @import '~@nebular/theme/styles/prebuilt/default.css';
+
+// install the framework styles
+@include nb-install() {
+  @include nb-theme-global();
+}
+
+.blank-link {
+  text-decoration: none;
+}
