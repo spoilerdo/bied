@@ -7,4 +7,4 @@ import { EnumToArrayPipe } from './pipes/enum-to-array.pipe';
   imports: [CommonModule],
   exports: [EnumToArrayPipe],
 })
-export class SharedModule {}
+export class CoreModule {}

@@ -1,0 +1,5 @@
+// import Nebular Theme System and the default @theme
+@import '../../../../node_modules/@nebular/theme/styles/theming';
+@import '../../../../node_modules/@nebular/theme/styles/themes/default';
+
+$nb-themes: nb-register-theme((), default, default);
