@@ -1,0 +1,23 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    app: authentication-ui
+  name: authentication-ui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: authentication-ui
+  template:
+    metadata:
+      labels:
+        app: authentication-ui
+    spec:
+      containers:
+        - image: eu.gcr.io/s66-2-271821/authentication-ui@sha256:3514a3f07fe84156baa69a80e85dadbdcb5f3b71fbcf1cffaffb30cbfb08c549
+          imagePullPolicy: IfNotPresent
+          name: authentication-ui
+          ports:
+            - name: http
+              containerPort: 80

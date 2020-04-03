@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: authentication-ui
+  name: authentication-ui
+spec:
+  type: ClusterIP
+  selector:
+    app: authentication-ui
+  ports:
+    - name: http
+      port: 80
+      protocol: TCP
