@@ -1,0 +1,21 @@
+spec:
+  addonComponents:
+    grafana:
+      enabled: true
+    kiali:
+      enabled: true
+    prometheus:
+      enabled: true
+    tracing:
+      enabled: true
+  components:
+    ingressGateways:
+      - enabled: true
+        name: istio-ingressgateway
+        k8s:
+          resources:
+            requests:
+              cpu: 10m
+              memory: 10Mi
+  telemetry:
+    enabled: true
