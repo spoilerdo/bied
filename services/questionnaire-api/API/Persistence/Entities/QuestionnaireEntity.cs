@@ -12,7 +12,7 @@ namespace Questionnaire.Persistence.Entities
   {
     public string Name { get; set; }
     public string Description { get; set; }
-    public virtual ICollection<QuestionEntity> Questions { get; set; }
+    public virtual ICollection<QuestionEntity> Question { get; set; }
   }
 
 }

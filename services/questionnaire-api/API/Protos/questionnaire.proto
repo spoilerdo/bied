@@ -37,5 +37,5 @@ message QuestionnaireResponse {
 	string id = 1;
 	string name = 2;
 	string description = 3;
-	repeated Question question = 4;
+	repeated QuestionResponse question = 4;
 }

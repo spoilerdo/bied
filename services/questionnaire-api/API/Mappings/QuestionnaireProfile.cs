@@ -9,9 +9,13 @@ using System.Threading.Tasks;
 namespace Questionnaire.Mappings {
     public class QuestionnaireProfile : Profile {
         public QuestionnaireProfile() {
-            CreateMap<QuestionnaireEntity, QuestionnaireResponse>();
-            CreateMap<QuestionnaireCreateRequest, QuestionnaireEntity>();
-            CreateMap<QuestionnaireCreateRequest, QuestionnaireEntity>();
+            CreateMap<QuestionnaireEntity, QuestionnaireResponse>()
+                .ForMember(dest => dest.Question, opt => opt.MapFrom(src => src.Question));
+            CreateMap<QuestionnaireCreateRequest, QuestionnaireEntity>()
+                .ForMember(dest => dest.Question, opt => opt.MapFrom(src => src.Question));
+            CreateMap<QuestionnaireEditRequest, QuestionnaireEntity>()
+                .ForMember(dest => dest.Question, opt => opt.MapFrom(src => src.Question));
+
         }
     }
 }

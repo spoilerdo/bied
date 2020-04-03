@@ -28,23 +28,23 @@ namespace Questionnaire.Services
     {
       // TODO: Validate questionnaire.
       // TODO: Error handling.
-      var reponse = await _repository.CreateQuestionnaire(_mapper.Map<QuestionnaireEntity>(request));
-      return _mapper.Map<QuestionnaireResponse>(reponse);
+      var response = await _repository.CreateQuestionnaire(_mapper.Map<QuestionnaireEntity>(request));
+      return _mapper.Map<QuestionnaireResponse>(response);
     }
 
     public override async Task<QuestionnaireResponse> GetQuestionnaire(QuestionnaireIdRequest request, ServerCallContext context)
     {
       // TODO: Error handling.
-      var reponse = await _repository.GetQuestionnaireById(request.Id);
-      return _mapper.Map<QuestionnaireResponse>(reponse);
+      var response = await _repository.GetQuestionnaireById(request.Id);
+      return _mapper.Map<QuestionnaireResponse>(response);
     }
 
     public override async Task<QuestionnaireResponse> UpdateQuestionnaire(QuestionnaireEditRequest request, ServerCallContext context)
     {
       // TODO: Validate questionnaire.
       // TODO: Error handling.
-      var reponse = await _repository.UpdateQuestionnaire(_mapper.Map<QuestionnaireEntity>(request));
-      return _mapper.Map<QuestionnaireResponse>(reponse);
+      var response = await _repository.UpdateQuestionnaire(_mapper.Map<QuestionnaireEntity>(request));
+      return _mapper.Map<QuestionnaireResponse>(response);
     }
 
     public override async Task<QuestionnaireEmptyResponse> DeleteQuestionnaire(QuestionnaireIdRequest request, ServerCallContext context)
