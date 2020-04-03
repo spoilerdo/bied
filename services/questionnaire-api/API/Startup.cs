@@ -33,7 +33,6 @@ namespace Questionnaire
             services.AddAutoMapper(typeof(Startup));
             services.AddScoped<IQuestionnaireRepository, QuestionnaireRepository>();
 
-            Console.WriteLine(CurrentEnvironment.EnvironmentName);
             services.AddMongoDBEntities(
                 new MongoClientSettings() {
                     Server = new MongoServerAddress(
