@@ -40,8 +40,9 @@ describe('QuestionsStepComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [QuestionsStepComponent, NbListItemComponent],
+      declarations: [QuestionsStepComponent],
       imports: [NbThemeModule.forRoot()],
+      schemas: [NO_ERRORS_SCHEMA]
     }).compileComponents();
   }));
 

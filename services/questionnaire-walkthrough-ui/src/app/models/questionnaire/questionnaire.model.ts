@@ -5,7 +5,7 @@ export class Questionnaire {
   id: string;
   title: string;
   description: string;
-  currentQuestionnaireSectionId: 0;
+  currentQuestionnaireSectionId: number;
   questionnaireSections: QuestionnaireSection[];
   startButtonText: string;
   endingMessage: string;

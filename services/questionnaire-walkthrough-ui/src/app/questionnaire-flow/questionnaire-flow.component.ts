@@ -39,11 +39,16 @@ export class QuestionnaireFlowComponent implements OnInit, OnDestroy {
       this.questionnaire = data.questionnaire;
     });
 
-    this.parseRouter();
+    this.parseRouter(this.router.url);
   }
 
-  private async parseRouter(): Promise<void> {
-    switch (this.router.url.split('/').pop()) {
+  private async parseRouter(url: string): Promise<void> {
+    if (url === undefined) {
+      this.navigateToIntroduction();
+      return;
+    }
+
+    switch (url.split('/').pop()) {
       case 'introduction': {
         this.currentStep = 0;
         break;
@@ -56,10 +61,13 @@ export class QuestionnaireFlowComponent implements OnInit, OnDestroy {
         if (this.validateQuestionnaire()) {
           this.currentStep = this.getQuestionSections().length + 1;
         } else {
-          await this.ngOnDestroy();
           this.navigateToIntroduction();
         }
         break;
+      }
+      default: {
+        this.navigateToIntroduction();
+        return;
       }
     }
   }
