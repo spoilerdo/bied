@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -29,9 +30,9 @@ namespace Questionnaire
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddGrpc();
+            services.AddAutoMapper(typeof(Startup));
             services.AddScoped<IQuestionnaireRepository, QuestionnaireRepository>();
 
-            Console.WriteLine(CurrentEnvironment.ApplicationName);
             Console.WriteLine(CurrentEnvironment.EnvironmentName);
             services.AddMongoDBEntities(
                 new MongoClientSettings() {
