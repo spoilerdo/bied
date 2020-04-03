@@ -1,0 +1,27 @@
+<button nbButton status="primary" class="page-button" (click)="p.previous()">
+  <nb-icon icon="arrow-left-outline"></nb-icon>
+</button>
+<ng-container *ngFor="let page of p.pages" [class.current]="p.getCurrent() === page.value">
+  <button
+    nbButton
+    status="primary"
+    outline
+    class="page-button"
+    (click)="p.setCurrent(page.value)"
+    *ngIf="p.getCurrent() !== page.value"
+  >
+    {{ page.value }}
+  </button>
+  <button
+    nbButton
+    status="primary"
+    class="page-button"
+    (click)="p.setCurrent(page.value)"
+    *ngIf="p.getCurrent() === page.value"
+  >
+    {{ page.label }}
+  </button>
+</ng-container>
+<button nbButton status="primary" class="page-button" (click)="p.next()">
+  <nb-icon icon="arrow-right-outline"></nb-icon>
+</button>

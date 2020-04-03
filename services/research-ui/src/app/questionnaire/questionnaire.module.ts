@@ -27,6 +27,7 @@ import { RemoveDialogComponent } from './pages/questionnaire-overview/questionna
 import { TruncatePipe } from './utils/TruncatePipe';
 import { RenameDialogComponent } from './pages/questionnaire-overview/questionnaire-card/rename-dialog/rename-dialog.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { PaginationComponent } from '../@core/pagination/pagination.component';
 
 const nebularModules = [
   NbLayoutModule,
@@ -54,6 +55,7 @@ const nebularModules = [
     RenameDialogComponent,
     TruncatePipe,
     RenameDialogComponent,
+    PaginationComponent,
   ],
   imports: [
     CommonModule,
