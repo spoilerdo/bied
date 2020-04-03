@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Questionnaire } from 'src/app/models/questionnaire';
 import { QuestionnaireService } from 'src/app/services/questionnaire.service';
+import { Observable } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
+import { PaginationInstance } from 'ngx-pagination';
 
 @Component({
   selector: 'app-questionnaire-overview',
@@ -9,24 +12,19 @@ import { QuestionnaireService } from 'src/app/services/questionnaire.service';
   styleUrls: ['./questionnaire-overview.component.scss'],
 })
 export class QuestionnaireOverviewComponent implements OnInit {
-  questionnaires: Questionnaire[];
+  questionnaires: Observable<Questionnaire[]>;
   page: number;
+  totalQuestionnaires: number;
 
   constructor(
     private questionnaireService: QuestionnaireService,
     private route: ActivatedRoute,
     private router: Router,
-  ) {
-    router.events.subscribe(val => {
-      this.changePage();
-    });
-  }
+  ) {}
 
-  ngOnInit(): void {}
-
-  changePage() {
+  ngOnInit(): void {
     this.getQueryParams();
-    this.getQuestionnaires();
+    this.getPage(this.page);
   }
 
   getQueryParams() {
@@ -35,30 +33,29 @@ export class QuestionnaireOverviewComponent implements OnInit {
     });
   }
 
-  getQuestionnaires(): void {
-    this.questionnaireService
-      .getQuestionnaires(this.page)
-      .subscribe(questionnaires => (this.questionnaires = questionnaires));
+  getPage(page: number) {
+    this.questionnaires = this.questionnaireService.getQuestionnaires(page, 20).pipe(
+      tap(res => {
+        this.totalQuestionnaires = res.totalItems;
+        this.page = page;
+        this.router.navigate(['/questionnaire/overview'], { queryParams: { page } });
+      }),
+      map(res => res.questionnaires),
+    );
   }
 
   removeQuestionnaire(id: number) {
-    const index = this.questionnaires.findIndex(questionnaire => questionnaire.id === id);
-    this.questionnaires.splice(index, 1);
-
     this.questionnaireService.removeQuestionnaire(id);
+    this.getPage(this.page);
   }
 
   renameQuestionnaire(response: any) {
-    const index = this.questionnaires.findIndex(questionnaire => questionnaire.id === response.id);
-    this.questionnaires[index].name = response.name;
-
     this.questionnaireService.renameQuestionnaire(response.id, response.name);
+    this.getPage(this.page);
   }
 
   duplicateQuestionnaire(id: number) {
-    const index = this.questionnaires.findIndex(questionnaire => questionnaire.id === id);
-    const dupQuestionnaire = this.questionnaires[index];
-    dupQuestionnaire.id = this.questionnaireService.duplicateQuestionnaire(id);
-    this.questionnaires.push(dupQuestionnaire);
+    this.questionnaireService.duplicateQuestionnaire(id);
+    this.getPage(this.page);
   }
 }

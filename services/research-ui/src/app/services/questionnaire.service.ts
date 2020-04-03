@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { Questionnaire } from '../models/questionnaire';
+import { Questionnaire, QuestionnairesResponse } from '../models/questionnaire';
 import { questionnaires } from './mock-questionnaires';
 
 @Injectable({
@@ -9,11 +9,16 @@ import { questionnaires } from './mock-questionnaires';
 export class QuestionnaireService {
   constructor() {}
 
-  getQuestionnaires(page: number = 1, pagesize: number = 20): Observable<Questionnaire[]> {
+  getQuestionnaires(page: number = 1, pagesize: number = 20): Observable<QuestionnairesResponse> {
     // TODO use actual API endpoint
 
     const startIndex = (page - 1) * pagesize;
-    return of(questionnaires.slice(startIndex, startIndex + pagesize));
+    const response = {
+      totalItems: questionnaires.length,
+      page,
+      questionnaires: questionnaires.slice(startIndex, startIndex + pagesize),
+    };
+    return of(response);
   }
 
   removeQuestionnaire(id: number) {
@@ -28,13 +33,11 @@ export class QuestionnaireService {
     questionnaires[index].name = name;
   }
 
-  duplicateQuestionnaire(id: number): number {
+  duplicateQuestionnaire(id: number) {
     const index = questionnaires.findIndex(questionnaire => questionnaire.id === id);
 
     const dupQuestionnaire = { ...questionnaires[index] };
     dupQuestionnaire.id = questionnaires[questionnaires.length - 1].id + 1;
     questionnaires.push(dupQuestionnaire);
-
-    return dupQuestionnaire.id;
   }
 }

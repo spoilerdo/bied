@@ -4,3 +4,9 @@ export interface Questionnaire {
   name: string;
   description: string;
 }
+
+export interface QuestionnairesResponse {
+  totalItems: number;
+  page: number;
+  questionnaires: Questionnaire[];
+}

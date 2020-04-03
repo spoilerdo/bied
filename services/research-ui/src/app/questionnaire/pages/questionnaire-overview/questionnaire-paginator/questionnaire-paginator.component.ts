@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -8,6 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class QuestionnairePaginatorComponent implements OnInit {
   currentPage: number;
+  @Input() totalQuestionnaires: number;
 
   constructor(private route: ActivatedRoute, private router: Router) {}
 
