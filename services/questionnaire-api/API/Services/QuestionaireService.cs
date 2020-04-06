@@ -27,30 +27,45 @@ namespace Questionnaire.Services
     public override async Task<QuestionnaireResponse> CreateQuestionnaire(QuestionnaireCreateRequest request, ServerCallContext context)
     {
       // TODO: Validate questionnaire.
-      // TODO: Error handling.
-      var response = await _repository.CreateQuestionnaire(_mapper.Map<QuestionnaireEntity>(request));
+      QuestionnaireEntity response;
+      try {
+        response = await _repository.CreateQuestionnaire(_mapper.Map<QuestionnaireEntity>(request));
+      } catch(Exception e) { // TODO sort errors and throw dedicated exceptions.
+        throw new RpcException(new Status(StatusCode.Internal, e.Message));
+      }
       return _mapper.Map<QuestionnaireResponse>(response);
     }
 
     public override async Task<QuestionnaireResponse> GetQuestionnaire(QuestionnaireIdRequest request, ServerCallContext context)
     {
-      // TODO: Error handling.
-      var response = await _repository.GetQuestionnaireById(request.Id);
+      QuestionnaireEntity response;
+      try {
+        response = await _repository.GetQuestionnaireById(request.Id);
+      } catch(Exception e) { // TODO sort errors and throw dedicated exceptions.
+        throw new RpcException(new Status(StatusCode.Internal, e.Message));
+      }
       return _mapper.Map<QuestionnaireResponse>(response);
     }
 
     public override async Task<QuestionnaireResponse> UpdateQuestionnaire(QuestionnaireEditRequest request, ServerCallContext context)
     {
       // TODO: Validate questionnaire.
-      // TODO: Error handling.
-      var response = await _repository.UpdateQuestionnaire(_mapper.Map<QuestionnaireEntity>(request));
+      QuestionnaireEntity response;
+      try {
+        response = await _repository.UpdateQuestionnaire(_mapper.Map<QuestionnaireEntity>(request));
+      } catch(Exception e) { // TODO sort errors and throw dedicated exceptions.
+        throw new RpcException(new Status(StatusCode.Internal, e.Message));
+      }
       return _mapper.Map<QuestionnaireResponse>(response);
     }
 
     public override async Task<QuestionnaireEmptyResponse> DeleteQuestionnaire(QuestionnaireIdRequest request, ServerCallContext context)
     {
-      // TODO: Error handling.
-      await _repository.DeleteQuestionnaire(request.Id);
+      try {
+        await _repository.DeleteQuestionnaire(request.Id);
+      } catch(Exception e) { // TODO sort errors and throw dedicated exceptions.
+        throw new RpcException(new Status(StatusCode.Internal, e.Message));
+      }
       return new QuestionnaireEmptyResponse { };
     }
   }
