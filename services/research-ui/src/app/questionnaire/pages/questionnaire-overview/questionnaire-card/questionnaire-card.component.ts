@@ -4,6 +4,7 @@ import { NbDialogService, NbMenuService } from '@nebular/theme';
 import { RemoveDialogComponent } from './remove-dialog/remove-dialog.component';
 import { EventEmitter } from '@angular/core';
 import { RenameDialogComponent } from './rename-dialog/rename-dialog.component';
+import { ShareDialogComponent } from './share-dialog/share-dialog.component';
 
 @Component({
   selector: 'app-questionnaire-card',
@@ -35,7 +36,7 @@ export class QuestionnaireCardComponent implements OnInit {
     this.menuService.onItemClick().subscribe((event) => {
       if (event.item.data === this.hash) {
         if (event.item.title === 'Share') {
-          console.log('share clicked');
+          this.openShareDialog();
         } else if (event.item.title === 'Edit') {
           console.log('Edit clicked');
         } else if (event.item.title === 'View data') {
@@ -79,5 +80,10 @@ export class QuestionnaireCardComponent implements OnInit {
 
   duplicateQuestionnaire() {
     this.duplicateQuestionnaireCallback.emit(this.questionnaire.id);
+  }
+
+  openShareDialog() {
+    this.dialogService
+      .open(ShareDialogComponent, { context: { questionnaire: this.questionnaire } });
   }
 }
