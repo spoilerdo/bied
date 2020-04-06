@@ -15,6 +15,7 @@ import {
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RemoveDialogComponent } from './questionnaire/pages/questionnaire-overview/questionnaire-card/remove-dialog/remove-dialog.component';
 import { RenameDialogComponent } from './questionnaire/pages/questionnaire-overview/questionnaire-card/rename-dialog/rename-dialog.component';
+import { QuestionnaireCardComponent } from './questionnaire/pages/questionnaire-overview/questionnaire-card/questionnaire-card.component';
 
 const nebularModules = [
   NbThemeModule.forRoot(),
@@ -31,6 +32,6 @@ const nebularModules = [
   imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, ...nebularModules],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [RemoveDialogComponent, RenameDialogComponent],
+  entryComponents: [RemoveDialogComponent, RenameDialogComponent, QuestionnaireCardComponent],
 })
 export class AppModule {}
