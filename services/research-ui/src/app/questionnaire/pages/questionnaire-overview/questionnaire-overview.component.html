@@ -5,10 +5,16 @@
       (removeQuestionnaireCallback)="removeQuestionnaire($event)"
       (renameQuestionnaireCallback)="renameQuestionnaire($event)"
       (duplicateQuestionnaireCallback)="duplicateQuestionnaire($event)"
-      *ngFor="let questionnaire of questionnaires"
+      *ngFor="
+        let questionnaire of questionnaires
+          | async
+          | paginate: { itemsPerPage: 20, currentPage: page, totalItems: totalQuestionnaires }
+      "
     >
     </app-questionnaire-card>
   </div>
 
-  <app-questionnaire-paginator></app-questionnaire-paginator>
+  <pagination-template class="questionnaire-overview-paginator" #p="paginationApi" (pageChange)="getPage($event)">
+    <app-pagination [paginationData]="p"></app-pagination>
+  </pagination-template>
 </div>

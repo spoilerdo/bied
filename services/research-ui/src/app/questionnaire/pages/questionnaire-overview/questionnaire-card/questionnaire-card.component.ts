@@ -12,12 +12,19 @@ import { RenameDialogComponent } from './rename-dialog/rename-dialog.component';
 })
 export class QuestionnaireCardComponent implements OnInit {
   @Input() questionnaire: Questionnaire;
+  @Input() popup = false;
   @Output() removeQuestionnaireCallback: EventEmitter<any> = new EventEmitter();
   @Output() renameQuestionnaireCallback: EventEmitter<any> = new EventEmitter();
   @Output() duplicateQuestionnaireCallback: EventEmitter<any> = new EventEmitter();
 
   url = '';
-  cardContextItems = [{ title: 'Share' }, { title: 'Edit' }, { title: 'View data' }, { title: 'Download data' }];
+  hash = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+  cardContextItems = [
+    { title: 'Share', data: this.hash },
+    { title: 'Edit', data: this.hash },
+    { title: 'View data', data: this.hash },
+    { title: 'Download data', data: this.hash },
+  ];
 
   constructor(private dialogService: NbDialogService, private menuService: NbMenuService) {}
 
@@ -25,29 +32,37 @@ export class QuestionnaireCardComponent implements OnInit {
     // Match URL with real url
     this.url = `/questionnaire/${this.questionnaire.id}`;
 
-    this.menuService.onItemClick().subscribe(event => {
-      if (event.item.title === 'Share') {
-        console.log('share clicked');
-      } else if (event.item.title === 'Edit') {
-        console.log('Edit clicked');
-      } else if (event.item.title === 'View data') {
-        console.log('View data clicked');
-      } else if (event.item.title === 'Download data') {
-        console.log('Download data clicked');
+    this.menuService.onItemClick().subscribe((event) => {
+      if (event.item.data === this.hash) {
+        if (event.item.title === 'Share') {
+          console.log('share clicked');
+        } else if (event.item.title === 'Edit') {
+          console.log('Edit clicked');
+        } else if (event.item.title === 'View data') {
+          console.log('View data clicked');
+        } else if (event.item.title === 'Download data') {
+          console.log('Download data clicked');
+        }
       }
+    });
+  }
+
+  openCardPopup() {
+    this.dialogService.open(QuestionnaireCardComponent, {
+      context: { questionnaire: this.questionnaire, popup: true },
     });
   }
 
   openRemoveConfirmation() {
     this.dialogService
       .open(RemoveDialogComponent, { context: { questionnaire: this.questionnaire } })
-      .onClose.subscribe(removable => removable && this.removeQuestionnaire(removable));
+      .onClose.subscribe((removable) => removable && this.removeQuestionnaire(removable));
   }
 
   openRenameDialog() {
     this.dialogService
       .open(RenameDialogComponent, { context: { questionnaire: this.questionnaire } })
-      .onClose.subscribe(name => name && this.renameQuestionnaire(name));
+      .onClose.subscribe((name) => name && this.renameQuestionnaire(name));
   }
 
   removeQuestionnaire(remove: boolean) {

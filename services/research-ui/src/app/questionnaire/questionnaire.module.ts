@@ -22,7 +22,6 @@ import {
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { QuestionnaireOverviewComponent } from './pages/questionnaire-overview/questionnaire-overview.component';
 import { QuestionnaireCardComponent } from './pages/questionnaire-overview/questionnaire-card/questionnaire-card.component';
-import { QuestionnairePaginatorComponent } from './pages/questionnaire-overview/questionnaire-paginator/questionnaire-paginator.component';
 import { RemoveDialogComponent } from './pages/questionnaire-overview/questionnaire-card/remove-dialog/remove-dialog.component';
 import { TruncatePipe } from './utils/TruncatePipe';
 import { RenameDialogComponent } from './pages/questionnaire-overview/questionnaire-card/rename-dialog/rename-dialog.component';
@@ -35,6 +34,8 @@ import { TextQuestionComponent } from './pages/create-questionnaire/question/tex
 import { TimeQuestionComponent } from './pages/create-questionnaire/question/time-question/time-question.component';
 import { SharedModule } from '../shared/shared.module';
 import { ShareDialogComponent } from './pages/questionnaire-overview/questionnaire-card/share-dialog/share-dialog.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { PaginationComponent } from '../@core/pagination/pagination.component';
 
 const nebularModules = [
   NbLayoutModule,
@@ -50,6 +51,8 @@ const nebularModules = [
   NbTooltipModule,
   NbCheckboxModule,
   NbRadioModule,
+  NbCheckboxModule,
+  NbRadioModule,
   NbDatepickerModule,
 ];
 
@@ -58,12 +61,12 @@ const nebularModules = [
     QuestionnaireComponent,
     QuestionnaireOverviewComponent,
     QuestionnaireCardComponent,
-    QuestionnairePaginatorComponent,
     CreateQuestionnaireComponent,
     RemoveDialogComponent,
     RenameDialogComponent,
     TruncatePipe,
     RenameDialogComponent,
+    PaginationComponent,
     QuestionComponent,
     ChoiceQuestionComponent,
     DateQuestionComponent,
@@ -79,6 +82,7 @@ const nebularModules = [
     ReactiveFormsModule,
     SharedModule,
     ...nebularModules,
+    NgxPaginationModule,
   ],
 })
 export class QuestionnaireModule {}
