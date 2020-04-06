@@ -1,0 +1,16 @@
+version: "3.7"
+
+services:
+  #User service Database
+  user-database:
+    image: "mcr.microsoft.com/mssql/server:2017-latest"
+    ports:
+      - "1433:1433"
+    environment:
+      SA_PASSWORD: "password1!"
+      ACCEPT_EULA: "y"
+    volumes:
+      - "user_database_data:/var/lib/database/data"
+
+volumes:
+  user_database_data:
