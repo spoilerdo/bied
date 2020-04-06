@@ -15,6 +15,8 @@ using Microsoft.Extensions.Hosting;
 using consent_service.Persistence.Context;
 using consent_service.Persistence.Repositories.Consents;
 using consent_service.Services;
+using Grpc.AspNetCore.FluentValidation;
+using consent_service.Validation;
 
 namespace consent_service
 {
@@ -32,6 +34,14 @@ namespace consent_service
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddGrpc();
+
+            services.AddGrpc(options => options.EnableMessageValidation());
+            services.AddValidator<ConsentRequestValidator>();
+            services.AddValidator<ConsentEditRequestValidator>();
+            services.AddValidator<ConsentEditRequestValidator>();
+            services.AddValidator<UserIdRequestValidator>();
+            services.AddGrpcValidation();
+            services.AddSingleton<IValidatorErrorMessageHandler>(new CustomErrorMessageHandler());
 
             services.AddAutoMapper(typeof(Startup));
             services.AddDbContext<ConsentDbContext>(options =>
@@ -52,8 +62,8 @@ namespace consent_service
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
-            {                
-                endpoints.MapGrpcService<Consent_Service>();
+            {
+                endpoints.MapGrpcService<ConsentService>();
 
                 endpoints.MapGet("/", async context =>
                 {
