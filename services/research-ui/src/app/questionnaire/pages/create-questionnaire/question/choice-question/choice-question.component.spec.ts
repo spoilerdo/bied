@@ -3,6 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ChoiceQuestionComponent } from './choice-question.component';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { NbLayoutDirectionService, NbListModule, NbToggleModule } from '@nebular/theme';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('ChoiceQuestionComponent', () => {
   let component: ChoiceQuestionComponent;
@@ -10,7 +11,7 @@ describe('ChoiceQuestionComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [NbListModule, NbToggleModule],
+      imports: [NbListModule, NbToggleModule, BrowserAnimationsModule],
       declarations: [ChoiceQuestionComponent],
       providers: [FormBuilder, NbLayoutDirectionService],
     }).compileComponents();

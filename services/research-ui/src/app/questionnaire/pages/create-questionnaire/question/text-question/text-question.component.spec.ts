@@ -3,6 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { TextQuestionComponent } from './text-question.component';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { NbLayoutDirectionService, NbThemeModule, NbToggleModule } from '@nebular/theme';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('TextQuestionComponent', () => {
   let component: TextQuestionComponent;
@@ -10,7 +11,7 @@ describe('TextQuestionComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [NbThemeModule, NbToggleModule],
+      imports: [NbThemeModule, NbToggleModule, BrowserAnimationsModule],
       declarations: [TextQuestionComponent],
       providers: [FormBuilder, NbLayoutDirectionService],
     }).compileComponents();

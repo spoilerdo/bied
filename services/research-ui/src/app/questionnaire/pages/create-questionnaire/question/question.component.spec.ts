@@ -1,8 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { QuestionComponent } from './question.component';
-import { FormBuilder } from '@angular/forms';
-import { NbCardModule, NbSelectModule, NbThemeModule } from '@nebular/theme';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { NbThemeModule } from '@nebular/theme';
+import { CoreModule } from '../../../../@core/core.module';
 
 describe('QuestionComponent', () => {
   let component: QuestionComponent;
@@ -10,7 +11,7 @@ describe('QuestionComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [NbThemeModule, NbCardModule, NbSelectModule],
+      imports: [CoreModule, NbThemeModule],
       declarations: [QuestionComponent],
       providers: [FormBuilder],
     }).compileComponents();
@@ -19,6 +20,7 @@ describe('QuestionComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(QuestionComponent);
     component = fixture.componentInstance;
+    component.questionForm = new FormGroup({});
     fixture.detectChanges();
   });
 
