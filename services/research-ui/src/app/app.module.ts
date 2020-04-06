@@ -18,7 +18,6 @@ const nebularModules = [
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, ...nebularModules],
-  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

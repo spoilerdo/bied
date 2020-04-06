@@ -1,8 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CreateQuestionnaireComponent } from './create-questionnaire.component';
-import { NbThemeModule } from '@nebular/theme';
-import { FormBuilder } from '@angular/forms';
+import { NbCardModule, NbIconModule } from '@nebular/theme';
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { NbEvaIconsModule } from '@nebular/eva-icons';
 
 describe('CreateQuestionnaireComponent', () => {
   let component: CreateQuestionnaireComponent;
@@ -10,7 +11,7 @@ describe('CreateQuestionnaireComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [NbThemeModule],
+      imports: [ReactiveFormsModule, NbCardModule, NbIconModule, NbEvaIconsModule],
       declarations: [CreateQuestionnaireComponent],
       providers: [FormBuilder],
     }).compileComponents();

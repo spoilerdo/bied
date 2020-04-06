@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LikertQuestionComponent } from './likert-question.component';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { NbListModule, NbThemeModule } from '@nebular/theme';
 
 describe('LikertQuestionComponent', () => {
@@ -10,7 +10,7 @@ describe('LikertQuestionComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [NbListModule],
+      imports: [NbListModule, ReactiveFormsModule],
       declarations: [LikertQuestionComponent],
       providers: [FormBuilder],
     }).compileComponents();

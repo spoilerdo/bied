@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TextQuestionComponent } from './text-question.component';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { NbLayoutDirectionService, NbThemeModule, NbToggleModule } from '@nebular/theme';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -11,7 +11,7 @@ describe('TextQuestionComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [NbThemeModule, NbToggleModule, BrowserAnimationsModule],
+      imports: [NbToggleModule, BrowserAnimationsModule, ReactiveFormsModule],
       declarations: [TextQuestionComponent],
       providers: [FormBuilder, NbLayoutDirectionService],
     }).compileComponents();

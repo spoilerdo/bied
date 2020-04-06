@@ -1,9 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { QuestionComponent } from './question.component';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { NbThemeModule } from '@nebular/theme';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { NbCardModule, NbIconModule, NbSelectModule, NbThemeModule, NbToggleModule } from '@nebular/theme';
 import { CoreModule } from '../../../../@core/core.module';
+import { NbEvaIconsModule } from '@nebular/eva-icons';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('QuestionComponent', () => {
   let component: QuestionComponent;
@@ -11,7 +13,17 @@ describe('QuestionComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [CoreModule, NbThemeModule],
+      imports: [
+        CoreModule,
+        BrowserAnimationsModule,
+        ReactiveFormsModule,
+        NbThemeModule.forRoot(),
+        NbCardModule,
+        NbSelectModule,
+        NbIconModule,
+        NbEvaIconsModule,
+        NbToggleModule,
+      ],
       declarations: [QuestionComponent],
       providers: [FormBuilder],
     }).compileComponents();
