@@ -201,4 +201,11 @@ fdescribe('QuestionnaireFlowComponent', () => {
     expect(component.currentStep).toEqual(2);
     expect(componentSpy).toHaveBeenCalled();
   });
+
+  it('should not validate questionnaire', () => {
+    createFixture();
+    const component = fixture.componentInstance;
+    let valid = component.validateQuestionnaire();
+    expect(valid).toBe(false);
+  });
 });
