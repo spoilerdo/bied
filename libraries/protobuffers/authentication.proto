@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+option csharp_namespace = "AuthenticationService";
+
+package Authentication;
+
+service Authentication {
+	rpc CreateUser (RegisterRequest) returns (Empty);
+	rpc DeleteUser (DeleteRequest) returns (Empty);
+	rpc VerifyPassword (Credentials) returns (VerifyResponse);
+	rpc GenerateToken (Credentials) returns (TokenResponse);
+}
+
+message DeleteRequest {
+	string userId = 1;
+}
+
+message Credentials {
+	string userId = 1;
+	string password = 2;
+}
+
+message VerifyTokenRequest {
+	string token = 1;
+}
+
+message RegisterRequest {
+	string userId = 1;
+	string password = 2;
+}
+
+message VerifyResponse{
+	bool success = 1; 
+}
+
+message TokenResponse {
+	string token =3;
+}
+
+message Empty{
+
+}

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Grpc.AspNetCore.FluentValidation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -14,6 +15,7 @@ using research_service.Mapping;
 using research_service.Persistence.Context;
 using research_service.Persistence.Repositories.Researches;
 using research_service.Services;
+using research_service.Validation;
 
 namespace research_service
 {
@@ -29,6 +31,13 @@ namespace research_service
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddGrpc();
+
+            services.AddGrpc(options => options.EnableMessageValidation());
+            services.AddValidator<ResearchIdRequestValidator>();
+            services.AddValidator<ResearchCreateRequestValidator>();
+            services.AddValidator<ResearchEditRequestValidator>();
+            services.AddGrpcValidation();
+            services.AddSingleton<IValidatorErrorMessageHandler>(new CustomErrorMessageHandler());
 
             services.AddAutoMapper(typeof(Startup));
             services.AddDbContext<ResearchDbContext>(options =>
