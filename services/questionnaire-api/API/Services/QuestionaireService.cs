@@ -11,6 +11,9 @@ using AutoMapper;
 
 namespace Questionnaire.Services
 {
+    /// <summary>
+    /// Responsible for handling the GRPC protobuffer service logic
+    /// </summary>
   public class QuestionnaireService : Questionnaire_Service.Questionnaire_ServiceBase
   {
     private readonly ILogger<QuestionnaireService> _logger;
@@ -24,6 +27,13 @@ namespace Questionnaire.Services
       _mapper = mapper;
     }
 
+
+    /// <summary>
+    /// Create a questionnaire with the given parameters
+    /// </summary>
+    /// <param name="request">The data to create a questionnaire from</param>
+    /// <param name="context">The server context</param>
+    /// <returns>created Questionnaire or error indicating reason for failure</returns>
     public override async Task<QuestionnaireResponse> CreateQuestionnaire(QuestionnaireCreateRequest request, ServerCallContext context)
     {
       // TODO: Validate questionnaire.
@@ -36,6 +46,13 @@ namespace Questionnaire.Services
       return _mapper.Map<QuestionnaireResponse>(response);
     }
 
+
+    /// <summary>
+    /// Gets a questionnaire for the given parameters
+    /// </summary>
+    /// <param name="request">The data to get a questionnaire with</param>
+    /// <param name="context">The server context</param>
+    /// <returns>found Questionnaire or error indicating reason for failure</returns>
     public override async Task<QuestionnaireResponse> GetQuestionnaire(QuestionnaireIdRequest request, ServerCallContext context)
     {
       QuestionnaireEntity response;
@@ -47,6 +64,13 @@ namespace Questionnaire.Services
       return _mapper.Map<QuestionnaireResponse>(response);
     }
 
+
+    /// <summary>
+    /// updates a questionnaire with the given parameters
+    /// </summary>
+    /// <param name="request">The data to Update a questionnaire with</param>
+    /// <param name="context">The server context</param>
+    /// <returns>updated Questionnaire or error indicating reason for failure</returns>
     public override async Task<QuestionnaireResponse> UpdateQuestionnaire(QuestionnaireEditRequest request, ServerCallContext context)
     {
       // TODO: Validate questionnaire.
@@ -59,6 +83,13 @@ namespace Questionnaire.Services
       return _mapper.Map<QuestionnaireResponse>(response);
     }
 
+
+    /// <summary>
+    /// Deletes a questionnaire with the given parameters
+    /// </summary>
+    /// <param name="request">The data to delete a questionnaire with</param>
+    /// <param name="context">The server context</param>
+    /// <returns>Empty response or error indicating reason for failure</returns>
     public override async Task<QuestionnaireEmptyResponse> DeleteQuestionnaire(QuestionnaireIdRequest request, ServerCallContext context)
     {
       try {
