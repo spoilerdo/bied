@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LikertComponent } from './likert.component';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { NbRadioModule, NbThemeModule } from '@nebular/theme';
 
 describe('LikertComponent', () => {
   let component: LikertComponent;
@@ -9,10 +9,9 @@ describe('LikertComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LikertComponent ],
-      schemas: [NO_ERRORS_SCHEMA]
-    })
-    .compileComponents();
+      declarations: [LikertComponent],
+      imports: [NbThemeModule.forRoot(), NbRadioModule],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

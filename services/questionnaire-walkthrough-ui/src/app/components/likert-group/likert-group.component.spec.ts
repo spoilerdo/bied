@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LikertGroupComponent } from './likert-group.component';
+import { NbThemeModule, NbRadioModule } from '@nebular/theme';
 
 describe('LikertGroupComponent', () => {
   let component: LikertGroupComponent;
@@ -8,9 +9,9 @@ describe('LikertGroupComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LikertGroupComponent ]
-    })
-    .compileComponents();
+      declarations: [LikertGroupComponent],
+      imports: [NbThemeModule.forRoot(), NbRadioModule],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

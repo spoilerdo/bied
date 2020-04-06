@@ -1,8 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RadioComponent } from './radio.component';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { NbRadioGroupComponent, NbThemeModule } from '@nebular/theme';
+import { NbRadioModule, NbThemeModule } from '@nebular/theme';
 
 describe('RadioComponent', () => {
   let component: RadioComponent;
@@ -10,8 +9,8 @@ describe('RadioComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [RadioComponent, NbRadioGroupComponent],
-      imports: [NbThemeModule.forRoot()],
+      declarations: [RadioComponent],
+      imports: [NbThemeModule.forRoot(), NbRadioModule],
     }).compileComponents();
   }));
 

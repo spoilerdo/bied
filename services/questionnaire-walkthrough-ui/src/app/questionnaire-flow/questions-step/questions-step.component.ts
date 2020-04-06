@@ -46,7 +46,6 @@ export class QuestionsStepComponent implements OnInit, AfterViewInit {
 
       const factory = this.componentFactoryResolver.resolveComponentFactory(component);
       let questionReference = container.createComponent(factory) as ComponentRef<BiedQuestionComponent>;
-
       questionReference.instance.id = question.id;
       questionReference.instance.information = question.information;
       questionReference.instance.options = question.options;

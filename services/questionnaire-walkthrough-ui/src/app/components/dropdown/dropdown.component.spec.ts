@@ -1,9 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DropdownComponent } from './dropdown.component';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { NbSelectComponent, NbThemeModule, NbIconComponent, NbIconModule } from '@nebular/theme';
-import { NbEvaIconsModule } from '@nebular/eva-icons';
+import { NbSelectComponent, NbThemeModule, NbIconComponent, NbIconModule, NbSelectModule } from '@nebular/theme';
 
 describe('DropdownComponent', () => {
   let component: DropdownComponent;
@@ -11,8 +9,8 @@ describe('DropdownComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [DropdownComponent, NbSelectComponent],
-      imports: [NbThemeModule.forRoot(), NbIconModule],
+      declarations: [DropdownComponent, NbIconComponent],
+      imports: [NbThemeModule.forRoot(), NbIconModule, NbSelectModule],
     }).compileComponents();
   }));
 

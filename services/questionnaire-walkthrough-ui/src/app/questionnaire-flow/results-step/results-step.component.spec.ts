@@ -1,10 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ResultsStepComponent } from './results-step.component';
-import { NbListComponent, NbListItemComponent } from '@nebular/theme';
+import { NbListModule } from '@nebular/theme';
 import { QuestionType } from 'src/app/enums/question-type.enum';
 import { Questionnaire } from 'src/app/models/questionnaire/questionnaire.model';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 let mockQuestionnaire: Questionnaire = {
   id: '0',
@@ -36,7 +35,8 @@ describe('ResultsStepComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ResultsStepComponent, NbListComponent, NbListItemComponent],
+      declarations: [ResultsStepComponent],
+      imports: [NbListModule]
     }).compileComponents();
   }));
 

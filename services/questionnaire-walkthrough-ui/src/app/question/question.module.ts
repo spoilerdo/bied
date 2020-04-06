@@ -11,7 +11,6 @@ import { TimeComponent } from '../components/time/time.component';
 import { DropdownComponent } from '../components/dropdown/dropdown.component';
 import { RadioComponent } from '../components/radio/radio.component';
 import { LikertGroupComponent } from '../components/likert-group/likert-group.component';
-import { TestingComponent } from '../components/testing/testing.component';
 import {
   NbIconModule,
   NbTooltipModule,
@@ -20,8 +19,7 @@ import {
   NbListModule,
   NbSelectModule,
   NbListItemComponent,
-  NbInputModule,
-  NbPositionBuilderService,
+  NbInputModule
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 
@@ -47,13 +45,11 @@ export const questionComponents = [
   DropdownComponent,
   RadioComponent,
   LikertGroupComponent,
-  TestingComponent,
 ];
 
 @NgModule({
   declarations: [questionComponents],
   imports: [CommonModule, nebular],
-  // providers: [NbPositionBuilderService],
   entryComponents: [
     NbListItemComponent,
     MultipleChoiceComponent,
