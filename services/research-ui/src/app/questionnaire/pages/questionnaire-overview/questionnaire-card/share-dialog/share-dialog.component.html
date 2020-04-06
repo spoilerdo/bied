@@ -1,0 +1,22 @@
+<nb-card status="primary" class="rename-dialog-card">
+  <nb-card-header>Share questionnaire?</nb-card-header>
+  <nb-card-body class="rename-dialog-body">
+    Please type the current name <b>""</b> first to confirm:
+    <div>
+      <input fullWidth nbInput [(ngModel)]="oldTitle" />
+    </div>
+    New name:
+    <div>
+      <input fullWidth nbInput [(ngModel)]="newTitle" />
+      <button nbButton status="basic" (click)="close()">Cancel</button>
+      <button
+        nbButton
+        status="success"
+        (click)="rename()"
+        [disabled]="oldTitle !== questionnaire.name || newTitle.length < 5"
+      >
+        Rename
+      </button>
+    </div>
+  </nb-card-body>
+</nb-card>

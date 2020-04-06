@@ -34,6 +34,7 @@ import { LikertQuestionComponent } from './pages/create-questionnaire/question/l
 import { TextQuestionComponent } from './pages/create-questionnaire/question/text-question/text-question.component';
 import { TimeQuestionComponent } from './pages/create-questionnaire/question/time-question/time-question.component';
 import { SharedModule } from '../shared/shared.module';
+import { ShareDialogComponent } from './pages/questionnaire-overview/questionnaire-card/share-dialog/share-dialog.component';
 
 const nebularModules = [
   NbLayoutModule,
@@ -69,6 +70,7 @@ const nebularModules = [
     LikertQuestionComponent,
     TextQuestionComponent,
     TimeQuestionComponent,
+    ShareDialogComponent,
   ],
   imports: [
     CommonModule,
