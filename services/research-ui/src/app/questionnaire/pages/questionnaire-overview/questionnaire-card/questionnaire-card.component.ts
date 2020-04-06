@@ -29,9 +29,6 @@ export class QuestionnaireCardComponent implements OnInit {
   constructor(private dialogService: NbDialogService, private menuService: NbMenuService) {}
 
   ngOnInit(): void {
-    // Match URL with real url
-    this.url = `/questionnaire/${this.questionnaire.id}`;
-
     this.menuService.onItemClick().subscribe((event) => {
       if (event.item.data === this.hash) {
         if (event.item.title === 'Share') {

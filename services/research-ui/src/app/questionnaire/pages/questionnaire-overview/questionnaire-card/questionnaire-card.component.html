@@ -1,9 +1,9 @@
-<nb-card status="primary" class="questionnaire-card">
-  <nb-card-header routerLink="{{ url }}"
-    >{{ questionnaire.name | truncate: 20 }}
-    <nb-icon class="icon option" icon="arrow-up-outline" nbTooltip="Enlarge"></nb-icon
-  ></nb-card-header>
-  <nb-card-body routerLink="{{ url }}">
+<nb-card status="primary" class="questionnaire-card" [ngClass]="{ popup: popup === true }">
+  <nb-card-header class="questionnaire-card-header">
+    {{ questionnaire.name | truncate: 20 }}
+    <nb-icon class="icon option" icon="arrow-up-outline" nbTooltip="Enlarge" (click)="openCardPopup()"></nb-icon>
+  </nb-card-header>
+  <nb-card-body>
     <ng-container *ngIf="popup === false; else fullText">
       {{ questionnaire.description | truncate: 100:true }}
     </ng-container>
