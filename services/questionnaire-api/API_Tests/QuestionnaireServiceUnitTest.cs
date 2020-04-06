@@ -37,7 +37,7 @@ namespace ApiService_tests
                 ID = "realid",
                 Name = "Request",
                 Description = "request desc",
-                Questions = new List<QuestionEntity>(),
+                Question = new List<QuestionEntity>(),
                 ModifiedOn = new DateTime()
             };
             QuestionnaireResponse response = new QuestionnaireResponse{
@@ -67,7 +67,7 @@ namespace ApiService_tests
                 ID = "realid",
                 Name = "Request",
                 Description = "request desc",
-                Questions = new List<QuestionEntity>(),
+                Question = new List<QuestionEntity>(),
                 ModifiedOn = new DateTime()
             };
             QuestionnaireResponse response = new QuestionnaireResponse{
@@ -115,7 +115,7 @@ namespace ApiService_tests
                 ID = "realid",
                 Name = "Request",
                 Description = "request desc",
-                Questions = new List<QuestionEntity>(),
+                Question = new List<QuestionEntity>(),
                 ModifiedOn = new DateTime()
             };
             QuestionnaireResponse response = new QuestionnaireResponse{
