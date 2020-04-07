@@ -3,5 +3,5 @@
     <nb-icon *ngIf="information" [nbTooltip]="information" nbTooltipStatus="primary" icon="info-outline"></nb-icon>
   </div>
   
-<input [nbDatepicker]="datepicker" style="max-width: 150px;">
-<nb-datepicker #datepicker format="dd MMMM yyyy"></nb-datepicker>
+<input nbInput [nbDatepicker]="datepicker" style="max-width: 175px;">
+<nb-datepicker #datepicker format="dd MMMM yyyy" (range)="setAnswer($event)"></nb-datepicker>
