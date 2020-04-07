@@ -14,6 +14,7 @@ import {
   NbCardModule,
   NbListModule,
   NbStepperModule,
+  NbDatepickerModule,
 } from '@nebular/theme';
 
 import { QuestionnaireFlowComponent } from './questionnaire-flow/questionnaire-flow.component';
@@ -27,6 +28,7 @@ const nebular = [
   NbThemeModule.forRoot(),
   NbLayoutModule,
   NbSidebarModule.forRoot(),
+  NbDatepickerModule.forRoot(),
   NbButtonModule,
   NbCardModule,
   NbListModule,

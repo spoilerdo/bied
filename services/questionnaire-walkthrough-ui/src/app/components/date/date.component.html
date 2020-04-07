@@ -1,1 +1,7 @@
-<p>date works!</p>
+<div class="question-container">
+    {{ question }}
+    <nb-icon *ngIf="information" [nbTooltip]="information" nbTooltipStatus="primary" icon="info-outline"></nb-icon>
+  </div>
+  
+<input [nbDatepicker]="datepicker" style="max-width: 150px;">
+<nb-datepicker #datepicker format="dd MMMM yyyy"></nb-datepicker>
