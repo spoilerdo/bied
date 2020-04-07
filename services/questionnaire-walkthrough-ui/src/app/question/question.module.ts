@@ -22,6 +22,7 @@ import {
   NbInputModule,
   NbDatepickerModule
 } from '@nebular/theme';
+import { NbMomentDateModule } from '@nebular/moment';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 
 const nebular = [
@@ -30,6 +31,7 @@ const nebular = [
   NbCheckboxModule,
   NbRadioModule,
   NbDatepickerModule,
+  NbMomentDateModule,
   NbListModule,
   NbSelectModule,
   NbEvaIconsModule,
