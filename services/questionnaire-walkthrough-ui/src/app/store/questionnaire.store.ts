@@ -76,6 +76,13 @@ export class QuestionnaireStore {
             information: 'Er wordt gevragen hoevaak u uit eten gaat.',
             answer: '',
           },
+          {
+            id: "7",
+            type: QuestionType.DATE,
+            question: 'Wat is de laatste keer dat u uit eten bent geweest?',
+            information: 'Er wordt om een datum gevragen.',
+            answer: '',
+          },
         ],
       },
       {
