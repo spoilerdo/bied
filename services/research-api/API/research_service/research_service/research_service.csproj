@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Protobuf Include="Protos\datasource.proto" GrpcServices="Server;Client" ProtoRoot="Protos\" />
-    <Protobuf Include="Protos\research.proto" GrpcServices="Server;Client" ProtoRoot="Protos\" />
+    <Protobuf Include="$(PkgBied_Protobuffers)/*.proto" GrpcServices="Server;Client" ProtoRoot="$(PkgBied_Protobuffers)" />
   </ItemGroup>
+
 </Project>
