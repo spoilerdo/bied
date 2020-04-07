@@ -1,4 +1,5 @@
 export enum QuestionType {
+    DATE = "DATE",
     LIKERT = "LIKERT",
     LIKERT_GROUP = "LIKERT_GROUP",
     RADIO = "RADIO",
