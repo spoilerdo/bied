@@ -3,6 +3,7 @@ import { Questionnaire } from '../models/questionnaire/questionnaire.model';
 import { BehaviorSubject } from 'rxjs';
 import { QuestionType } from '../enums/question-type.enum';
 import { CREATE_QUESTIONNAIRE } from './questionnaire.actions';
+import * as moment from 'moment';
 
 
 @Injectable({
@@ -81,7 +82,7 @@ export class QuestionnaireStore {
             type: QuestionType.DATE,
             question: 'Wat is de laatste keer dat u uit eten bent geweest?',
             information: 'Er wordt om een datum gevragen.',
-            answer: '',
+            answer: null,
           },
         ],
       },

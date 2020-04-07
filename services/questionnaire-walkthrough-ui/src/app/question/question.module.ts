@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { BiedQuestionComponent } from '../components/bied-question/bied-question.component';
 import { MultipleChoiceComponent } from '../components/multiple-choice/multiple-choice.component';
@@ -38,6 +39,13 @@ const nebular = [
   NbInputModule,
 ];
 
+
+const angular = [
+  FormsModule,
+  ReactiveFormsModule,
+];
+
+
 export const questionComponents = [
   BiedQuestionComponent,
   MultipleChoiceComponent,
@@ -53,7 +61,7 @@ export const questionComponents = [
 
 @NgModule({
   declarations: [questionComponents],
-  imports: [CommonModule, nebular],
+  imports: [CommonModule, nebular, angular],
   entryComponents: [
     NbListItemComponent,
     MultipleChoiceComponent,
