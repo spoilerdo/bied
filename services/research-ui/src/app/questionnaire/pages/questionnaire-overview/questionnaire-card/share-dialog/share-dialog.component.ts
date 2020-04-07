@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NbDialogRef } from '@nebular/theme';
+import { NbComponentStatus, NbDialogRef, NbToastrService } from '@nebular/theme';
 import { Questionnaire } from '../../../../../models/questionnaire';
 
 @Component({
@@ -12,7 +12,7 @@ export class ShareDialogComponent implements OnInit {
   emails = [];
   newEmail = '';
 
-  constructor(protected dialogRef: NbDialogRef<ShareDialogComponent>) {
+  constructor(protected dialogRef: NbDialogRef<ShareDialogComponent>, protected toastService: NbToastrService) {
   }
 
   ngOnInit(): void {
@@ -24,7 +24,13 @@ export class ShareDialogComponent implements OnInit {
   }
 
   send() {
-    console.log(this.emails);
+    if (this.emails.length > 0) {
+      // TODO: Send mails
+      this.presentToast('success', 'Email send', 'The emails are send successfully');
+      this.close();
+    } else {
+      this.presentToast('danger', 'Failed', 'Please provide some email addresses!');
+    }
   }
 
   addEmail() {
@@ -33,12 +39,10 @@ export class ShareDialogComponent implements OnInit {
         this.emails.push(this.newEmail);
         this.newEmail = '';
       } else {
-        // TODO: Throw error
-        console.log('Not a valid email');
+        this.presentToast('danger', 'Error', 'Not a valid email');
       }
     } else {
-      // TODO: Throw error
-      console.log('Cannot be empty');
+      this.presentToast('danger', 'Error', 'Email can not be empty');
     }
   }
 
@@ -48,8 +52,16 @@ export class ShareDialogComponent implements OnInit {
     }
   }
 
+  presentToast(status: NbComponentStatus, title: string, message: string) {
+    this.toastService.show(message, title, { status });
+  }
+
   validateEmail(email) {
     const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
+  }
+
+  removeEmail(email: any) {
+    this.emails.splice(this.emails.indexOf(email), 1);
   }
 }

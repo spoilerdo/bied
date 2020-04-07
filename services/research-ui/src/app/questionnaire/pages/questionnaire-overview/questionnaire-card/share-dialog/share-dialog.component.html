@@ -9,6 +9,9 @@
         <nb-list>
           <nb-list-item *ngFor="let email of emails">
             {{ email }}
+            <button class="removeBtn" nbButton (click)="removeEmail(email)">
+              <nb-icon class="icon remove" icon="trash-2-outline"></nb-icon>
+            </button>
           </nb-list-item>
         </nb-list>
       </nb-card>
