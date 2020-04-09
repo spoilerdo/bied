@@ -1,0 +1,67 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: dashboard
+  namespace: istio-system
+spec:
+  selector:
+    istio: ingressgateway # use istio default controller
+  servers:
+    - port:
+        number: 80
+        name: http
+        protocol: HTTP
+      hosts:
+        - "dashboard.fontysbied.nl"
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: dashboard
+  namespace: istio-system
+spec:
+  hosts:
+    - "dashboard.fontysbied.nl"
+  gateways:
+    - dashboard
+  http:
+
+    # Grafana
+    - match:
+        - uri:
+            prefix: /grafana
+      route:
+        - destination:
+            host: grafana
+            port:
+              number: 3000
+
+    # Kiali dashboard
+    - match:
+        - uri:
+            prefix: /kiali
+      route:
+        - destination:
+            host: kiali
+            port:
+              number: 20001
+
+    # Prometheus dashboard
+    - match:
+        - uri:
+            prefix: /prometheus
+      route:
+        - destination:
+            host: prometheus
+            port:
+              number: 9090
+
+    # Tracing dashboard
+    - match:
+        - uri:
+            prefix: /tracing
+      route:
+        - destination:
+            host: tracing
+            port:
+              number: 80

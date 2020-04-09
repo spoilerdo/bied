@@ -17,5 +17,12 @@ spec:
             requests:
               cpu: 10m
               memory: 10Mi
-  telemetry:
-    enabled: true
+    telemetry:
+      enabled: true
+  values:
+    grafana:
+      contextPath: /grafana
+    gateways:
+      istio-ingressgateway:
+        sds:
+          enabled: true
