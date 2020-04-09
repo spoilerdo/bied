@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nugetregistry-service
+spec:
+  type: ClusterIP
+  selector:
+    component: nugetregistry
+  ports:
+    - port: 8080
+      targetPort: 80
