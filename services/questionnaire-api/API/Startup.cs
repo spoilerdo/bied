@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -17,21 +18,32 @@ namespace Questionnaire
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
             Configuration = configuration;
+            CurrentEnvironment = env;
         }
 
         public IConfiguration Configuration { get; }
+        private IWebHostEnvironment CurrentEnvironment{ get; set; } 
 
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddGrpc();
+            services.AddAutoMapper(typeof(Startup));
             services.AddScoped<IQuestionnaireRepository, QuestionnaireRepository>();
+
             services.AddMongoDBEntities(
-              MongoClientSettings.FromConnectionString(
-                (String)Configuration.GetSection("MongoDB").Get(typeof(String))
-              ), "DatabaseName");
+                new MongoClientSettings() {
+                    Server = new MongoServerAddress(
+                        (String)Configuration.GetSection("MongoDB_host").Get(typeof(String)),
+                        (int)Configuration.GetSection("MongoDB_port").Get(typeof(int))),
+                    Credential = MongoCredential.CreateCredential(
+                        (String)Configuration.GetSection("MongoDB_database").Get(typeof(String)), 
+                        (String)Configuration.GetSection("MongoDB_user").Get(typeof(String)), 
+                        (String)Configuration.GetSection("MongoDB_pass").Get(typeof(String)))
+                }, "Questionnaire"
+            );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -2,22 +2,18 @@ syntax = "proto3";
 
 import "datasource.proto";
 
-
-
-service ConsentService {
+service Consent_Service {
   rpc GetConsents (UserIdRequest) returns (Consents);
+  rpc GetConsent (ConsentIdRequest) returns (Consent);
   rpc CreateConsent (ConsentRequest) returns (Consent);
+  rpc DeleteAllConsent (UserIdRequest) returns (ConsentEmptyResponse);
+  rpc DeleteConsent (ConsentIdRequest) returns (ConsentEmptyResponse);
   rpc EditConsent (ConsentEditRequest) returns (Consent);
-  rpc DeleteConsent (UserIdRequest) returns (ConsentEmptyResponse);
 }
-
-
 
 message Consents {
   repeated Consent consents = 1;
 }
-
-message GetConsentsRequest {}
 
 message UserIdRequest {
   string id = 1;
@@ -25,15 +21,19 @@ message UserIdRequest {
 
 message ConsentRequest {
   string userId = 1;
-  DatasourceRequest datasource = 2;
+  string datasourceId = 2;
   bool consent = 3;
   int64 uts = 4;
+}
+
+message ConsentIdRequest {
+  string consentId = 1;
 }
 
 message ConsentEditRequest {
     string id = 1;
     string userId = 2;
-    DatasourceRequest datasource = 3;
+    string datasourceId = 3;
     bool consent = 4;
     int64 uts = 5;
 }

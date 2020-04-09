@@ -12,8 +12,7 @@ message QuestionRequest {
 	bool required = 6;
 }
 
-message Question {
-	string id = 1;
+message QuestionResponse {
 	string label = 2;
 	QuestionType type = 3;
 	string description = 4;
