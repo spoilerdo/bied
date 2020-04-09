@@ -42,7 +42,7 @@ namespace Questionnaire
                         (String)Configuration.GetSection("MongoDB_database").Get(typeof(String)), 
                         (String)Configuration.GetSection("MongoDB_user").Get(typeof(String)), 
                         (String)Configuration.GetSection("MongoDB_pass").Get(typeof(String)))
-                }, "Questionnaire"
+                }, "Questionnaire-Result"
             );
         }
 
