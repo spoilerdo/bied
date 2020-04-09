@@ -7,11 +7,12 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="9.0.0" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
-    <PackageReference Include="Grpc.AspNetCore" Version="2.24.0" />
+    <PackageReference Include="Grpc.AspNetCore" Version="2.27.0" />
     <PackageReference Include="Grpc.Tools" Version="2.27.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="GrpcExtensions.AspNetCore.Validation" Version="2.25.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="3.1.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.2" />
@@ -19,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Protobuf Include="Protos\datasource.proto" GrpcServices="Server;Client" ProtoRoot="Protos\" />
-    <Protobuf Include="Protos\research.proto" GrpcServices="Server;Client" ProtoRoot="Protos\" />
+    <Protobuf Include="$(PkgBied_Protobuffers)/*.proto" GrpcServices="Server;Client" ProtoRoot="$(PkgBied_Protobuffers)" />
   </ItemGroup>
+
 </Project>
