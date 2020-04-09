@@ -28,19 +28,19 @@ export class QuestionnaireOverviewComponent implements OnInit {
   }
 
   getQueryParams() {
-    this.route.queryParamMap.subscribe(params => {
+    this.route.queryParamMap.subscribe((params) => {
       this.page = +params.get('page') || 1;
     });
   }
 
   getPage(page: number) {
     this.questionnaires = this.questionnaireService.getQuestionnaires(page, 20).pipe(
-      tap(res => {
+      tap((res) => {
         this.totalQuestionnaires = res.totalItems;
         this.page = page;
         this.router.navigate(['/questionnaire/overview'], { queryParams: { page } });
       }),
-      map(res => res.questionnaires),
+      map((res) => res.questionnaires),
     );
   }
 
