@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Research } from '../models/research.model';
+import { Research } from '../models/research';
 
 @Component({
   selector: 'ngx-research-list',

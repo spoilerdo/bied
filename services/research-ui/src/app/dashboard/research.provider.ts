@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Research } from './models/research.model';
+import { Research } from './models/research';
 
 @Injectable()
 export class ResearchProvider {
