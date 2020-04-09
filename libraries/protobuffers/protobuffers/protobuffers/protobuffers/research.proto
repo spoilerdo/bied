@@ -1,4 +1,5 @@
 syntax = "proto3";
+option csharp_namespace = "Research.GRPC"; 
 
 import "datasource.proto";
 

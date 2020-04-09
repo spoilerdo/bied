@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>1.0.1</Version>
+    <PackageId>Bied.Protobuffers</PackageId>
+    <Description>BIED protobuffers Nuget package used for ASP core services</Description>
+    <Copyright>AGPL-3.0-or-later</Copyright>
+    <PackageProjectUrl>https://github.com/Choem/bied/</PackageProjectUrl>
+    <Authors>S66-BIED</Authors>
+    <Company>S66-BIED</Company>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="protobuffers\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Grpc.AspNetCore" Version="2.28.0-pre2" />
+    <PackageReference Include="Grpc.Tools" Version="2.28.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Protobuf Include="./protobuffers/*.proto" GrpcServices="Server;Client" ProtoRoot="./protobuffers/" />
+  </ItemGroup>
+</Project>
