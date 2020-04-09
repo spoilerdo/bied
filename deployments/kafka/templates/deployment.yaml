@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   namespace: kafka
-  name: kafka
+  name: kafka-deployment
 spec:
   replicas: 1
   selector:
@@ -15,7 +15,7 @@ spec:
       annotations:
         rollme: {{ randAlphaNum 5 | quote }}
     spec: 
-      serviceAccountName: kafka
+      serviceAccountName: kafka-account
       containers:
         - name: kafka
           image: wurstmeister/kafka

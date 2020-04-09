@@ -36,7 +36,7 @@ image:
 ## the bundled zookeeper chart service url if enabled (see below).
 ## This value can be a template
 ##
-zkHosts: ""
+zkHosts: "zoo1:2181"
 
 ## Clusters to be added through the kafka-manager api
 ##
@@ -98,7 +98,7 @@ basicAuth:
   username: "admin"
   ## Defaults to a random 10-character alphanumeric string if not set
   ##
-  password: ""
+  password: "bied123456"
   ## LDAP Authentication
   ## Ref : https://github.com/yahoo/CMAK#authenticating-a-user-with-ldap
   ##
@@ -129,13 +129,12 @@ service:
 ## Ref: https://kubernetes.io/docs/concepts/services-networking/ingress/
 ##
 ingress:
-  enabled: false
+  enabled: true
   annotations: {}
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   path: /
-  hosts:
-    - kafka-manager.local
+  hosts: [localhost]
   tls: []
     # - secretName: kafka-manager-tls
     #   hosts:
@@ -145,12 +144,12 @@ ingress:
 ## Ref: http://kubernetes.io/docs/user-guide/compute-resources/
 ##
 resources: {}
-#  limits:
-#    cpu: 100m
-#    memory: 128Mi
-#  requests:
-#    cpu: 100m
-#    memory: 128Mi
+limits:
+  cpu: 100m
+  memory: 128Mi
+requests:
+  cpu: 100m
+  memory: 128Mi
 
 ## Node labels for pod assignment
 ## Ref: https://kubernetes.io/docs/user-guide/node-selection/

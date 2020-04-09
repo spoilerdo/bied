@@ -11,5 +11,5 @@ spec:
       paths:
       - path: /
         backend:
-          serviceName: kafka
+          serviceName: kafka-service
           servicePort: 9093

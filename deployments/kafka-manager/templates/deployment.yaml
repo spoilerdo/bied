@@ -1,6 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  namespace: kafka
   name: {{ template "kafka-manager.fullname" . }}
   labels:
     app.kubernetes.io/instance: {{ .Release.Name }}
