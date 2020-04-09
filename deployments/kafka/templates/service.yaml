@@ -6,6 +6,7 @@ metadata:
   labels:
     name: kafka  
 spec:
+  type: ClusterIP
   ports:
     - port: 9093
       targetPort: 9092
