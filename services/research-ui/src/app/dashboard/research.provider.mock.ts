@@ -12,12 +12,8 @@ export class ResearchMockProvider extends ResearchProvider {
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In fringilla tincidunt orci, eget tristique magna finibus nec. Pellentesque nec finibus dolor, vel commodo ligula. Sed vulputate non metus mollis accumsan. Proin vel elit nec tellus dapibus placerat. Nullam porta dui id elit venenatis, in porta urna fringilla.',
       imageUrl: 'https://picsum.photos/200/300?random=1',
-      startDate: moment()
-        .subtract(10, 'days')
-        .toDate(),
-      endDate: moment()
-        .add(14, 'days')
-        .toDate(),
+      startDate: moment().subtract(10, 'days').toDate(),
+      endDate: moment().add(14, 'days').toDate(),
       active: true,
       ownerId: 0,
     }),
@@ -27,12 +23,8 @@ export class ResearchMockProvider extends ResearchProvider {
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In fringilla tincidunt orci, eget tristique magna finibus nec. Pellentesque nec finibus dolor, vel commodo ligula. Sed vulputate non metus mollis accumsan. Proin vel elit nec tellus dapibus placerat. Nullam porta dui id elit venenatis, in porta urna fringilla.',
       imageUrl: 'https://picsum.photos/200/300?random=2',
-      startDate: moment()
-        .add(5, 'days')
-        .toDate(),
-      endDate: moment()
-        .add(19, 'days')
-        .toDate(),
+      startDate: moment().add(5, 'days').toDate(),
+      endDate: moment().add(19, 'days').toDate(),
       active: true,
       ownerId: 0,
     }),
@@ -42,12 +34,8 @@ export class ResearchMockProvider extends ResearchProvider {
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In fringilla tincidunt orci, eget tristique magna finibus nec. Pellentesque nec finibus dolor, vel commodo ligula. Sed vulputate non metus mollis accumsan. Proin vel elit nec tellus dapibus placerat. Nullam porta dui id elit venenatis, in porta urna fringilla.',
       imageUrl: 'https://picsum.photos/200/300?random=3',
-      startDate: moment()
-        .subtract(2, 'days')
-        .toDate(),
-      endDate: moment()
-        .add(3, 'days')
-        .toDate(),
+      startDate: moment().subtract(2, 'days').toDate(),
+      endDate: moment().add(3, 'days').toDate(),
       active: true,
       ownerId: 0,
     }),
@@ -64,28 +52,28 @@ export class ResearchMockProvider extends ResearchProvider {
     }),
   };
 
-  GetResearches(): Research[] {
+  getResearches(): Research[] {
     return Object.values(this.store);
   }
-  GetResearch(id: number): Research {
+  getResearch(id: number): Research {
     return this.store[id];
   }
-  CreateResearch(): Research {
+  createResearch(): Research {
     throw new Error('Method not implemented.');
   }
-  EditResearch(): Research {
+  editResearch(): Research {
     throw new Error('Method not implemented.');
   }
-  DeleteResearch(): void {
+  deleteResearch(): void {
     throw new Error('Method not implemented.');
   }
-  AddDatasourceToResearch(): Research {
+  addDatasourceToResearch(): Research {
     throw new Error('Method not implemented.');
   }
-  RemoveDatasourceFromResearch(): Research {
+  removeDatasourceFromResearch(): Research {
     throw new Error('Method not implemented.');
   }
-  InviteUsersToResearch(): void {
+  inviteUsersToResearch(): void {
     throw new Error('Method not implemented.');
   }
 }

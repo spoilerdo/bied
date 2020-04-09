@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ResearchProvider } from '../research.provider';
+import { Research } from '../models/research.model';
 
 @Component({
   selector: 'ngx-research-list',
@@ -7,5 +7,5 @@ import { ResearchProvider } from '../research.provider';
   templateUrl: './research-list.component.html',
 })
 export class ResearchListComponent {
-  constructor(readonly service: ResearchProvider) {}
+  @Input() researches: Research[];
 }

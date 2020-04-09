@@ -3,28 +3,28 @@ import { Research } from './models/research.model';
 
 @Injectable()
 export class ResearchProvider {
-  GetResearches(): Research[] {
+  getResearches(): Research[] {
     throw new Error('Method not implemented.');
   }
-  GetResearch(id: number): Research {
+  getResearch(id: number): Research {
     throw new Error('Method not implemented.');
   }
-  CreateResearch(): Research {
+  createResearch(): Research {
     throw new Error('Method not implemented.');
   }
-  EditResearch(): Research {
+  editResearch(): Research {
     throw new Error('Method not implemented.');
   }
-  DeleteResearch(): void {
+  deleteResearch(): void {
     throw new Error('Method not implemented.');
   }
-  AddDatasourceToResearch(): Research {
+  addDatasourceToResearch(): Research {
     throw new Error('Method not implemented.');
   }
-  RemoveDatasourceFromResearch(): Research {
+  removeDatasourceFromResearch(): Research {
     throw new Error('Method not implemented.');
   }
-  InviteUsersToResearch(): void {
+  inviteUsersToResearch(): void {
     throw new Error('Method not implemented.');
   }
 }

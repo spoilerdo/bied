@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ResearchProvider } from './research.provider';
 
 @Component({
   selector: 'app-dashboard',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
-  constructor() {}
+  constructor(readonly researchProvider: ResearchProvider) {}
 
   ngOnInit(): void {}
 }
