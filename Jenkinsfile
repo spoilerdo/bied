@@ -132,6 +132,7 @@ node {
 
                     sh "kip deploy -e prod"
                 }
+            }
         } finally {
             def buildStatus = load 'ci/scripts/groovy/buildStatus.groovy'
 
