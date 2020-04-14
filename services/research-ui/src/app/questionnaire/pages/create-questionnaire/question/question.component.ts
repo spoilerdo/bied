@@ -22,7 +22,7 @@ export class QuestionComponent implements OnInit {
 
     this.questionForm.addControl('label', this.formBuilder.control('Question'));
     this.questionForm.addControl('required', this.formBuilder.control(false));
-    this.questionForm.addControl('questionType', this.formBuilder.control([null, [Validators.required]]));
+    this.questionForm.addControl('questionType', this.formBuilder.control(null, [Validators.required]));
     this.questionForm.addControl('questionData', this.formBuilder.group({}));
   }
 

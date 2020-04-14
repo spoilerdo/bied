@@ -41,7 +41,12 @@ export class ChoiceQuestionComponent implements OnInit {
    * Removes an option form the form
    */
   removeOption(index: number): void {
-    this.options.removeAt(index);
+    const optionsLength = this.options.length;
+    if (optionsLength - 1 >= index) {
+      this.options.removeAt(index);
+    } else {
+      throw new Error('Index out of bounds');
+    }
   }
 
   /**
