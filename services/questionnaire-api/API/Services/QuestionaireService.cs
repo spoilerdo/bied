@@ -11,47 +11,47 @@ using AutoMapper;
 
 namespace Questionnaire.Services
 {
-  public class QuestionnaireService : Questionnaire_Service.Questionnaire_ServiceBase
-  {
-    private readonly ILogger<QuestionnaireService> _logger;
-    private readonly IQuestionnaireRepository _repository;
-    private readonly IMapper _mapper;
-
-    public QuestionnaireService(ILogger<QuestionnaireService> logger, IMapper mapper, IQuestionnaireRepository repository)
+    public class QuestionnaireService : Questionnaire_Service.Questionnaire_ServiceBase
     {
-      _logger = logger;
-      _repository = repository;
-      _mapper = mapper;
-    }
+        private readonly ILogger<QuestionnaireService> _logger;
+        private readonly IQuestionnaireRepository _repository;
+        private readonly IMapper _mapper;
 
-    public override async Task<QuestionnaireResponse> CreateQuestionnaire(QuestionnaireCreateRequest request, ServerCallContext context)
-    {
-      // TODO: Validate questionnaire.
-      // TODO: Error handling.
-      var response = await _repository.CreateQuestionnaire(_mapper.Map<QuestionnaireEntity>(request));
-      return _mapper.Map<QuestionnaireResponse>(response);
-    }
+        public QuestionnaireService(ILogger<QuestionnaireService> logger, IMapper mapper, IQuestionnaireRepository repository)
+        {
+            _logger = logger;
+            _repository = repository;
+            _mapper = mapper;
+        }
 
-    public override async Task<QuestionnaireResponse> GetQuestionnaire(QuestionnaireIdRequest request, ServerCallContext context)
-    {
-      // TODO: Error handling.
-      var response = await _repository.GetQuestionnaireById(request.Id);
-      return _mapper.Map<QuestionnaireResponse>(response);
-    }
+        public override async Task<QuestionnaireResponse> CreateQuestionnaire(QuestionnaireCreateRequest request, ServerCallContext context)
+        {
+            // TODO: Validate questionnaire.
+            // TODO: Error handling.
+            var response = await _repository.CreateQuestionnaire(_mapper.Map<QuestionnaireEntity>(request));
+            return _mapper.Map<QuestionnaireResponse>(response);
+        }
 
-    public override async Task<QuestionnaireResponse> UpdateQuestionnaire(QuestionnaireEditRequest request, ServerCallContext context)
-    {
-      // TODO: Validate questionnaire.
-      // TODO: Error handling.
-      var response = await _repository.UpdateQuestionnaire(_mapper.Map<QuestionnaireEntity>(request));
-      return _mapper.Map<QuestionnaireResponse>(response);
-    }
+        public override async Task<QuestionnaireResponse> GetQuestionnaire(QuestionnaireIdRequest request, ServerCallContext context)
+        {
+            // TODO: Error handling.
+            var response = await _repository.GetQuestionnaireById(request.Id);
+            return _mapper.Map<QuestionnaireResponse>(response);
+        }
 
-    public override async Task<QuestionnaireEmptyResponse> DeleteQuestionnaire(QuestionnaireIdRequest request, ServerCallContext context)
-    {
-      // TODO: Error handling.
-      await _repository.DeleteQuestionnaire(request.Id);
-      return new QuestionnaireEmptyResponse { };
+        public override async Task<QuestionnaireResponse> UpdateQuestionnaire(QuestionnaireEditRequest request, ServerCallContext context)
+        {
+            // TODO: Validate questionnaire.
+            // TODO: Error handling.
+            var response = await _repository.UpdateQuestionnaire(_mapper.Map<QuestionnaireEntity>(request));
+            return _mapper.Map<QuestionnaireResponse>(response);
+        }
+
+        public override async Task<QuestionnaireEmptyResponse> DeleteQuestionnaire(QuestionnaireIdRequest request, ServerCallContext context)
+        {
+            // TODO: Error handling.
+            await _repository.DeleteQuestionnaire(request.Id);
+            return new QuestionnaireEmptyResponse { };
+        }
     }
-  }
 }

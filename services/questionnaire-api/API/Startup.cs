@@ -32,7 +32,6 @@ namespace Questionnaire
             services.AddGrpc();
             services.AddAutoMapper(typeof(Startup));
             services.AddScoped<IQuestionnaireRepository, QuestionnaireRepository>();
-
             services.AddMongoDBEntities(
                 new MongoClientSettings()
                 {
@@ -43,7 +42,7 @@ namespace Questionnaire
                         (String)Configuration.GetSection("MongoDB_database").Get(typeof(String)),
                         (String)Configuration.GetSection("MongoDB_user").Get(typeof(String)),
                         (String)Configuration.GetSection("MongoDB_pass").Get(typeof(String)))
-                }, "Questionnaire"
+                }, "Questionnaire-Result"
             );
         }
 
@@ -60,6 +59,7 @@ namespace Questionnaire
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapGrpcService<QuestionnaireService>();
+                endpoints.MapGrpcService<QuestionnaireResultService>();
 
                 endpoints.MapGet("/", async context =>
                 {

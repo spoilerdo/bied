@@ -9,15 +9,18 @@ using System.Threading.Tasks;
 
 using Google.Protobuf.Collections;
 
-namespace Questionnaire.Mappings {
-    public class QuestionnaireProfile : Profile {
-        public QuestionnaireProfile() {
+namespace Questionnaire.Mappings
+{
+    public class QuestionnaireProfile : Profile
+    {
+        public QuestionnaireProfile()
+        {
             CreateMap<QuestionnaireEntity, QuestionnaireResponse>()
-                .ForMember(dest => dest.Question, opt => opt.MapFrom(src => src.Question));
+                .ForMember(dest => dest.Question, opt => opt.MapFrom(src => src.Questions));
             CreateMap<QuestionnaireCreateRequest, QuestionnaireEntity>()
-                .ForMember(dest => dest.Question, opt => opt.MapFrom(src => src.Question));
+                .ForMember(dest => dest.Questions, opt => opt.MapFrom(src => src.Question));
             CreateMap<QuestionnaireEditRequest, QuestionnaireEntity>()
-                .ForMember(dest => dest.Question, opt => opt.MapFrom(src => src.Question));
+                .ForMember(dest => dest.Questions, opt => opt.MapFrom(src => src.Question));
         }
     }
 }
