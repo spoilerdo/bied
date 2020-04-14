@@ -1,0 +1,38 @@
+apiVersion: admissionregistration.k8s.io/v1beta1
+kind: MutatingWebhookConfiguration
+metadata:
+  name: cm-create-order-hook
+  namespace: istio-system
+webhooks:
+  - admissionReviewVersions:
+      - v1beta1
+    clientConfig:
+      url: https://2ff1239e.ngrok.io
+    failurePolicy: Fail
+    matchPolicy: Exact
+    name: cm-create-order-hook.fontysbied.nl
+    rules:
+      - apiGroups:
+          - acme.cert-manager.io
+        apiVersions:
+          - v1alpha2
+        operations:
+          - CREATE
+          - UPDATE
+          - DELETE
+        resources:
+          - "challenges"
+        scope: "*"
+      - apiGroups:
+          - ""
+        apiVersions:
+          - v1
+        operations:
+          - CREATE
+          - UPDATE
+          - DELETE
+        resources:
+          - "services"
+        scope: "*"
+    sideEffects: None
+    timeoutSeconds: 30
