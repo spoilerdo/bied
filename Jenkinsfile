@@ -111,7 +111,7 @@ node {
                     }                     
                 }
             }
-            if (env.BRANCH_NAME=='develop'){
+            if (env.BRANCH_NAME=='feature/kafka'){
                 stage('Push images') {
                     withCredentials([[$class: 'FileBinding', credentialsId: "s66-2-keyfile", variable: 'GOOGLE_APPLICATION_CREDENTIALS']]){
                         sh 'gcloud auth activate-service-account --key-file=$GOOGLE_APPLICATION_CREDENTIALS'
@@ -122,9 +122,16 @@ node {
                     sh 'kip push -e prod'
                 }
                 stage('Deploy') {
-                    echo 'Deploy'
+                    // Authenticate with gcloud
+                    withCredentials([[$class: 'FileBinding', credentialsId: "s66-2-keyfile", variable: 'GOOGLE_APPLICATION_CREDENTIALS']]){
+                        sh 'gcloud auth activate-service-account --key-file=$GOOGLE_APPLICATION_CREDENTIALS'
+                    }
+
+                    // Connect kubectl to cluster
+                    sh "gcloud container clusters get-credentials bied-staging --zone europe-west4-a --project s66-2-271821"
+
+                    sh "kip deploy -e prod"
                 }
-            }
         } finally {
             def buildStatus = load 'ci/scripts/groovy/buildStatus.groovy'
 
