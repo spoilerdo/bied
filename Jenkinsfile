@@ -130,6 +130,8 @@ node {
                     // Connect kubectl to cluster
                     sh "gcloud container clusters get-credentials bied-staging --zone europe-west4-a --project s66-2-271821"
 
+                    sh 'kubectl config set-context --current --namespace default'
+
                     sh "kip deploy -e prod"
                 }
             }
