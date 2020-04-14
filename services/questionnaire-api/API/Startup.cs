@@ -1,4 +1,5 @@
-﻿using System;
+﻿using System.Security;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -6,13 +7,16 @@ using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Questionnaire.Services;
-using Questionnaire.Persistence.Repositories;
-using MongoDB.Entities;
+using Grpc.AspNetCore.FluentValidation;
+using Questionnaire.GRPC;
 using MongoDB.Driver;
+using MongoDB.Entities;
+using Questionnaire.Persistence.Repositories;
+using Questionnaire.Services;
+using API.Validators;
 
 namespace Questionnaire
 {
@@ -29,19 +33,23 @@ namespace Questionnaire
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddGrpc();
+            services.AddGrpc(options => options.EnableMessageValidation());
+            services.AddValidator<QuestionnaireIdRequestValidator>();
+            services.AddGrpcValidation();
+            services.AddSingleton<IValidatorErrorMessageHandler>(new CustomErrorMessageHandler());
+
             services.AddAutoMapper(typeof(Startup));
             services.AddScoped<IQuestionnaireRepository, QuestionnaireRepository>();
             services.AddMongoDBEntities(
                 new MongoClientSettings()
                 {
                     Server = new MongoServerAddress(
-                        (String)Configuration.GetSection("MongoDB_host").Get(typeof(String)),
-                        (int)Configuration.GetSection("MongoDB_port").Get(typeof(int))),
+                            (String)Configuration.GetSection("MongoDB_host").Get(typeof(String)),
+                            (int)Configuration.GetSection("MongoDB_port").Get(typeof(int))),
                     Credential = MongoCredential.CreateCredential(
-                        (String)Configuration.GetSection("MongoDB_database").Get(typeof(String)),
-                        (String)Configuration.GetSection("MongoDB_user").Get(typeof(String)),
-                        (String)Configuration.GetSection("MongoDB_pass").Get(typeof(String)))
+                            (String)Configuration.GetSection("MongoDB_database").Get(typeof(String)),
+                            (String)Configuration.GetSection("MongoDB_user").Get(typeof(String)),
+                            (String)Configuration.GetSection("MongoDB_pass").Get(typeof(String)))
                 }, "Questionnaire-Result"
             );
         }
