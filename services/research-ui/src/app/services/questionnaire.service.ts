@@ -23,18 +23,18 @@ export class QuestionnaireService {
 
   removeQuestionnaire(id: number) {
     // TODO use actual API endpoint
-    const index = questionnaires.findIndex(questionnaire => questionnaire.id === id);
+    const index = questionnaires.findIndex((questionnaire) => questionnaire.id === id);
     questionnaires.splice(index, 1);
   }
 
   renameQuestionnaire(id: number, name: string) {
     // TODO use actual API endpoint
-    const index = questionnaires.findIndex(questionnaire => questionnaire.id === id);
+    const index = questionnaires.findIndex((questionnaire) => questionnaire.id === id);
     questionnaires[index].name = name;
   }
 
   duplicateQuestionnaire(id: number) {
-    const index = questionnaires.findIndex(questionnaire => questionnaire.id === id);
+    const index = questionnaires.findIndex((questionnaire) => questionnaire.id === id);
 
     const dupQuestionnaire = { ...questionnaires[index] };
     dupQuestionnaire.id = questionnaires[questionnaires.length - 1].id + 1;
