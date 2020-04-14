@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TextQuestionComponent } from './text-question.component';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { NbLayoutDirectionService, NbThemeModule, NbToggleModule } from '@nebular/theme';
+import { NbLayoutDirectionService, NbToggleModule } from '@nebular/theme';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('TextQuestionComponent', () => {
@@ -24,7 +24,13 @@ describe('TextQuestionComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should have the correct form fields', () => {
+    expect(component.f.multiLine).toBeTruthy();
+    expect(component.f.placeholder).toBeTruthy();
+  });
+
+  it('should have the correct default values', () => {
+    expect(component.f.multiLine.value).toBeFalsy();
+    expect(component.f.placeholder.value).toEqual('');
   });
 });

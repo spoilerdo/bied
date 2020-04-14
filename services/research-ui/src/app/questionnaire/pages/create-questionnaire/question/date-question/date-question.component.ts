@@ -22,7 +22,7 @@ export class DateQuestionComponent implements OnInit {
     this.questionDataForm.setValidators(this.dateLessThan('min', 'max'));
   }
 
-  private dateLessThan(from: string, to: string) {
+  dateLessThan(from: string, to: string) {
     return (group: FormGroup): { [key: string]: any } => {
       const f = group.controls[from];
       const t = group.controls[to];

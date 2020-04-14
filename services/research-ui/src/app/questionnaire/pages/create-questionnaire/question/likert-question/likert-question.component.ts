@@ -21,7 +21,12 @@ export class LikertQuestionComponent implements OnInit {
   }
 
   removeRow(index: number): void {
-    this.rows.removeAt(index);
+    const rowsLength = this.rows.length;
+    if (rowsLength - 1 >= index) {
+      this.rows.removeAt(index);
+    } else {
+      throw new Error('Index out of bounds');
+    }
   }
 
   addColumn(): void {
@@ -29,7 +34,12 @@ export class LikertQuestionComponent implements OnInit {
   }
 
   removeColumn(index: number): void {
-    this.columns.removeAt(index);
+    const columnsLength = this.columns.length;
+    if (columnsLength - 1 >= index) {
+      this.columns.removeAt(index);
+    } else {
+      throw new Error('Index out of bounds');
+    }
   }
 
   get f() {

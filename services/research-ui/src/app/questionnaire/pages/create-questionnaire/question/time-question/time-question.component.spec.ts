@@ -22,7 +22,15 @@ describe('TimeQuestionComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should have the correct form fields', () => {
+    expect(component.questionDataForm.controls.placeholder).toBeTruthy();
+    expect(component.questionDataForm.controls.min).toBeTruthy();
+    expect(component.questionDataForm.controls.max).toBeTruthy();
+  });
+
+  it('should have the correct default values', () => {
+    expect(component.questionDataForm.controls.placeholder.value).toEqual('Time');
+    expect(component.questionDataForm.controls.min.value).toBeNull();
+    expect(component.questionDataForm.controls.max.value).toBeNull();
   });
 });
