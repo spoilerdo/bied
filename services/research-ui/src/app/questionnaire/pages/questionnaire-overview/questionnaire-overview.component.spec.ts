@@ -1,16 +1,14 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { QuestionnaireOverviewComponent } from './questionnaire-overview.component';
-import { NbCardModule } from '@nebular/theme';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { QuestionnaireService } from 'src/app/services/questionnaire.service';
+import { NbCardModule } from '@nebular/theme';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { of } from 'rxjs';
 import { Questionnaire } from 'src/app/models/questionnaire';
-import { questionnaires } from 'src/app/services/mock-questionnaires';
+import { QuestionnaireService } from 'src/app/services/questionnaire.service';
+import { QuestionnaireOverviewComponent } from './questionnaire-overview.component';
 
-fdescribe('QuestionnaireOverviewComponent', () => {
+describe('QuestionnaireOverviewComponent', () => {
   let component: QuestionnaireOverviewComponent;
   let fixture: ComponentFixture<QuestionnaireOverviewComponent>;
 
