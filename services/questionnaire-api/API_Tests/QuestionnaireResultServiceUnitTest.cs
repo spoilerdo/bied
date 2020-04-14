@@ -15,7 +15,7 @@ namespace API_Tests
 {
     public class QuestionnaireResultServiceUnitTest
     {
-        private readonly IQuestionnaireResultRepository _mockRepository = new MockQuestionnaireResultRepository();
+        private readonly Mock<IQuestionnaireResultRepository> _mockRepo = new Mock<IQuestionnaireResultRepository>();
         private readonly Mock<ServerCallContext> _mockContext = new Mock<ServerCallContext>();
         private readonly Mock<ILogger<QuestionnaireResultService>> _mockLogger = new Mock<ILogger<QuestionnaireResultService>>();
         private readonly Mock<IMapper> _mockMapper = new Mock<IMapper>();
@@ -23,7 +23,7 @@ namespace API_Tests
 
         public QuestionnaireResultServiceUnitTest()
         {
-            _questionnaireResultService = new QuestionnaireResultService(_mockLogger.Object, _mockMapper.Object, _mockRepository);
+            _questionnaireResultService = new QuestionnaireResultService(_mockLogger.Object, _mockMapper.Object, _mockRepo.Object);
         }
 
         [Fact]
