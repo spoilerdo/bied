@@ -30,6 +30,8 @@ namespace MockServer
             request.Headers.TryAddWithoutValidation("x-ms-consistency-level", "Session");
 
             var response = await base.SendAsync(request, cancellationToken);
+            //fix for bad GRPC version with new GRPC.aspnetcore version (https://github.com/grpc/grpc-dotnet/issues/648 / https://github.com/grpc/grpc-dotnet/pull/649/files)
+            response.Version = request.Version;
 
             if (response.Headers.TryGetValues("x-ms-session-token", out var tokens))
             {
