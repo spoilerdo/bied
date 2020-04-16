@@ -8,8 +8,9 @@
     New name:
     <div>
       <input fullWidth nbInput [(ngModel)]="newTitle" />
-      <button nbButton status="basic" (click)="close()">Cancel</button>
+      <button nbButton status="basic" id="rename-dialog-cancel" (click)="close()">Cancel</button>
       <button
+        id="rename-dialog-rename"
         nbButton
         status="success"
         (click)="rename()"
