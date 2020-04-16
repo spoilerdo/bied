@@ -9,6 +9,7 @@ import {
   NbIconModule,
   NbActionsModule,
   NbContextMenuModule,
+  NbCardComponent,
 } from '@nebular/theme';
 import { TruncatePipe } from 'src/app/questionnaire/utils/TruncatePipe';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
@@ -17,7 +18,7 @@ import { By } from '@angular/platform-browser';
 describe('QuestionnaireCardComponent', () => {
   let component: QuestionnaireCardComponent;
   let fixture: ComponentFixture<QuestionnaireCardComponent>;
-  let mockDialogService = {
+  const mockDialogService = {
     open: () => {},
   };
 
@@ -51,27 +52,59 @@ describe('QuestionnaireCardComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should call openRenameDialog', () => {
-    spyOn(component, 'openRenameDialog');
-    fixture.debugElement.query(By.css('#questionnaire-card-rename')).triggerEventHandler('click', null);
-    expect(component.openRenameDialog).toHaveBeenCalled();
+  describe('card actions', () => {
+    it('should call openRenameDialog', () => {
+      spyOn(component, 'openRenameDialog');
+      fixture.debugElement.query(By.css('#questionnaire-card-rename')).triggerEventHandler('click', null);
+      expect(component.openRenameDialog).toHaveBeenCalled();
+    });
+
+    it('should call openRemoveConfirmation', () => {
+      spyOn(component, 'openRemoveConfirmation');
+      fixture.debugElement.query(By.css('#questionnaire-card-remove')).triggerEventHandler('click', null);
+      expect(component.openRemoveConfirmation).toHaveBeenCalled();
+    });
+
+    it('should call duplicateQuestionnaire', () => {
+      spyOn(component, 'duplicateQuestionnaire');
+      fixture.debugElement.query(By.css('#questionnaire-card-copy')).triggerEventHandler('click', null);
+      expect(component.duplicateQuestionnaire).toHaveBeenCalled();
+    });
   });
 
-  it('should call openRemoveConfirmation', () => {
-    spyOn(component, 'openRemoveConfirmation');
-    fixture.debugElement.query(By.css('#questionnaire-card-remove')).triggerEventHandler('click', null);
-    expect(component.openRemoveConfirmation).toHaveBeenCalled();
+  describe('card popup', () => {
+    it('should call', () => {
+      spyOn(component, 'openCardPopup');
+      fixture.debugElement.query(By.css('#questionnaire-card-open')).triggerEventHandler('click', null);
+      expect(component.openCardPopup).toHaveBeenCalled();
+    });
   });
 
-  it('should call duplicateQuestionnaire', () => {
-    spyOn(component, 'duplicateQuestionnaire');
-    fixture.debugElement.query(By.css('#questionnaire-card-copy')).triggerEventHandler('click', null);
-    expect(component.duplicateQuestionnaire).toHaveBeenCalled();
-  });
+  describe('popup', () => {
+    it('should not have class "popup"', () => {
+      const card = fixture.debugElement.query(By.css('.questionnaire-card'));
+      // tslint:disable-next-line: no-string-literal
+      expect(card.classes['popup']).toBeFalsy();
+    });
 
-  it('should call openCardpopup', () => {
-    spyOn(component, 'openCardPopup');
-    fixture.debugElement.query(By.css('#questionnaire-card-open')).triggerEventHandler('click', null);
-    expect(component.openCardPopup).toHaveBeenCalled();
+    it('should have class "popup"', () => {
+      component.popup = true;
+      fixture.detectChanges();
+      const card = fixture.debugElement.query(By.css('.questionnaire-card'));
+      // tslint:disable-next-line: no-string-literal
+      expect(card.classes['popup']).toBeTruthy();
+    });
+
+    it('description should be truncated', () => {
+      const cardBody = fixture.debugElement.query(By.css('.questionnaire-card')).query(By.css('nb-card-body'));
+      expect(cardBody.properties.innerText).toContain('...');
+    });
+
+    it('description should not be truncated', () => {
+      component.popup = true;
+      fixture.detectChanges();
+      const cardBody = fixture.debugElement.query(By.css('.questionnaire-card')).query(By.css('nb-card-body'));
+      expect(cardBody.properties.innerText).not.toContain('...');
+    });
   });
 });
