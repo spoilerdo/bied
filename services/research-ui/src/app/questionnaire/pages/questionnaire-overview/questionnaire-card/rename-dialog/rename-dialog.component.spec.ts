@@ -70,5 +70,12 @@ describe('RenameDialogComponent', () => {
       fixture.detectChanges();
       expect(fixture.debugElement.nativeElement.querySelector('#rename-dialog-rename').disabled).toBeTruthy();
     });
+
+    it('should be enabled', () => {
+      component.oldTitle = 'test';
+      component.newTitle = 'newname';
+      fixture.detectChanges();
+      expect(fixture.debugElement.nativeElement.querySelector('#rename-dialog-rename').disabled).toBeFalsy();
+    });
   });
 });
