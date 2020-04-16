@@ -15,7 +15,7 @@ serviceAccount:
 livenessProbe:
   httpGet:
     path: /api/health
-    port: kafka-manager
+    port: http
   initialDelaySeconds: 60
   timeoutSeconds: 30
   failureThreshold: 10
@@ -23,7 +23,7 @@ livenessProbe:
 readinessProbe:
   httpGet:
     path: /api/health
-    port: kafka-manager
+    port: http
 
 ## Specs for the Kafka-manager image
 ##
@@ -43,49 +43,46 @@ zkHosts: "zoo1:2181"
 clusters:
   ## Name of your cluster
   # - name: "default"
-
-    ## Cluster zookeeper hosts. It will default to the
-    ## Kafka-manager zookeeper hosts if not specified
-    ##
-    # zkHosts: ""
-
-    ## The following parameters can be configured for your cluster.
-    ## See '_helpers.tpl' for the default values. Supported values for kafkaVersion: 0.8.1.1, 0.8.2.0, 0.8.2.1, 0.8.2.2, 0.9.0.0, 0.9.0.1, 0.10.0.0, 0.10.0.1, 0.10.1.0, 0.10.1.1, 0.10.2.0, 0.10.2.1, 0.11.0.0, 0.11.0.2, 1.0.0, 1.0.1, 1.1.0, 1.1.1, 2.0.0. Default: 2.0.0
-    ##
-    # kafkaVersion: ""
-    # jmxEnabled: ""
-    # jmxUser: ""
-    # jmxPass: ""
-    # jmxSsl: ""
-    # logkafkaEnabled: ""
-    # pollConsumers: ""
-    # filterConsumers: ""
-    # activeOffsetCacheEnabled: ""
-    # displaySizeEnabled: ""
-    # securityProtocol: ""
-
-    ## Additional cluster tunning. It is mandatory that this value exists,
-    ## even if it's empty '{}'.
-    ##
-    # tuning: {}
-      # brokerViewUpdatePeriodSeconds:
-      # clusterManagerThreadPoolSize:
-      # clusterManagerThreadPoolQueueSize:
-      # kafkaCommandThreadPoolSize:
-      # kafkaCommandThreadPoolQueueSize:
-      # logkafkaCommandThreadPoolSize:
-      # logkafkaCommandThreadPoolQueueSize:
-      # logkafkaUpdatePeriodSeconds:
-      # partitionOffsetCacheTimeoutSecs:
-      # brokerViewThreadPoolSize:
-      # brokerViewThreadPoolQueueSize:
-      # offsetCacheThreadPoolSize:
-      # offsetCacheThreadPoolQueueSize:
-      # kafkaAdminClientThreadPoolSize:
-      # kafkaAdminClientThreadPoolQueueSize:
-      # kafkaManagedOffsetMetadataCheckMillis:
-      # kafkaManagedOffsetGroupCacheSize:
-      # kafkaManagedOffsetGroupExpireDays:
+  ## Cluster zookeeper hosts. It will default to the
+  ## Kafka-manager zookeeper hosts if not specified
+  ##
+  # zkHosts: ""
+  ## The following parameters can be configured for your cluster.
+  ## See '_helpers.tpl' for the default values. Supported values for kafkaVersion: 0.8.1.1, 0.8.2.0, 0.8.2.1, 0.8.2.2, 0.9.0.0, 0.9.0.1, 0.10.0.0, 0.10.0.1, 0.10.1.0, 0.10.1.1, 0.10.2.0, 0.10.2.1, 0.11.0.0, 0.11.0.2, 1.0.0, 1.0.1, 1.1.0, 1.1.1, 2.0.0. Default: 2.0.0
+  ##
+  # kafkaVersion: ""
+  # jmxEnabled: ""
+  # jmxUser: ""
+  # jmxPass: ""
+  # jmxSsl: ""
+  # logkafkaEnabled: ""
+  # pollConsumers: ""
+  # filterConsumers: ""
+  # activeOffsetCacheEnabled: ""
+  # displaySizeEnabled: ""
+  # securityProtocol: ""
+  ## Additional cluster tunning. It is mandatory that this value exists,
+  ## even if it's empty '{}'.
+  ##
+  # tuning: {}
+  # brokerViewUpdatePeriodSeconds:
+  # clusterManagerThreadPoolSize:
+  # clusterManagerThreadPoolQueueSize:
+  # kafkaCommandThreadPoolSize:
+  # kafkaCommandThreadPoolQueueSize:
+  # logkafkaCommandThreadPoolSize:
+  # logkafkaCommandThreadPoolQueueSize:
+  # logkafkaUpdatePeriodSeconds:
+  # partitionOffsetCacheTimeoutSecs:
+  # brokerViewThreadPoolSize:
+  # brokerViewThreadPoolQueueSize:
+  # offsetCacheThreadPoolSize:
+  # offsetCacheThreadPoolQueueSize:
+  # kafkaAdminClientThreadPoolSize:
+  # kafkaAdminClientThreadPoolQueueSize:
+  # kafkaManagedOffsetMetadataCheckMillis:
+  # kafkaManagedOffsetGroupCacheSize:
+  # kafkaManagedOffsetGroupExpireDays:
 
 ## Application secret. Defaults to a random 10-character alphanumeric string
 ##
@@ -129,14 +126,16 @@ service:
 ## Ref: https://kubernetes.io/docs/concepts/services-networking/ingress/
 ##
 ingress:
-  enabled: true
-  annotations: {}
+  enabled: false
+  annotations:
+    {}
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   path: /
-  hosts: 
-    - "''"
-  tls: []
+  hosts:
+    - "*"
+  tls:
+    []
     # - secretName: kafka-manager-tls
     #   hosts:
     #     - kafka-manager.local
@@ -149,7 +148,7 @@ limits:
   cpu: 100m
   memory: 128Mi
 requests:
-  cpu: 100m
+  cpu: 10m
   memory: 128Mi
 
 ## Node labels for pod assignment

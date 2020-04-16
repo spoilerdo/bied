@@ -27,7 +27,7 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
-            - name: kafka-manager
+            - name: http
               containerPort: 9000
               protocol: TCP
           env:

@@ -16,9 +16,9 @@ metadata:
 spec:
   type: {{ .Values.service.type }}
   ports:
-    - name: kafka-manager
+    - name: http
       port: {{ .Values.service.port }}
-      targetPort: kafka-manager
+      targetPort: http
       protocol: TCP
   selector:
     app: {{ template "kafka-manager.name" . }}

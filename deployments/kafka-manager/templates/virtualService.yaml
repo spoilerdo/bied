@@ -5,7 +5,7 @@ metadata:
   namespace: kafka
 spec:
   selector:
-    istio: ingressgateway # This is the default ingress-gateway
+    app: istio-ingressgateway # This is the default ingress-gateway
   servers:
     - port:
         number: 80
@@ -32,3 +32,5 @@ spec:
         # routes it toward this host. Usually a Kubernetes native 'Service', this should be a FQDN in production
         - destination:
             host: kafka-manager
+            port:
+              number: 9000
