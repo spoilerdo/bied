@@ -1,0 +1,14 @@
+syntax = "proto3";
+option csharp_namespace = "HealthCheck.GRPC";
+
+
+service HealthCheck_Service {
+	rpc HealthCheck (HealthCheckRequest) returns (HealthCheckResponse);
+}
+
+message HealthCheckResponse {
+    bool healthy = 1; 
+}
+
+message HealthCheckRequest {
+}

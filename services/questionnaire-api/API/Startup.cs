@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Questionnaire.Services;
 using Questionnaire.Persistence.Repositories;
+using HealthCheck.Services;
 using MongoDB.Entities;
 using MongoDB.Driver;
 
@@ -60,6 +61,7 @@ namespace Questionnaire
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapGrpcService<QuestionnaireService>();
+                endpoints.MapGrpcService<HealthCheckService>();
 
                 endpoints.MapGet("/", async context =>
                 {
