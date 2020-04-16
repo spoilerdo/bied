@@ -1,0 +1,44 @@
+# #
+# # Gateway;  This resource configures the ingress-gateway telling it what traffic is allowed
+# #           and how it should be handled. In contrast to Kubernetes Ingress which routes traffic at L7, the Gateway ingress
+# #           works at L4-L6 and Virtual Services are used for routing.
+# #
+# # See:      https://istio.io/docs/concepts/traffic-management/#gateway-example
+# #
+# apiVersion: networking.istio.io/v1alpha3
+# kind: Gateway
+# metadata:
+#   name: http-gateway
+# spec:
+#   selector:
+#     istio: ingressgateway # This is the default ingress-gateway
+#   servers:
+#     - port:
+#         number: 80
+#         name: http
+#         protocol: http
+#       hosts:
+#         - "*"
+# ---
+# #
+# # VirtualService; This determines how requests are routed.
+# #
+# # See:            https://istio.io/docs/concepts/traffic-management/#virtual-service-example
+# #
+# apiVersion: networking.istio.io/v1alpha3
+# kind: VirtualService
+# metadata:
+#   name: echo-server
+# spec:
+#   gateways:
+#     - http-gateway
+#   hosts:
+#     - "*" # What inbound Host should be routed. (eg. 'research.bied.nl')
+#   http:
+#     - match:
+#         - uri:
+#             prefix: /
+#       route:
+#         # routes it toward this host. Usually a Kubernetes native 'Service', this should be a FQDN in production
+#         - destination:
+#             host: echo-server-v1
