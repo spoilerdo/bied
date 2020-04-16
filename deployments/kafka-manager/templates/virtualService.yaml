@@ -1,0 +1,33 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: http-gateway
+spec:
+  selector:
+    istio: ingressgateway # This is the default ingress-gateway
+  servers:
+    - port:
+        number: 80
+        name: http
+        protocol: http
+      hosts:
+        - "*"
+---
+
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: echo-server
+spec:
+  gateways:
+    - http-gateway
+  hosts:
+    - "*" # What inbound Host should be routed. (eg. 'research.bied.nl')
+  http:
+    - match:
+        - uri:
+            prefix: /kafka-manager
+      route:
+        # routes it toward this host. Usually a Kubernetes native 'Service', this should be a FQDN in production
+        - destination:
+            host: kafka-manager
