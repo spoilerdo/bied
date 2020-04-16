@@ -4,8 +4,8 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { NbCardModule } from '@nebular/theme';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { of } from 'rxjs';
+import { MockQuestionnaireService } from 'src/app/mocks/mock-questionnaire.service';
 import { Questionnaire } from 'src/app/models/questionnaire';
-import { QuestionnaireService } from 'src/app/services/questionnaire.service';
 import { QuestionnaireOverviewComponent } from './questionnaire-overview.component';
 
 describe('QuestionnaireOverviewComponent', () => {
@@ -25,7 +25,7 @@ describe('QuestionnaireOverviewComponent', () => {
         NgxPaginationModule,
       ],
       providers: [
-        QuestionnaireService,
+        MockQuestionnaireService,
         {
           provide: ActivatedRoute,
           useValue: mockActivatedRoute,
