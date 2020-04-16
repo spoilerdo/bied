@@ -1,9 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { RenameDialogComponent } from './rename-dialog.component';
-import { NbDialogRef, NbCardModule, NbInputModule, NbThemeModule } from '@nebular/theme';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
+import { NbCardModule, NbDialogRef, NbInputModule, NbThemeModule } from '@nebular/theme';
+import { RenameDialogComponent } from './rename-dialog.component';
 
 describe('RenameDialogComponent', () => {
   let component: RenameDialogComponent;

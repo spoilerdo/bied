@@ -53,14 +53,16 @@ describe('QuestionnaireOverviewComponent', () => {
     });
   });
 
-  it('GetPage should get the new questionnaires', (done) => {
-    component.getPage(1);
-    fixture.detectChanges();
-    fixture.whenStable().then(() => {
-      expect(component.page).toEqual(1);
-      expect(component.questionnaires.subscribe((questionnaires) => questionnaires.length === 20));
-      expect(component.questionnaires.subscribe((questionnaires) => questionnaires[0].id === 1));
-      done();
+  describe('getPage', () => {
+    it('should get the new questionnaires', (done) => {
+      component.getPage(1);
+      fixture.detectChanges();
+      fixture.whenStable().then(() => {
+        expect(component.page).toEqual(1);
+        expect(component.questionnaires.subscribe((questionnaires) => questionnaires.length === 20));
+        expect(component.questionnaires.subscribe((questionnaires) => questionnaires[0].id === 1));
+        done();
+      });
     });
   });
 

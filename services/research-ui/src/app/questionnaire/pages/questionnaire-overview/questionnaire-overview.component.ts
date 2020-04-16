@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Questionnaire } from 'src/app/models/questionnaire';
-import { QuestionnaireService } from 'src/app/services/questionnaire.service';
 import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
-import { PaginationInstance } from 'ngx-pagination';
+import { Questionnaire } from 'src/app/models/questionnaire';
+import { QuestionnaireService } from 'src/app/services/questionnaire.service';
 
 @Component({
   selector: 'app-questionnaire-overview',

@@ -1,9 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { RemoveDialogComponent } from './remove-dialog.component';
-import { NbDialogRef, NbCardModule } from '@nebular/theme';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
+import { NbCardModule, NbDialogRef } from '@nebular/theme';
+import { RemoveDialogComponent } from './remove-dialog.component';
 
 describe('RemoveDialogComponent', () => {
   let component: RemoveDialogComponent;

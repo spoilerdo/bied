@@ -1,8 +1,7 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
-import { Questionnaire } from 'src/app/models/questionnaire';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NbDialogService, NbMenuService } from '@nebular/theme';
+import { Questionnaire } from 'src/app/models/questionnaire';
 import { RemoveDialogComponent } from './remove-dialog/remove-dialog.component';
-import { EventEmitter } from '@angular/core';
 import { RenameDialogComponent } from './rename-dialog/rename-dialog.component';
 
 @Component({

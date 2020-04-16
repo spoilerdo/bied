@@ -1,19 +1,17 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { QuestionnaireCardComponent } from './questionnaire-card.component';
+import { By } from '@angular/platform-browser';
+import { NbEvaIconsModule } from '@nebular/eva-icons';
 import {
+  NbActionsModule,
+  NbCardModule,
+  NbContextMenuModule,
   NbDialogService,
+  NbIconModule,
   NbMenuService,
   NbThemeModule,
-  NbCardModule,
-  NbIconModule,
-  NbActionsModule,
-  NbContextMenuModule,
-  NbCardComponent,
 } from '@nebular/theme';
 import { TruncatePipe } from 'src/app/questionnaire/utils/TruncatePipe';
-import { NbEvaIconsModule } from '@nebular/eva-icons';
-import { By } from '@angular/platform-browser';
+import { QuestionnaireCardComponent } from './questionnaire-card.component';
 
 describe('QuestionnaireCardComponent', () => {
   let component: QuestionnaireCardComponent;
