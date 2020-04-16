@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { Questionnaire, QuestionnairesResponse } from '../models/questionnaire';
-import { questionnaires } from '../models/mock-questionnaires';
+import { QuestionnairesResponse } from '../models/questionnaire';
+import { questionnaires } from '../mocks/mock-questionnaires';
 
 @Injectable({
   providedIn: 'root',
