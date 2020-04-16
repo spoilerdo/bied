@@ -1,4 +1,4 @@
-import { Questionnaire } from '../models/questionnaire';
+import { Questionnaire } from './questionnaire';
 
 export const questionnaires: Questionnaire[] = [
   {
