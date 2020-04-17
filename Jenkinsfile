@@ -60,7 +60,7 @@ class PackageManager {
         String xml = file.getText();
         int vbegin = xml.indexOf("Version")+"Version>".length();
         int count = 5;
-        xml = xml.replace("1.0.0", version);
+        xml = xml.replace("1.0.1", version);
         def w = file.newWriter();
         w << xml;
         w.close()
@@ -77,7 +77,7 @@ class PackageManager {
             def current = getLiveVersion();
             def newVersion = incrementVersion(current);
             createPackage(newVersion);
-             //pushPackage();
+             pushPackage(newVersion);
             println("Version updated from " + current + " to " + newVersion);
         } 
         else {
