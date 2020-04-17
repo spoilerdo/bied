@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Questionnaire } from 'src/app/models/questionnaire';
-import { QuestionnaireService } from 'src/app/services/questionnaire.service';
 import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
-import { PaginationInstance } from 'ngx-pagination';
+import { Questionnaire } from 'src/app/models/questionnaire';
+import { QuestionnaireService } from 'src/app/services/questionnaire.service';
 
 @Component({
   selector: 'app-questionnaire-overview',
@@ -28,19 +27,19 @@ export class QuestionnaireOverviewComponent implements OnInit {
   }
 
   getQueryParams() {
-    this.route.queryParamMap.subscribe(params => {
+    this.route.queryParamMap.subscribe((params) => {
       this.page = +params.get('page') || 1;
     });
   }
 
   getPage(page: number) {
     this.questionnaires = this.questionnaireService.getQuestionnaires(page, 20).pipe(
-      tap(res => {
+      tap((res) => {
         this.totalQuestionnaires = res.totalItems;
         this.page = page;
         this.router.navigate(['/questionnaire/overview'], { queryParams: { page } });
       }),
-      map(res => res.questionnaires),
+      map((res) => res.questionnaires),
     );
   }
 

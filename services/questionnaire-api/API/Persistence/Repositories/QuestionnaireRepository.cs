@@ -15,7 +15,7 @@ namespace Questionnaire.Persistence.Repositories
 
         public QuestionnaireRepository()
         {
-            this._db = DB.GetInstance("Questionnaire");
+            this._db = DB.GetInstance("Questionnaire-Result");
         }
 
         public async Task<QuestionnaireEntity> GetQuestionnaireById(String id)

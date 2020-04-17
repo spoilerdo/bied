@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { QuestionnairesResponse } from '../models/questionnaire';
-import { questionnaires } from '../mocks/mock-questionnaires';
+import { QuestionnaireService } from '../services/questionnaire.service';
+import { questionnaires } from './mock-questionnaires';
 
 @Injectable({
   providedIn: 'root',
 })
-export class QuestionnaireService {
+export class MockQuestionnaireService implements QuestionnaireService {
   constructor() {}
 
   getQuestionnaires(page: number = 1, pagesize: number = 20): Observable<QuestionnairesResponse> {
