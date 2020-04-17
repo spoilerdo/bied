@@ -18,7 +18,14 @@ class Service {
     }
 }
 
+def out = getBinding().out;
+
 class PackageManager {
+    
+    PackageManager(out){
+        out.println("package manager created")   
+    }
+    
     Boolean protobuffersChanged(){
         def diffResult = execute("git diff .\\libraries\\protobuffers\\protobuffers\\protobuffers\\protobuffers");
         Boolean needsUpdate = diffResult.toString().length() > 0;
@@ -26,15 +33,15 @@ class PackageManager {
     }
 
     String execute(String command){
-        def out = new ByteArrayOutputStream()
+        def outs = new ByteArrayOutputStream()
         def err = new ByteArrayOutputStream()
         def proc = command.execute()
         proc.consumeProcessOutput(out, err)
         proc.waitFor()
         //if(err.toString().length() > 0){
-            println "error stream was ${err}";
+            out.println "error stream was ${err}";
         //}
-        return out;
+        return outs;
     }
 
     def getLiveVersion(){
@@ -146,7 +153,7 @@ node {
                 buildStatus.setBuildStatus('Building', 'PENDING')
 
                // if (env.BRANCH_NAME=='develop'){
-                    PackageManager packagemanager = new PackageManager();
+                    PackageManager packagemanager = new PackageManager(out);
                     packagemanager.updatePackageIfNeeded();
                // }
 
