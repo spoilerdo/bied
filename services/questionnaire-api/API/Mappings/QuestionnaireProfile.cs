@@ -16,11 +16,11 @@ namespace Questionnaire.Mappings
         public QuestionnaireProfile()
         {
             CreateMap<QuestionnaireEntity, QuestionnaireResponse>()
-                .ForMember(dest => dest.Question, opt => opt.MapFrom(src => src.Questions));
+                .ForMember(dest => dest.Question, opt => opt.MapFrom(src => src.Question));
             CreateMap<QuestionnaireCreateRequest, QuestionnaireEntity>()
-                .ForMember(dest => dest.Questions, opt => opt.MapFrom(src => src.Question));
+                .ForMember(dest => dest.Question, opt => opt.MapFrom(src => src.Question));
             CreateMap<QuestionnaireEditRequest, QuestionnaireEntity>()
-                .ForMember(dest => dest.Questions, opt => opt.MapFrom(src => src.Question));
+                .ForMember(dest => dest.Question, opt => opt.MapFrom(src => src.Question));
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using System.Security;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,16 +6,13 @@ using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using Grpc.AspNetCore.FluentValidation;
-using Questionnaire.GRPC;
-using MongoDB.Driver;
-using MongoDB.Entities;
-using Questionnaire.Persistence.Repositories;
 using Questionnaire.Services;
-using API.Validators;
+using Questionnaire.Persistence.Repositories;
+using MongoDB.Entities;
+using MongoDB.Driver;
 
 namespace Questionnaire
 {
@@ -29,27 +25,23 @@ namespace Questionnaire
         }
 
         public IConfiguration Configuration { get; }
-        private IWebHostEnvironment CurrentEnvironment { get; set; }
+        private IWebHostEnvironment CurrentEnvironment{ get; set; } 
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddGrpc(options => options.EnableMessageValidation());
-            services.AddValidator<QuestionnaireIdRequestValidator>();
-            services.AddGrpcValidation();
-            services.AddSingleton<IValidatorErrorMessageHandler>(new CustomErrorMessageHandler());
-
+            services.AddGrpc();
             services.AddAutoMapper(typeof(Startup));
             services.AddScoped<IQuestionnaireRepository, QuestionnaireRepository>();
+
             services.AddMongoDBEntities(
-                new MongoClientSettings()
-                {
+                new MongoClientSettings() {
                     Server = new MongoServerAddress(
-                            (String)Configuration.GetSection("MongoDB_host").Get(typeof(String)),
-                            (int)Configuration.GetSection("MongoDB_port").Get(typeof(int))),
+                        (String)Configuration.GetSection("MongoDB_host").Get(typeof(String)),
+                        (int)Configuration.GetSection("MongoDB_port").Get(typeof(int))),
                     Credential = MongoCredential.CreateCredential(
-                            (String)Configuration.GetSection("MongoDB_database").Get(typeof(String)),
-                            (String)Configuration.GetSection("MongoDB_user").Get(typeof(String)),
-                            (String)Configuration.GetSection("MongoDB_pass").Get(typeof(String)))
+                        (String)Configuration.GetSection("MongoDB_database").Get(typeof(String)), 
+                        (String)Configuration.GetSection("MongoDB_user").Get(typeof(String)), 
+                        (String)Configuration.GetSection("MongoDB_pass").Get(typeof(String)))
                 }, "Questionnaire-Result"
             );
         }
@@ -67,7 +59,6 @@ namespace Questionnaire
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapGrpcService<QuestionnaireService>();
-                endpoints.MapGrpcService<QuestionnaireResultService>();
 
                 endpoints.MapGet("/", async context =>
                 {

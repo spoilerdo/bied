@@ -36,7 +36,7 @@ namespace Questionnaire.Persistence.Repositories
             QuestionnaireEntity e = await _db.Find<QuestionnaireEntity>().OneAsync(questionnaire.ID);
             e.Name = questionnaire.Name;
             e.Description = questionnaire.Description;
-            e.Questions = questionnaire.Questions;
+            e.Question = questionnaire.Question;
             await e.SaveAsync();
             return e;
         }
