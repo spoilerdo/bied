@@ -145,10 +145,15 @@ node {
 
                 buildStatus.setBuildStatus('Building', 'PENDING')
 
+               // if (env.BRANCH_NAME=='develop'){
+                    PackageManager packagemanager = new PackageManager();
+                    packagemanager.updatePackageIfNeeded();
+               // }
+
                 /*
                  * Build all services of a kip project in the production environment
                  */
-                sh 'kip build -e prod'
+               // sh 'kip build -e prod'
             }
             stage('Run tests') {
                 def buildStatus = load 'ci/scripts/groovy/buildStatus.groovy'
@@ -199,13 +204,7 @@ node {
             /*
              * Set the final status of the build
              */
-            if(currentBuild.currentResult == 'SUCCESS') { 
-
-                 if (env.BRANCH_NAME=='develop'){
-                     PackageManager packagemanager = new PackageManager();
-                     packagemanager.updatePackageIfNeeded();
-                 }
-                
+            if(currentBuild.currentResult == 'SUCCESS') {                 
                 buildStatus.setBuildStatus('success', 'SUCCESS')
                 discordSend description: "Branch: $BRANCH_NAME", footer: "✅ Job has succeeded", link: env.BUILD_URL, result: currentBuild.currentResult, title: "Finished build: #$BUILD_NUMBER", webhookURL: DISCORD_WEBHOOK_URL, thumbnail: "https://townsquare.media/site/695/files/2015/11/bob-the-builder.jpg?w=980&q=75"
             } else if(currentBuild.currentResult == 'ABORTED' || currentBuild.currentResult == 'FAILURE' || currentBuild.currentResult == 'UNSTABLE') {
