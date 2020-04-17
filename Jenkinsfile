@@ -73,12 +73,12 @@ class PackageManager {
 
     def updatePackageIfNeeded(){
         if(protobuffersChanged()){
-            println("update needed");
+            out.println("update needed");
             def current = getLiveVersion();
             def newVersion = incrementVersion(current);
             createPackage(newVersion);
              pushPackage(newVersion);
-            println("Version updated from " + current + " to " + newVersion);
+            out.println("Version updated from " + current + " to " + newVersion);
         } 
         else {
             println("no protobuffer differences found package will not be updated");
