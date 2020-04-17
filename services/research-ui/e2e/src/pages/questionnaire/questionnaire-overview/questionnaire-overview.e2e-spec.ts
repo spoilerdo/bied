@@ -100,7 +100,7 @@ describe('Create questionnaire overview page', () => {
       it('should remove the questionnaire on remove questionnaire click', async () => {
         await dialogRemoveButton.click();
         expect(removeDialog.isPresent()).toBeFalsy();
-        const cardTitle = cards.first().element(by.className('questionnaire-card-header'));
+        const cardTitle = card.element(by.className('questionnaire-card-header'));
         expect(cardTitle.getText()).toContain('consequat dui');
       });
     });
