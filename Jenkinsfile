@@ -39,7 +39,7 @@ class PackageManager {
         proc.consumeProcessOutput(out, err)
         proc.waitFor()
         //if(err.toString().length() > 0){
-            out.println "error stream was ${err}";
+            out.println("error stream was ${err}");
         //}
         return outs;
     }
