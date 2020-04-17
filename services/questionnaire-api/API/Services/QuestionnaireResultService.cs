@@ -26,9 +26,16 @@ namespace Questionnaire.Services
 
         public async override Task<QuestionnaireResults> GetQuestionnaireResult(getQuestionnaireResultRequest request, ServerCallContext context)
         {
-            //TODO: Error handeling
-            var reponse = await _repository.GetQuestionnaireById(request.Id);
-            return _mapper.Map<QuestionnaireResults>(reponse);
+            QuestionnaireResponseEntity response;
+            try
+            {
+                response = await _repository.GetQuestionnaireById(request.Id);
+            }
+            catch (Exception e)
+            {
+                throw new RpcException(new Status(StatusCode.Internal, e.Message));
+            }
+            return _mapper.Map<QuestionnaireResults>(response);
         }
     }
 }
