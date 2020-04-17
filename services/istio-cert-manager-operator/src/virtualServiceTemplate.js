@@ -7,7 +7,7 @@ module.exports = `
     "namespace": "{{ namespace }}"
   },
   "spec": {
-    "gateways": ["ingressgateway"],
+    "gateways": ["{{ gatewayName }}"],
     "hosts": ["{{ domain }}"],
     "http": [
       {

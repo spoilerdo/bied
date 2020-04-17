@@ -1,7 +1,7 @@
 const kube = require("./kube");
 const handlebars = require("handlebars");
 const vsTemplate = handlebars.compile(require("./virtualServiceTemplate"));
-
+const gTemplate = handlebars.compile(require("./gatewayTemplate"));
 const _m = {};
 
 /**
@@ -23,7 +23,7 @@ const generateVirtualServiceName = (serviceName) => {
 /**
  *
  */
-const deployVirtualService = async (token, namespace, serviceName, domain) => {
+const deployVirtualService = async (token, namespace, serviceName, domain, gatewayName) => {
   const virtualServiceName = generateVirtualServiceName(serviceName);
   const vsJSON = vsTemplate({
     virtualServiceName,
@@ -31,13 +31,41 @@ const deployVirtualService = async (token, namespace, serviceName, domain) => {
     namespace,
     serviceName,
     domain,
+    gatewayName
   });
   const vs = JSON.parse(vsJSON);
   const res = await kube.post(
-    `/apis/networking.istio.io/v1beta1/namespaces/${namespace}/virtualservices`,
-    vs
+      `/apis/networking.istio.io/v1beta1/namespaces/${namespace}/virtualservices`,
+      vs
   );
   console.log("Deployed virtual service");
+};
+
+/**
+ *
+ */
+const generateGatewayName = (serviceName) => {
+  return `bied-cm-gateway-${serviceName}`;
+};
+
+/**
+ * Deploying a gateway
+ */
+const deployGateway = async (token, namespace, serviceName, domain) => {
+  const gatewayName = generateGatewayName(serviceName);
+  const vsJSON = gTemplate({
+    gatewayName,
+    namespace,
+    serviceName,
+    domain,
+  });
+  const vs = JSON.parse(vsJSON);
+  const res = await kube.post(
+      `/apis/networking.istio.io/v1beta1/namespaces/${namespace}/gateways`,
+      vs
+  );
+  console.log("Deployed gateway");
+  return gatewayName;
 };
 
 /**
@@ -121,7 +149,8 @@ const searchCreatedService = (
 
   console.log("Found HTTP01 solver service, deploying virtual service...");
   const service = filtered[0];
-  await deployVirtualService(token, namespace, service.metadata.name, domain);
+  const gatewayName = await deployGateway(token, namespace, service.metadata.name, domain);
+  await deployVirtualService(token, namespace, service.metadata.name, domain, gatewayName);
 };
 
 // ===================================
