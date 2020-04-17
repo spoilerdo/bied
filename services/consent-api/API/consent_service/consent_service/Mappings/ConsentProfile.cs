@@ -12,9 +12,11 @@ namespace consent_service.Mapping
         public ConsentProfile()
         {
             CreateMap<ConsentEntity, Consent>()
-                .ForMember(dest => dest.Uts, opt => opt.MapFrom(src => DateTimeToUnixTime(src.Uts)));
-            CreateMap<ConsentRequest, Consent>()
-                .ForMember(dest => dest.Uts, opt => opt.MapFrom(src => UnixTimeToDateTime(src.Uts)));
+                .ForMember(dest => dest.Uts, opt => opt.MapFrom(src => DateTimeToUnixTime(src.Uts)));                
+            CreateMap<ConsentRequest, ConsentEntity>()
+                .ForMember(dest => dest.Uts, opt => opt.MapFrom(src => UnixTimeToDateTime(src.Uts)));    
+            CreateMap<ConsentEditRequest, ConsentEntity>()
+                .ForMember(dest => dest.Uts, opt => opt.MapFrom(src => UnixTimeToDateTime(src.Uts)));            
         }
 
         private DateTime UnixTimeToDateTime(long unixTime)
@@ -27,6 +29,6 @@ namespace consent_service.Mapping
         {
             long unixTime = ((DateTimeOffset)dateTime).ToUnixTimeSeconds();
             return unixTime;
-        }
+        }        
     }
 }

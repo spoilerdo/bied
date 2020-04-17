@@ -111,11 +111,19 @@ node {
                     }                     
                 }
             }
-            stage('Push images') {
-                echo 'Push images'
-            }
-            stage('Deploy') {
-                echo 'Deploy'
+            if (env.BRANCH_NAME=='develop'){
+                stage('Push images') {
+                    withCredentials([[$class: 'FileBinding', credentialsId: "s66-2-keyfile", variable: 'GOOGLE_APPLICATION_CREDENTIALS']]){
+                        sh 'gcloud auth activate-service-account --key-file=$GOOGLE_APPLICATION_CREDENTIALS'
+                    }
+
+                    sh 'gcloud auth configure-docker --project s66-2-271821'
+
+                    sh 'kip push -e prod'
+                }
+                stage('Deploy') {
+                    echo 'Deploy'
+                }
             }
         } finally {
             def buildStatus = load 'ci/scripts/groovy/buildStatus.groovy'
