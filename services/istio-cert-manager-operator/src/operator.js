@@ -53,16 +53,16 @@ const generateGatewayName = (serviceName) => {
  */
 const deployGateway = async (token, namespace, serviceName, domain) => {
   const gatewayName = generateGatewayName(serviceName);
-  const vsJSON = gTemplate({
+  const gJSON = gTemplate({
     gatewayName,
     namespace,
     serviceName,
     domain,
   });
-  const vs = JSON.parse(vsJSON);
+  const g = JSON.parse(gJSON);
   const res = await kube.post(
       `/apis/networking.istio.io/v1beta1/namespaces/${namespace}/gateways`,
-      vs
+      g
   );
   console.log("Deployed gateway");
   return gatewayName;
