@@ -21,7 +21,7 @@ class Service {
 class PackageManager {
     Boolean protobuffersChanged(){
         def diffResult = execute("git diff .\\libraries\\protobuffers\\protobuffers\\protobuffers\\protobuffers");
-        Boolean needsUpdate = diffResult.length() > 0;
+        Boolean needsUpdate = diffResult.toString().length() > 0;
         return needsUpdate;
     }
 
