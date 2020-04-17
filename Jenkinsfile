@@ -18,12 +18,13 @@ class Service {
     }
 }
 
-def out = getBinding().out;
 
 class PackageManager {
     
-    PackageManager(out){
-        out.println("package manager created")   
+    Script script;
+    
+    PackageManager(script){
+        script.echo("package manager created")   
     }
     
     Boolean protobuffersChanged(){
@@ -39,7 +40,7 @@ class PackageManager {
         proc.consumeProcessOutput(out, err)
         proc.waitFor()
         //if(err.toString().length() > 0){
-            out.println("error stream was ${err}");
+            script.echo("error stream was ${err}");
         //}
         return outs;
     }
@@ -84,11 +85,11 @@ class PackageManager {
             def current = getLiveVersion();
             def newVersion = incrementVersion(current);
             createPackage(newVersion);
-             pushPackage(newVersion);
-            out.println("Version updated from " + current + " to " + newVersion);
+            pushPackage(newVersion);
+            script.echo("Version updated from " + current + " to " + newVersion);
         } 
         else {
-            println("no protobuffer differences found package will not be updated");
+            script.echo("no protobuffer differences found package will not be updated");
         }
     }
 }
@@ -153,7 +154,7 @@ node {
                 buildStatus.setBuildStatus('Building', 'PENDING')
 
                // if (env.BRANCH_NAME=='develop'){
-                    PackageManager packagemanager = new PackageManager(out);
+                    PackageManager packagemanager = new PackageManager(script:this);
                     packagemanager.updatePackageIfNeeded();
                // }
 
