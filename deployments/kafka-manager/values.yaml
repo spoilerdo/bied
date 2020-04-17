@@ -91,7 +91,7 @@ applicationSecret: ""
 ## Basic Auth configuration
 ##
 basicAuth:
-  enabled: false
+  enabled: true
   username: "admin"
   ## Defaults to a random 10-character alphanumeric string if not set
   ##
