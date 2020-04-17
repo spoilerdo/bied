@@ -20,16 +20,6 @@ module.exports = `
                     "number": 80,
                     "protocol": "HTTP"
                 }
-            },
-            {
-                "hosts": [
-                    "host": "{{ domain }}",
-                ],
-                "port": {
-                    "name": "https",
-                    "number": 443,
-                    "protocol": "HTTPS"
-                }
             }
         ]
     }
