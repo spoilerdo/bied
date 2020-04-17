@@ -31,9 +31,9 @@ class PackageManager {
         def proc = command.execute()
         proc.consumeProcessOutput(out, err)
         proc.waitFor()
-        if(err.toString().length() > 0){
+        //if(err.toString().length() > 0){
             println "error stream was ${err}";
-        }
+        //}
         return out;
     }
 
