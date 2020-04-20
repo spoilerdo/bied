@@ -18,7 +18,6 @@ class Service {
     }
 }
 
-
 /*
  * All our services are defined here
  *
