@@ -6,6 +6,7 @@ enum ServiceType {
     DotNetCore
 }
 
+
 class Service {
     String name
     String path
