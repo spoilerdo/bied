@@ -32,7 +32,7 @@ class Service {
         proc.consumeProcessOutput(out, err)
         proc.waitFor()
         //if(err.toString().length() > 0){
-            script.echo("error stream was ${err}");
+            echo("error stream was ${err}");
         //}
         return outs;
     }
@@ -73,7 +73,7 @@ class Service {
 
     def updatePackageIfNeeded(){
         if(protobuffersChanged()){
-            out.println("update needed");
+            echo("update needed");
             def current = getLiveVersion();
             def newVersion = incrementVersion(current);
             createPackage(newVersion);
