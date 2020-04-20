@@ -169,8 +169,8 @@ node {
     }
 
     def getLiveVersion(){
-        //def get = new URL("http://nuget.kn01.fhict.nl/v3/search?id=Bied.Protobuffers").openConnection();
-        def get = new URL("http://info.cern.ch").openConnection();
+        def get = new URL("http://nuget.kn01.fhict.nl/v3/search?id=Bied.Protobuffers").openConnection();
+        //def get = new URL("http://info.cern.ch").openConnection();
         def getRC = get.getResponseCode();
         String text = get.getInputStream().getText();
         int start = text.indexOf("version");
