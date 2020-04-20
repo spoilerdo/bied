@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NbMenuItem } from '@nebular/theme';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'consent-ui';
+  items: NbMenuItem[] = [
+    {
+      title: 'Dashboard',
+      link: '/',
+      icon: 'home-outline'
+    },
+    {
+      title: 'Consents',
+      link: 'consents',
+      icon: 'file-text-outline'
+    }
+  ]
 }
