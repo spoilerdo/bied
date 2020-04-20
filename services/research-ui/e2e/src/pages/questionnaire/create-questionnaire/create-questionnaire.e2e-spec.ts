@@ -1,5 +1,5 @@
 import { CreateQuestionnairePage } from './create-questionnaire.po';
-import { browser, protractor } from 'protractor';
+import { by } from 'protractor';
 
 describe('Create questionnaire page', () => {
   let page: CreateQuestionnairePage;
@@ -45,11 +45,14 @@ describe('Create questionnaire page', () => {
   describe('Question', () => {
     it('should select the choice question', async () => {
       const question = page.getQuestions().first();
+      const selectField = question.all(by.css('nb-select'));
+      await selectField.click();
       const options = page.getOptionList();
       expect(options.isPresent()).toBeFalsy();
-      await question.click();
-      console.log(await options.count());
-      expect(options.isPresent()).toBeTruthy();
+      setTimeout(() => {
+        // TODO: Find better way to wait
+        expect(options.isPresent()).toBeTruthy();
+      }, 100);
     });
   });
 

@@ -25,10 +25,6 @@ export class CreateQuestionnairePage {
     return element.all(by.css('app-question'));
   }
 
-  getSelectField(): ElementFinder {
-    return element(by.css('nb-select'));
-  }
-
   getOptionList(): ElementArrayFinder {
     return element.all(by.css('nb-options'));
   }
