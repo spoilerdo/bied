@@ -1,0 +1,38 @@
+@import "../../../@theme/styles/themes";
+@include nb-install-component() {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+
+  p {
+    margin: 0;
+  }
+
+  .item-wrapper {
+    display: flex;
+    width: 100%;
+  }
+
+  .checkmark {
+    margin-right: 8px;
+  }
+
+  .information {
+    width: 95%;
+    display: flex;
+
+    .info-item {
+      width: 45%;
+    }
+
+    .description {
+      display: -webkit-box;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  .options {
+    margin-left: 8px;
+  }
+}
