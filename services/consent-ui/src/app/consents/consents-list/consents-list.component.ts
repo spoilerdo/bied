@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Consent } from '../models/consent';
-import { ConsentProvider } from '../consent.provider';
+import { ConsentProvider } from '../../providers/consent.provider';
 
 @Component({
   selector: 'app-consents-list',

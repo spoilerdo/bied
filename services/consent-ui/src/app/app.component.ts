@@ -17,6 +17,11 @@ export class AppComponent {
       title: 'Consents',
       link: 'consents',
       icon: 'file-text-outline'
+    },
+    {
+      title: 'Profile',
+      link: 'profile',
+      icon: 'person-outline'
     }
   ]
 }

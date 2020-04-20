@@ -5,10 +5,10 @@ import { NbCardModule, NbListModule, NbIconModule, NbTooltipComponent, NbTooltip
 import { ConsentsListComponent } from './consents-list/consents-list.component';
 import { ConsentsListItemComponent } from './consents-list/consents-list-item/consents-list-item.component';
 import { StatusIndicatorComponent } from './consents-list/consents-list-item/status-indicator/status-indicator.component';
-import { ConsentProvider } from './consent.provider';
-import { ConsentMockProvider } from './consent.provider.mock';
-import { DatasourceProvider } from './datasource.provider';
-import { DatasourceMockProvider } from './datasource.provider.mock';
+import { ConsentProvider } from '../providers/consent.provider';
+import { ConsentMockProvider } from '../providers/consent.provider.mock';
+import { DatasourceProvider } from '../providers/datasource.provider';
+import { DatasourceMockProvider } from '../providers/datasource.provider.mock';
 
 
 

@@ -1,8 +1,6 @@
 import { Injectable } from "@angular/core";
 import { ConsentProvider } from './consent.provider';
-import { Consent } from './models/consent';
-import { DatasourceProvider } from './datasource.provider';
-import { DatasourceMockProvider } from './datasource.provider.mock';
+import { Consent } from '../consents/models/consent';
 
 @Injectable()
 export class ConsentMockProvider extends ConsentProvider {  

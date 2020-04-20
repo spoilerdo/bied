@@ -1,4 +1,4 @@
-import { Datasource } from './models/datasource';
+import { Datasource } from '../consents/models/datasource';
 import { Injectable } from '@angular/core';
 
 @Injectable()

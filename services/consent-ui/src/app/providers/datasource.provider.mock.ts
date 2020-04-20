@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { DatasourceProvider } from './datasource.provider';
-import { Datasource } from './models/datasource';
+import { Datasource } from '../consents/models/datasource';
 
 @Injectable()
 export class DatasourceMockProvider extends DatasourceProvider {

@@ -9,6 +9,7 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { ThemeModule } from './@theme/theme.module';
 import { ConsentsModule } from './consents/consents.module';
+import { ProfileModule } from './profile/profile.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,6 +24,7 @@ import { ConsentsModule } from './consents/consents.module';
     NbMenuModule.forRoot(),
     DashboardModule,
     ConsentsModule,
+    ProfileModule
   ],
   providers: [],
   bootstrap: [AppComponent],
