@@ -8,11 +8,11 @@ using MongoDB.Entities.Core;
 
 namespace Questionnaire.Persistence.Entities
 {
-    public class QuestionnaireEntity : Entity
+    public class QuestionnaireResponseEntity : Entity
     {
         public string Name { get; set; }
         public string Description { get; set; }
-        public virtual ICollection<QuestionEntity> Question { get; set; }
+        public virtual ICollection<QuestionAnswerEntity> QuestionAnswers { get; set; }
     }
 
 }

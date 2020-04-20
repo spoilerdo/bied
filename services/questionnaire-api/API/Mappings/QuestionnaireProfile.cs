@@ -9,9 +9,12 @@ using System.Threading.Tasks;
 
 using Google.Protobuf.Collections;
 
-namespace Questionnaire.Mappings {
-    public class QuestionnaireProfile : Profile {
-        public QuestionnaireProfile() {
+namespace Questionnaire.Mappings
+{
+    public class QuestionnaireProfile : Profile
+    {
+        public QuestionnaireProfile()
+        {
             CreateMap<QuestionnaireEntity, QuestionnaireResponse>()
                 .ForMember(dest => dest.Question, opt => opt.MapFrom(src => src.Question));
             CreateMap<QuestionnaireCreateRequest, QuestionnaireEntity>()
