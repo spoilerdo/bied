@@ -1,25 +1,36 @@
+using System.Linq;
+using System.Collections.Generic;
+using System.Collections;
 using System;
-using Minio;
-using Minio.Exceptions;
+using System.Threading.Tasks;
+using Amazon.S3;
+using Amazon;
+using Amazon.S3.Model;
 
 namespace EmailService.Logic
 {
     public class TemplateLogic : ITemplateLogic
     {
         private readonly AppSettings _appSettings;
-        private readonly MinioClient minioClient;
+        private readonly AmazonS3Client amazonS3Client;
+
 
         public TemplateLogic(AppSettings appSettings)
         {
             _appSettings = appSettings;
-            this.minioClient = new MinioClient(this._appSettings.MinioCredentials.Endpoint,
-             this._appSettings.MinioCredentials.AccesKey,
-              this._appSettings.MinioCredentials.SecretKey);
+            var config = new AmazonS3Config
+            {
+                RegionEndpoint = RegionEndpoint.USEast1,
+                ServiceURL = this._appSettings.MinioCredentials.Endpoint,
+                ForcePathStyle = true
+            };
+            this.amazonS3Client = new AmazonS3Client(this._appSettings.MinioCredentials.AccesKey,
+              this._appSettings.MinioCredentials.SecretKey, config);
             this.CheckBucket();
         }
         public string[] getAvailableTemplates()
         {
-            return new string[] { "questionnaire" };
+            return null;
         }
 
         public string GetTemplate(string name)
@@ -29,28 +40,21 @@ namespace EmailService.Logic
 
         private async void CheckBucket()
         {
-            bool found = false;
-            try
+            var bucket = await this.amazonS3Client.ListBucketsAsync();
+            bool exists = bucket.Buckets.Where(x => x.BucketName == "templates") != null;
+            if (!exists)
             {
-                // Create bucket if it doesn't exist.
-                found = await minioClient.BucketExistsAsync("templates");
-                if (found)
+                PutBucketRequest request = new PutBucketRequest
                 {
-                    Console.WriteLine("templates already exists");
-                }
+                    BucketName = "templates",
+                    CannedACL = S3CannedACL.PublicReadWrite
+                };
+
+                await amazonS3Client.PutBucketAsync(request);
+                Console.WriteLine("Bucket templates created!");
+                return;
             }
-            catch (MinioException e)
-            {
-                Console.WriteLine("Error occurred: " + e);
-            }
-            finally
-            {
-                if (!found)
-                {
-                    await minioClient.MakeBucketAsync("templates");
-                    Console.WriteLine("templates is created successfully");
-                }
-            }
+            Console.WriteLine("Bucket exists!");
         }
     }
 }

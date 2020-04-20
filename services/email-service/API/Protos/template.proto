@@ -24,5 +24,6 @@ message CreateTemplateReply{
 message getTemplatesRequest {}
 
 message getTemplatesReply {
-    repeated string templates = 1;
+    string status = 1;
+    repeated string templates = 2;
 }

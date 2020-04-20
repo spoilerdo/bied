@@ -29,8 +29,24 @@ namespace Templating
 
         public override Task<getTemplatesReply> getTemplates(getTemplatesRequest request, ServerCallContext context)
         {
-            this.templateLogic.getAvailableTemplates();
-            return base.getTemplates(request, context);
+            try
+            {
+                var templates = this.templateLogic.getAvailableTemplates();
+                var reply = new getTemplatesReply
+                {
+                    Status = "Success",
+                };
+                reply.Templates.Add(templates);
+
+                return Task.FromResult(reply);
+            }
+            catch (Exception e)
+            {
+                return Task.FromResult(new getTemplatesReply
+                {
+                    Status = "Failed" + e.Message
+                });
+            }
         }
 
         public override string ToString()
