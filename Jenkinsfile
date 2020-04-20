@@ -155,7 +155,7 @@ node {
     Boolean protobuffersChanged(){
         def diffResult = execute("git diff .\\libraries\\protobuffers\\protobuffers\\protobuffers\\protobuffers");
         Boolean needsUpdate = diffResult.toString().length() > 0;
-        return needsUpdate;
+        return true;
     }
 
     String execute(String command){
