@@ -169,10 +169,13 @@ node {
     }
 
     def getLiveVersion(){
+        echo("0")
         def get = new URL("http://nuget.kn01.fhict.nl/v3/search?id=Bied.Protobuffers").openConnection();
-        //def get = new URL("http://info.cern.ch").openConnection();
+        echo("1")
         def getRC = get.getResponseCode();
+        echo("2")
         String text = get.getInputStream().getText();
+        echo("3")
         int start = text.indexOf("version");
         String beginRemovedText =text.substring(start+"version\":\"".length());
         String oldVersion = beginRemovedText.substring(0,beginRemovedText.indexOf('\"'));
