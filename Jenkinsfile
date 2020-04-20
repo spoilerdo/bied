@@ -18,14 +18,6 @@ class Service {
     }
 }
 
-
-class PackageManager {
-    
-    Script script;
-    
-    PackageManager(){
-        script.echo("package manager created")   
-    }
     
     Boolean protobuffersChanged(){
         def diffResult = execute("git diff .\\libraries\\protobuffers\\protobuffers\\protobuffers\\protobuffers");
@@ -86,13 +78,13 @@ class PackageManager {
             def newVersion = incrementVersion(current);
             createPackage(newVersion);
             pushPackage(newVersion);
-            script.echo("Version updated from " + current + " to " + newVersion);
+            echo("Version updated from " + current + " to " + newVersion);
         } 
         else {
-            script.echo("no protobuffer differences found package will not be updated");
+            echo("no protobuffer differences found package will not be updated");
         }
     }
-}
+
 
 /*
  * All our services are defined here
@@ -154,8 +146,7 @@ node {
                 buildStatus.setBuildStatus('Building', 'PENDING')
 
                // if (env.BRANCH_NAME=='develop'){
-                    PackageManager packagemanager = new PackageManager(script:this);
-                    packagemanager.updatePackageIfNeeded();
+                    updatePackageIfNeeded();
                // }
 
                 /*
