@@ -11,22 +11,20 @@ import { ThemeModule } from './@theme/theme.module';
 import { ConsentsModule } from './consents/consents.module';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
-    AppRoutingModule,    
+    AppRoutingModule,
     BrowserAnimationsModule,
-    ThemeModule.forRoot(),
+    ThemeModule,
     NbSidebarModule.forRoot(),
     NbLayoutModule,
     NbEvaIconsModule,
     NbMenuModule.forRoot(),
     DashboardModule,
-    ConsentsModule
+    ConsentsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
