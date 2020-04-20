@@ -1,6 +1,9 @@
 <div class="item-wrapper">
   <div class="checkmark">
-    <app-status-indicator></app-status-indicator>
+    <app-status-indicator
+      [status]="consent.consent"
+      [date]="consent.uts"
+    ></app-status-indicator>
   </div>
 
   <div class="information">
@@ -8,5 +11,23 @@
     <p class="info-item description">{{ consent.datasource.description }}</p>
   </div>
 
-  <nb-icon class="options" icon="more-vertical-outline"></nb-icon>
+  <nb-icon
+    [nbPopover]="popoverList"
+    nbPopoverPlacement="bottom"
+    class="options"
+    icon="more-vertical-outline"
+  ></nb-icon>
 </div>
+
+<ng-template #popoverList>
+  <nb-list>
+    <nb-list-item>
+      <nb-icon icon="eye-outline" class="option-icon"></nb-icon>
+      Details
+    </nb-list-item>
+    <nb-list-item>
+      <nb-icon icon="edit-outline" class="option-icon"></nb-icon>
+      Edit
+    </nb-list-item>
+  </nb-list>
+</ng-template>

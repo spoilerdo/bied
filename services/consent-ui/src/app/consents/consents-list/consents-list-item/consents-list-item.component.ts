@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Consent } from '../../models/consent';
 
 @Component({
   selector: 'app-consents-list-item',
@@ -7,7 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ConsentsListItemComponent implements OnInit {
 
-  @Input() consent: any;
+  @Input() consent: Consent;
 
   constructor() { }
 
