@@ -5,5 +5,5 @@ export class Consent {
   userId: string;
   consent: boolean;
   uts: Date;
-  datasource: Datasource;
+  datasource: string | Datasource;
 }

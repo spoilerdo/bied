@@ -5,6 +5,10 @@ import { NbCardModule, NbListModule, NbIconModule, NbTooltipComponent, NbTooltip
 import { ConsentsListComponent } from './consents-list/consents-list.component';
 import { ConsentsListItemComponent } from './consents-list/consents-list-item/consents-list-item.component';
 import { StatusIndicatorComponent } from './consents-list/consents-list-item/status-indicator/status-indicator.component';
+import { ConsentProvider } from './consent.provider';
+import { ConsentMockProvider } from './consent.provider.mock';
+import { DatasourceProvider } from './datasource.provider';
+import { DatasourceMockProvider } from './datasource.provider.mock';
 
 
 
@@ -18,6 +22,16 @@ import { StatusIndicatorComponent } from './consents-list/consents-list-item/sta
     NbPopoverModule
   ],
   declarations: [ConsentsComponent, ConsentsListComponent, ConsentsListItemComponent, StatusIndicatorComponent],  
-  exports: [ConsentsComponent]
+  exports: [ConsentsComponent],
+  providers: [
+    {
+      provide: ConsentProvider,
+      useClass: ConsentMockProvider
+    },
+    {
+      provide: DatasourceProvider,
+      useClass: DatasourceMockProvider
+    }
+  ]
 })
 export class ConsentsModule { }
