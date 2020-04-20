@@ -162,7 +162,7 @@ node {
         def outs = new ByteArrayOutputStream()
         def err = new ByteArrayOutputStream()
         def proc = command.execute()
-        proc.consumeProcessOutput(out, err)
+        proc.consumeProcessOutput(outs, err)
         proc.waitFor()
         //if(err.toString().length() > 0){
             echo("error stream was ${err}");
