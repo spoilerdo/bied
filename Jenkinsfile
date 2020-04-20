@@ -23,7 +23,7 @@ class PackageManager {
     
     Script script;
     
-    PackageManager(script){
+    PackageManager(){
         script.echo("package manager created")   
     }
     
