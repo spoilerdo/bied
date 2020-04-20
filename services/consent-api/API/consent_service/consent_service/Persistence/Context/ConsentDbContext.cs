@@ -13,9 +13,7 @@ namespace consent_service.Persistence.Context
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<ConsentDatasource>().HasKey(bc => new {bc.ConsentId, bc.DatasourceId});
-
+        {            
             base.OnModelCreating(modelBuilder);
         }
 
