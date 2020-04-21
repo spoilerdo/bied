@@ -24,4 +24,9 @@ export class DatasourceMockProvider extends DatasourceProvider {
   getDatasourceById(id: string): Datasource {
     return this.store.find(x => x.id === id);
   }
+
+  deleteAllData(userId: string): boolean {
+    console.log(`Delete all data called for user: ${userId}`)
+    return Math.random() >= 0.5;
+  }
 }

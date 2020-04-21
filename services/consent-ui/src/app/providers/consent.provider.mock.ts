@@ -27,4 +27,9 @@ export class ConsentMockProvider extends ConsentProvider {
     });
     return consents;
   }
+
+  deleteAllConsent(userId: string): boolean {
+    console.log(`Delete all consent called for user: ${userId}`)
+    return Math.random() >= 0.5;
+  }
 }
