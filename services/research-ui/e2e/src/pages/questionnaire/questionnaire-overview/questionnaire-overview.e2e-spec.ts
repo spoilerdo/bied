@@ -28,25 +28,71 @@ describe('Create questionnaire overview page', () => {
     expect(cards.count()).toEqual(20);
   });
 
-  it('should have 5 pages', () => {
-    const pageButtons = page.getPageButtons();
-    expect(pageButtons.count()).toEqual(5);
-  });
-
-  it('should have a next button', () => {
-    const nextButton = page.getNextButton();
-    expect(nextButton).toBeTruthy();
-  });
-
-  it('should not have a previous button', () => {
-    const nextButton = page.getPreviousButton();
-    expect(nextButton.isPresent()).toBeFalsy();
-  });
-
   it('first card should have title "consequat in"', () => {
     const cards = page.getCards();
     const header = cards.first().element(by.className('questionnaire-card-header'));
     expect(header.getText()).toContain('consequat in');
+  });
+
+  describe('pagination', () => {
+    let pageButtons: ElementArrayFinder;
+    let nextButton: ElementFinder;
+    let previousButton: ElementFinder;
+
+    it('should be page 1', async () => {
+      const url = await browser.getCurrentUrl();
+      expect(url).toContain('page=1');
+    });
+
+    it('should have 5 pages', () => {
+      pageButtons = page.getPageButtons();
+      expect(pageButtons.count()).toEqual(5);
+    });
+
+    it('should have a next button', () => {
+      nextButton = page.getNextButton();
+      expect(nextButton).toBeTruthy();
+    });
+
+    it('should not have a previous button', () => {
+      previousButton = page.getPreviousButton();
+      expect(previousButton.isPresent()).toBeFalsy();
+    });
+
+    it('should have the first page highlighted', () => {
+      expect(pageButtons.first().getAttribute('class')).toContain('appearance-filled');
+    });
+
+    it('should not have the other buttons highlighted', async () => {
+      expect(pageButtons.first().getAttribute('class')).toContain('appearance-filled');
+      for (let i = 1, len = await pageButtons.count(); i < len; i++) {
+        expect(pageButtons.get(i).getAttribute('class')).toContain('appearance-outline');
+      }
+    });
+
+    it('should change to page 5 on click for page 5', async () => {
+      await pageButtons.last().click();
+      const url = await browser.getCurrentUrl();
+      expect(url).toContain('page=5');
+    });
+
+    it('should not have a next button', () => {
+      expect(nextButton.isPresent()).toBeFalsy();
+    });
+
+    it('should have a next button', () => {
+      expect(nextButton).toBeTruthy();
+    });
+
+    it('should have the fifth page highlighted', () => {
+      expect(pageButtons.last().getAttribute('class')).toContain('appearance-filled');
+    });
+
+    it('should change back to the first page', async () => {
+      await pageButtons.first().click();
+      const url = await browser.getCurrentUrl();
+      expect(url).toContain('page=1');
+    });
   });
 
   describe('Questionnaire card', () => {
@@ -104,6 +150,7 @@ describe('Create questionnaire overview page', () => {
         expect(cardTitle.getText()).toContain('consequat dui');
       });
     });
+
     describe('Rename questionnaire', () => {
       let cards: ElementArrayFinder;
       let card: ElementFinder;
