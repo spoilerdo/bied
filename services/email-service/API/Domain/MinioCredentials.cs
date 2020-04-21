@@ -5,5 +5,6 @@ namespace EmailService.Domain
         public string Endpoint { get; set; }
         public string AccesKey { get; set; }
         public string SecretKey { get; set; }
+        public string BucketName { get; set; }
     }
 }

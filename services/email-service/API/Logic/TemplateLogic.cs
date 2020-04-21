@@ -40,18 +40,23 @@ namespace EmailService.Logic
 
         private async void CheckBucket()
         {
-            var bucket = await this.amazonS3Client.ListBucketsAsync();
-            bool exists = bucket.Buckets.Where(x => x.BucketName == "templates") != null;
+            var response = await this.amazonS3Client.ListBucketsAsync();
+            bool exists = false;
+            foreach (var _bucket in response.Buckets)
+            {
+                exists = _bucket.BucketName == this._appSettings.MinioCredentials.BucketName;
+                if (exists) { break; }
+            }
             if (!exists)
             {
                 PutBucketRequest request = new PutBucketRequest
                 {
-                    BucketName = "templates",
+                    BucketName = _appSettings.MinioCredentials.BucketName,
                     CannedACL = S3CannedACL.PublicReadWrite
                 };
 
                 await amazonS3Client.PutBucketAsync(request);
-                Console.WriteLine("Bucket templates created!");
+                Console.WriteLine("Bucket " + _appSettings.MinioCredentials.BucketName + " created!");
                 return;
             }
             Console.WriteLine("Bucket exists!");
