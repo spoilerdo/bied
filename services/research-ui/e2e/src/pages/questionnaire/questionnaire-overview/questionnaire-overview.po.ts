@@ -25,7 +25,15 @@ export class CreateQuestionnaireOverviewPage {
     return card.element(by.id('questionnaire-card-remove'));
   }
 
+  getCardRenameButton(card: ElementFinder): ElementFinder {
+    return card.element(by.id('questionnaire-card-rename'));
+  }
+
   getRemoveDialog(): ElementFinder {
     return element(by.className('remove-dialog-card'));
+  }
+
+  getRenameDialog(): ElementFinder {
+    return element(by.className('rename-dialog-card'));
   }
 }

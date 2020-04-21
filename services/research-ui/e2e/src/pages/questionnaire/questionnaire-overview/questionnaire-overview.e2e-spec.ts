@@ -104,5 +104,64 @@ describe('Create questionnaire overview page', () => {
         expect(cardTitle.getText()).toContain('consequat dui');
       });
     });
+    describe('Rename questionnaire', () => {
+      let cards: ElementArrayFinder;
+      let card: ElementFinder;
+      let renameButton: ElementFinder;
+      let renameDialog: ElementFinder;
+      let dialogRenameButton: ElementFinder;
+      let dialogOldNameInput: ElementFinder;
+      let dialogNewNameInput: ElementFinder;
+
+      it('should have a rename button', () => {
+        cards = page.getCards();
+        card = cards.first();
+        renameButton = page.getCardRenameButton(card);
+        expect(renameButton.isPresent()).toBeTruthy();
+      });
+
+      it('should open the rename dialog on rename questionnaire click', async () => {
+        await renameButton.click();
+        renameDialog = page.getRenameDialog();
+        expect(renameDialog.isPresent()).toBeTruthy();
+      });
+
+      it('should have the rename button on the dialog disabled', () => {
+        dialogRenameButton = renameDialog.element(by.id('rename-dialog-rename'));
+        expect(dialogRenameButton.isEnabled()).toBeFalsy();
+      });
+
+      it('should have the rename button on the dialog disabled on wrong old name', async () => {
+        dialogOldNameInput = renameDialog.element(by.id('rename-dialog-old-name'));
+        dialogNewNameInput = renameDialog.element(by.id('rename-dialog-new-name'));
+        await dialogOldNameInput.sendKeys('test');
+        await dialogNewNameInput.sendKeys('correct new name');
+        expect(dialogOldNameInput.getAttribute('value')).toEqual('test');
+        expect(dialogNewNameInput.getAttribute('value')).toEqual('correct new name');
+        expect(dialogRenameButton.isEnabled()).toBeFalsy();
+      });
+
+      it('should cancel the rename on click cancel button', async () => {
+        const cancelButton = renameDialog.element(by.id('rename-dialog-cancel'));
+        await cancelButton.click();
+        expect(renameDialog.isPresent()).toBeFalsy();
+      });
+
+      it('should have the rename button on the dialog enabled on correct old name and new name enter', async () => {
+        await renameButton.click();
+        await dialogOldNameInput.sendKeys('consequat dui');
+        await dialogNewNameInput.sendKeys('testName');
+        expect(dialogOldNameInput.getAttribute('value')).toEqual('consequat dui');
+        expect(dialogNewNameInput.getAttribute('value')).toEqual('testName');
+        expect(dialogRenameButton.isEnabled()).toBeTruthy();
+      });
+
+      it('should rename the questionnaire on rename questionnaire click', async () => {
+        await dialogRenameButton.click();
+        expect(renameDialog.isPresent()).toBeFalsy();
+        const cardTitle = card.element(by.className('questionnaire-card-header'));
+        expect(cardTitle.getText()).toContain('testName');
+      });
+    });
   });
 });
