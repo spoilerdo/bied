@@ -210,5 +210,48 @@ describe('Create questionnaire overview page', () => {
         expect(cardTitle.getText()).toContain('testName');
       });
     });
+
+    describe('duplicate questionnaire', () => {
+      let cards: ElementArrayFinder;
+      let card: ElementFinder;
+      let duplicateButton: ElementFinder;
+
+      it('should have a duplicate button', () => {
+        cards = page.getCards();
+        card = cards.first();
+        duplicateButton = page.getCardDuplicateButton(card);
+        expect(duplicateButton.isPresent()).toBeTruthy();
+      });
+
+      it('should have duplicated the questionnaire on duplicate button click', async () => {
+        await duplicateButton.click();
+        page.getPageButtons().last().click();
+        const url = await browser.getCurrentUrl();
+        expect(url).toContain('page=5');
+
+        const lastCardHeader = cards.last().element(by.className('questionnaire-card-header'));
+        expect(lastCardHeader.getText()).toContain('testName');
+      });
+
+      it('should have a 6th page on next duplicate', async () => {
+        await duplicateButton.click();
+
+        const pageButtons = page.getPageButtons();
+        expect(pageButtons.count()).toEqual(6);
+
+        const nextButton = page.getNextButton();
+        expect(nextButton).toBeTruthy();
+
+        await nextButton.click();
+
+        const url = await browser.getCurrentUrl();
+        expect(url).toContain('page=6');
+
+        expect(cards.count()).toEqual(1);
+
+        const header = cards.first().element(by.className('questionnaire-card-header'));
+        expect(header.getText()).toContain('in imperdiet et');
+      });
+    });
   });
 });

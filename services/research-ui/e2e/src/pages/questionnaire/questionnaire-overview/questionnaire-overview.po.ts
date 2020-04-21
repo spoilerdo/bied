@@ -29,6 +29,10 @@ export class CreateQuestionnaireOverviewPage {
     return card.element(by.id('questionnaire-card-rename'));
   }
 
+  getCardDuplicateButton(card: ElementFinder): ElementFinder {
+    return card.element(by.id('questionnaire-card-copy'));
+  }
+
   getRemoveDialog(): ElementFinder {
     return element(by.className('remove-dialog-card'));
   }
