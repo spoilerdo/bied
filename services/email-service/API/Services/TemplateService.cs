@@ -27,25 +27,27 @@ namespace Templating
             return base.CreateTemplate(request, context);
         }
 
-        public override Task<getTemplatesReply> getTemplates(getTemplatesRequest request, ServerCallContext context)
+        public async override Task<getTemplatesReply> getTemplates(getTemplatesRequest request, ServerCallContext context)
         {
             try
             {
-                var templates = this.templateLogic.getAvailableTemplates();
+                string[] templates = new List<string>().ToArray();
+                var response = await this.templateLogic.getAvailableTemplates();
+                templates = response;
                 var reply = new getTemplatesReply
                 {
                     Status = "Success",
                 };
                 reply.Templates.Add(templates);
 
-                return Task.FromResult(reply);
+                return reply;
             }
             catch (Exception e)
             {
-                return Task.FromResult(new getTemplatesReply
+                return new getTemplatesReply
                 {
                     Status = "Failed" + e.Message
-                });
+                };
             }
         }
 

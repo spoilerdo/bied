@@ -28,9 +28,20 @@ namespace EmailService.Logic
               this._appSettings.MinioCredentials.SecretKey, config);
             this.CheckBucket();
         }
-        public string[] getAvailableTemplates()
+        public async Task<string[]> getAvailableTemplates()
         {
-            return null;
+            bool exists = await this.BucketExists();
+            if (!exists)
+            {
+                throw new AmazonS3Exception("Bucket does not exist!");
+            }
+            List<string> list = new List<string>();
+            ListObjectsResponse response = await amazonS3Client.ListObjectsAsync(_appSettings.MinioCredentials.BucketName);
+            foreach (S3Object item in response.S3Objects)
+            {
+                list.Add(item.Key);
+            }
+            return list.ToArray();
         }
 
         public string GetTemplate(string name)
@@ -40,13 +51,7 @@ namespace EmailService.Logic
 
         private async void CheckBucket()
         {
-            var response = await this.amazonS3Client.ListBucketsAsync();
-            bool exists = false;
-            foreach (var _bucket in response.Buckets)
-            {
-                exists = _bucket.BucketName == this._appSettings.MinioCredentials.BucketName;
-                if (exists) { break; }
-            }
+            bool exists = await this.BucketExists();
             if (!exists)
             {
                 PutBucketRequest request = new PutBucketRequest
@@ -60,6 +65,18 @@ namespace EmailService.Logic
                 return;
             }
             Console.WriteLine("Bucket exists!");
+        }
+
+        private async Task<bool> BucketExists()
+        {
+            var response = await this.amazonS3Client.ListBucketsAsync();
+            bool exists = false;
+            foreach (var _bucket in response.Buckets)
+            {
+                exists = _bucket.BucketName == this._appSettings.MinioCredentials.BucketName;
+                if (exists) { break; }
+            }
+            return exists;
         }
     }
 }
