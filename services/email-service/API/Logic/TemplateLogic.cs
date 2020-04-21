@@ -44,9 +44,15 @@ namespace EmailService.Logic
             return list.ToArray();
         }
 
-        public string GetTemplate(string name)
+        public async Task<string> GetTemplate(string name)
         {
-            throw new System.NotImplementedException();
+            bool exists = await this.BucketExists();
+            if (!exists)
+            {
+                throw new AmazonS3Exception("Bucket does not exist!");
+            }
+            var item = await amazonS3Client.GetObjectAsync(_appSettings.MinioCredentials.BucketName, name);
+            return "test";
         }
 
         private async void CheckBucket()
