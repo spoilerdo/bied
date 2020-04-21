@@ -1,30 +1,32 @@
 <div>
   <p style="font-size: large; font-weight: 500;">Delete all consent</p>
   <p style="font-size: small;">
-    This will delete all the consents you have given from all sources
+    This will delete all the consent you have given from all sources
   </p>
   <button
-    (click)="open(confirmDeleteAllConsents)"
+    (click)="deleteAllConsent()"
     style="margin-bottom: 8px;"
     nbButton
     status="danger"
   >
-    Delete all consents
+    Delete all consent
   </button>
 </div>
 
-<hr />
+<hr class="hr1" />
 
-<ng-template
-  #confirmDeleteAllConsents
-  let-data
-  let-ref="confirmDeleteAllConsentsRef"
->
-  <nb-card>
-    <nb-card-header>Template Dialog</nb-card-header>
-    <nb-card-footer>
-      <button nbButton (click)="ref.log(true)">Confirm</button>
-      <button nbButton (click)="ref.close(false)">Cancel</button>
-    </nb-card-footer>
-  </nb-card>
-</ng-template>
+<div>
+  <p style="font-size: large; font-weight: 500;">Delete all data</p>
+  <p style="font-size: small;">
+    This will delete all the data that has been collected about you. This will
+    also delete all consent.
+  </p>
+  <button
+    (click)="deleteAllData()"
+    style="margin-bottom: 8px;"
+    nbButton
+    status="danger"
+  >
+    Delete all data
+  </button>
+</div>

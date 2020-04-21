@@ -1,0 +1,17 @@
+<nb-card>
+  <nb-card-header>{{ title }}</nb-card-header>
+  <nb-card-body>{{ text }}</nb-card-body>
+  <nb-card-footer>
+    <button nbButton status="danger" (click)="dialogRef.close(false)">
+      Cancel
+    </button>
+    <button
+      style="float: right;"
+      nbButton
+      status="success"
+      (click)="dialogRef.close(true)"
+    >
+      Confirm
+    </button>
+  </nb-card-footer>
+</nb-card>
