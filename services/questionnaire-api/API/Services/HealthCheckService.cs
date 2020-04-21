@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Grpc.Core;
 using Microsoft.Extensions.Logging;
-using HealthCheck.GRPC;
 using AutoMapper;
 
 namespace HealthCheck.Services
@@ -12,7 +11,7 @@ namespace HealthCheck.Services
     /// <summary>
     /// Responsible for handling the GRPC protobuffer service logic
     /// </summary>
-    public class HealthCheckService : HealthCheck_Service.HealthCheck_ServiceBase
+    public class HealthCheckService : HealthCheck.HealthCheckBase
     {
         private readonly ILogger<HealthCheckService> _logger;
         private readonly IMapper _mapper;
@@ -29,7 +28,7 @@ namespace HealthCheck.Services
         /// <param name="request">The data to create a questionnaire from</param>
         /// <param name="context">The server context</param>
         /// <returns>created Questionnaire or error indicating reason for failure</returns>
-        public override Task<HealthCheckResponse> HealthCheck(HealthCheckRequest request, ServerCallContext context)
+        public override Task<HealthCheckResponse> CheckHealthRequest(HealthCheckRequest request, ServerCallContext context)
         {
             return Task.FromResult(new HealthCheckResponse
             {

@@ -1,13 +1,20 @@
 ﻿syntax = "proto3";
-option csharp_namespace = "Questionnaire.GRPC";
+
+option csharp_namespace = "Questionnaire.Services";
+
+package Questionnaire;
 
 import "question.proto";
 
-service Questionnaire_Service {
+import "google/api/annotations.proto";
+
+service Questionnaire {
 	rpc CreateQuestionnaire (QuestionnaireCreateRequest) returns (QuestionnaireResponse);
 	rpc DeleteQuestionnaire (QuestionnaireIdRequest) returns (QuestionnaireEmptyResponse);
 	rpc UpdateQuestionnaire (QuestionnaireEditRequest) returns (QuestionnaireResponse);
-	rpc GetQuestionnaire (QuestionnaireIdRequest) returns (QuestionnaireResponse);
+	rpc GetQuestionnaire (QuestionnaireIdRequest) returns (QuestionnaireResponse) {
+		option (google.api.http).get = "/questionnaire/{id}";
+	}
 
 	//TODO: result gedeelte moet nog komen, nog niet duidelijk gedefinieerd.
 }

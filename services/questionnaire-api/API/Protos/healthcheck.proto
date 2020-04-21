@@ -1,9 +1,15 @@
 syntax = "proto3";
-option csharp_namespace = "HealthCheck.GRPC";
 
+option csharp_namespace = "HealthCheck.Services";
 
-service HealthCheck_Service {
-	rpc HealthCheck (HealthCheckRequest) returns (HealthCheckResponse);
+package HealthCheck;
+
+import "google/api/annotations.proto";
+
+service HealthCheck {
+    rpc CheckHealthRequest (HealthCheckRequest) returns (HealthCheckResponse) {
+        option (google.api.http).get = "/health";
+    }
 }
 
 message HealthCheckResponse {

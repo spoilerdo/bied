@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Grpc.Core;
 using Microsoft.Extensions.Logging;
-using Questionnaire.GRPC;
 using Questionnaire.Persistence.Repositories;
 using Questionnaire.Persistence.Entities;
 using AutoMapper;
@@ -14,7 +13,7 @@ namespace Questionnaire.Services
     /// <summary>
     /// Responsible for handling the GRPC protobuffer service logic
     /// </summary>
-  public class QuestionnaireService : Questionnaire_Service.Questionnaire_ServiceBase
+  public class QuestionnaireService : Questionnaire.QuestionnaireBase
   {
     private readonly ILogger<QuestionnaireService> _logger;
     private readonly IQuestionnaireRepository _repository;
