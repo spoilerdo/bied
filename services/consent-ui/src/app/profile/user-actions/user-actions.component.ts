@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, OnInit, TemplateRef, Input } from '@angular/core';
 import { NbDialogService, NbToastrService, NbToastrConfig, NbComponentStatus } from '@nebular/theme';
 import { ConfirmationModalComponent } from '../confirmation-modal/confirmation-modal.component';
 
@@ -9,9 +9,12 @@ import { ConfirmationModalComponent } from '../confirmation-modal/confirmation-m
 })
 export class UserActionsComponent implements OnInit {
 
+  @Input() id: string;
+
   constructor(private readonly dialogService: NbDialogService, private readonly toastService: NbToastrService) { }
 
   ngOnInit(): void {
+    console.log('UserId', this.id)
   }
 
   deleteAllConsent() {

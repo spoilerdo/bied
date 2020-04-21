@@ -9,11 +9,14 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { NbLayoutModule, NbCardModule, NbButtonModule, NbDialogModule } from '@nebular/theme';
 import { UserActionsComponent } from './user-actions/user-actions.component';
 import { ConfirmationModalComponent } from './confirmation-modal/confirmation-modal.component';
+import { UserStatsComponent } from './user-stats/user-stats.component';
+import { UserProvider } from '../providers/user.provider';
+import { UserMockProvider } from '../providers/user.provider.mock';
 
 
 
 @NgModule({
-  declarations: [ProfileComponent, UserProfileComponent, UserActionsComponent, ConfirmationModalComponent],
+  declarations: [ProfileComponent, UserProfileComponent, UserActionsComponent, ConfirmationModalComponent, UserStatsComponent],
   imports: [
     CommonModule,
     NbLayoutModule,
@@ -29,6 +32,10 @@ import { ConfirmationModalComponent } from './confirmation-modal/confirmation-mo
     {
       provide: DatasourceProvider,
       useClass: DatasourceMockProvider
+    },
+    {
+      provide: UserProvider,
+      useClass: UserMockProvider
     }
   ]
 })
