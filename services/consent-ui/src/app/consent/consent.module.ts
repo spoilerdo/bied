@@ -10,6 +10,8 @@ import { ConsentDetailsHeaderComponent } from './consent-details-header/consent-
 import { ConsentComponent } from './consent.component';
 import { NbCardModule, NbIconModule } from '@nebular/theme';
 import { ConsentsModule } from '../consents/consents.module';
+import { ConsentTimelineComponent } from './consent-timeline/consent-timeline.component';
+import { MglTimelineModule } from 'angular-mgl-timeline';
 
 
 @NgModule({  
@@ -18,9 +20,10 @@ import { ConsentsModule } from '../consents/consents.module';
     ConsentRoutingModule,
     NbCardModule,
     NbIconModule,
-    ConsentsModule
+    ConsentsModule,
+    MglTimelineModule
   ],
-  declarations: [ConsentComponent, ConsentDetailsHeaderComponent],  
+  declarations: [ConsentComponent, ConsentDetailsHeaderComponent, ConsentTimelineComponent],  
   providers: [
     {
       provide: ConsentProvider,
