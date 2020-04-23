@@ -1,18 +1,25 @@
 <nb-card>
   <nb-card-header class="header">
-    {{ consent.datasource.name }}
-    <app-status-indicator
-      class="status-indicator"
-      [status]="consent.consent"
-      [date]="consent.uts"
-    ></app-status-indicator>
+    <h3>
+      {{ consent.datasource.name }}
+    </h3>
+    <div class="switch">
+      <nb-toggle
+        (click)="switchConsentClicked()"
+        [(checked)]="checked"
+        status="success"
+      ></nb-toggle>
+    </div>
   </nb-card-header>
   <nb-card-body>
     <p>{{ consent.datasource.description }}</p>
     <p>
-      Status: consent {{ consent.consent ? null : "not" }} given ({{
-        consent.uts ? consent.uts.toLocaleString("nl") : null
-      }})
+      Status:
+      {{
+        consent.consent
+          ? "Consent given - " + consent.uts.toLocaleString("nl")
+          : "Consent not given"
+      }}
     </p>
     <p>Datasource active: {{ consent.datasource.active }}</p>
   </nb-card-body>

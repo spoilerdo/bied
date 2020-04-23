@@ -8,7 +8,7 @@ import { DatasourceProvider } from '../providers/datasource.provider';
 import { DatasourceMockProvider } from '../providers/datasource.provider.mock';
 import { ConsentDetailsHeaderComponent } from './consent-details-header/consent-details-header.component';
 import { ConsentComponent } from './consent.component';
-import { NbCardModule, NbIconModule } from '@nebular/theme';
+import { NbCardModule, NbIconModule, NbToggleModule } from '@nebular/theme';
 import { ConsentsModule } from '../consents/consents.module';
 import { ConsentTimelineComponent } from './consent-timeline/consent-timeline.component';
 import { MglTimelineModule } from 'angular-mgl-timeline';
@@ -21,7 +21,8 @@ import { MglTimelineModule } from 'angular-mgl-timeline';
     NbCardModule,
     NbIconModule,
     ConsentsModule,
-    MglTimelineModule
+    MglTimelineModule,
+    NbToggleModule
   ],
   declarations: [ConsentComponent, ConsentDetailsHeaderComponent, ConsentTimelineComponent],  
   providers: [
