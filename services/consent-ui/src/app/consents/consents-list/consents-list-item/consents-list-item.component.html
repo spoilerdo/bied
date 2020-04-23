@@ -28,7 +28,7 @@
       </a>
     </nb-list-item>
 
-    <nb-list-item>
+    <nb-list-item (click)="consent.consent = !consent.consent">
       <nb-icon
         [icon]="
           consent.consent ? 'toggle-right-outline' : 'toggle-left-outline'
