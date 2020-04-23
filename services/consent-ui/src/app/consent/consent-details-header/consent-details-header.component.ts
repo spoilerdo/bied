@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Consent } from 'src/app/consents/models/consent';
-import { Datasource } from 'src/app/consents/models/datasource';
+import { Consent } from 'src/app/models/consent';
+import { Datasource } from 'src/app/models/datasource';
 
 @Component({
   selector: 'app-consent-details-header',

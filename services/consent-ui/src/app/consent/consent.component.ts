@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Consent } from '../consents/models/consent';
+import { Consent } from '../models/consent';
 import { ConsentProvider } from '../providers/consent.provider';
 import { DatasourceProvider } from '../providers/datasource.provider';
 

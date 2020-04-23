@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Consent } from '../models/consent';
+import { Consent } from '../../models/consent';
 import { ConsentProvider } from '../../providers/consent.provider';
 
 @Component({

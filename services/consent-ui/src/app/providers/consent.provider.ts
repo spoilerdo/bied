@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Consent } from '../consents/models/consent';
+import { Consent } from '../models/consent';
 import { DatasourceProvider } from './datasource.provider';
 
 @Injectable()
