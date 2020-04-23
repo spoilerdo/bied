@@ -9,6 +9,10 @@ export class ConsentProvider {
     throw new Error(`Method not implemented`)
   }
 
+  getConsentById(consentId: string): Consent {
+    throw new Error(`Method not implemented`)
+  }
+
   deleteAllConsent(userId: string): boolean {
     throw new Error(`Method not implemented`)
   }

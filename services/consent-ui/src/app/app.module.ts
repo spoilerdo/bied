@@ -10,6 +10,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
 import { ThemeModule } from './@theme/theme.module';
 import { ConsentsModule } from './consents/consents.module';
 import { ProfileModule } from './profile/profile.module';
+import { ConsentModule } from './consent/consent.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -27,7 +28,8 @@ import { ProfileModule } from './profile/profile.module';
     NbDialogModule.forRoot(),
     DashboardModule,
     ConsentsModule,
-    ProfileModule
+    ProfileModule,
+    ConsentModule
   ],
   providers: [],
   bootstrap: [AppComponent],

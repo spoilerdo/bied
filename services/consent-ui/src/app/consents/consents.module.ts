@@ -22,7 +22,7 @@ import { DatasourceMockProvider } from '../providers/datasource.provider.mock';
     NbPopoverModule
   ],
   declarations: [ConsentsComponent, ConsentsListComponent, ConsentsListItemComponent, StatusIndicatorComponent],  
-  exports: [ConsentsComponent],
+  exports: [ConsentsComponent, StatusIndicatorComponent],
   providers: [
     {
       provide: ConsentProvider,

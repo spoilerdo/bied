@@ -1,0 +1,19 @@
+<nb-card>
+  <nb-card-header class="header">
+    {{ consent.datasource.name }}
+    <app-status-indicator
+      class="status-indicator"
+      [status]="consent.consent"
+      [date]="consent.uts"
+    ></app-status-indicator>
+  </nb-card-header>
+  <nb-card-body>
+    <p>{{ consent.datasource.description }}</p>
+    <p>
+      Status: consent {{ consent.consent ? null : "not" }} given ({{
+        consent.uts ? consent.uts.toLocaleString("nl") : null
+      }})
+    </p>
+    <p>Datasource active: {{ consent.datasource.active }}</p>
+  </nb-card-body>
+</nb-card>

@@ -17,6 +17,10 @@ const routes: Routes = [
   {
     path: 'profile',
     component: ProfileComponent
+  },
+  {
+    path: 'consents/:id',
+    loadChildren: () => import("./consent/consent.module").then(m => m.ConsentModule)
   }
 ];
 

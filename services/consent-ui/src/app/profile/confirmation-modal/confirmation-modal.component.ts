@@ -11,7 +11,7 @@ export class ConfirmationModalComponent implements OnInit {
   text: string;
   title: string;
 
-  constructor(protected dialogRef: NbDialogRef<any>) { }
+  constructor(public dialogRef: NbDialogRef<any>) { }
 
   ngOnInit(): void {
   }
