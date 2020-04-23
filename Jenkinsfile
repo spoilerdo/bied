@@ -77,14 +77,10 @@ node {
 
                 buildStatus.setBuildStatus('Building', 'PENDING')
 
-               // if (env.BRANCH_NAME=='develop'){
-                    updatePackageIfNeeded();
-               // }
-
                 /*
                  * Build all services of a kip project in the production environment
                  */
-               // sh 'kip build -e prod'
+                sh 'kip build -e prod'
             }
             stage('Run tests') {
                 def buildStatus = load 'ci/scripts/groovy/buildStatus.groovy'
@@ -135,7 +131,7 @@ node {
             /*
              * Set the final status of the build
              */
-            if(currentBuild.currentResult == 'SUCCESS') {                 
+            if(currentBuild.currentResult == 'SUCCESS') { 
                 buildStatus.setBuildStatus('success', 'SUCCESS')
                 discordSend description: "Branch: $BRANCH_NAME", footer: "✅ Job has succeeded", link: env.BUILD_URL, result: currentBuild.currentResult, title: "Finished build: #$BUILD_NUMBER", webhookURL: DISCORD_WEBHOOK_URL, thumbnail: "https://townsquare.media/site/695/files/2015/11/bob-the-builder.jpg?w=980&q=75"
             } else if(currentBuild.currentResult == 'ABORTED' || currentBuild.currentResult == 'FAILURE' || currentBuild.currentResult == 'UNSTABLE') {
@@ -148,75 +144,3 @@ node {
         }
     }
 }
-
-    
-    Boolean protobuffersChanged(){
-        def diffResult = execute("git diff .\\libraries\\protobuffers\\protobuffers\\protobuffers\\protobuffers");
-        Boolean needsUpdate = diffResult.toString().length() > 0;
-        return true;
-    }
-
-    String execute(String command){
-        def outs = new ByteArrayOutputStream()
-        def err = new ByteArrayOutputStream()
-        def proc = command.execute()
-        proc.consumeProcessOutput(outs, err)
-        proc.waitFor()
-        //if(err.toString().length() > 0){
-            echo("error stream was ${err}");
-        //}
-        return outs;
-    }
-
-    def getLiveVersion(){
-        echo("0")
-        def get = new URL("http://nuget.kn01.fhict.nl/v3/search?id=Bied.Protobuffers").openConnection();
-        echo("1")
-        def getRC = get.getResponseCode();
-        echo("2")
-        String text = get.getInputStream().getText();
-        echo("3")
-        int start = text.indexOf("version");
-        String beginRemovedText =text.substring(start+"version\":\"".length());
-        String oldVersion = beginRemovedText.substring(0,beginRemovedText.indexOf('\"'));
-        return oldVersion;
-    }
-
-    def incrementVersion(String oldVersion){
-        int lastNumber = oldVersion.substring(4).toInteger();
-        int newVersionNumber = lastNumber+1;
-        String newVersion = "1.0."+newVersionNumber;
-        return newVersion;
-    }
-
-    def createPackage(String version){
-        
-        def file =  new File("libraries/protobuffers/protobuffers/protobuffers/protobuffers.csproj");
-        String xml = file.getText();
-        int vbegin = xml.indexOf("Version")+"Version>".length();
-        int count = 5;
-        xml = xml.replace("1.0.1", version);
-        def w = file.newWriter();
-        w << xml;
-        w.close()
-        String packResult = execute("dotnet build .\\libraries\\protobuffers\\protobuffers --version-suffix test -o build");
-    }
-
-    def pushPackage(String version){
-        String pushResult = execute("nuget push -source http://nuget.kn01.fhict.nl/v3/index.json .\\build\\Bied.Protobuffers." + version + ".nupkg")
-    }
-
-    def updatePackageIfNeeded(){
-        if(protobuffersChanged()){
-            echo("update needed");
-            def current = getLiveVersion();
-            def newVersion = incrementVersion(current);
-            createPackage(newVersion);
-            pushPackage(newVersion);
-            echo("Version updated from " + current + " to " + newVersion);
-        } 
-        else {
-            echo("no protobuffer differences found package will not be updated");
-        }
-    }
-
