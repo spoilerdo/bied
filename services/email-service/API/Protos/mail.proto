@@ -13,6 +13,7 @@ message SendMailRequest {
   repeated string addresses = 1;
   string template = 2;
   repeated string values = 3;
+  string subject = 4;
 }
 
 message SendMailReply {
