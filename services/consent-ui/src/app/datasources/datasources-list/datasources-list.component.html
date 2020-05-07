@@ -1,0 +1,8 @@
+<p style="font-size: 1rem; font-weight: 700; margin-bottom: 0;">Datasources</p>
+<nb-list>
+  <nb-list-item *ngFor="let datasource of datasources">
+    <app-datasource-list-item
+      [datasource]="datasource"
+    ></app-datasource-list-item>
+  </nb-list-item>
+</nb-list>

@@ -10,4 +10,8 @@ export class DatasourceProvider {
   deleteAllData(userId: string): boolean {
     throw new Error('Method not implemented')
   }
+
+  getDatasources(): Datasource[] {
+    throw new Error('Method not implemented')
+  }
 }

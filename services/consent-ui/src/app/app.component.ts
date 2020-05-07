@@ -14,6 +14,11 @@ export class AppComponent {
       icon: 'home-outline'
     },
     {
+      title: 'Researches',
+      link: 'researches',
+      icon: 'file-text-outline'
+    },
+    {
       title: 'Consents',
       link: 'consents',
       icon: 'file-text-outline'

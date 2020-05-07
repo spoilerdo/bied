@@ -8,4 +8,8 @@ export class ResearchProvider {
   getResearchById(id: string): Research {
     throw new Error(`Method not implemented`);
   }
+
+  getResearches(): Research[] {
+    throw new Error(`Method not implemented`)
+  }
 }
