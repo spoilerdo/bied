@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="1f893fce-96ae-4c8d-89d7-2d9027ae9287" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/research_service/NuGet.Config" beforeDir="false" afterPath="$PROJECT_DIR$/research_service/NuGet.Config" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/research_service/Validation/ResearchCreateRequestValidator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/research_service/Validation/ResearchCreateRequestValidator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/research_service/Validation/ResearchEditRequestValidator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/research_service/Validation/ResearchEditRequestValidator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/research_service/Validation/ResearchIdRequestValidator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/research_service/Validation/ResearchIdRequestValidator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/research_service/research_service.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/research_service/research_service.csproj" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../.." />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/research_service/Validation/ResearchCreateRequestValidator.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/research_service/Validation/ResearchIdRequestValidator.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/research_service/Validation/ResearchEditRequestValidator.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/research_service/NuGet.Config" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/research_service/Program.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/.config/NuGet/NuGet.Config" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/research_service/Mappings/ResearchProfile.cs" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/research_service/NuGet.Config" />
+        <option value="$USER_HOME$/.config/NuGet/NuGet.Config" />
+        <option value="$PROJECT_DIR$/research_service/Validation/ResearchCreateRequestValidator.cs" />
+        <option value="$PROJECT_DIR$/research_service/Validation/ResearchEditRequestValidator.cs" />
+        <option value="$PROJECT_DIR$/research_service/Validation/ResearchIdRequestValidator.cs" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1anXLBisnevrTqNthTwjs3I81By" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="Rider.SolutionExplorerActivator" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="TWShift.3" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="settings.editor.selected.configurable" value="RiderNuGetOptionsPageId" />
+  </component>
+  <component name="RunManager">
+    <configuration name="research_service" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/research_service/research_service.csproj" />
+      <option name="LAUNCH_PROFILE_TFM" value=".NETCoreApp,Version=v3.1" />
+      <option name="LAUNCH_PROFILE_NAME" value="research_service" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
+      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
+      <option name="SEND_DEBUG_REQUEST" value="1" />
+      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
+      <method v="2">
+        <option name="Build" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1f893fce-96ae-4c8d-89d7-2d9027ae9287" name="Default Changelist" comment="" />
+      <created>1587372272786</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1587372272786</updated>
+      <workItem from="1587372275340" duration="492000" />
+      <workItem from="1587373277931" duration="917000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
+  <component name="WindowStateProjectService">
+    <state width="3398" height="263" key="GridCell.Tab.0.bottom" timestamp="1587372767682">
+      <screen x="1792" y="-132" width="3440" height="1417" />
+    </state>
+    <state width="3398" height="263" key="GridCell.Tab.0.bottom/1792.-132.3440.1417/0.23.1792.1017@1792.-132.3440.1417" timestamp="1587372767682" />
+    <state width="3398" height="263" key="GridCell.Tab.0.center" timestamp="1587372767681">
+      <screen x="1792" y="-132" width="3440" height="1417" />
+    </state>
+    <state width="3398" height="263" key="GridCell.Tab.0.center/1792.-132.3440.1417/0.23.1792.1017@1792.-132.3440.1417" timestamp="1587372767681" />
+    <state width="3398" height="263" key="GridCell.Tab.0.left" timestamp="1587372767681">
+      <screen x="1792" y="-132" width="3440" height="1417" />
+    </state>
+    <state width="3398" height="263" key="GridCell.Tab.0.left/1792.-132.3440.1417/0.23.1792.1017@1792.-132.3440.1417" timestamp="1587372767681" />
+    <state width="3398" height="263" key="GridCell.Tab.0.right" timestamp="1587372767682">
+      <screen x="1792" y="-132" width="3440" height="1417" />
+    </state>
+    <state width="3398" height="263" key="GridCell.Tab.0.right/1792.-132.3440.1417/0.23.1792.1017@1792.-132.3440.1417" timestamp="1587372767682" />
+    <state x="2476" y="232" key="SettingsEditor" timestamp="1587373685667">
+      <screen x="1792" y="-132" width="3440" height="1417" />
+    </state>
+    <state x="2476" y="232" key="SettingsEditor/1792.-132.3440.1417/0.23.1792.1017@1792.-132.3440.1417" timestamp="1587373685667" />
+  </component>
+</project>
