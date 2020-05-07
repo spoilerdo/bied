@@ -1,4 +1,5 @@
 syntax = "proto3";
+option csharp_namespace = "UserInformationGRPC"; 
 
 service UserInformation_Service {
   rpc GetUserInformation (UserInformationIdRequest) returns (UserInformation);

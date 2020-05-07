@@ -1,12 +1,13 @@
 ﻿syntax = "proto3";
+option csharp_namespace = "Questionnaire.GRPC";
 
 import "question.proto";
 
 service Questionnaire_Service {
-	rpc CreateQuestionnaire (QuestionnaireCreateRequest) returns (Questionnaire);
+	rpc CreateQuestionnaire (QuestionnaireCreateRequest) returns (QuestionnaireResponse);
 	rpc DeleteQuestionnaire (QuestionnaireIdRequest) returns (QuestionnaireEmptyResponse);
-	rpc UpdateQuestionnaire (QuestionnaireEditRequest) returns (Questionnaire);
-	rpc GetQuestionnaire (QuestionnaireIdRequest) returns (Questionnaire);
+	rpc UpdateQuestionnaire (QuestionnaireEditRequest) returns (QuestionnaireResponse);
+	rpc GetQuestionnaire (QuestionnaireIdRequest) returns (QuestionnaireResponse);
 
 	//TODO: result gedeelte moet nog komen, nog niet duidelijk gedefinieerd.
 }
@@ -32,9 +33,9 @@ message QuestionnaireEditRequest {
 
 
 
-message Questionnaire {
+message QuestionnaireResponse {
 	string id = 1;
 	string name = 2;
 	string description = 3;
-	repeated Question question = 4;
+	repeated QuestionResponse question = 4;
 }

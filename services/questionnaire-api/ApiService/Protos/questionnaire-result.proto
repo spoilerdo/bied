@@ -1,0 +1,25 @@
+syntax = "proto3";
+option csharp_namespace = "Questionnaire.GRPC";
+
+import "question.proto";
+
+service questionnaire_result_service {
+    rpc GetQuestionnaireResult (getQuestionnaireResultRequest) returns (QuestionnaireResults);
+}
+
+message getQuestionnaireResultRequest {
+    string id = 1;
+}
+
+message QuestionnaireResults {
+    string id = 1;
+    string name = 2;
+    string description = 3;
+    repeated QuestionnaireAnswer answers = 4;
+  }
+  
+message QuestionnaireAnswer {
+    string id = 1;
+    string user_id = 2;
+    repeated Question questions = 3;
+  }
