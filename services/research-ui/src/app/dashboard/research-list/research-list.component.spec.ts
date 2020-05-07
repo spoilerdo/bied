@@ -1,9 +1,10 @@
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ResearchListComponent } from './research-list.component';
 import { Research } from '../models/research';
 import * as moment from 'moment';
 import { ResearchListModule } from './research-list.module';
+import { DebugElement } from '@angular/core';
 
 describe('ResearchListComponent', () => {
   const researches: Research[] = [
@@ -52,18 +53,51 @@ describe('ResearchListComponent', () => {
       ownerId: 0,
     }),
   ];
+  let fixture: ComponentFixture<ResearchListComponent>;
+  let component: ResearchListComponent;
+  let el: HTMLElement;
+  let de: DebugElement;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule, ResearchListModule],
       declarations: [],
-    }).compileComponents();
+    })
+      .compileComponents()
+      .then(() => {
+        fixture = TestBed.createComponent(ResearchListComponent);
+        component = fixture.componentInstance;
+        de = fixture.debugElement;
+        el = de.nativeElement;
+      });
   }));
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(ResearchListComponent);
-    const app = fixture.componentInstance;
-    app.researches = researches;
-    expect(app).toBeTruthy();
+  it('should research-list-item for each research', () => {
+    component.researches = researches;
+    fixture.detectChanges();
+    expect(el.querySelectorAll('research-list-item').length).toEqual(researches.length);
+  });
+
+  it('should render information (name/description/owner)', () => {
+    component.researches = researches;
+    fixture.detectChanges();
+    const items = el.querySelectorAll('research-list-item');
+    for (let i = 0; i < items.length; i++) {
+      debugger;
+      const item = items[i];
+      expect(item.querySelector('.title').textContent).toEqual(researches[i].name);
+      expect(item.querySelector('p.description').textContent).toEqual(researches[i].description);
+      expect(item.querySelector('.lead-researcher').textContent).toEqual(researches[i].ownerId.toString());
+    }
+  });
+
+  it('should render humanized date', () => {
+    component.researches = researches;
+    fixture.detectChanges();
+    const items = el.querySelectorAll('research-list-item ngx-research-status span');
+    for (let i = 0; i < items.length; i++) {
+      const item = items[i];
+      expect(item.textContent).toBeTruthy();
+    }
   });
 });
