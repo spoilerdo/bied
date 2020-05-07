@@ -16,6 +16,7 @@ export interface QuestionnaireAnswer {
 }
 
 export interface Question {
+  id: number;
   label: string;
   type: QuestionType;
   description: string;
