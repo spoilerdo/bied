@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Amazon.S3;
 using Amazon;
 using Amazon.S3.Model;
+using System.IO;
 
 namespace EmailService.Logic
 {
@@ -46,13 +47,19 @@ namespace EmailService.Logic
 
         public async Task<string> GetTemplate(string name)
         {
+            if(!name.Contains(".html")) {
+                name = name + ".html";
+            }
+
             bool exists = await this.BucketExists();
             if (!exists)
             {
                 throw new AmazonS3Exception("Bucket does not exist!");
             }
             var item = await amazonS3Client.GetObjectAsync(_appSettings.MinioCredentials.BucketName, name);
-            return "test";
+            StreamReader reader = new StreamReader(item.ResponseStream);
+            string text = reader.ReadToEnd();
+            return text;
         }
 
         private async void CheckBucket()

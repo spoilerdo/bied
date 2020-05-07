@@ -46,10 +46,30 @@ namespace Templating
             {
                 return new getTemplatesReply
                 {
-                    Status = "Failed" + e.Message
+                    Status = "Failed " + e.Message
                 };
             }
         }
+
+        public async override Task<getTemplateReply> getTemplate(getTemplateRequest request, ServerCallContext context)
+        {
+            try 
+            {
+               string templateBody =  await this.templateLogic.GetTemplate(request.TemplateName);
+               return new getTemplateReply
+               {
+                   Status = "Success",
+                   Body = templateBody
+
+               };
+            } catch (Exception e) {
+                
+                return new getTemplateReply
+                {
+                    Status = "Failed " + e.Message
+                };
+            }
+        } 
 
         public override string ToString()
         {
