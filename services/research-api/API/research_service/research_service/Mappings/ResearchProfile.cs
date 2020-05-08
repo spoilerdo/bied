@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using research_service.Persistence.Entities;
+using ResearchGRPC;
 using System;
 using System.Collections.Generic;
 using System.Linq;
