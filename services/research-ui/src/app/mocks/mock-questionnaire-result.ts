@@ -20,6 +20,7 @@ export const questionnaireResult: QuestionnaireResult = {
           data: '123456789',
           index: 1,
           required: false,
+          answer: '2020-05-07',
         },
         {
           id: 2,
@@ -29,6 +30,7 @@ export const questionnaireResult: QuestionnaireResult = {
           data: '123456789',
           index: 2,
           required: false,
+          answer: 'Sterk mee eens',
         },
         {
           id: 3,
@@ -38,6 +40,7 @@ export const questionnaireResult: QuestionnaireResult = {
           data: '123456789',
           index: 3,
           required: false,
+          answer: 'A',
         },
         {
           id: 4,
@@ -47,6 +50,7 @@ export const questionnaireResult: QuestionnaireResult = {
           data: '123456789',
           index: 4,
           required: false,
+          answer: 69,
         },
         {
           id: 5,
@@ -56,6 +60,7 @@ export const questionnaireResult: QuestionnaireResult = {
           data: '123456789',
           index: 5,
           required: false,
+          answer: 'yes',
         },
         {
           id: 6,
@@ -65,6 +70,7 @@ export const questionnaireResult: QuestionnaireResult = {
           data: '123456789',
           index: 6,
           required: false,
+          answer: '15:30',
         },
       ],
     },

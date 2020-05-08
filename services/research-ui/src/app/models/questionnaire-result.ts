@@ -23,4 +23,12 @@ export interface Question {
   data: string;
   index: number;
   required: boolean;
+  answer: any;
+}
+
+export interface QuestionAnswer {
+  id: number;
+  question: string;
+  answer: any;
+  type: QuestionType;
 }
