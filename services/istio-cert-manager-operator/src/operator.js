@@ -53,10 +53,6 @@ const generateGatewayName = (serviceName) => {
  */
 const deployGateway = async (token, namespace, serviceName, domain) => {
   const gatewayName = generateGatewayName(serviceName);
-  console.log('hoi token', token);
-  console.log('hoi namespace', namespace);
-  console.log('hoi serviceName', serviceName);
-  console.log('hoi domain', domain);
 
   const gJSON = gTemplate({
     gatewayName,
