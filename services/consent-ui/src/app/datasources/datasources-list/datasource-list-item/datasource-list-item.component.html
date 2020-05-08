@@ -1,4 +1,33 @@
-<div style="display: flex;">
-  <div style="width: 50%;">{{ datasource.name }}</div>
-  <div style="width: 50%;">{{ consent.consent }}</div>
+<!-- <div style="display: flex; min-width: 300px;">
+  <div style="min-width: 32px; text-align: center;">
+    <app-status-indicator
+      [status]="consent.consent"
+      [date]="consent.uts"
+    ></app-status-indicator>
+  </div>
+  <div style="min-width: 20%; width: 60%;">{{ datasource.name }}</div>
+  <div style="min-width: 10%; width: 20%;">
+    {{ consent.uts.toLocaleString("nl") }}
+  </div>
+</div> -->
+
+<!-- <nb-layout>
+  <nb-layout-column>
+    <app-status-indicator
+      [status]="consent.consent"
+      [date]="consent.uts"
+    ></app-status-indicator>
+  </nb-layout-column>
+  <nb-layout-column>{{ datasource.name }}</nb-layout-column>
+  <nb-layout-column>{{ consent.uts.toLocaleString("nl") }}</nb-layout-column>
+</nb-layout> -->
+
+<div class="item-container">
+  <app-status-indicator
+    class="status-indicator"
+    [status]="consent.consent"
+    [date]="consent.uts"
+  ></app-status-indicator>
+  <div class="name">{{ datasource.name }}</div>
+  <div class="date">{{ consent.uts.toLocaleDateString("nl") }}</div>
 </div>

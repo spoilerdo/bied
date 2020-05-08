@@ -1,29 +1,19 @@
-<!-- <div style="padding: 1rem;">
-  <p style="margin: 0;">{{ research.description }}</p>
-  <app-datasources-list [researchId]="1"></app-datasources-list>
-</div> -->
+<div class="item-container">
+  <div class="research-details">
+    <img
+      class="image"
+      src="https://www.jvc-julianadorp.nl/wp-content/uploads/20161129enquete_.jpg"
+      alt="research image"
+    />
 
-<div style="padding: 1rem; display: flex;">
-  <div style="width: 50%;">
-    <div style="width: 100%; display: flex;">
-      <div style="width: 320px;">
-        <img
-          style="width: 320px; height: 180px;"
-          src="https://www.jvc-julianadorp.nl/wp-content/uploads/20161129enquete_.jpg"
-        />
-      </div>
-      <div style="margin-left: 16px;">
-        <p style="margin: 0;">
-          Started: {{ research.startDate.toLocaleDateString("nl") }}
-        </p>
-        <p style="margin: 0;">
-          {{ finishString }}
-        </p>
-        <p style="margin: 0;">{{ research.description }}</p>
-      </div>
+    <div class="research-information">
+      <p>Started: {{ startString }}</p>
+      <p>{{ finishString }}</p>
+      <p>{{ research.description }}</p>
     </div>
   </div>
-  <div style="width: 50%;">
+
+  <div class="research-datasources">
     <app-datasources-list [researchId]="1"></app-datasources-list>
   </div>
 </div>
