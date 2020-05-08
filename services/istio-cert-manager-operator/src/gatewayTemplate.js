@@ -13,7 +13,7 @@ module.exports = `
         "servers": [
             {
                 "hosts": [
-                    "host": "{{ domain }}",
+                    "{{ domain }}"
                 ],
                 "port": {
                     "name": "http",

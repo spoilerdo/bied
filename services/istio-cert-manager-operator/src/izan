@@ -1,0 +1,1 @@
+helm install   cert-manager jetstack/cert-manager   --namespace cert-manager   --version v0.14.1 -debug

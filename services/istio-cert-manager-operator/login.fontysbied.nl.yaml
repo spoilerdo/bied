@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1alpha2
+kind: Certificate
+metadata:
+  name: login.fontysbied.nl
+  namespace: istio-system
+spec:
+  secretName: login.fontysbied.nl-tls
+  issuerRef:
+    name: letsencrypt-staging
+  commonName: login.fontysbied.nl
+  dnsNames:
+    - login.fontysbied.nl

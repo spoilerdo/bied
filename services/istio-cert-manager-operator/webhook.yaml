@@ -7,7 +7,7 @@ webhooks:
   - admissionReviewVersions:
       - v1beta1
     clientConfig:
-      url: https://2ff1239e.ngrok.io
+      url: https://fb8360e1.ngrok.io
     failurePolicy: Fail
     matchPolicy: Exact
     name: cm-create-order-hook.fontysbied.nl
