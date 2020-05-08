@@ -1,14 +1,37 @@
 syntax = "proto3";
 option csharp_namespace = "ResearchGRPC"; 
 
+package Research;
+
+import "google/api/annotations.proto";
 import "datasource.proto";
 
 service Research_Service {
-  rpc GetResearches (GetResearchesRequest) returns (Researches);
-  rpc GetResearch (ResearchIdRequest) returns (Research);
-  rpc CreateResearch (ResearchCreateRequest) returns (Research);
-  rpc EditResearch (ResearchEditRequest) returns (Research);
-  rpc DeleteResearch (ResearchIdRequest) returns (ResearchEmptyResponse);
+  rpc GetResearches (GetResearchesRequest) returns (Researches) {
+    option (google.api.http).get = "/research";
+  };
+
+  rpc GetResearch (ResearchIdRequest) returns (Research) {
+    option (google.api.http).get = "/research/{id}";
+  };
+
+  rpc CreateResearch (ResearchCreateRequest) returns (Research) {
+    option (google.api.http) = {
+      post: "/research"
+      body: "*"
+    };
+  };
+
+  rpc EditResearch (ResearchEditRequest) returns (Research) {
+    option (google.api.http) = {
+      put: "/research"
+      body: "*"
+    };
+  };
+
+  rpc DeleteResearch (ResearchIdRequest) returns (ResearchEmptyResponse) {
+    option (google.api.http).delete = "/research/{id}";
+  };
 
   rpc AddDatasourceToResearch (Datasource) returns (Research);
   rpc RemoveDatasourceFromResearch (DatasourceIdResearchRequest) returns (Research);

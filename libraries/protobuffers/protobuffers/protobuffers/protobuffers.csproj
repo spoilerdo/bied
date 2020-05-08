@@ -3,13 +3,14 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.1</Version>
+    <Version>1.1.0</Version>
     <PackageId>Bied.Protobuffers</PackageId>
     <Description>BIED protobuffers Nuget package used for ASP core services</Description>
     <Copyright>AGPL-3.0-or-later</Copyright>
     <PackageProjectUrl>https://github.com/Choem/bied/</PackageProjectUrl>
     <Authors>S66-BIED</Authors>
     <Company>S66-BIED</Company>
+    <PackageReleaseNotes>protobuffer grpc to http mapping</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
@@ -17,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Google.Api.Gax.Grpc" Version="3.0.0" />
     <PackageReference Include="Grpc.AspNetCore" Version="2.27.0" />
   </ItemGroup>
 
