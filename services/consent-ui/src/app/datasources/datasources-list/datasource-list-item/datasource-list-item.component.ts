@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Datasource } from 'src/app/models/datasource';
+import { ConsentProvider } from 'src/app/providers/consent.provider';
+import { Consent } from 'src/app/models/consent';
 
 @Component({
   selector: 'app-datasource-list-item',
@@ -8,10 +10,12 @@ import { Datasource } from 'src/app/models/datasource';
 })
 export class DatasourceListItemComponent implements OnInit {
   @Input() datasource: Datasource;
+  consent: Consent;
 
-  constructor() { }
+  constructor(private readonly consentService: ConsentProvider) { }
 
   ngOnInit(): void {
+    this.consent = this.consentService.getUserConsentForDatasource('1', this.datasource.id)
   }
 
 }

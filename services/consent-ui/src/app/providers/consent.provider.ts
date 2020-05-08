@@ -13,6 +13,10 @@ export class ConsentProvider {
     throw new Error(`Method not implemented`)
   }
 
+  getUserConsentForDatasource(userId: String, datasourceId: String): Consent {
+    throw new Error('Method not implemented')
+  }
+
   deleteAllConsent(userId: string): boolean {
     throw new Error(`Method not implemented`)
   }

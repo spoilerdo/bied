@@ -5,19 +5,25 @@ import { DatasourceListItemComponent } from './datasources-list/datasource-list-
 import { NbListModule } from '@nebular/theme';
 import { DatasourceProvider } from '../providers/datasource.provider';
 import { DatasourceMockProvider } from '../providers/datasource.provider.mock';
-
-
+import { ConsentProvider } from '../providers/consent.provider';
+import { ConsentMockProvider } from '../providers/consent.provider.mock';
+import { ConsentModule } from '../consent/consent.module';
 
 @NgModule({
   declarations: [DatasourcesListComponent, DatasourceListItemComponent],
   imports: [
     CommonModule,
-    NbListModule,    
+    NbListModule,
+    ConsentModule
   ],
   providers: [
     {
       provide: DatasourceProvider,
       useClass: DatasourceMockProvider
+    },
+    {
+      provide: ConsentProvider,
+      useClass: ConsentMockProvider
     }
   ],
   exports: [DatasourcesListComponent, DatasourceListItemComponent]

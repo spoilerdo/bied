@@ -32,6 +32,10 @@ export class ConsentMockProvider extends ConsentProvider {
     return this.store.find(x => x.id === consentId);
   }
 
+  getUserConsentForDatasource(userId: String, datasourceId: String): Consent {
+    return this.store.find(x => x.datasourceId === datasourceId && x.userId === userId);
+  }
+
   deleteAllConsent(userId: string): boolean {
     console.log(`Delete all consent called for user: ${userId}`)
     return Math.random() >= 0.5;

@@ -12,6 +12,7 @@ import { NbCardModule, NbIconModule, NbToggleModule } from '@nebular/theme';
 import { ConsentsModule } from '../consents/consents.module';
 import { ConsentTimelineComponent } from './consent-timeline/consent-timeline.component';
 import { MglTimelineModule } from 'angular-mgl-timeline';
+import { StatusIndicatorModule } from '../status-indicator/status-indicator.module';
 
 
 @NgModule({  
@@ -22,7 +23,8 @@ import { MglTimelineModule } from 'angular-mgl-timeline';
     NbIconModule,
     ConsentsModule,
     MglTimelineModule,
-    NbToggleModule
+    NbToggleModule,
+    StatusIndicatorModule
   ],
   declarations: [ConsentComponent, ConsentDetailsHeaderComponent, ConsentTimelineComponent],  
   providers: [

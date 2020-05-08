@@ -4,11 +4,11 @@ import { ConsentsComponent } from './consents.component';
 import { NbCardModule, NbListModule, NbIconModule, NbTooltipComponent, NbTooltipModule, NbPopoverModule } from '@nebular/theme';
 import { ConsentsListComponent } from './consents-list/consents-list.component';
 import { ConsentsListItemComponent } from './consents-list/consents-list-item/consents-list-item.component';
-import { StatusIndicatorComponent } from './consents-list/consents-list-item/status-indicator/status-indicator.component';
 import { ConsentProvider } from '../providers/consent.provider';
 import { ConsentMockProvider } from '../providers/consent.provider.mock';
 import { DatasourceProvider } from '../providers/datasource.provider';
 import { DatasourceMockProvider } from '../providers/datasource.provider.mock';
+import { StatusIndicatorModule } from '../status-indicator/status-indicator.module';
 
 
 
@@ -17,12 +17,12 @@ import { DatasourceMockProvider } from '../providers/datasource.provider.mock';
     CommonModule,
     NbCardModule,
     NbListModule,
-    NbIconModule,
-    NbTooltipModule,
-    NbPopoverModule
+    NbIconModule,   
+    NbPopoverModule,
+    StatusIndicatorModule
   ],
-  declarations: [ConsentsComponent, ConsentsListComponent, ConsentsListItemComponent, StatusIndicatorComponent],  
-  exports: [ConsentsComponent, StatusIndicatorComponent],
+  declarations: [ConsentsComponent, ConsentsListComponent, ConsentsListItemComponent],  
+  exports: [ConsentsComponent],
   providers: [
     {
       provide: ConsentProvider,
