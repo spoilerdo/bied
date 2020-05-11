@@ -12,7 +12,7 @@ spec:
         name: http
         protocol: HTTP
       hosts:
-        - "*"
+        - "nuget.fontysbied.nl"
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
@@ -23,11 +23,11 @@ spec:
   gateways:
     - nuget-gateway
   hosts:
-    - "*" # What inbound Host should be routed. (eg. 'research.bied.nl')
+    - "nuget.fontysbied.nl" # What inbound Host should be routed. (eg. 'research.bied.nl')
   http:
     - match:
         - uri:
-            prefix: ""
+            prefix: /
       route:
         # routes it toward this host. Usually a Kubernetes native 'Service', this should be a FQDN in production
         - destination:
