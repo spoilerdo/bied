@@ -28,6 +28,6 @@
     [status]="consent.consent"
     [date]="consent.uts"
   ></app-status-indicator>
-  <div class="name">{{ datasource.name }}</div>
+  <a class="name" href="consents/{{ consent.id }}">{{ datasource.name }}</a>
   <div class="date">{{ consent.uts.toLocaleDateString("nl") }}</div>
 </div>

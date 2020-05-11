@@ -6,6 +6,6 @@ export class AppPage {
   }
 
   getTitleText(): Promise<string> {
-    return element(by.css('app-root .content span')).getText() as Promise<string>;
+    return element(by.xpath('/html/body/app-root/nb-layout/div/div/div/div/div/nb-layout-column/app-dashboard/h1')).getText() as Promise<string>;
   }
 }

@@ -10,7 +10,7 @@ describe('workspace-project App', () => {
 
   it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('consent-ui app is running!');
+    expect(page.getTitleText()).toEqual('This page will contain a dashboard displaying user data, statistics, consents');
   });
 
   afterEach(async () => {
