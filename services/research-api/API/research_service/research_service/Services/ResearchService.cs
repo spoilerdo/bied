@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
+using DatasourceGRPC;
 using Grpc.Core;
 using research_service.Persistence.Entities;
 using research_service.Persistence.Repositories.Researches;
+using ResearchGRPC;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
