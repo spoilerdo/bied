@@ -33,7 +33,7 @@ service Research_Service {
     option (google.api.http).delete = "/research/{id}";
   };
 
-  rpc AddDatasourceToResearch (Datasource) returns (Research);
+  rpc AddDatasourceToResearch (DatasourceIdResearchRequest) returns (Research);
   rpc RemoveDatasourceFromResearch (DatasourceIdResearchRequest) returns (Research);
   rpc InviteUsersToResearch (EmailRequests) returns (EmailEmptyResponse);
 }
@@ -72,7 +72,8 @@ message ResearchEditRequest {
 message ResearchEmptyResponse {}
 
 message DatasourceIdResearchRequest {
-  string id = 1;
+  string researchId = 1;
+  Datasource datasource = 2;
 }
 
 message EmailRequests {
