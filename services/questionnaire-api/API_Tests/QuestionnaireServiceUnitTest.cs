@@ -54,13 +54,29 @@ namespace ApiService_tests
         }
 
         [Fact]
+        public async void createQuestionnaireMissingName()
+        {
+            // ARRANGE
+            QuestionnaireCreateRequest request = new QuestionnaireCreateRequest
+            {
+                Description = "request desc"
+            };
+
+            //ASSERT
+            var ex = await Assert.ThrowsAsync<RpcException>(async () => 
+                // ACT
+                await _questionnaireService.CreateQuestionnaire(request, _mockContext.Object)
+            );
+
+            //ASSERT
+            Assert.Equal(ex.StatusCode, StatusCode.InvalidArgument);
+        }
+
+        [Fact]
         public async void getQuestionnaire()
         {
             // ARRANGE
-            QuestionnaireIdRequest request = new QuestionnaireIdRequest
-            {
-                Id = "realid"
-            };
+            
             QuestionnaireEntity entity = new QuestionnaireEntity
             {
                 ID = "realid",
@@ -69,8 +85,14 @@ namespace ApiService_tests
                 Question = new List<QuestionEntity>(),
                 ModifiedOn = new DateTime()
             };
+
             await _mockRepository.CreateQuestionnaire(entity);
-            
+
+            QuestionnaireIdRequest request = new QuestionnaireIdRequest
+            {
+                Id = entity.ID
+            };
+
             // ACT
             QuestionnaireResponse result = await _questionnaireService.GetQuestionnaire(request, _mockContext.Object);
 

@@ -34,12 +34,19 @@ namespace Questionnaire.Services
         /// <returns>created Questionnaire or error indicating reason for failure</returns>
         public override async Task<QuestionnaireResponse> CreateQuestionnaire(QuestionnaireCreateRequest request, ServerCallContext context)
         {
-            // TODO: Validate questionnaire.
+            // TODO: Validate questions.
+            if(string.IsNullOrWhiteSpace(request.Name)) {
+                throw new RpcException(new Status(StatusCode.InvalidArgument, "Name is required"));
+            }
+
             QuestionnaireEntity response;
             try
             {
                 QuestionnaireEntity entity = _mapper.Map<QuestionnaireEntity>(request);
                 response = await _repository.CreateQuestionnaire(entity);
+            }
+            catch(AutoMapperMappingException) {
+                throw new RpcException(new Status(StatusCode.InvalidArgument, "Not all required fields are filled in"));
             }
             catch (Exception e)
             { // TODO sort errors and throw dedicated exceptions.
