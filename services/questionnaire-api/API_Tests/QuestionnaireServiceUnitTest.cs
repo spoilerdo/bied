@@ -10,6 +10,7 @@ using ApiService_tests.Mock;
 using Microsoft.Extensions.Logging;
 using Questionnaire.Services;
 using Grpc.Core;
+using Questionnaire.Mappings;
 
 namespace ApiService_tests
 {
@@ -18,12 +19,19 @@ namespace ApiService_tests
         private readonly IQuestionnaireRepository _mockRepository = new MockQuestionnaireRepository();
         private readonly Mock<ServerCallContext> _mockContext = new Mock<ServerCallContext>();
         private readonly Mock<ILogger<QuestionnaireService>> _mockLogger = new Mock<ILogger<QuestionnaireService>>();
+        
+        private readonly MapperConfiguration _config = new MapperConfiguration(cfg => {
+            cfg.AddProfile(new QuestionProfile());
+            cfg.AddProfile(new QuestionnaireProfile());
+        });
         private readonly Mock<IMapper> _mockMapper = new Mock<IMapper>();
+        private readonly IMapper _mapper;
         private readonly QuestionnaireService _questionnaireService;
 
         public QuestionnaireServiceUnitTest()
         {
-            _questionnaireService = new QuestionnaireService(_mockLogger.Object, _mockMapper.Object, _mockRepository);
+            _mapper = _config.CreateMapper();
+            _questionnaireService = new QuestionnaireService(_mockLogger.Object, _mapper, _mockRepository);
         }
 
         [Fact]
@@ -76,15 +84,8 @@ namespace ApiService_tests
                 Question = new List<QuestionEntity>(),
                 ModifiedOn = new DateTime()
             };
-            QuestionnaireResponse response = new QuestionnaireResponse
-            {
-                Id = "realid",
-                Name = "Request",
-                Description = "request desc"
-            };
-
-            _mockMapper.Setup(x => x.Map<QuestionnaireResponse>(It.IsAny<QuestionnaireEntity>())).Returns(response);
-
+            await _mockRepository.CreateQuestionnaire(entity);
+            
             // ACT
             QuestionnaireResponse result = await _questionnaireService.GetQuestionnaire(request, _mockContext.Object);
 
