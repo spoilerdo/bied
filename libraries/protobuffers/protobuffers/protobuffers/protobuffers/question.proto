@@ -1,5 +1,5 @@
 ﻿syntax = "proto3";
-option csharp_namespace = "Questionnaire.GRPC";
+option csharp_namespace = "QuestionnaireGRPC";
 
 import "questionType.proto";
 
