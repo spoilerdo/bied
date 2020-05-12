@@ -49,9 +49,14 @@ namespace research_service.Persistence.Repositories.Researches
             return new DataResponseObject<ResearchEntity>(foundResearch);
         }
 
-        public async Task<DataResponseObject<IEnumerable<ResearchEntity>>> GetResearches()
+        public async Task<DataResponseObject<IEnumerable<ResearchEntity>>> GetResearches(int offset, int limit)
         {
-            var researches = await _context.Researches.ToListAsync();
+            var researches = await _context.Researches
+                                            .OrderBy(x => x.Id)
+                                            .Skip(offset)
+                                            .Take(limit)
+                                            .ToListAsync();
+
             return new DataResponseObject<IEnumerable<ResearchEntity>>(researches);
         }
 

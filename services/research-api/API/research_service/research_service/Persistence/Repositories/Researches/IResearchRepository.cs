@@ -19,8 +19,10 @@ namespace research_service.Persistence.Repositories.Researches
         /// <summary>
         /// Get all researches
         /// </summary>
+        /// <param name="offset">Rows to skip before starting to fetch new rows</param>
+        /// <param name="limit">Amount of rows to fetch starting from offset</param>
         /// <returns>all found researches</returns>
-        Task<DataResponseObject<IEnumerable<ResearchEntity>>> GetResearches();
+        Task<DataResponseObject<IEnumerable<ResearchEntity>>> GetResearches(int offset, int limit);
         /// <summary>
         /// Create a research
         /// </summary>
