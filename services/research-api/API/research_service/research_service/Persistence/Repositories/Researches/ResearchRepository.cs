@@ -62,20 +62,31 @@ namespace research_service.Persistence.Repositories.Researches
             {
                 return new DataResponseObject<ResearchEntity>("Research could not be found");
             }
-            //check if user has the datasource
-            if(research.ResearchDataSources.Contains(datasource))
+            if(!research.ResearchDataSources.Contains(datasource))
             {
-
-            } else
-            {
-
+                return new DataResponseObject<ResearchEntity>("Datasource not connected to research");
             }
-            throw new NotImplementedException();
+
+            research.ResearchDataSources.Remove(datasource);
+            await _context.SaveChangesAsync();
+            return new DataResponseObject<ResearchEntity>(research);
         }
 
-        public Task<DataResponseObject<ResearchEntity>> AddDataSourceToResearch(Guid id, Datasource datasource)
+        public async Task<DataResponseObject<ResearchEntity>> AddDataSourceToResearch(Guid id, ResearchDatasource datasource)
         {
-            throw new NotImplementedException();
+            var research = await _context.Researches.FindAsync(id);
+            if (research == null)
+            {
+                return new DataResponseObject<ResearchEntity>("Research could not be found");
+            }
+            if (research.ResearchDataSources.Contains(datasource))
+            {
+                return new DataResponseObject<ResearchEntity>("Datasource already connected to research");
+            }
+
+            research.ResearchDataSources.Add(datasource);
+            await _context.SaveChangesAsync();
+            return new DataResponseObject<ResearchEntity>(research);
         }
 
         public async Task<DataResponseObject<ResearchEntity>> UpdateResearch(Guid id, ResearchEntity research)

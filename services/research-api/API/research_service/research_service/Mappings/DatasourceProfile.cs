@@ -11,9 +11,12 @@ namespace research_service.Mappings
 {
     public class DatasourceProfile : Profile
     {
+        //TODO: UPDATEN MET NIEUWE NUGET NAAR DATASOURCEIDREQUEST
         public DatasourceProfile()
         {
-            CreateMap<Datasource, ResearchDatasource>()
+          /*  CreateMap<Datasource, ResearchDatasource>()
+                .ForMember(dest => dest.DatasourceId, opt => opt.MapFrom(src => src.Id))
+                .ForMember(dest => dest.ResearchId, opt => opt.MapFrom(src => src.)) */
         }
     }
 }

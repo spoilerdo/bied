@@ -47,13 +47,13 @@ namespace research_service.Persistence.Repositories.Researches
         /// <param name="id">ID of the research</param>
         /// <param name="datasource">Datasource to add to the research</param>
         /// <returns>Dataresponseobject containing object or error</returns>
-        Task<DataResponseObject<ResearchEntity>> AddDataSourceToResearch(Guid id, Datasource datasource);
+        Task<DataResponseObject<ResearchEntity>> AddDataSourceToResearch(Guid id, ResearchDatasource datasource);
         /// <summary>
         /// remove datasource from research with given id
         /// </summary>
         /// <param name="id">ID of the research</param>
         /// <param name="datasource">Datasource to add to the research</param>
         /// <returns>Dataresponseobject containing object or error</returns>
-        Task<DataResponseObject<ResearchEntity>> RemoveDataSourceFromResearch(Guid id, Datasource datasource);
+        Task<DataResponseObject<ResearchEntity>> RemoveDataSourceFromResearch(Guid id, ResearchDatasource datasource);
     }
 }
