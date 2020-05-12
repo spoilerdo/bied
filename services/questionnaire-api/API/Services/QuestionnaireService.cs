@@ -1,13 +1,13 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
+using API.Validators;
 using Grpc.Core;
 using Microsoft.Extensions.Logging;
 using Questionnaire.GRPC;
 using Questionnaire.Persistence.Repositories;
 using Questionnaire.Persistence.Entities;
 using AutoMapper;
+using FluentValidation;
 
 namespace Questionnaire.Services
 {
@@ -36,17 +36,20 @@ namespace Questionnaire.Services
         /// <returns>created Questionnaire or error indicating reason for failure</returns>
         public override async Task<QuestionnaireResponse> CreateQuestionnaire(QuestionnaireCreateRequest request, ServerCallContext context)
         {
-            // TODO: Validate questionnaire.
-            QuestionnaireEntity response;
             try
             {
-                response = await _repository.CreateQuestionnaire(_mapper.Map<QuestionnaireEntity>(request));
+                // Validate the request
+                var validator = new CreateQuestionnaireRequestValidator();
+                validator.ValidateAndThrow(request);
+                
+                var response = await _repository.CreateQuestionnaire(_mapper.Map<QuestionnaireEntity>(request));
+                return _mapper.Map<QuestionnaireResponse>(response);
             }
             catch (Exception e)
             { // TODO sort errors and throw dedicated exceptions.
+                Console.WriteLine(e.ToString());
                 throw new RpcException(new Status(StatusCode.Internal, e.Message));
             }
-            return _mapper.Map<QuestionnaireResponse>(response);
         }
 
 
