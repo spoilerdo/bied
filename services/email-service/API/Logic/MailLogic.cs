@@ -2,6 +2,7 @@ using System.Linq;
 using System;
 using System.Net.Mail;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace EmailService.Logic
 {
@@ -9,9 +10,12 @@ namespace EmailService.Logic
     {
         private readonly AppSettings _appSettings;
 
+        private ITemplateLogic templateLogic;
+
         public MailLogic(AppSettings appSettings)
         {
             _appSettings = appSettings;
+            this.templateLogic = new TemplateLogic(_appSettings);
         }
 
         /// <summary>
@@ -21,11 +25,11 @@ namespace EmailService.Logic
         /// <param name="values"></param>
         /// <param name="template"></param>
         /// <returns>Returns bool true if success or will throw error if failed</returns>
-        public bool SendMail(List<string> addresses, List<string> values, string template)
+        public async Task<bool> SendMail(List<string> addresses, List<string> values, string template, string subject)
         {
             this.CheckMailAddresses(addresses);
 
-            MailMessage mail = this.CreateMail(addresses, values, template);
+            MailMessage mail = await this.CreateMail(addresses, values, template, subject);
 
             using (SmtpClient client = new SmtpClient(this._appSettings.SmtpConfig.Server))
             {
@@ -46,17 +50,17 @@ namespace EmailService.Logic
         /// <param name="values"></param>
         /// <param name="template"></param>
         /// <returns>New MailMessage</returns>
-        public MailMessage CreateMail(List<string> addresses, List<string> values, string template)
+        public async Task<MailMessage> CreateMail(List<string> addresses, List<string> values, string template, string subject)
         {
-            //TODO: Implement templating
             MailMessage mail = new MailMessage();
             mail.From = new MailAddress(this._appSettings.SmtpConfig.Credentials.Username);
-            mail.Subject = "Test mail Bied";
-            string fullMessage = "";
+            mail.Subject = subject;
+            mail.IsBodyHtml = true;
+            string fullMessage = await this.templateLogic.GetTemplate(template);
 
-            foreach (string val in values)
+            for (int x = 0; x < values.Count; x++)
             {
-                fullMessage = fullMessage + val + " ";
+                fullMessage = fullMessage.Replace("[value" + x + "]", values[x]);
             }
             mail.Body = fullMessage;
             foreach (string address in addresses)
