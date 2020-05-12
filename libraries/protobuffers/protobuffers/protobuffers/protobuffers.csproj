@@ -3,9 +3,10 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.1.0</Version>
+    <!--VERSIE NUMMER NIET AANPASSEN. De versie nummer word automatisch gezet door de CI/CD script.-->
+    <Version>1.0.0</Version>
     <PackageId>Bied.Protobuffers</PackageId>
-    <Description>BIED protobuffers Nuget package used for ASP core services</Description>
+    <Description>BIED protobuffers Nuget package is used for .NET gRPC services</Description>
     <Copyright>AGPL-3.0-or-later</Copyright>
     <PackageProjectUrl>https://github.com/Choem/bied/</PackageProjectUrl>
     <Authors>S66-BIED</Authors>
