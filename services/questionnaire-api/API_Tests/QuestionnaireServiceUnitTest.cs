@@ -79,7 +79,6 @@ namespace ApiService_tests
             
             QuestionnaireEntity entity = new QuestionnaireEntity
             {
-                ID = "realid",
                 Name = "Request",
                 Description = "request desc",
                 Question = new List<QuestionEntity>(),
@@ -123,11 +122,46 @@ namespace ApiService_tests
         public async void deleteQuestionnaire()
         {
             // ARRANGE
+            QuestionnaireEntity entity = new QuestionnaireEntity
+            {
+                Name = "Request",
+                Description = "request desc",
+                Question = new List<QuestionEntity>(),
+                ModifiedOn = new DateTime()
+            };
+
+            await _mockRepository.CreateQuestionnaire(entity);
+
             QuestionnaireIdRequest request = new QuestionnaireIdRequest
             {
-                Id = "realid"
+                Id = entity.ID
             };
-            QuestionnaireEmptyResponse response = new QuestionnaireEmptyResponse { };
+
+            // ACT
+            QuestionnaireEmptyResponse result = await _questionnaireService.DeleteQuestionnaire(request, _mockContext.Object);
+
+            //ASSERT
+            Assert.NotNull(result);
+        }
+
+        [Fact]
+        public async void deleteQuestionnaireNonExisting()
+        {
+            // ARRANGE
+            QuestionnaireEntity entity = new QuestionnaireEntity
+            {
+                Name = "Request",
+                Description = "request desc",
+                Question = new List<QuestionEntity>(),
+                ModifiedOn = new DateTime()
+            };
+
+            await _mockRepository.CreateQuestionnaire(entity);
+
+            QuestionnaireIdRequest request = new QuestionnaireIdRequest
+            {
+                Id = "hallo"
+            };
 
             // ACT
             QuestionnaireEmptyResponse result = await _questionnaireService.DeleteQuestionnaire(request, _mockContext.Object);

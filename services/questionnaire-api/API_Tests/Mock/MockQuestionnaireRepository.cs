@@ -55,7 +55,7 @@ namespace ApiService_tests.Mock
         public async Task DeleteQuestionnaire(string id)
         {
             var task = new Task(() => {
-                questionnaires.RemoveAt(questionnaires.FindIndex(q => q.ID == id));
+                questionnaires.Remove(questionnaires.Find(q => q.ID == id));
             });
             task.Start();
             await task;

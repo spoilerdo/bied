@@ -104,6 +104,7 @@ namespace Questionnaire.Services
 
         /// <summary>
         /// Deletes a questionnaire with the given parameters
+        /// Returns an empty response even if nothing is deleted without errors
         /// </summary>
         /// <param name="request">The data to delete a questionnaire with</param>
         /// <param name="context">The server context</param>
