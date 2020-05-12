@@ -95,6 +95,24 @@ namespace ApiService_tests
         }
 
         [Fact]
+        public async void getQuestionnaireNonExisting()
+        {
+            // ARRANGE
+            QuestionnaireIdRequest request = new QuestionnaireIdRequest
+            {
+                Id = "realid"
+            };
+            
+            //ASSERT
+            var ex = await Assert.ThrowsAsync<RpcException>(async () => 
+                // ACT
+                await _questionnaireService.GetQuestionnaire(request, _mockContext.Object)
+            );
+
+            Assert.Equal(ex.StatusCode, StatusCode.NotFound);
+        }
+
+        [Fact]
         public async void deleteQuestionnaire()
         {
             // ARRANGE

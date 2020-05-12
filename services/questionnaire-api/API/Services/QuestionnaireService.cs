@@ -67,6 +67,9 @@ namespace Questionnaire.Services
             { // TODO sort errors and throw dedicated exceptions.
                 throw new RpcException(new Status(StatusCode.Internal, e.Message));
             }
+            if(response == null) {
+                throw new RpcException(new Status(StatusCode.NotFound, $"Entity with id '{request.Id}' not found'"));
+            }
             return _mapper.Map<QuestionnaireResponse>(response);
         }
 
