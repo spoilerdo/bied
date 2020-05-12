@@ -21,7 +21,7 @@ class PackageManager {
     }
 
     def getLiveVersion(){
-        def get = new URL("http://nuget.kn01.fhict.nl/v3/search?id=Bied.Protobuffers").openConnection();
+        def get = new URL("http://nuget.fontysbied.nl/v3/search?id=Bied.Protobuffers").openConnection();
         def getRC = get.getResponseCode();
         String text = get.getInputStream().getText();
         int start = text.indexOf("version");
@@ -42,8 +42,9 @@ class PackageManager {
         def file =  new File("libraries/protobuffers/protobuffers/protobuffers/protobuffers.csproj");
         String xml = file.getText();
         int vbegin = xml.indexOf("Version")+"Version>".length();
+        int vEnd = xml.indexOf("</Version");
         int count = 5;
-        xml = xml.replace("1.0.1", version);
+        xml = xml.substring(0,vbegin) + version + xml.substring(vEnd)
         def w = file.newWriter();
         w << xml;
         w.close()
@@ -51,7 +52,7 @@ class PackageManager {
     }
 
     def pushPackage(String version){
-        String pushResult = execute("nuget push -source http://nuget.kn01.fhict.nl/v3/index.json ..\\build\\Bied.Protobuffers." + version + ".nupkg")
+        String pushResult = execute("nuget push -source http://nuget.fontysbied.nl/v3/index.json ..\\build\\Bied.Protobuffers." + version + ".nupkg")
     }
 
     def updatePackageIfNeeded(){
