@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Net.Mail;
+using System.Threading.Tasks;
 
 namespace EmailService.Logic
 {
@@ -12,7 +13,7 @@ namespace EmailService.Logic
         /// <param name="values"></param>
         /// <param name="template"></param>
         /// <returns>Returns bool true if success or will throw error if failed</returns>
-        bool SendMail(List<string> addresses, List<string> values, string template);
+         Task<bool> SendMail(List<string> addresses, List<string> values, string template, string subject);
 
         /// <summary>
         /// Creates a new MailMessage
@@ -21,7 +22,7 @@ namespace EmailService.Logic
         /// <param name="values"></param>
         /// <param name="template"></param>
         /// <returns>New MailMessage</returns>
-        MailMessage CreateMail(List<string> addresses, List<string> values, string template);
+        Task<MailMessage> CreateMail(List<string> addresses, List<string> values, string template, string subject);
 
         /// <summary>
         /// Checks if there are any addresses given and loops over addresses to check if its correct format.
