@@ -1,7 +1,6 @@
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS base
 WORKDIR /app
-EXPOSE 80
-EXPOSE 443
+EXPOSE 5000
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build
 WORKDIR /app
@@ -15,11 +14,13 @@ RUN dotnet restore --verbosity n
 COPY ./API/. .
 RUN dotnet build -c Release -o out
 
-from build AS publish
+FROM build AS publish
+WORKDIR /app
 RUN dotnet publish -c Release -o out
 
 # Build runtime image
 FROM base AS final
+ENV ASPNETCORE_URLS=http://0.0.0.0:5000
 WORKDIR /app
 COPY --from=publish /app/out .
 ENTRYPOINT ["dotnet", "API.dll"]

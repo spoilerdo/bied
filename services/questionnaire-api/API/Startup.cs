@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Questionnaire.Services;
 using Questionnaire.Persistence.Repositories;
+using HealthCheck.Services;
 using MongoDB.Entities;
 using MongoDB.Driver;
 
@@ -22,7 +23,7 @@ namespace Questionnaire
         }
 
         public IConfiguration Configuration { get; }
-        private IWebHostEnvironment CurrentEnvironment{ get; set; } 
+        private IWebHostEnvironment CurrentEnvironment { get; set; }
 
         public void ConfigureServices(IServiceCollection services)
         {
@@ -31,13 +32,14 @@ namespace Questionnaire
             services.AddScoped<IQuestionnaireRepository, QuestionnaireRepository>();
 
             services.AddMongoDBEntities(
-                new MongoClientSettings() {
+                new MongoClientSettings()
+                {
                     Server = new MongoServerAddress(
                         (String)Configuration.GetSection("MongoDB_host").Get(typeof(String)),
                         (int)Configuration.GetSection("MongoDB_port").Get(typeof(int))),
                     Credential = MongoCredential.CreateCredential(
-                        (String)Configuration.GetSection("MongoDB_database").Get(typeof(String)), 
-                        (String)Configuration.GetSection("MongoDB_user").Get(typeof(String)), 
+                        (String)Configuration.GetSection("MongoDB_database").Get(typeof(String)),
+                        (String)Configuration.GetSection("MongoDB_user").Get(typeof(String)),
                         (String)Configuration.GetSection("MongoDB_pass").Get(typeof(String)))
                 }, "Questionnaire-Result"
             );
@@ -56,6 +58,7 @@ namespace Questionnaire
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapGrpcService<QuestionnaireService>();
+                endpoints.MapGrpcService<HealthCheckService>();
 
                 endpoints.MapGet("/", async context =>
                 {

@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: research-api
+  labels:
+    io.kompose.service: research-api
+  name: research-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: research-api
+  template:
+    metadata:
+      labels:
+        io.kompose.service: research-api
+      annotations:
+        sidecar.istio.io/userVolume: '[{"name":"descriptor","configmap":{"name":"research-bied-set","items":[{"key":"research.pb","path":"research.pb"}]}}]'
+        sidecar.istio.io/userVolumeMount: '[{"name":"descriptor","mountPath":"/etc/envoy"}]'
+    spec:
+      containers:
+        - name: research-api
+          image: research-api:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5050
+          env:
+            - name: ASPNETCORE_URLS
+              value: http://*:5050
+            - name: ASPNETCORE_ENVIRONMENT
+              value: "Production"

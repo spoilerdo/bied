@@ -1,6 +1,6 @@
 using AutoMapper;
 using Questionnaire.Persistence.Entities;
-using Questionnaire.GRPC;
+using Questionnaire.Services;
 using MongoDB.Entities;
 using System;
 using System.Collections.Generic;
