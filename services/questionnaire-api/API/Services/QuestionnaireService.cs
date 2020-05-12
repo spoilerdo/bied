@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Grpc.Core;
 using Microsoft.Extensions.Logging;
@@ -11,10 +9,10 @@ using AutoMapper;
 
 namespace Questionnaire.Services
 {
-    /// <summary>
-    /// Responsible for handling the GRPC protobuffer service logic
-    /// </summary>
-    public class QuestionnaireService : Questionnaire_Service.Questionnaire_ServiceBase
+  /// <summary>
+  /// Responsible for handling the GRPC protobuffer service logic
+  /// </summary>
+  public class QuestionnaireService : Questionnaire_Service.Questionnaire_ServiceBase
     {
         private readonly ILogger<QuestionnaireService> _logger;
         private readonly IQuestionnaireRepository _repository;
@@ -40,7 +38,8 @@ namespace Questionnaire.Services
             QuestionnaireEntity response;
             try
             {
-                response = await _repository.CreateQuestionnaire(_mapper.Map<QuestionnaireEntity>(request));
+                QuestionnaireEntity entity = _mapper.Map<QuestionnaireEntity>(request);
+                response = await _repository.CreateQuestionnaire(entity);
             }
             catch (Exception e)
             { // TODO sort errors and throw dedicated exceptions.

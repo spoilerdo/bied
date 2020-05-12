@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Questionnaire.Persistence.Repositories;
 using Questionnaire.Persistence.Entities;
+using MongoDB.Bson;
 
 namespace ApiService_tests.Mock
 {
@@ -33,6 +34,7 @@ namespace ApiService_tests.Mock
         {
             var task = new Task<QuestionnaireEntity>(() =>
             {
+                questionnaire.ID = ObjectId.GenerateNewId().ToString();
                 questionnaires.Add(questionnaire);
                 return questionnaire;
             });
