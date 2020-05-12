@@ -24,7 +24,7 @@ namespace ApiService_tests.Mock
         {
             var task = new Task<IEnumerable<QuestionnaireEntity>>(() =>
             {
-                return new List<QuestionnaireEntity>();
+                return questionnaires;
             });
             task.Start();
             return await task;
@@ -43,14 +43,18 @@ namespace ApiService_tests.Mock
         {
             var task = new Task<QuestionnaireEntity>(() =>
             {
-                return questionnaire;
+                QuestionnaireEntity _questionnaire = questionnaires.Find(q => q.ID == questionnaire.ID);
+                _questionnaire = questionnaire;
+                return _questionnaire;
             });
             task.Start();
             return await task;
         }
         public async Task DeleteQuestionnaire(string id)
         {
-            var task = new Task(() => { });
+            var task = new Task(() => {
+                questionnaires.RemoveAt(questionnaires.FindIndex(q => q.ID == id));
+            });
             task.Start();
             await task;
         }
