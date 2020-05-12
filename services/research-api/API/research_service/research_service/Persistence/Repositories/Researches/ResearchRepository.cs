@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using DatasourceGRPC;
+using Microsoft.EntityFrameworkCore;
 using research_service.Common;
 using research_service.Persistence.Context;
 using research_service.Persistence.Entities;
@@ -52,6 +53,29 @@ namespace research_service.Persistence.Repositories.Researches
         {
             var researches = await _context.Researches.ToListAsync();
             return new DataResponseObject<IEnumerable<ResearchEntity>>(researches);
+        }
+
+        public async Task<DataResponseObject<ResearchEntity>> RemoveDataSourceFromResearch(Guid id, ResearchDatasource datasource)
+        {
+            var research = await _context.Researches.FindAsync(id);
+            if(research == null)
+            {
+                return new DataResponseObject<ResearchEntity>("Research could not be found");
+            }
+            //check if user has the datasource
+            if(research.ResearchDataSources.Contains(datasource))
+            {
+
+            } else
+            {
+
+            }
+            throw new NotImplementedException();
+        }
+
+        public Task<DataResponseObject<ResearchEntity>> AddDataSourceToResearch(Guid id, Datasource datasource)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task<DataResponseObject<ResearchEntity>> UpdateResearch(Guid id, ResearchEntity research)

@@ -1,4 +1,5 @@
-﻿using research_service.Common;
+﻿using DatasourceGRPC;
+using research_service.Common;
 using research_service.Persistence.Entities;
 using System;
 using System.Collections.Generic;
@@ -39,5 +40,20 @@ namespace research_service.Persistence.Repositories.Researches
         /// <param name="id">the id of the research to delete</param>
         /// <returns>data responseobject indicationg success or failure</returns>
         Task<DataResponseObject<ResearchEntity>> DeleteResearch(Guid id);
+
+        /// <summary>
+        /// Add datasource to research with given id
+        /// </summary>
+        /// <param name="id">ID of the research</param>
+        /// <param name="datasource">Datasource to add to the research</param>
+        /// <returns>Dataresponseobject containing object or error</returns>
+        Task<DataResponseObject<ResearchEntity>> AddDataSourceToResearch(Guid id, Datasource datasource);
+        /// <summary>
+        /// remove datasource from research with given id
+        /// </summary>
+        /// <param name="id">ID of the research</param>
+        /// <param name="datasource">Datasource to add to the research</param>
+        /// <returns>Dataresponseobject containing object or error</returns>
+        Task<DataResponseObject<ResearchEntity>> RemoveDataSourceFromResearch(Guid id, Datasource datasource);
     }
 }
