@@ -174,35 +174,31 @@ namespace ApiService_tests
         public async void updateQuestionnaire()
         {
             // ARRANGE
-            QuestionnaireEditRequest request = new QuestionnaireEditRequest
-            {
-                Id = "realid",
-                Description = "real deal",
-                Name = "keyboard warrior",
-            };
             QuestionnaireEntity entity = new QuestionnaireEntity
             {
-                ID = "realid",
                 Name = "Request",
                 Description = "request desc",
                 Question = new List<QuestionEntity>(),
                 ModifiedOn = new DateTime()
             };
-            QuestionnaireResponse response = new QuestionnaireResponse
-            {
-                Id = "realid",
-                Name = "Request",
-                Description = "request desc"
-            };
 
-            _mockMapper.Setup(x => x.Map<QuestionnaireResponse>(It.IsAny<QuestionnaireEntity>())).Returns(response);
+            await _mockRepository.CreateQuestionnaire(entity);
+
+            QuestionnaireEditRequest request = new QuestionnaireEditRequest
+            {
+                Id = entity.ID,
+                Description = "real deal",
+                Name = "keyboard warrior",
+            };
 
             // ACT
             QuestionnaireResponse result = await _questionnaireService.UpdateQuestionnaire(request, _mockContext.Object);
 
             //ASSERT
             Assert.NotNull(result);
-            Assert.Equal("Request", result.Name);
+            Assert.Equal(entity.ID, result.Id);
+            Assert.Equal("keyboard warrior", result.Name);
+            Assert.Equal("real deal", result.Description);
         }
     }
 }
