@@ -35,7 +35,7 @@ export class ConsentComponent implements OnInit {
     }
   ]
 
-  id: string;
+  @Input() id: string;
   consent: Consent;
 
   constructor(private route: ActivatedRoute, private readonly consentService: ConsentProvider, private readonly datasourceService: DatasourceProvider) { }
@@ -44,14 +44,14 @@ export class ConsentComponent implements OnInit {
     this.researchStarted.setDate(this.researchStarted.getDate() - 10);
     this.datasourceCreated.setDate(this.datasourceCreated.getDate() - 8);
 
-    this.route.params.subscribe(params => {
+    this.route.params.subscribe(params => {      
       this.id = params['id'];
       this.consent = this.consentService.getConsentById(this.id);
       this.consent.datasource = this.datasourceService.getDatasourceById(this.consent.datasourceId)
 
       if (this.consent.consent) {
         this.items.push({
-          header: `Consent given`,
+          header: this.consent.consent ? `Consent given` : 'Consent rejected',
           date: this.consent.uts,
           color: this.consent.consent ? this.green : this.red
         })     

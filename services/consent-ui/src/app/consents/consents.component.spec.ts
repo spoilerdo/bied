@@ -1,24 +1,30 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ConsentsComponent } from './consents.component';
+import { DebugElement } from '@angular/core';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('ConsentsComponent', () => {
   let component: ConsentsComponent;
   let fixture: ComponentFixture<ConsentsComponent>;
+  let el: HTMLElement;
+  let de: DebugElement;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ConsentsComponent ]
+      imports: [RouterTestingModule],
+      declarations: [ConsentsComponent],
     })
-    .compileComponents();
+      .compileComponents()
+      .then(() => {
+        fixture = TestBed.createComponent(ConsentsComponent);
+        component = fixture.componentInstance;
+        de = fixture.debugElement;
+        el = de.nativeElement;
+      })
   }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(ConsentsComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
+  
   it('should create', () => {
     expect(component).toBeTruthy();
   });

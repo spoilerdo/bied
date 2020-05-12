@@ -18,4 +18,11 @@ export class DatasourceListItemComponent implements OnInit {
     this.consent = this.consentService.getUserConsentForDatasource('1', this.datasource.id); 
   }
 
+  getDateString() {
+    try {
+      return this.consent.uts.toLocaleDateString('nl');
+    } catch (err) { 
+      return '-'
+    }
+  }
 }

@@ -7,14 +7,20 @@
  * @returns formatted string
  */
 export function getEndString(date: Date) {
-  const endDateString = date.toLocaleDateString('nl')
+  let endDateString;
+  try {
+    endDateString = date.toLocaleDateString('nl')
+  }catch (err) {
+    throw new Error('Please provide a valid date')
+  }  
+  
 
   // Finishes today
   if (endDateString === new Date().toLocaleDateString('nl'))
     return `Finishes: today at ${date.toLocaleTimeString('nl')}`
 
   // Already finished
-  if (this.research.endDate.getTime() < new Date().getTime())
+  if (date.getTime() < new Date().getTime())
     return `Finished: ${endDateString}`
 
   return `Finishes: ${endDateString}`
@@ -29,14 +35,20 @@ export function getEndString(date: Date) {
  * @returns formatted string
  */
 export function getStartString(date: Date) {
-  const startDateString = date.toLocaleDateString('nl')
+  let startDateString;
+  try {
+    startDateString = date.toLocaleDateString('nl')
+  } catch(err) {
+    throw new Error('Please provide a valid date')
+  }
+  
 
   // Starts today
   if (startDateString === new Date().toLocaleDateString('nl'))
     return `Starts: today at ${date.toLocaleTimeString('nl')}`
 
   // Already started
-  if (this.research.startDate.getTime() < new Date().getTime())
+  if (date.getTime() < new Date().getTime())
     return `Started: ${startDateString}`
   else
     return `Starts: ${startDateString}`

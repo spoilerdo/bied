@@ -1,26 +1,24 @@
 <nb-card>
   <nb-card-header class="header">
-    <h3>
-      {{ consent.datasource.name }}
-    </h3>
+    <h3>{{ consent.datasource.name }}</h3>
     <div class="switch">
       <nb-toggle
         (click)="switchConsentClicked()"
         [(checked)]="checked"
         status="success"
+        id="toggle"
       ></nb-toggle>
     </div>
   </nb-card-header>
   <nb-card-body>
-    <p>{{ consent.datasource.description }}</p>
-    <p>
-      Status:
-      {{
+    <p id="description">{{ consent.datasource.description }}</p>
+    <p id="status">
+      Status:{{
         consent.consent
-          ? "Consent given - " + consent.uts.toLocaleString("nl")
-          : "Consent not given"
+          ? " Consent given - " + consent.uts.toLocaleString("nl")
+          : " Consent not given"
       }}
     </p>
-    <p>Datasource active: {{ consent.datasource.active }}</p>
+    <p id="active">Datasource active: {{ consent.datasource.active }}</p>
   </nb-card-body>
 </nb-card>

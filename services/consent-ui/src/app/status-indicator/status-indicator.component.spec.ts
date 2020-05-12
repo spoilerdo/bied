@@ -16,10 +16,21 @@ describe('StatusIndicatorComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(StatusIndicatorComponent);
     component = fixture.componentInstance;
+    component.date = new Date();
+    component.status = true;
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should return invalid date', () => {
+    component.date = null;
+    expect(component.getDate()).toBe("Unknown date")
+  });
+
+  it('should return valid date', () => {
+    expect(component.getDate()).toEqual(`${new Date().toLocaleString('nl')}`)
+  })
 });
