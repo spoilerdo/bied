@@ -153,7 +153,7 @@ namespace research_service_tests.Unit_Tests.ResearchUnitTests
             await _researchRepository.CreateResearch(research);
             await _researchRepository.CreateResearch(research2);
             //act
-            var result = await _researchRepository.GetResearches();
+            var result = await _researchRepository.GetResearches(0,5);
             Assert.Equal(2, result.Data.Count());
         }
 

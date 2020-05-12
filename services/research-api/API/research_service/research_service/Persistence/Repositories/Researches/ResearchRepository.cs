@@ -1,5 +1,4 @@
-﻿using DatasourceGRPC;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using research_service.Common;
 using research_service.Persistence.Context;
 using research_service.Persistence.Entities;

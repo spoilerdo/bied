@@ -96,7 +96,7 @@ namespace research_service.Services
         /// <returns>all researches</returns>
         public override async Task<Researches> GetResearches(GetResearchesRequest request, ServerCallContext context)
         {
-            var researches = await _researchRepository.GetResearches(5,5); //request.offset, request.limit
+            var researches = await _researchRepository.GetResearches(5, 5); //request.offset, request.limit
             if (!researches.Success)
             {
                 throw new RpcException(new Status(StatusCode.NotFound, researches.Message));
