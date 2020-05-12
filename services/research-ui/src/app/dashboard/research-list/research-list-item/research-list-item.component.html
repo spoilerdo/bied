@@ -1,0 +1,26 @@
+<!-- Thumbnail (left container) -->
+<div class="thumbnail-container">
+  <img src="{{ research.imageUrl }}" alt="{{ research.name }}" class="thumbnail" />
+</div>
+<!-- Details (right container) -->
+<div class="details">
+  <!-- (top container) -->
+  <div class="title-container">
+    <!-- Title -->
+    <a href="/researches/{{ research.id }}" class="title h5">{{ research.name }}</a>
+  </div>
+
+  <!-- Status -->
+  <ngx-research-status
+    class="metadata"
+    [startDate]="research.startDate"
+    [endDate]="research.endDate"
+  ></ngx-research-status>
+
+  <!-- Description (bottom-container) -->
+  <p class="description">{{ research.description }}</p>
+
+  <span class="metadata text-hint"
+    >Uitegevoerd door: <span class="lead-researcher">{{ research.ownerId }}</span></span
+  >
+</div>

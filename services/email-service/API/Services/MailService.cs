@@ -34,25 +34,25 @@ namespace EmailService
         /// <param name="request"></param>
         /// <param name="context"></param>
         /// <returns></returns>
-        public override Task<SendMailReply> SendMail(SendMailRequest request, ServerCallContext context)
+        public override async Task<SendMailReply> SendMail(SendMailRequest request, ServerCallContext context)
         {
             try
             {
-                mailLogic.SendMail(request.Addresses.ToList(), request.Values.ToList(), request.Template);
+                await mailLogic.SendMail(request.Addresses.ToList(), request.Values.ToList(), request.Template, request.Subject);
             }
             catch (Exception e)
             {
-                return Task.FromResult(new SendMailReply
+                return new SendMailReply
                 {
                     Status = "Failed",
                     Message = e.Message
-                });
+                };
             }
-            return Task.FromResult(new SendMailReply
+            return new SendMailReply
             {
                 Status = "Success",
                 Message = "Email send"
-            });
+            };
         }
         /// <summary>
         /// Overrides the tostring method
