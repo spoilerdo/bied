@@ -7,6 +7,7 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="9.0.0" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
+    <PackageReference Include="Bied.Protobuffers" Version="1.1.0" />
     <PackageReference Include="Grpc.AspNetCore" Version="2.27.0" />
     <PackageReference Include="Grpc.Tools" Version="2.27.0">
       <PrivateAssets>all</PrivateAssets>
@@ -20,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Protobuf Include="Protos\datasource.proto" GrpcServices="Server;Client" ProtoRoot="Protos\" />
-    <Protobuf Include="Protos\research.proto" GrpcServices="Server;Client" ProtoRoot="Protos\" />
+    <Protobuf Include="$(PkgBied_Protobuffers)/*.proto" GrpcServices="Server;Client" ProtoRoot="$(PkgBied_Protobuffers)" />
   </ItemGroup>
+
 </Project>

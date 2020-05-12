@@ -1,9 +1,8 @@
 ﻿using Grpc.Core;
 using Grpc.Net.Client;
 using research_service_tests.Fixture;
+using ResearchGRPC;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using Xunit;
 
 namespace research_service_tests.Integration_Tests

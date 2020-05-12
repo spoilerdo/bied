@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+
+option csharp_namespace = "DatasourceGRPC"; 
+
+service Datasource_Service {
+  rpc GetDatasources (GetDatasourcesRequest) returns (Datasources);
+  rpc GetDatasource (DatasourceIdRequest) returns (Datasource);
+  rpc CreateDatasource (DatasourceRequest) returns (Datasource);
+  rpc EditDatasource (DatasourceEditRequest) returns (Datasource);
+  rpc DeleteDatasource (DatasourceIdRequest) returns (Datasource);
+}
+
+message Datasources {
+  repeated Datasource datasources = 1;
+}
+
+message GetDatasourcesRequest {}
+
+message DatasourceIdRequest {
+  string id = 1;
+}
+
+message DatasourceRequest {
+  string name = 1;
+  string description = 2;
+  string reference = 3;
+  bool active = 4;
+}
+
+message DatasourceEditRequest {
+    string id = 1;
+    string name = 2;
+    string description = 3;
+    string reference = 4;
+    bool active = 5;
+}
+
+message Datasource {
+  string id = 1;
+  string name = 2;
+  string description = 3;
+  string reference = 4;
+  bool active = 5;
+}

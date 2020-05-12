@@ -1,10 +1,11 @@
 ﻿using AutoMapper;
+using DatasourceGRPC;
 using Grpc.Core;
 using research_service.Persistence.Entities;
 using research_service.Persistence.Repositories.Researches;
+using ResearchGRPC;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace research_service.Services
@@ -134,7 +135,7 @@ namespace research_service.Services
         /// <param name="request">data source to remove from research</param>
         /// <param name="context">the server context</param>
         /// <returns>updated research or message indicating failure</returns>
-        public override Task<Research> RemoveDatasourceFromResearch(DatasourceIdRequest request, ServerCallContext context)
+        public override Task<Research> RemoveDatasourceFromResearch(DatasourceIdResearchRequest request, ServerCallContext context)
         {
             throw new NotImplementedException();
         }

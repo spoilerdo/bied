@@ -3,7 +3,7 @@
   <metadata>
     <!-- Required elements-->
     <id>Bied.Protobuffers</id>
-    <version>1.0</version>
+    <version>1.0.1</version>
     <description>BIED protobuffers Nuget package used for ASP core services</description>
     <language>en-US</language>
     <authors>S66-BIED</authors>
