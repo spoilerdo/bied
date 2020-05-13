@@ -1,0 +1,5 @@
+<ngx-header-card title="Onderzoeken" icon="assets/research-icon.svg">
+  <button nbButton status="success"><nb-icon icon="plus-circle-outline"></nb-icon> Nieuw</button>
+</ngx-header-card>
+
+<ngx-research-list style="flex: 1;" [researches]="researchProvider.getResearches()"> </ngx-research-list>
