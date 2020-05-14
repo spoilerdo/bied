@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Research } from './models/research';
+import { OrderTypes } from './models/orderTypes';
 
 @Injectable()
 export class ResearchProvider {
@@ -26,5 +27,11 @@ export class ResearchProvider {
   }
   inviteUsersToResearch(): void {
     throw new Error('Method not implemented.');
+  }
+  searchResearch(searchTerm: string): Research[] {
+    throw new Error('Method not implemented');
+  }
+  orderResearch(order: OrderTypes, data: Research[]): Research[] {
+    throw new Error('Method not implemented');
   }
 }

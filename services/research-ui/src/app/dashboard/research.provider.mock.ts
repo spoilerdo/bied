@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Research } from './models/research';
 import { ResearchProvider } from './research.provider';
 import * as moment from 'moment';
+import { OrderTypes } from './models/orderTypes';
 
 @Injectable()
 export class ResearchMockProvider extends ResearchProvider {
@@ -75,5 +76,77 @@ export class ResearchMockProvider extends ResearchProvider {
   }
   inviteUsersToResearch(): void {
     throw new Error('Method not implemented.');
+  }
+  searchResearch(searchValue: string): Research[] {
+    const dataArr = Object.values(this.store);
+    const regexp = new RegExp(searchValue, 'i');
+    if (searchValue.length > 0) {
+      return dataArr.filter((e) => regexp.test(e.name));
+    }
+    return dataArr;
+  }
+
+  orderResearch(order: OrderTypes, data: Research[]): Research[] {
+    switch (order) {
+      case OrderTypes.DATEA:
+        return data.sort((a, b) => {
+          if (a.endDate < b.endDate) {
+            return -1;
+          }
+          if (a.endDate > b.endDate) {
+            return 1;
+          }
+          return 0;
+        });
+        break;
+
+      case OrderTypes.DATEZ:
+        return data.sort((a, b) => {
+          if (a.endDate < b.endDate) {
+            return 1;
+          }
+          if (a.endDate > b.endDate) {
+            return -1;
+          }
+          return 0;
+        });
+        break;
+
+      // START SORTING ON ALPHABETICAL ORDER
+      case OrderTypes.ALFAA:
+        return data.sort((a, b) => {
+          if (a.name < b.name) {
+            return -1;
+          }
+          if (a.name > b.name) {
+            return 1;
+          }
+          return 0;
+        });
+        break;
+
+      case OrderTypes.ALFAZ:
+        return data.sort((a, b) => {
+          if (a.name < b.name) {
+            return 1;
+          }
+          if (a.name > b.name) {
+            return -1;
+          }
+          return 0;
+        });
+        break;
+      default:
+        return data.sort((a, b) => {
+          if (a.name < b.name) {
+            return 1;
+          }
+          if (a.name > b.name) {
+            return -1;
+          }
+          return 0;
+        });
+        break;
+    }
   }
 }
