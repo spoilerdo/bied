@@ -1,11 +1,17 @@
-<nb-card>
+<nb-card id="confirmation-modal">
   <nb-card-header>{{ title }}</nb-card-header>
   <nb-card-body>{{ text }}</nb-card-body>
   <nb-card-footer>
-    <button nbButton status="danger" (click)="dialogRef.close(false)">
+    <button
+      id="cancel-btn"
+      nbButton
+      status="danger"
+      (click)="dialogRef.close(false)"
+    >
       Cancel
     </button>
     <button
+      id="confirm-btn"
       style="float: right;"
       nbButton
       status="success"

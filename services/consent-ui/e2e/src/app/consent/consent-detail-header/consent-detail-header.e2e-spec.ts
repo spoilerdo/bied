@@ -10,7 +10,11 @@ describe('Consent Detail Header', () => {
     browser.waitForAngular();
   });
 
-  it('should have consent name as title', () => {
-    expect(consentDetailHeader.getHeaderTitle().getText()).toEqual('Twitter data');
-  })
+  it('should switch consent when switch clicked', () => {
+    expect(consentDetailHeader.getTimelineItemHeader(1).getText()).toEqual('Consent given');
+
+    consentDetailHeader.getConsentSwitch().click();
+
+    expect(consentDetailHeader.getTimelineItemHeader(1).getText()).toEqual('Consent withdrawn');
+  });
 })

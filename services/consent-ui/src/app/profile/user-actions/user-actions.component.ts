@@ -25,8 +25,7 @@ export class UserActionsComponent implements OnInit {
   deleteAllConsent() {
     this.dialogService.open(ConfirmationModalComponent, { context: { text: 'Are you sure you wanna delete all consents?', title: 'Delete all consent' } })
       .onClose.subscribe((result: any) => {
-        if (result) {
-          // TODO try to delete all consenst here
+        if (result) {          
           const succesfull: boolean = this.consentService.deleteAllConsent(this.id); // Placeholder for succesfully deleted
           const status = succesfull ? "success" : "danger";
 
