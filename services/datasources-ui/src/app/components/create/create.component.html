@@ -1,0 +1,24 @@
+<nb-card class="create-component-container">
+  <nb-card-body>
+    <nb-stepper #stepper orientation="vertical">
+      <nb-step label="Details" class="step">
+        <app-detail-step
+          [details]="createDataloaderDto.detailsDto"
+          (next)="onNextDetails($event)"
+        ></app-detail-step>
+      </nb-step>
+      <nb-step label="Dataloader information" class="step">
+        <app-data-loader-step
+          [dataloader]="createDataloaderDto.dataloaderDto"
+          (next)="onNextDataloader($event)"
+        ></app-data-loader-step>
+      </nb-step>
+      <nb-step label="Custom fields" class="step">
+        <app-custom-fields-step
+          [customFields]="createDataloaderDto.customFieldsDto"
+          (confirm)="onConfirmCustomFields($event)"
+        ></app-custom-fields-step>
+      </nb-step>
+    </nb-stepper>
+  </nb-card-body>
+</nb-card>
