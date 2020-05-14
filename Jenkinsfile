@@ -111,7 +111,7 @@ node {
                     }                     
                 }
             }
-            if (env.BRANCH_NAME=='feature/kafka'){
+            if (env.BRANCH_NAME=='develop'){
                 stage('Push images') {
                     withCredentials([[$class: 'FileBinding', credentialsId: "s66-2-keyfile", variable: 'GOOGLE_APPLICATION_CREDENTIALS']]){
                         sh 'gcloud auth activate-service-account --key-file=$GOOGLE_APPLICATION_CREDENTIALS'
