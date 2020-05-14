@@ -5,10 +5,27 @@ option csharp_namespace = "AuthenticationService";
 package Authentication;
 
 service Authentication {
-	rpc CreateUser (RegisterRequest) returns (Empty);
-	rpc DeleteUser (DeleteRequest) returns (Empty);
-	rpc VerifyPassword (Credentials) returns (VerifyResponse);
-	rpc GenerateToken (Credentials) returns (TokenResponse);
+	rpc CreateUser (RegisterRequest) returns (Empty) {
+		option (google.api.http) = {
+			post: "/auth"
+			body: "*"
+		};
+	};
+	rpc DeleteUser (DeleteRequest) returns (Empty) {
+		option (google.api.http).delete = "/auth";
+	};
+	rpc VerifyPassword (Credentials) returns (VerifyResponse) {
+		option (google.api.http) = {
+			post: "/auth/verify"
+			body: "*"
+		};
+	};
+	rpc GenerateToken (Credentials) returns (TokenResponse) {
+		option (google.api.http) = {
+			post: "/auth/token"
+			body: "*"
+		};
+	};
 }
 
 message DeleteRequest {

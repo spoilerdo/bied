@@ -1,14 +1,35 @@
 syntax = "proto3";
+option csharp_namespace = "ConsentGRPC";
+
+package Consent;
 
 import "datasource.proto";
 
 service Consent_Service {
-  rpc GetConsents (UserIdRequest) returns (Consents);
-  rpc GetConsent (ConsentIdRequest) returns (Consent);
-  rpc CreateConsent (ConsentRequest) returns (Consent);
-  rpc DeleteAllConsent (UserIdRequest) returns (ConsentEmptyResponse);
-  rpc DeleteConsent (ConsentIdRequest) returns (ConsentEmptyResponse);
-  rpc EditConsent (ConsentEditRequest) returns (Consent);
+  rpc GetConsents (UserIdRequest) returns (Consents) {
+    option (google.api.http).get = "/consent";
+  };
+  rpc GetConsent (ConsentIdRequest) returns (Consent) {
+    option (google.api.http).get = "/consent/{id}";
+  };
+  rpc CreateConsent (ConsentRequest) returns (Consent) {
+    option (google.api.http) = {
+      post: "/consent"
+      body: "*" 
+    };
+  };
+  rpc DeleteAllConsent (UserIdRequest) returns (ConsentEmptyResponse) {
+    option (google.api.http).delete = "/consent/all";
+  };
+  rpc DeleteConsent (ConsentIdRequest) returns (ConsentEmptyResponse) {
+    option (google.api.http).delete = "/consent/{id}";
+  };
+  rpc EditConsent (ConsentEditRequest) returns (Consent) {
+    option (google.api.http) = {
+      put: "/consent"
+      body: "*"
+    };
+  };
 }
 
 message Consents {

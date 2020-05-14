@@ -6,11 +6,27 @@ import "userInformation.proto";
 package UserServiceProto;
 
 service User_Service {
-    rpc GetUsers (Empty) returns (UsersResponse);
-    rpc GetUser (UserRequest) returns (UserResponse);
-    rpc CreateUser (UserCreateRequest) returns (UserResponse);
-    rpc EditUser (UserEditRequest) returns (UserResponse);
-    rpc DeleteUser (UserRequest) returns (Empty);
+    rpc GetUsers (Empty) returns (UsersResponse) {
+        option (google.api.http).get = "/user";
+    };
+    rpc GetUser (UserRequest) returns (UserResponse) {
+        option (google.api.http).get = "/user/{id}";
+    };
+    rpc CreateUser (UserCreateRequest) returns (UserResponse) {
+        option (google.api.http) = {
+            post: "/user"
+            body: "*"  
+        };
+    };
+    rpc EditUser (UserEditRequest) returns (UserResponse) {
+        option (google.api.http) = {
+            put: "/consent"
+            body: "*"
+        };
+    };
+    rpc DeleteUser (UserRequest) returns (Empty) {
+        option (google.api.http).delete = "/user/{id}";
+    };
 }
 
 message Empty{

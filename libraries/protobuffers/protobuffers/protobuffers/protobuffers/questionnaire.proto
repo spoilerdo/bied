@@ -4,10 +4,24 @@ option csharp_namespace = "QuestionnaireGRPC";
 import "question.proto";
 
 service Questionnaire_Service {
-	rpc CreateQuestionnaire (QuestionnaireCreateRequest) returns (Questionnaire);
-	rpc DeleteQuestionnaire (QuestionnaireIdRequest) returns (QuestionnaireEmptyResponse);
-	rpc UpdateQuestionnaire (QuestionnaireEditRequest) returns (Questionnaire);
-	rpc GetQuestionnaire (QuestionnaireIdRequest) returns (Questionnaire);
+	rpc CreateQuestionnaire (QuestionnaireCreateRequest) returns (Questionnaire) {
+		option (google.api.http) = {
+			post: "/questionnaire"
+			body: "*"
+		};
+	};
+	rpc DeleteQuestionnaire (QuestionnaireIdRequest) returns (QuestionnaireEmptyResponse) {
+		option (google.api.http).delete = "/questionnaire/{id}";
+	};
+	rpc UpdateQuestionnaire (QuestionnaireEditRequest) returns (Questionnaire) {
+		option (google.api.http) = {
+			put: "/questionnaire"
+			body: "*"
+		};
+	};
+	rpc GetQuestionnaire (QuestionnaireIdRequest) returns (Questionnaire) {
+		option (google.api.http).get = "/questionnaire/{id}";
+	};
 
 	//TODO: result gedeelte moet nog komen, nog niet duidelijk gedefinieerd.
 }

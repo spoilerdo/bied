@@ -4,11 +4,27 @@ syntax = "proto3";
 option csharp_namespace = "DatasourceGRPC"; 
 
 service Datasource_Service {
-  rpc GetDatasources (GetDatasourcesRequest) returns (Datasources);
-  rpc GetDatasource (DatasourceIdRequest) returns (Datasource);
-  rpc CreateDatasource (DatasourceRequest) returns (Datasource);
-  rpc EditDatasource (DatasourceEditRequest) returns (Datasource);
-  rpc DeleteDatasource (DatasourceIdRequest) returns (Datasource);
+  rpc GetDatasources (GetDatasourcesRequest) returns (Datasources) {
+    option (google.api.http).get = "/datasource";
+  };
+  rpc GetDatasource (DatasourceIdRequest) returns (Datasource) {
+    option (google.api.http).get = "/datasource/{id}";
+  };
+  rpc CreateDatasource (DatasourceRequest) returns (Datasource) {
+    option (google.api.http) = {
+      post: "/datasource"
+      body: "*"
+    };
+  };
+  rpc EditDatasource (DatasourceEditRequest) returns (Datasource) {
+    option (google.api.http) = {
+      put: "/datasource"
+      body: "*"
+    };
+  };
+  rpc DeleteDatasource (DatasourceIdRequest) returns (Datasource) {
+    option (google.api.http).delete = "/datasource/{id}";
+  };
 }
 
 message Datasources {
