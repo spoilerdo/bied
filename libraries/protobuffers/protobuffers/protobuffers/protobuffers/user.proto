@@ -22,7 +22,7 @@ service User_Service {
     };
     rpc EditUser (UserEditRequest) returns (UserResponse) {
         option (google.api.http) = {
-            put: "/consent"
+            put: "/user"
             body: "*"
         };
     };
