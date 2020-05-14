@@ -9,6 +9,29 @@
       width: 100%;
       margin-bottom: 15px;
     }
+
+    .key-container {
+      padding: 5px 10px;
+      background-color: #edf1f7;
+      width: 500px;
+      height: 300px;
+      margin-bottom: 20px;
+      overflow-y: auto;
+      position: relative;
+      transition: background-color 0.25s ease;
+
+      .copy-icon {
+        position: absolute;
+        height: 30px;
+        width: 30px;
+        top: 10px;
+        right: 10px;
+      }
+
+      &.success {
+        background-color: #b4ecb4;
+      }
+    }
   }
 
   .button-group {

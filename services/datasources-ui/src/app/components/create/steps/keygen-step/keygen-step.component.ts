@@ -16,6 +16,8 @@ import { GitService } from "src/app/services/git.service";
   styleUrls: ["./keygen-step.component.scss"],
 })
 export class KeygenStepComponent implements OnInit {
+  isKeyCopied = false;
+
   @ViewChild("stepperNext") stepperNext: ElementRef;
 
   private dataloaderIdValue?: number;
@@ -68,6 +70,15 @@ export class KeygenStepComponent implements OnInit {
 
   onCheckedChanged(checked: boolean) {
     this.keygenFormGroup.get("confirmAddedDeployKey").setValue(checked);
+  }
+
+  cbOnSuccess() {
+    this.isKeyCopied = true;
+    this.onCheckedChanged(true);
+
+    setTimeout(() => {
+      this.isKeyCopied = false;
+    }, 2500);
   }
 
   onNext() {
