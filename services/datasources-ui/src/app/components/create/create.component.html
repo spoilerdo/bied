@@ -13,6 +13,19 @@
           (next)="onNextDataloader($event)"
         ></app-data-loader-step>
       </nb-step>
+      <nb-step label="Keygen step" class="step">
+        <app-keygen-step
+          [dataloaderId]="createDataloaderDto.dataloaderId"
+          (next)="onNextKeygen($event)"
+        ></app-keygen-step>
+      </nb-step>
+      <nb-step label="Select a branch" class="step">
+        <app-select-branch-step
+          [dataloaderId]="createDataloaderDto.dataloaderId"
+          [branch]="createDataloaderDto.branchDto"
+          (next)="onNextSelectBranch($event)"
+        ></app-select-branch-step>
+      </nb-step>
       <nb-step label="Custom fields" class="step">
         <app-custom-fields-step
           [customFields]="createDataloaderDto.customFieldsDto"

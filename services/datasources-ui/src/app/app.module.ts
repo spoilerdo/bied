@@ -17,8 +17,9 @@ import {
   NbInputModule,
   NbSelectModule,
   NbIconModule,
+  NbCheckboxModule,
 } from "@nebular/theme";
-import { NbEvaIconsModule } from '@nebular/eva-icons';
+import { NbEvaIconsModule } from "@nebular/eva-icons";
 import { OverviewComponent } from "./components/overview/overview.component";
 import { CreateComponent } from "./components/create/create.component";
 import { DeleteDialogComponent } from "./components/delete-dialog/delete-dialog.component";
@@ -26,6 +27,8 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { DetailStepComponent } from "./components/create/steps/detail-step/detail-step.component";
 import { DataLoaderStepComponent } from "./components/create/steps/data-loader-step/data-loader-step.component";
 import { CustomFieldsStepComponent } from "./components/create/steps/custom-fields-step/custom-fields-step.component";
+import { SelectBranchStepComponent } from "./components/create/steps/select-branch-step/select-branch-step.component";
+import { KeygenStepComponent } from "./components/create/steps/keygen-step/keygen-step.component";
 
 @NgModule({
   declarations: [
@@ -36,6 +39,8 @@ import { CustomFieldsStepComponent } from "./components/create/steps/custom-fiel
     DetailStepComponent,
     DataLoaderStepComponent,
     CustomFieldsStepComponent,
+    SelectBranchStepComponent,
+    KeygenStepComponent,
   ],
   imports: [
     ReactiveFormsModule,
@@ -54,8 +59,9 @@ import { CustomFieldsStepComponent } from "./components/create/steps/custom-fiel
     HttpClientModule,
     NbEvaIconsModule,
     NbIconModule,
+    NbCheckboxModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

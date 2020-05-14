@@ -6,7 +6,8 @@ import {
 import { DetailsDto } from "./dtos/detailsDto";
 import { DataloaderDto } from "./dtos/dataloaderDto";
 import { CustomFieldsDto } from "./dtos/customFieldsDto";
-import { DatasourceService } from "src/app/services/datasource.service";
+import { BranchDto } from "./dtos/branchDto";
+import { DataLoaderService } from "src/app/services/dataloader.service";
 
 @Component({
   selector: "app-create",
@@ -16,7 +17,7 @@ import { DatasourceService } from "src/app/services/datasource.service";
 export class CreateComponent implements OnInit {
   createDataloaderDto: CreateDataloaderDto;
 
-  constructor(private datasourceService: DatasourceService) {}
+  constructor(private dataloaderService: DataLoaderService) {}
 
   ngOnInit(): void {
     this.createDataloaderDto = emptyCreateDataloaderDto;
@@ -28,11 +29,25 @@ export class CreateComponent implements OnInit {
 
   onNextDataloader(dataLoader: DataloaderDto) {
     this.createDataloaderDto.dataloaderDto = dataLoader;
+
+    this.dataloaderService
+      .saveDataloaderStep(this.createDataloaderDto)
+      .subscribe((res) => {
+        this.createDataloaderDto.dataloaderId = (res as any).id;
+      });
+  }
+
+  onNextKeygen(keygen: any) {}
+
+  onNextSelectBranch(branch: BranchDto) {
+    this.createDataloaderDto.branchDto = branch;
   }
 
   onConfirmCustomFields(customFields: CustomFieldsDto) {
     this.createDataloaderDto.customFieldsDto = customFields;
 
-    this.datasourceService.create(this.createDataloaderDto).subscribe();
+    this.dataloaderService
+      .confirmDataloaderStep(this.createDataloaderDto)
+      .subscribe();
   }
 }
