@@ -1,4 +1,4 @@
-export enum OrderTypes {
+export enum SortingTypes {
   DATEZ,
   DATEA,
   ALFAA,

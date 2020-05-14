@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ResearchProvider } from './research.provider';
 import { Research } from './models/research';
-import { OrderTypes } from './models/orderTypes';
+import { SortingTypes } from './models/orderTypes';
 
 @Component({
   selector: 'app-dashboard',
@@ -21,7 +21,7 @@ export class DashboardComponent implements OnInit {
     this.researches = this.researchProvider.searchResearch(searchTerm);
   }
 
-  orderEvent(order: OrderTypes) {
+  orderEvent(order: SortingTypes) {
     this.researches = this.researchProvider.orderResearch(order, this.researches);
   }
 }

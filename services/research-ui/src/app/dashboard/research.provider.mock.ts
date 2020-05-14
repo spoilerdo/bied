@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Research } from './models/research';
 import { ResearchProvider } from './research.provider';
 import * as moment from 'moment';
-import { OrderTypes } from './models/orderTypes';
+import { SortingTypes } from './models/orderTypes';
 
 @Injectable()
 export class ResearchMockProvider extends ResearchProvider {
@@ -86,9 +86,9 @@ export class ResearchMockProvider extends ResearchProvider {
     return dataArr;
   }
 
-  orderResearch(order: OrderTypes, data: Research[]): Research[] {
+  orderResearch(order: SortingTypes, data: Research[]): Research[] {
     switch (order) {
-      case OrderTypes.DATEA:
+      case SortingTypes.DATEA:
         return data.sort((a, b) => {
           if (a.endDate < b.endDate) {
             return -1;
@@ -100,7 +100,7 @@ export class ResearchMockProvider extends ResearchProvider {
         });
         break;
 
-      case OrderTypes.DATEZ:
+      case SortingTypes.DATEZ:
         return data.sort((a, b) => {
           if (a.endDate < b.endDate) {
             return 1;
@@ -113,7 +113,7 @@ export class ResearchMockProvider extends ResearchProvider {
         break;
 
       // START SORTING ON ALPHABETICAL ORDER
-      case OrderTypes.ALFAA:
+      case SortingTypes.ALFAA:
         return data.sort((a, b) => {
           if (a.name < b.name) {
             return -1;
@@ -125,7 +125,7 @@ export class ResearchMockProvider extends ResearchProvider {
         });
         break;
 
-      case OrderTypes.ALFAZ:
+      case SortingTypes.ALFAZ:
         return data.sort((a, b) => {
           if (a.name < b.name) {
             return 1;

@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { trigger, transition, style, animate, stagger, query } from '@angular/animations';
 import { Research } from '../models/research';
-import { OrderTypes } from '../models/orderTypes';
+import { SortingTypes } from '../models/orderTypes';
 
 @Component({
   selector: 'ngx-research-list',
@@ -27,9 +27,9 @@ export class ResearchListComponent {
   Filtering: boolean = true;
   selectedFilter: number = 0;
   searchValue: string = '';
-  orderType = OrderTypes;
+  orderType = SortingTypes;
 
-  selectedOrderChange(order: OrderTypes) {
+  selectedOrderChange(order: SortingTypes) {
     this.orderEvent.emit(order);
   }
 
