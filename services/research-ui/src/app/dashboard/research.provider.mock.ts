@@ -3,6 +3,7 @@ import { Research } from './models/research';
 import { ResearchProvider } from './research.provider';
 import * as moment from 'moment';
 import { SortingTypes } from './models/orderTypes';
+import { SortArrObj, Arrangement } from '../Utility';
 
 @Injectable()
 export class ResearchMockProvider extends ResearchProvider {
@@ -88,65 +89,20 @@ export class ResearchMockProvider extends ResearchProvider {
 
   orderResearch(order: SortingTypes, data: Research[]): Research[] {
     switch (order) {
+      // START SORTING ON END DATE
       case SortingTypes.DATEA:
-        return data.sort((a, b) => {
-          if (a.endDate < b.endDate) {
-            return -1;
-          }
-          if (a.endDate > b.endDate) {
-            return 1;
-          }
-          return 0;
-        });
-        break;
-
+        return SortArrObj(data, 'endDate', Arrangement.ASCENDING);
       case SortingTypes.DATEZ:
-        return data.sort((a, b) => {
-          if (a.endDate < b.endDate) {
-            return 1;
-          }
-          if (a.endDate > b.endDate) {
-            return -1;
-          }
-          return 0;
-        });
-        break;
+        return SortArrObj(data, 'endDate', Arrangement.DESCENDING);
 
       // START SORTING ON ALPHABETICAL ORDER
       case SortingTypes.ALFAA:
-        return data.sort((a, b) => {
-          if (a.name < b.name) {
-            return -1;
-          }
-          if (a.name > b.name) {
-            return 1;
-          }
-          return 0;
-        });
-        break;
-
+        return SortArrObj(data, 'name', Arrangement.ASCENDING);
       case SortingTypes.ALFAZ:
-        return data.sort((a, b) => {
-          if (a.name < b.name) {
-            return 1;
-          }
-          if (a.name > b.name) {
-            return -1;
-          }
-          return 0;
-        });
-        break;
+        return SortArrObj(data, 'name', Arrangement.DESCENDING);
+
       default:
-        return data.sort((a, b) => {
-          if (a.name < b.name) {
-            return 1;
-          }
-          if (a.name > b.name) {
-            return -1;
-          }
-          return 0;
-        });
-        break;
+        return SortArrObj(data, 'name', Arrangement.ASCENDING);
     }
   }
 }
