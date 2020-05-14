@@ -1,25 +1,40 @@
-// import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-// import { ConfirmationModalComponent } from './confirmation-modal.component';
+import { ConfirmationModalComponent } from './confirmation-modal.component';
+import { NbDialogRef } from '@nebular/theme';
 
-// describe('ConfirmationModalComponent', () => {
-//   let component: ConfirmationModalComponent;
-//   let fixture: ComponentFixture<ConfirmationModalComponent>;
+describe('ConfirmationModalComponent', () => {
+  let component: ConfirmationModalComponent;
+  let fixture: ComponentFixture<ConfirmationModalComponent>;
 
-//   beforeEach(async(() => {
-//     TestBed.configureTestingModule({
-//       declarations: [ ConfirmationModalComponent ]
-//     })
-//     .compileComponents();
-//   }));
+  let dialogRefStub: any;
 
-//   beforeEach(() => {
-//     fixture = TestBed.createComponent(ConfirmationModalComponent);
-//     component = fixture.componentInstance;
-//     fixture.detectChanges();
-//   });
+  beforeEach(async(() => {
+    dialogRefStub = {
+      close: () => true
+    }
 
-//   it('should create', () => {
-//     expect(component).toBeTruthy();
-//   });
-// });
+    TestBed.configureTestingModule({
+      declarations: [ConfirmationModalComponent],
+      providers: [{provide: NbDialogRef, useValue: dialogRefStub}]
+    })
+      .compileComponents()
+      .then(() => {
+        fixture = TestBed.createComponent(ConfirmationModalComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+      })
+  }));
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('should call dialog close', () => {
+    const spy = spyOn(dialogRefStub, 'close');
+
+    component.close();
+
+    expect(spy).toHaveBeenCalledTimes(1);
+  })
+});
