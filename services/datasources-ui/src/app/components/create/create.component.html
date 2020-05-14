@@ -1,6 +1,6 @@
 <nb-card class="create-component-container">
   <nb-card-body>
-    <nb-stepper #stepper orientation="vertical">
+    <nb-stepper #stepper orientation="vertical" [disableStepNavigation]="true">
       <nb-step label="Details" class="step">
         <app-detail-step
           [details]="createDataloaderDto.detailsDto"
@@ -13,9 +13,10 @@
           (next)="onNextDataloader($event)"
         ></app-data-loader-step>
       </nb-step>
-      <nb-step label="Keygen step" class="step">
+      <nb-step label="Keygen step (optional)" class="step">
         <app-keygen-step
           [dataloaderId]="createDataloaderDto.dataloaderId"
+          [skip]="!createDataloaderDto.privateRepository"
           (next)="onNextKeygen($event)"
         ></app-keygen-step>
       </nb-step>

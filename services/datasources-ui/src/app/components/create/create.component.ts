@@ -33,7 +33,9 @@ export class CreateComponent implements OnInit {
     this.dataloaderService
       .saveDataloaderStep(this.createDataloaderDto)
       .subscribe((res) => {
-        this.createDataloaderDto.dataloaderId = (res as any).id;
+        const data = (res as any).data;
+        this.createDataloaderDto.dataloaderId = data.id;
+        this.createDataloaderDto.privateRepository = data.private;
       });
   }
 

@@ -10,4 +10,10 @@
       margin-bottom: 15px;
     }
   }
+
+  .button-group {
+    button:first-child {
+      margin-right: 7px;
+    }
+  }
 }

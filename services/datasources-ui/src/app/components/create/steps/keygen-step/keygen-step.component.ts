@@ -1,4 +1,12 @@
-import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  Input,
+  Output,
+  EventEmitter,
+  ViewChild,
+  ElementRef,
+} from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { GitService } from "src/app/services/git.service";
 
@@ -8,6 +16,8 @@ import { GitService } from "src/app/services/git.service";
   styleUrls: ["./keygen-step.component.scss"],
 })
 export class KeygenStepComponent implements OnInit {
+  @ViewChild("stepperNext") stepperNext: ElementRef;
+
   private dataloaderIdValue?: number;
 
   get dataloaderId(): number | undefined {
@@ -25,6 +35,21 @@ export class KeygenStepComponent implements OnInit {
     }
   }
 
+  private skipValue: boolean;
+
+  get skip(): boolean {
+    return this.skipValue;
+  }
+
+  @Input()
+  set skip(value: boolean) {
+    this.skipValue = value;
+
+    if (value && !!this.stepperNext) {
+      this.stepperNext.nativeElement.click();
+    }
+  }
+
   @Output() next: EventEmitter<null> = new EventEmitter();
 
   key: string;
@@ -37,8 +62,12 @@ export class KeygenStepComponent implements OnInit {
 
   ngOnInit(): void {
     this.keygenFormGroup = this.formBuilder.group({
-      confirmAddedDeployKey: [this.key, Validators.requiredTrue],
+      confirmAddedDeployKey: [false, Validators.requiredTrue],
     });
+  }
+
+  onCheckedChanged(checked: boolean) {
+    this.keygenFormGroup.get("confirmAddedDeployKey").setValue(checked);
   }
 
   onNext() {

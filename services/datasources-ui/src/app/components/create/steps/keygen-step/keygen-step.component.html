@@ -1,6 +1,8 @@
 <div class="keygen-step-container">
   <form #keygenForm="ngForm" [formGroup]="keygenFormGroup" class="keygen-form">
     <nb-checkbox
+      [checked]="keygenFormGroup.controls['confirmAddedDeployKey'].value"
+      (checkedChange)="onCheckedChanged($event)"
       >Confirm that I have added the generated key to my deploy
       keys</nb-checkbox
     >
@@ -8,9 +10,10 @@
   <div class="button-group">
     <button nbButton nbStepperPrevious>Previous</button>
     <button
+      #stepperNext
       nbButton
       nbStepperNext
-      [disabled]="!keygenFormGroup.invalid"
+      [disabled]="keygenFormGroup.invalid"
       (click)="onNext()"
     >
       Next

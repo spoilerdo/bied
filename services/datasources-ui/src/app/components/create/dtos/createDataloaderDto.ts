@@ -5,6 +5,7 @@ import { BranchDto } from "./branchDto";
 
 export interface CreateDataloaderDto {
   dataloaderId?: number;
+  privateRepository: boolean;
   detailsDto: DetailsDto;
   dataloaderDto: DataloaderDto;
   customFieldsDto: CustomFieldsDto;
@@ -13,6 +14,7 @@ export interface CreateDataloaderDto {
 
 export const emptyCreateDataloaderDto: CreateDataloaderDto = {
   dataloaderId: undefined,
+  privateRepository: false,
   detailsDto: {
     name: "",
     researchId: null,
