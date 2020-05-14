@@ -11,6 +11,7 @@ namespace AuthenticationService
 
         public AuthenticationServiceImp(Logic logic)
         {
+
             Logic = logic;
         }
 
