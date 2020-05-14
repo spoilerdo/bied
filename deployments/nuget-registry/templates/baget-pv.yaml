@@ -1,29 +1,29 @@
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  namespace: nugetregistry
-  name: baget-pv-volume
-  labels:
-    type: local
-spec:
-  storageClassName: standard
-  capacity:
-    storage: 1Gi
-  accessModes:
-    - ReadWriteMany
-  hostPath:
-    path: "/var/baget"
-    type: DirectoryOrCreate
----
+# apiVersion: v1
+# kind: PersistentVolume
+# metadata:
+#   namespace: nugetregistry
+#   name: baget-pv-volume
+#   labels:
+#     type: local
+# spec:
+#   storageClassName: standard
+#   capacity:
+#     storage: 1Gi
+#   accessModes:
+#     - ReadWriteOnce
+#   hostPath:
+#     path: "/var/baget"
+#     type: DirectoryOrCreate
+# ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   namespace: nugetregistry
   name: baget-pv-claim
 spec:
-  storageClassName: standard
+  storageClassName: custom-storage
   accessModes:
-    - ReadWriteMany
+    - ReadWriteOnce
   resources:
     requests:
       storage: 1Gi
