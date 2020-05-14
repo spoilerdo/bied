@@ -24,4 +24,8 @@
   <ItemGroup>
     <ProjectReference Include="..\PersistenceLayer\PersistenceLayer.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Protobuf Include="../../../libraries/protobuffers/authentication.proto" />
+  </ItemGroup>
 </Project>
