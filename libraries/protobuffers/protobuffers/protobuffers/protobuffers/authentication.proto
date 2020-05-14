@@ -4,6 +4,8 @@ option csharp_namespace = "AuthenticationService";
 
 package Authentication;
 
+import "google/api/annotations.proto";
+
 service Authentication {
 	rpc CreateUser (RegisterRequest) returns (Empty) {
 		option (google.api.http) = {

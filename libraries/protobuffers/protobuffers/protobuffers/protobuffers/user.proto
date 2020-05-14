@@ -2,8 +2,10 @@ syntax = "proto3";
 
 option csharp_namespace = "UserGRPC"; 
 
+import "google/api/annotations.proto";
 import "userInformation.proto";
-package UserServiceProto;
+
+package User;
 
 service User_Service {
     rpc GetUsers (Empty) returns (UsersResponse) {
@@ -64,5 +66,5 @@ message UserModel {
     string firstname = 2;
     string lastname = 3;
     string email = 4;
-    UserInformation userinfo = 5;
+    UserInformation.UserInformation userinfo = 5;
 }

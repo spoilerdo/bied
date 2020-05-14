@@ -33,7 +33,7 @@ service Research_Service {
     option (google.api.http).delete = "/research/{id}";
   };
 
-  rpc AddDatasourceToResearch (Datasource) returns (Research);
+  rpc AddDatasourceToResearch (Datasource.Datasource) returns (Research);
   rpc RemoveDatasourceFromResearch (DatasourceIdResearchRequest) returns (Research);
   rpc InviteUsersToResearch (EmailRequests) returns (EmailEmptyResponse);
 }
@@ -90,5 +90,5 @@ message Research {
   int64 endDate = 6;
   bool active = 7;
   string ownerId = 8;
-  repeated Datasource datasources = 9;
+  repeated Datasource.Datasource datasources = 9;
 }

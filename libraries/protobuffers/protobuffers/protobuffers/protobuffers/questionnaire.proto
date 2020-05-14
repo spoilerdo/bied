@@ -1,6 +1,9 @@
 ﻿syntax = "proto3";
 option csharp_namespace = "QuestionnaireGRPC"; 
 
+package QuestionnaireGRPC;
+
+import "google/api/annotations.proto";
 import "question.proto";
 
 service Questionnaire_Service {
@@ -35,21 +38,19 @@ message QuestionnaireEmptyResponse {}
 message QuestionnaireCreateRequest {
 	string name = 1;
 	string description = 2;
-	repeated QuestionRequest question = 3;
+	repeated Question.QuestionRequest question = 3;
 }
 
 message QuestionnaireEditRequest {
 	string id = 1;
 	string name = 2;
 	string description = 3;
-	repeated QuestionRequest question = 4;
+	repeated Question.QuestionRequest question = 4;
 }
-
-
 
 message Questionnaire {
 	string id = 1;
 	string name = 2;
 	string description = 3;
-	repeated Question question = 4;
+	repeated Question.Question question = 4;
 }

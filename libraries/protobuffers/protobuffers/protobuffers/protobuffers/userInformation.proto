@@ -1,6 +1,10 @@
 syntax = "proto3";
 option csharp_namespace = "UserInformationGRPC"; 
 
+package UserInformation;
+
+import "google/api/annotations.proto";
+
 service UserInformation_Service {
   rpc GetUserInformation (UserInformationIdRequest) returns (UserInformation) {
     option (google.api.http).get = "user/info/{id}";
