@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ConsentsComponent } from './consents.component';
-import { NbCardModule, NbListModule, NbIconModule, NbTooltipComponent, NbTooltipModule, NbPopoverModule } from '@nebular/theme';
+import { NbCardModule, NbListModule, NbIconModule, NbPopoverModule, NbLayoutModule } from '@nebular/theme';
 import { ConsentsListComponent } from './consents-list/consents-list.component';
 import { ConsentsListItemComponent } from './consents-list/consents-list-item/consents-list-item.component';
 import { ConsentProvider } from '../providers/consent.provider';
@@ -19,6 +19,7 @@ import { StatusIndicatorModule } from '../status-indicator/status-indicator.modu
     NbListModule,
     NbIconModule,   
     NbPopoverModule,
+    NbLayoutModule,
     StatusIndicatorModule
   ],
   declarations: [ConsentsComponent, ConsentsListComponent, ConsentsListItemComponent],  
