@@ -1,13 +1,30 @@
 ﻿syntax = "proto3";
 option csharp_namespace = "QuestionnaireGRPC"; 
 
+package QuestionnaireGRPC;
+
+import "google/api/annotations.proto";
 import "question.proto";
 
 service Questionnaire_Service {
-	rpc CreateQuestionnaire (QuestionnaireCreateRequest) returns (Questionnaire);
-	rpc DeleteQuestionnaire (QuestionnaireIdRequest) returns (QuestionnaireEmptyResponse);
-	rpc UpdateQuestionnaire (QuestionnaireEditRequest) returns (Questionnaire);
-	rpc GetQuestionnaire (QuestionnaireIdRequest) returns (Questionnaire);
+	rpc CreateQuestionnaire (QuestionnaireCreateRequest) returns (Questionnaire) {
+		option (google.api.http) = {
+			post: "/questionnaire"
+			body: "*"
+		};
+	};
+	rpc DeleteQuestionnaire (QuestionnaireIdRequest) returns (QuestionnaireEmptyResponse) {
+		option (google.api.http).delete = "/questionnaire/{id}";
+	};
+	rpc UpdateQuestionnaire (QuestionnaireEditRequest) returns (Questionnaire) {
+		option (google.api.http) = {
+			put: "/questionnaire"
+			body: "*"
+		};
+	};
+	rpc GetQuestionnaire (QuestionnaireIdRequest) returns (Questionnaire) {
+		option (google.api.http).get = "/questionnaire/{id}";
+	};
 
 	//TODO: result gedeelte moet nog komen, nog niet duidelijk gedefinieerd.
 }
@@ -21,21 +38,19 @@ message QuestionnaireEmptyResponse {}
 message QuestionnaireCreateRequest {
 	string name = 1;
 	string description = 2;
-	repeated QuestionRequest question = 3;
+	repeated Question.QuestionRequest question = 3;
 }
 
 message QuestionnaireEditRequest {
 	string id = 1;
 	string name = 2;
 	string description = 3;
-	repeated QuestionRequest question = 4;
+	repeated Question.QuestionRequest question = 4;
 }
-
-
 
 message Questionnaire {
 	string id = 1;
 	string name = 2;
 	string description = 3;
-	repeated Question question = 4;
+	repeated Question.Question question = 4;
 }

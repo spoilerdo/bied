@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+set -e # If anything fails - exit immediately.
+set -u # Treat reference to undefined variables as errors
+
+ROOT_PATH=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )/..
+
+
+# Set project name
+PROJECT_NAME=bied-dev
+
+read_var() {
+    VAR=$(grep "^$1=" $2 | xargs)
+    IFS="=" read -ra VAR <<< "$VAR"
+    IFS=" "
+    if [ ${#VAR[@]} -ge 2 ]; then
+      echo ${VAR[1]}
+    fi
+}
+
+RUNNER=$(read_var RUNNER $ROOT_PATH/.env)
+
+if [ "$RUNNER" == "minikube" ]; then
+  minikube docker-env -p bied-dev --shell none || echo "are you sure minikube is running? (kip run start-minikube)"
+fi
