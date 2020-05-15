@@ -23,7 +23,7 @@ export class DetailStepComponent implements OnInit {
 
   ngOnInit(): void {
     this.detailsFormGroup = this.formBuilder.group({
-      name: [this.details.name, Validators.required],
+      name: [this.details.name, [Validators.required, Validators.minLength(6)]],
       researchId: [this.details.researchId, Validators.required],
     });
 
