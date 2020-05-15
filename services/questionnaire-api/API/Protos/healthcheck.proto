@@ -4,11 +4,11 @@ option csharp_namespace = "HealthCheck.Services";
 
 package HealthCheck;
 
-import "google/api/annotations.proto";
+// import "google/api/annotations.proto";
 
 service HealthCheck {
     rpc CheckHealthRequest (HealthCheckRequest) returns (HealthCheckResponse) {
-        option (google.api.http).get = "/health";
+        // option (google.api.http).get = "/health";
     }
 }
 

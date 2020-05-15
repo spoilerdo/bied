@@ -6,14 +6,14 @@ package Questionnaire;
 
 import "question.proto";
 
-import "google/api/annotations.proto";
+// import "google/api/annotations.proto";
 
 service Questionnaire {
 	rpc CreateQuestionnaire (QuestionnaireCreateRequest) returns (QuestionnaireResponse);
 	rpc DeleteQuestionnaire (QuestionnaireIdRequest) returns (QuestionnaireEmptyResponse);
 	rpc UpdateQuestionnaire (QuestionnaireEditRequest) returns (QuestionnaireResponse);
 	rpc GetQuestionnaire (QuestionnaireIdRequest) returns (QuestionnaireResponse) {
-		option (google.api.http).get = "/questionnaire/{id}";
+		// option (google.api.http).get = "/questionnaire/{id}";
 	}
 
 	//TODO: result gedeelte moet nog komen, nog niet duidelijk gedefinieerd.

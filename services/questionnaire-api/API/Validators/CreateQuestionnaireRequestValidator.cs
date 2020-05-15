@@ -1,5 +1,5 @@
 using FluentValidation;
-using Questionnaire.GRPC;
+using Questionnaire.Services;
 
 namespace API.Validators
 {
@@ -9,6 +9,7 @@ namespace API.Validators
         {
             RuleFor(request => request.Name).NotEmpty().WithMessage("Name cannot be empty");
             RuleFor(request => request.Name).MaximumLength(255).WithMessage("Name cannot have more than 255 characters");
+            RuleForEach(request => request.Question).SetValidator(new QuestionValidator());
         }
     }
 }
