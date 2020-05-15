@@ -1,9 +1,11 @@
 ﻿syntax = "proto3";
+
 option csharp_namespace = "QuestionnaireGRPC"; 
 
-package QuestionnaireGRPC;
+package Questionnaire;
 
 import "google/api/annotations.proto";
+
 import "question.proto";
 
 service Questionnaire_Service {
