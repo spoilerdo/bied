@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: research-api
+  namespace: authentication
   labels:
     io.kompose.service: db
   name: db

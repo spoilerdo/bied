@@ -1,12 +1,12 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: EnvoyFilter
 metadata:
-  namespace: research-api
-  name: research-api-filter
+  namespace: authentication
+  name: authentication-filter
 spec:
   workloadSelector:
     labels:
-      io.kompose.service: research-api
+      io.kompose.service: authentication
   configPatches:
     - applyTo: HTTP_FILTER
       match:
@@ -22,10 +22,10 @@ spec:
         value:
           name: envoy.grpc_json_transcoder
           config:
-            proto_descriptor: /etc/envoy/research.pb
+            proto_descriptor: /etc/envoy/authentication.pb
             services:
               - HealthCheck.HealthCheck
-              - Research.Research_Service
+              - Authentication.Authentication
             print_options:
               add_whitespace: true
               always_print_primitive_fields: true

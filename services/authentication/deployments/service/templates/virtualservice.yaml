@@ -13,7 +13,7 @@ spec:
         name: http
         protocol: HTTP
       hosts:
-        - "*"
+        - "authentication.fontysbied.nl"
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
@@ -24,11 +24,13 @@ spec:
   gateways:
     - authentication-gateway
   hosts:
-    - "*" # What inbound Host should be routed. (eg. 'authentication.bied.nl')
+    - "authentication.fontysbied.nl" # What inbound Host should be routed. (eg. 'authentication.bied.nl')
   http:
     - match:
         - uri:
-            prefix: ""
+            prefix: "/auth"
+      rewrite:
+        uri: "/auth"
       route:
         # routes it toward this host. Usually a Kubernetes native 'Service', this should be a FQDN in production
         - destination:
