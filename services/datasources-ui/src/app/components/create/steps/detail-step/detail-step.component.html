@@ -1,0 +1,23 @@
+<div class="detail-step-container">
+  <form [formGroup]="detailsFormGroup" class="details-form">
+    <input nbInput formControlName="name" placeholder="Name" required />
+    <nb-select
+      placeholder="Select a research"
+      [formControl]="detailsFormGroup.controls['researchId']"
+    >
+      <nb-option *ngFor="let research of researches" [value]="research.id">
+        {{ research.name }}
+      </nb-option>
+    </nb-select>
+  </form>
+  <div class="button-group">
+    <button
+      nbButton
+      nbStepperNext
+      [disabled]="!detailsFormGroup.invalid"
+      (click)="onNext()"
+    >
+      Next
+    </button>
+  </div>
+</div>

@@ -4,6 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import {
+  NbSidebarModule,
   NbThemeModule,
   NbLayoutModule,
   NbButtonModule,
@@ -16,6 +17,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RemoveDialogComponent } from './questionnaire/pages/questionnaire-overview/questionnaire-card/remove-dialog/remove-dialog.component';
 import { RenameDialogComponent } from './questionnaire/pages/questionnaire-overview/questionnaire-card/rename-dialog/rename-dialog.component';
 import { QuestionnaireCardComponent } from './questionnaire/pages/questionnaire-overview/questionnaire-card/questionnaire-card.component';
+import { DashboardModule } from './dashboard/dashboard.module';
+import { ThemeModule } from './@theme/theme.module';
 
 const nebularModules = [
   NbThemeModule.forRoot(),
@@ -29,7 +32,13 @@ const nebularModules = [
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, ...nebularModules],
+  imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, ...nebularModules,ThemeModule.forRoot(),
+    NbLayoutModule,
+    NbSidebarModule.forRoot(),
+    NbEvaIconsModule,
+
+    // Pages
+    DashboardModule,],
   providers: [],
   bootstrap: [AppComponent],
   entryComponents: [RemoveDialogComponent, RenameDialogComponent, QuestionnaireCardComponent],

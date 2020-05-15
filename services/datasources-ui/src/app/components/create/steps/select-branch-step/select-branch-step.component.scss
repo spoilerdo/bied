@@ -1,0 +1,19 @@
+.select-branch-step-container {
+  .select-branch-form {
+    display: flex;
+    flex-direction: column;
+    width: 600px;
+    margin-bottom: 15px;
+
+    input {
+      width: 100%;
+      margin-bottom: 15px;
+    }
+  }
+
+  .button-group {
+    button:first-child {
+      margin-right: 7px;
+    }
+  }
+}
