@@ -76,7 +76,7 @@ message ResearchEmptyResponse {}
 
 message DatasourceIdResearchRequest {
   string researchId = 1;
-  Datasource datasource = 2;
+  Datasource.Datasource datasource = 2;
 }
 
 message EmailRequests {
@@ -94,5 +94,5 @@ message Research {
   int64 endDate = 6;
   bool active = 7;
   string ownerId = 8;
-  repeated Datasource datasources = 9;
+  repeated Datasource.Datasource datasources = 9;
 }

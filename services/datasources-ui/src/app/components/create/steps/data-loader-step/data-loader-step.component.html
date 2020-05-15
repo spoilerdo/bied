@@ -1,0 +1,35 @@
+<div class="dataloader-step-container">
+  <form
+    #dataloaderForm="ngForm"
+    [formGroup]="dataloaderFormGroup"
+    class="dataloader-form"
+  >
+    <nb-select
+      placeholder="Select a dataloader type"
+      [formControl]="dataloaderFormGroup.controls['type']"
+    >
+      <nb-option
+        *ngFor="let dataloaderType of dataloaderTypes"
+        [value]="dataloaderType"
+      >
+        {{ convertDataloaderTypeToText(dataloaderType) }}
+      </nb-option>
+    </nb-select>
+    <ng-container
+      *ngIf="dataloaderFormGroup.controls['type'].value === 'CUSTOM'"
+    >
+      <input nbInput formControlName="gitUrl" placeholder="Git URL" required />
+    </ng-container>
+  </form>
+  <div class="button-group">
+    <button nbButton nbStepperPrevious>Previous</button>
+    <button
+      nbButton
+      nbStepperNext
+      [disabled]="!(isFormValid() | async)"
+      (click)="onNext()"
+    >
+      Next
+    </button>
+  </div>
+</div>
