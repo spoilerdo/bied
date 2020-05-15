@@ -1,0 +1,42 @@
+<div class="item-wrapper">
+  <div class="checkmark">
+    <app-status-indicator
+      [status]="consent.consent"
+      [date]="consent.uts"
+    ></app-status-indicator>
+  </div>
+
+  <div class="information">
+    <p class="info-item">{{ consent.datasource.name }}</p>
+    <p class="info-item-description">{{ consent.datasource.description }}</p>
+  </div>
+
+  <nb-icon
+    [nbPopover]="popoverList"
+    nbPopoverPlacement="bottom"
+    class="options"
+    icon="more-vertical-outline"
+    id="consent-more-options"
+  ></nb-icon>
+</div>
+
+<ng-template #popoverList>
+  <nb-list id="option-popover-list">
+    <nb-list-item>
+      <a class="details-link" [href]="'consents/' + consent.id">
+        <nb-icon icon="eye-outline" class="option-icon"></nb-icon>
+        Details
+      </a>
+    </nb-list-item>
+
+    <nb-list-item (click)="consent.consent = !consent.consent">
+      <nb-icon
+        [icon]="
+          consent.consent ? 'toggle-right-outline' : 'toggle-left-outline'
+        "
+        class="option-icon"
+      ></nb-icon>
+      Toggle
+    </nb-list-item>
+  </nb-list>
+</ng-template>
