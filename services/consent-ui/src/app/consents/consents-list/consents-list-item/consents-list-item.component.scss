@@ -1,0 +1,48 @@
+@import "../../../@theme/styles/themes";
+@include nb-install-component() {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+
+  p {
+    margin: 0;
+  }
+
+  .item-wrapper {
+    display: flex;
+    width: 100%;
+  }
+
+  .checkmark {
+    margin-right: 8px;
+  }
+
+  .information {
+    width: 95%;
+    display: flex;
+
+    .info-item {
+      width: 45%;
+    }
+
+    .info-item-description {
+      width: 45%;
+      display: -webkit-box;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  .options {
+    margin-left: 8px;
+  }
+}
+
+.option-icon {
+  margin-right: 8px;
+}
+
+.details-link {
+  text-decoration: none;
+  color: inherit;
+}
