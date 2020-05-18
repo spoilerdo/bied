@@ -76,7 +76,7 @@ namespace research_service.Persistence.Repositories.Researches
             return new DataResponseObject<ResearchEntity>(research);
         }
 
-        public async Task<DataResponseObject<ResearchEntity>> AddDataSourceToResearch(Guid id, ResearchDatasource datasource)
+        public async Task<DataResponseObject<ResearchEntity>> AddDataSourceToResearch(Guid id, Guid datasourceId)
         {
             var research = await _context.Researches.FindAsync(id);
             if (research == null)
