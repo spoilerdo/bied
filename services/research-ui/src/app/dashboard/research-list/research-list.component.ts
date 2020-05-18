@@ -24,7 +24,7 @@ export class ResearchListComponent {
   @Output() searchEvent = new EventEmitter();
   @Output() orderEvent = new EventEmitter();
 
-  Filtering: boolean = true;
+  Filtering: boolean = false;
   selectedFilter: number = 0;
   searchValue: string = '';
   orderType = SortingTypes;
