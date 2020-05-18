@@ -1,0 +1,27 @@
+<div class="select-branch-step-container">
+  <form
+    #selectBranchForm="ngForm"
+    [formGroup]="selectBranchFormGroup"
+    class="select-branch-form"
+  >
+    <nb-select
+      placeholder="Select a branch"
+      [formControl]="selectBranchFormGroup.controls['branchName']"
+    >
+      <nb-option *ngFor="let branch of branches" [value]="branch">
+        {{ branch }}
+      </nb-option>
+    </nb-select>
+  </form>
+  <div class="button-group">
+    <button nbButton nbStepperPrevious>Previous</button>
+    <button
+      nbButton
+      nbStepperNext
+      [disabled]="!selectBranchFormGroup.invalid"
+      (click)="onNext()"
+    >
+      Next
+    </button>
+  </div>
+</div>

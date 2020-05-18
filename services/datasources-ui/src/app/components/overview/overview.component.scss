@@ -1,0 +1,29 @@
+.header-layout {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.datasource-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.datasource-card {
+  margin-bottom: 0.875rem;
+}
+
+.datasource-row>p {
+  width: 24.35%;
+}
+
+.datasource-row>button,
+.datasource-row>.spacer-column {
+  width: 40px;
+}
+
+.datasource-heading {
+  padding: 0 1.5rem;
+}
