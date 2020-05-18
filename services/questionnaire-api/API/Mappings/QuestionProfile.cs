@@ -1,6 +1,6 @@
 using AutoMapper;
 using Questionnaire.Persistence.Entities;
-using Questionnaire.GRPC;
+using QuestionnaireGRPC;
 using System;
 using System.Collections.Generic;
 using System.Linq;

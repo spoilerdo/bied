@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
-using Questionnaire.GRPC;
+using QuestionTypeGRPC;
 using MongoDB.Entities.Core;
 
 namespace Questionnaire.Persistence.Entities

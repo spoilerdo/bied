@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Grpc.Core;
 using Microsoft.Extensions.Logging;
-using Questionnaire.GRPC;
+using QuestionnaireResultGRPC;
 using Questionnaire.Persistence.Repositories;
 using Questionnaire.Persistence.Entities;
 using AutoMapper;
