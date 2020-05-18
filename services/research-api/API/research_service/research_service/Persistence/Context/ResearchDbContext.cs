@@ -10,9 +10,7 @@ namespace research_service.Persistence.Context
 {
     public class ResearchDbContext : DbContext
     {
-        public ResearchDbContext(DbContextOptions<ResearchDbContext> options) : base(options) {
-            this.Database.EnsureCreated();
-        }
+        public ResearchDbContext(DbContextOptions<ResearchDbContext> options) : base(options) {}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

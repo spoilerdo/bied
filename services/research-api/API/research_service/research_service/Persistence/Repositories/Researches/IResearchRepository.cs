@@ -19,10 +19,8 @@ namespace research_service.Persistence.Repositories.Researches
         /// <summary>
         /// Get all researches
         /// </summary>
-        /// <param name="offset">Rows to skip before starting to fetch new rows</param>
-        /// <param name="limit">Amount of rows to fetch starting from offset</param>
         /// <returns>all found researches</returns>
-        Task<DataResponseObject<IEnumerable<ResearchEntity>>> GetResearches(int offset, int limit);
+        Task<DataResponseObject<IEnumerable<ResearchEntity>>> GetResearches();
         /// <summary>
         /// Create a research
         /// </summary>
@@ -42,20 +40,5 @@ namespace research_service.Persistence.Repositories.Researches
         /// <param name="id">the id of the research to delete</param>
         /// <returns>data responseobject indicationg success or failure</returns>
         Task<DataResponseObject<ResearchEntity>> DeleteResearch(Guid id);
-
-        /// <summary>
-        /// Add datasource to research with given id
-        /// </summary>
-        /// <param name="id">ID of the research</param>
-        /// <param name="datasource">Datasource to add to the research</param>
-        /// <returns>Dataresponseobject containing object or error</returns>
-        Task<DataResponseObject<ResearchEntity>> AddDataSourceToResearch(Guid id, ResearchDatasource datasource);
-        /// <summary>
-        /// remove datasource from research with given id
-        /// </summary>
-        /// <param name="id">ID of the research</param>
-        /// <param name="datasource">Datasource to add to the research</param>
-        /// <returns>Dataresponseobject containing object or error</returns>
-        Task<DataResponseObject<ResearchEntity>> RemoveDataSourceFromResearch(Guid id, ResearchDatasource datasource);
     }
 }

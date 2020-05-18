@@ -48,49 +48,11 @@ namespace research_service.Persistence.Repositories.Researches
             return new DataResponseObject<ResearchEntity>(foundResearch);
         }
 
-        public async Task<DataResponseObject<IEnumerable<ResearchEntity>>> GetResearches(int offset, int limit)
+        public async Task<DataResponseObject<IEnumerable<ResearchEntity>>> GetResearches()
         {
-            var researches = await _context.Researches
-                                            .OrderBy(x => x.Id)
-                                            .Skip(offset)
-                                            .Take(limit)
-                                            .ToListAsync();
+            var researches = await _context.Researches.ToListAsync();
 
             return new DataResponseObject<IEnumerable<ResearchEntity>>(researches);
-        }
-
-        public async Task<DataResponseObject<ResearchEntity>> RemoveDataSourceFromResearch(Guid id, ResearchDatasource datasource)
-        {
-            var research = await _context.Researches.FindAsync(id);
-            if(research == null)
-            {
-                return new DataResponseObject<ResearchEntity>("Research could not be found");
-            }
-            if(!research.ResearchDataSources.Contains(datasource))
-            {
-                return new DataResponseObject<ResearchEntity>("Datasource not connected to research");
-            }
-
-            research.ResearchDataSources.Remove(datasource);
-            await _context.SaveChangesAsync();
-            return new DataResponseObject<ResearchEntity>(research);
-        }
-
-        public async Task<DataResponseObject<ResearchEntity>> AddDataSourceToResearch(Guid id, Guid datasourceId)
-        {
-            var research = await _context.Researches.FindAsync(id);
-            if (research == null)
-            {
-                return new DataResponseObject<ResearchEntity>("Research could not be found");
-            }
-            if (research.ResearchDataSources.Contains(datasource))
-            {
-                return new DataResponseObject<ResearchEntity>("Datasource already connected to research");
-            }
-
-            research.ResearchDataSources.Add(datasource);
-            await _context.SaveChangesAsync();
-            return new DataResponseObject<ResearchEntity>(research);
         }
 
         public async Task<DataResponseObject<ResearchEntity>> UpdateResearch(Guid id, ResearchEntity research)

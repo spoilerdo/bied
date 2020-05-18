@@ -96,7 +96,7 @@ namespace research_service.Services
         /// <returns>all researches</returns>
         public override async Task<Researches> GetResearches(GetResearchesRequest request, ServerCallContext context)
         {
-            var researches = await _researchRepository.GetResearches(5, 5); //request.offset, request.limit
+            var researches = await _researchRepository.GetResearches(); //request.offset, request.limit
             if (!researches.Success)
             {
                 throw new RpcException(new Status(StatusCode.NotFound, researches.Message));
@@ -108,18 +108,6 @@ namespace research_service.Services
         }
 
         /// <summary>
-        /// Add data source to research
-        /// </summary>
-        /// <param name="request">data source to add to research</param>
-        /// <param name="context">the server context</param>
-        /// <returns>Updated research or message indicating reason for failure</returns>
-        public override Task<Research> AddDatasourceToResearch(Datasource request, ServerCallContext context)
-        {
-            throw new NotImplementedException();
-            //var research = await _researchRepository.AddDataSourceToResearch(request.Id, request);
-        }
-
-        /// <summary>
         /// Handle sending invites for specific research
         /// </summary>
         /// <param name="request">The emails to send invite to</param>
@@ -127,18 +115,6 @@ namespace research_service.Services
         /// <returns>Message indicating success/failure</returns>
         public override Task<EmailEmptyResponse> InviteUsersToResearch(EmailRequests request, ServerCallContext context)
         {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Remmove data source from research
-        /// </summary>
-        /// <param name="request">data source to remove from research</param>
-        /// <param name="context">the server context</param>
-        /// <returns>updated research or message indicating failure</returns>
-        public override Task<Research> RemoveDatasourceFromResearch(DatasourceIdResearchRequest request, ServerCallContext context)
-        {
-            //var research = await _researchRepository.RemoveDataSourceFromResearch(request.Id)
             throw new NotImplementedException();
         }
     }
