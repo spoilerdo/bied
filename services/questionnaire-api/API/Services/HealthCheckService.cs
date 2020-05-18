@@ -7,7 +7,7 @@ using HealthCheckGRPC;
 using Microsoft.Extensions.Logging;
 using AutoMapper;
 
-namespace HealthCheck.Services
+namespace HealthCheck_Service.Services
 {
     /// <summary>
     /// Responsible for handling the GRPC protobuffer service logic
