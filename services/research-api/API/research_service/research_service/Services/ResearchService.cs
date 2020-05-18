@@ -138,6 +138,7 @@ namespace research_service.Services
         /// <returns>updated research or message indicating failure</returns>
         public override Task<Research> RemoveDatasourceFromResearch(DatasourceIdResearchRequest request, ServerCallContext context)
         {
+            //var research = await _researchRepository.RemoveDataSourceFromResearch(request.Id)
             throw new NotImplementedException();
         }
     }
