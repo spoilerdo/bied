@@ -1,10 +1,10 @@
 <div class="questionnaire-editor">
-  <div class="action-bar-root">
-    <div class="action-bar-positioner">
+  <div class="action-bar-root" *ngIf="this.createQuestionnaireService.$actionBarOffset | async as offset">
+    <div class="action-bar-positioner" [style.top.px]="offset">
       <app-action-bar (addQuestion)="addQuestion()" (saveQuestionnaire)="saveQuestionnaire()"></app-action-bar>
     </div>
   </div>
-  <form [formGroup]="questionnaireForm">
+  <form [formGroup]="createQuestionnaireService.questionnaireForm">
     <nb-card>
       <nb-card-body>
         <div class="form-control">

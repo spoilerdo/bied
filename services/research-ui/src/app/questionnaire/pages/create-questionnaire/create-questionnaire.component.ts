@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { CreateQuestionnaireService } from './create-questionnaire.service';
+import { NbViewportRulerAdapter } from '@nebular/theme';
 
 @Component({
   selector: 'app-create-questionnaire',
@@ -7,16 +9,20 @@ import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./create-questionnaire.component.scss'],
 })
 export class CreateQuestionnaireComponent implements OnInit {
-  questionnaireForm: FormGroup;
-
-  constructor(private readonly formBuilder: FormBuilder) {}
+  constructor(
+    private readonly createQuestionnaireService: CreateQuestionnaireService,
+    private readonly formBuilder: FormBuilder,
+    public readonly ref: ElementRef,
+  ) {}
 
   ngOnInit(): void {
-    this.questionnaireForm = this.formBuilder.group({
+    this.createQuestionnaireService.questionnaireForm = this.formBuilder.group({
       title: '',
       description: '',
       questions: this.formBuilder.array([]),
     });
+    this.createQuestionnaireService.actionBarOffsetBase = this.ref.nativeElement.getBoundingClientRect().top;
+    this.createQuestionnaireService.actionBarOffset = 0;
   }
 
   addQuestion(): void {
@@ -36,7 +42,7 @@ export class CreateQuestionnaireComponent implements OnInit {
   }
 
   get f() {
-    return this.questionnaireForm.controls;
+    return this.createQuestionnaireService.questionnaireForm.controls;
   }
 
   get questions(): FormArray {

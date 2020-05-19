@@ -12,8 +12,8 @@
 }
 
 .action-bar-positioner {
+  transition: top 300ms ease-in-out;
   position: absolute;
-  top: 0;
   right: -62px;
 }
 

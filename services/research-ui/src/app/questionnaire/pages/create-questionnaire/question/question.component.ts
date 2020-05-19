@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { QuestionType } from '../enums/question-type.enum';
+import { CreateQuestionnaireService } from '../create-questionnaire.service';
 
 @Component({
   selector: 'app-question',
@@ -13,7 +14,11 @@ export class QuestionComponent implements OnInit {
 
   questionTypes = QuestionType;
 
-  constructor(private readonly formBuilder: FormBuilder) {}
+  constructor(
+    private readonly createQuestionnaireService: CreateQuestionnaireService,
+    private readonly formBuilder: FormBuilder,
+    public readonly ref: ElementRef,
+  ) {}
 
   ngOnInit(): void {
     if (!this.questionForm) {
@@ -24,6 +29,10 @@ export class QuestionComponent implements OnInit {
     this.questionForm.addControl('required', this.formBuilder.control(false));
     this.questionForm.addControl('questionType', this.formBuilder.control(null, [Validators.required]));
     this.questionForm.addControl('questionData', this.formBuilder.group({}));
+  }
+
+  questionClick() {
+    this.createQuestionnaireService.actionBarOffset = this.ref.nativeElement.getBoundingClientRect().top;
   }
 
   formTypeChanged(): void {
