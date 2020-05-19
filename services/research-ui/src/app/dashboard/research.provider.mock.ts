@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Research } from './models/research';
 import { ResearchProvider } from './research.provider';
 import * as moment from 'moment';
-import { SortingTypes } from './models/orderTypes';
+import { SortingTypes } from './models/sortingTypes';
 import { SortArrObj, Arrangement } from '../Utility';
 
 @Injectable()

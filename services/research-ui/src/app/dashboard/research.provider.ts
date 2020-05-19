@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Research } from './models/research';
-import { SortingTypes } from './models/orderTypes';
+import { SortingTypes } from './models/sortingTypes';
 
 @Injectable()
 export class ResearchProvider {

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ResearchProvider } from './research.provider';
 import { Research } from './models/research';
-import { SortingTypes } from './models/orderTypes';
+import { SortingTypes } from './models/sortingTypes';
 
 @Component({
   selector: 'app-dashboard',
