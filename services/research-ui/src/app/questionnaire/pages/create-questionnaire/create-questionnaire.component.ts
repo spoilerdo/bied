@@ -19,18 +19,18 @@ export class CreateQuestionnaireComponent implements OnInit {
     });
   }
 
-  addQuestionnaireItem(): void {
+  addQuestion(): void {
     const { controls } = this.questions;
     const id = controls[controls.length - 1] ? controls[controls.length - 1].value.id + 1 : 0;
     this.questions.push(this.formBuilder.group({ id }));
   }
 
-  onQuestionnaireSubmit() {
+  saveQuestionnaire() {
     console.log(this.f);
   }
 
   onRemoveQuestion(id: number) {
-    const questionToRemove = this.questions.controls.find(question => question.value.id === id);
+    const questionToRemove = this.questions.controls.find((question) => question.value.id === id);
     const questionIndex = this.questions.controls.indexOf(questionToRemove);
     this.questions.removeAt(questionIndex);
   }

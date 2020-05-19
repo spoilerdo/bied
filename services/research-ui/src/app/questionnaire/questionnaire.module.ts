@@ -26,6 +26,7 @@ import { DateQuestionComponent } from './pages/create-questionnaire/question/dat
 import { TimeQuestionComponent } from './pages/create-questionnaire/question/time-question/time-question.component';
 import { LikertQuestionComponent } from './pages/create-questionnaire/question/likert-question/likert-question.component';
 import { CoreModule } from '../@core/core.module';
+import { ActionBarComponent } from './pages/create-questionnaire/action-bar/action-bar.component';
 
 const nebularModules = [
   NbLayoutModule,
@@ -52,6 +53,7 @@ const nebularModules = [
     DateQuestionComponent,
     TimeQuestionComponent,
     LikertQuestionComponent,
+    ActionBarComponent,
   ],
   imports: [CommonModule, QuestionnaireRoutingModule, ReactiveFormsModule, CoreModule, ...nebularModules],
 })

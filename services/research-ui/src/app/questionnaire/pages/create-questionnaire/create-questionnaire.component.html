@@ -1,28 +1,7 @@
 <div class="questionnaire-editor">
   <div class="action-bar-root">
     <div class="action-bar-positioner">
-      <nb-card class="action-bar">
-        <button
-          nbButton
-          id="add-question"
-          ghost
-          (click)="addQuestionnaireItem()"
-          nbTooltip="Add question"
-          nbTooltipPlacement="right"
-        >
-          <nb-icon icon="plus-circle-outline"></nb-icon>
-        </button>
-        <button
-          nbButton
-          id="save-questionnaire"
-          ghost
-          (click)="onQuestionnaireSubmit()"
-          nbTooltip="Save questionnaire"
-          nbTooltipPlacement="right"
-        >
-          <nb-icon icon="save-outline"></nb-icon>
-        </button>
-      </nb-card>
+      <app-action-bar (addQuestion)="addQuestion()" (saveQuestionnaire)="saveQuestionnaire()"></app-action-bar>
     </div>
   </div>
   <form [formGroup]="questionnaireForm">

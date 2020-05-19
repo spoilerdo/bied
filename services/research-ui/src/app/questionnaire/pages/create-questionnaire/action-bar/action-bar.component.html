@@ -1,0 +1,22 @@
+<nb-card class="action-bar">
+  <button
+    nbButton
+    id="add-question"
+    ghost
+    (click)="addQuestion.emit()"
+    nbTooltip="Add question"
+    nbTooltipPlacement="right"
+  >
+    <nb-icon icon="plus-circle-outline"></nb-icon>
+  </button>
+  <button
+    nbButton
+    id="save-questionnaire"
+    ghost
+    (click)="saveQuestionnaire.emit()"
+    nbTooltip="Save questionnaire"
+    nbTooltipPlacement="right"
+  >
+    <nb-icon icon="save-outline"></nb-icon>
+  </button>
+</nb-card>
