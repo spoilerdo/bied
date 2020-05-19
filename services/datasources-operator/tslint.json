@@ -1,0 +1,50 @@
+{
+  "defaultSeverity": "error",
+  "extends": ["tslint:recommended", "tslint-sonarts", "tslint-config-prettier"],
+  "jsRules": {},
+  "rules": {
+    "quotemark": [true, "single", "jsx-double", "avoid-escape"],
+    "no-console": [false, "log"],
+    "arrow-parens": false,
+    "no-consecutive-blank-lines": [true, 2],
+    "member-access": [false],
+    "ordered-imports": [false],
+    "object-literal-sort-keys": [false],
+    "no-string-literal": [false],
+    "trailing-comma": [false],
+    "semicolon": [true, "always", "ignore-bound-class-methods"],
+    "max-line-length": [false],
+    "one-line": [
+      true,
+      "check-catch",
+      "check-finally",
+      "check-else",
+      "check-open-brace"
+    ],
+    "whitespace": [
+      true,
+      "check-decl",
+      "check-operator",
+      "check-module",
+      "check-type",
+      "check-typecast"
+    ],
+    "interface-name": false,
+    "member-ordering": false,
+    "object-literal-key-quotes": [true, "as-needed"],
+    "no-floating-promises": true,
+    "no-duplicate-string": false,
+    "no-nested-template-literals": false,
+    "parameters-max-number": false,
+    "no-commented-code": false
+  },
+  "linterOptions": {
+    "exclude": [
+      "**/migrations/*.ts",
+      "**/generated/*",
+      "**/*.spec.ts",
+      "**/statistics.service.ts"
+    ]
+  },
+  "rulesDirectory": []
+}
