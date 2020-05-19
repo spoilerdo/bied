@@ -6,6 +6,7 @@ using research_service.Persistence.Repositories.Researches;
 using ResearchGRPC;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace research_service.Services
@@ -113,9 +114,12 @@ namespace research_service.Services
         /// <param name="request">The emails to send invite to</param>
         /// <param name="context">the server context</param>
         /// <returns>Message indicating success/failure</returns>
-        public override Task<EmailEmptyResponse> InviteUsersToResearch(EmailRequests request, ServerCallContext context)
+        public override async Task<EmailEmptyResponse> InviteUsersToResearch(EmailRequests request, ServerCallContext context)
         {
-            throw new NotImplementedException();
+            //make GRPC call with client?, wait for mail.proto to be added to package...
+
+            //TODO : research ID toevoegen aan deze request voor invites sturen.
+            return new EmailEmptyResponse();
         }
     }
 }
