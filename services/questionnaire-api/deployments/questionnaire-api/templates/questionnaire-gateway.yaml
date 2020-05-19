@@ -1,0 +1,22 @@
+#
+# Gateway;  This resource configures the ingress-gateway telling it what traffic is allowed
+#           and how it should be handled. In contrast to Kubernetes Ingress which routes traffic at L7, the Gateway ingress
+#           works at L4-L6 and Virtual Services are used for routing.
+#
+# See:      https://istio.io/docs/concepts/traffic-management/#gateway-example
+#
+apiVersion: networking.istio.io/v1beta1
+kind: Gateway
+metadata:
+  namespace: questionnaire-api
+  name: questionnaire-api-gateway
+spec:
+  selector:
+    app: istio-ingressgateway # This is the default ingress-gateway
+  servers:
+    - port:
+        number: 80
+        name: http
+        protocol: HTTP
+      hosts:
+        - "*"
