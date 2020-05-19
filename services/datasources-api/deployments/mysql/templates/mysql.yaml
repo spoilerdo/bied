@@ -1,0 +1,26 @@
+apiVersion: kubedb.com/v1alpha1
+kind: MySQL
+metadata:
+  name: {{ .Values.name }}
+  namespace: {{ .Values.namespace }}
+spec:
+  databaseSecret:
+    secretName: mysql-datasource-secret
+  version: "8.0-v2"
+  storageType: Durable
+  storage:
+    storageClassName: {{ .Values.storageClass }}
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: {{ .Values.storage }}
+  podTemplate:
+      spec:
+          args:
+          - --default-authentication-plugin=mysql_native_password
+  terminationPolicy: DoNotTerminate
+  init:
+    scriptSource:
+      configMap:
+        name: init-sql
