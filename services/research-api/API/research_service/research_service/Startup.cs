@@ -70,7 +70,7 @@ namespace research_service
             });
         }
 
-        private static void UpdateDatabase(IApplicationBuilder app)
+        private void UpdateDatabase(IApplicationBuilder app)
         {
             using (var serviceScope = app.ApplicationServices
                 .GetRequiredService<IServiceScopeFactory>()
@@ -78,7 +78,11 @@ namespace research_service
             {
                 using (var context = serviceScope.ServiceProvider.GetService<ResearchDbContext>())
                 {
-                    context.Database.Migrate();
+                    //make sure we dont run migrations when integration testing, in memory does not support it.
+                    if (context.Database.ProviderName != "Microsoft.EntityFrameworkCore.InMemory")
+                    {
+                        context.Database.Migrate();
+                    }
                 }
             }
         }
