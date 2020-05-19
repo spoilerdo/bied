@@ -1,0 +1,22 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: {{ include "authentication-ui.fullname" . }}
+spec:
+  gateways:
+    - {{ include "authentication-ui.fullname" . }}-gateway
+  hosts:
+    # - "*" # What inbound Host should be routed. (eg. 'research.bied.nl')
+    - "login.fontysbied.nl"
+  http:
+    - match:
+        - uri:
+            prefix: /
+      rewrite:
+        uri: /
+      route:
+        # routes it toward this host. Usually a Kubernetes native 'Service', this should be a FQDN in production
+        - destination:
+            host: {{ include "authentication-ui.fullname" . }}
+            port:
+              number: 80
