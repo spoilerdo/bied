@@ -1,0 +1,96 @@
+#!/usr/bin/env bash
+
+set -e # If anything fails - exit immediately.
+set -u # Treat reference to undefined variables as errors
+
+# Set project name
+PROJECT_NAME=bied-dev
+
+# Check whether we are running on WSL
+IS_WSL=0
+MINIKUBE_START_PREFIX=
+if grep -q microsoft /proc/version; then
+    IS_WSL=1
+    MINIKUBE_START_PREFIX="sudo -E CHANGE_MINIKUBE_NONE_USER=true"
+fi
+
+# Get project root path
+ROOT_PATH=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )/..
+
+MINIKUBE_STATUS=$(minikube status -p $PROJECT_NAME | awk '/host:/ {print $2}')
+
+if [ "$MINIKUBE_STATUS" == "Running" ]; then
+    echo "Minikube is already running!"
+    exit
+fi
+
+# Determine VM driver
+VM_DRIVER_PARAMS=
+
+if [[ $IS_WSL -eq 1 ]]; then
+    # Don't use hypervisor on WSL
+    VM_DRIVER_PARAMS=--vm-driver=none
+elif [[ "$OSTYPE" == "linux-gnu" ]]; then
+    # Use KVM2 driver on Linux
+    VM_DRIVER_PARAMS=--vm-driver=kvm2
+elif [[ "$OSTYPE" == "darwin" ]]; then
+    # Use hyperkit driver on Mac
+    VM_DRIVER_PARAMS=--vm-driver=hyperkit
+elif [[ "$OSTYPE" == "darwin18.0.0" ]]; then
+    # Use hyperkit driver on Mac
+    VM_DRIVER_PARAMS=--vm-driver=hyperkit
+fi
+
+# Determine number of CPUs used (defaults to 4 if not configured)
+CPUS=$(minikube config view -p $PROJECT_NAME | awk '/cpus/ {print $3}')
+CPUS=${CPUS:-4}
+
+# Determine amount of memory used (defaults to 8192 if not configured)
+MEMORY=$(minikube config view -p $PROJECT_NAME | awk '/memory/ {print $3}')
+MEMORY=${MEMORY:-8192}
+
+# Determine disk size used (defaults to 64GB if not configured)
+DISK_SIZE=$(minikube config view -p $PROJECT_NAME | awk '/disk-size/ {print $3}')
+DISK_SIZE=${DISK_SIZE:-40GB}
+
+# Start Minikube
+$MINIKUBE_START_PREFIX minikube start \
+    -p $PROJECT_NAME \
+    --extra-config=apiserver.authorization-mode=RBAC \
+    --extra-config=kubelet.authentication-token-webhook=true \
+    --extra-config=kubelet.authorization-mode=Webhook \
+    --extra-config=scheduler.address=0.0.0.0 \
+    --extra-config=controller-manager.address=0.0.0.0 \
+    --kubernetes-version=v1.15.9 \
+    --cpus=$CPUS \
+    --insecure-registry "10.0.0.0/24" \
+    --memory=$MEMORY \
+    --disk-size=$DISK_SIZE \
+    $VM_DRIVER_PARAMS
+
+# Enable Minikube addons
+# minikube addons enable ingress -p $PROJECT_NAME
+
+#if [[ $IS_WSL -eq 0 ]]; then
+#    # Point shell docker CLI to Minikube docker daemon
+#    eval $(minikube docker-env -p $PROJECT_NAME)
+#
+#    # Fix DNS setup in Minkube (https://github.com/kubernetes/minikube/issues/1674)
+#    source ${ROOT_PATH}/scripts/lib/setup_minikube_dns.sh
+#fi
+
+if [ "$MINIKUBE_STATUS" != "Stopped" ]; then
+
+    # add aditional secrets for development
+    # source ${ROOT_PATH}/scripts/lib/add_secrets.sh
+
+    # Install KubeDB in cluster
+    helm repo add appscode https://charts.appscode.com/stable/
+    helm repo update
+
+    helm install kubedb-operator --version v0.13.0-rc.0 --namespace kube-system appscode/kubedb
+    kubectl rollout status -w deployment/kubedb-operator --namespace=kube-system # Wait for tiller pod to be ready
+    echo "waiting 2 minutes for crds to be ready"
+    sleep 180
+    helm install kubedb-catalog --version v0.13.0-rc.0 --namespace kube-system appscode/kubedb-catalog
+fi

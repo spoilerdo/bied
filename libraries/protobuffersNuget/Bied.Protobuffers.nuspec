@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <!-- Required elements-->
+    <id>Bied.Protobuffers</id>
+    <version>1.0.1</version>
+    <description>BIED protobuffers Nuget package used for ASP core services</description>
+    <language>en-US</language>
+    <authors>S66-BIED</authors>
+    <projectUrl>https://github.com/Choem/bied/</projectUrl>
+    <license type="expression">AGPL-3.0-or-later</license>
+  </metadata>
+  <files>
+    <file src="../protobuffers/consent.proto" />
+    <file src="../protobuffers/datasource.proto" />
+    <file src="../protobuffers/question.proto" />
+    <file src="../protobuffers/questionnaire.proto" />
+    <file src="../protobuffers/questionType.proto" />
+    <file src="../protobuffers/research.proto" />
+    <file src="../protobuffers/user.proto" />
+    <file src="../protobuffers/userInformation.proto" />
+  </files>
+</package>

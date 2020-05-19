@@ -1,10 +1,11 @@
 ﻿using AutoMapper;
+using DatasourceGRPC;
 using Grpc.Core;
 using research_service.Persistence.Entities;
 using research_service.Persistence.Repositories.Researches;
+using ResearchGRPC;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace research_service.Services
@@ -12,12 +13,12 @@ namespace research_service.Services
     /// <summary>
     /// Responsible for handling the GRPC protobuffer service logic
     /// </summary>
-    public class Research_Service : ResearchService.ResearchServiceBase
+    public class ResearchService : Research_Service.Research_ServiceBase
     {
         private readonly IResearchRepository _researchRepository;
         private readonly IMapper _mapper;
 
-        public Research_Service(IResearchRepository researchRepository, IMapper mapper)
+        public ResearchService(IResearchRepository researchRepository, IMapper mapper)
         {
             _researchRepository = researchRepository;
             _mapper = mapper;
@@ -34,7 +35,7 @@ namespace research_service.Services
             var createdResearch = await _researchRepository.CreateResearch(_mapper.Map<ResearchEntity>(request));
             if(!createdResearch.Success)
             {
-                throw new NotImplementedException("Error handling for GRPC not implemented yet");
+                throw new RpcException(new Status(StatusCode.InvalidArgument, createdResearch.Message));
             }
             return _mapper.Map<Research>(createdResearch.Data); 
         }
@@ -50,7 +51,7 @@ namespace research_service.Services
             var deletedResearch = await _researchRepository.DeleteResearch(new Guid(request.Id));
             if(!deletedResearch.Success)
             {
-                throw new NotImplementedException("Error handling for GRPC not implemented yet");
+                throw new RpcException(new Status(StatusCode.NotFound, deletedResearch.Message));
             }
             return new ResearchEmptyResponse();
         }
@@ -66,7 +67,7 @@ namespace research_service.Services
             var editedResearch = await _researchRepository.UpdateResearch(new Guid(request.Id), _mapper.Map<ResearchEntity>(request));
             if(!editedResearch.Success)
             {
-                throw new NotImplementedException("Error handling for GRPC not implemented yet");
+                throw new RpcException(new Status(StatusCode.NotFound, editedResearch.Message));
             }
             return _mapper.Map<Research>(editedResearch.Data);
         }
@@ -82,7 +83,7 @@ namespace research_service.Services
             var foundResearch = await _researchRepository.GetResearchById(new Guid(request.Id));
             if(!foundResearch.Success)
             {
-                throw new NotImplementedException("Error handling for GRPC not implemented yet");
+                throw new RpcException(new Status(StatusCode.NotFound, foundResearch.Message));
             }
             return _mapper.Map<Research>(foundResearch.Data);
         }
@@ -98,7 +99,7 @@ namespace research_service.Services
             var researches = await _researchRepository.GetResearches();
             if(!researches.Success)
             {
-                throw new NotImplementedException("Error handling for GRPC not implemented yet");
+                throw new RpcException(new Status(StatusCode.NotFound, researches.Message));
             }
             return new Researches
             {
@@ -114,6 +115,7 @@ namespace research_service.Services
         /// <returns>Updated research or message indicating reason for failure</returns>
         public override Task<Research> AddDatasourceToResearch(Datasource request, ServerCallContext context)
         {
+
             throw new NotImplementedException();
         }
 
@@ -134,7 +136,7 @@ namespace research_service.Services
         /// <param name="request">data source to remove from research</param>
         /// <param name="context">the server context</param>
         /// <returns>updated research or message indicating failure</returns>
-        public override Task<Research> RemoveDatasourceFromResearch(DatasourceIdRequest request, ServerCallContext context)
+        public override Task<Research> RemoveDatasourceFromResearch(DatasourceIdResearchRequest request, ServerCallContext context)
         {
             throw new NotImplementedException();
         }

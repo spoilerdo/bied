@@ -5,6 +5,7 @@ using research_service.Common;
 using research_service.Persistence.Entities;
 using research_service.Persistence.Repositories.Researches;
 using research_service.Services;
+using ResearchGRPC;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -17,11 +18,11 @@ namespace research_service_tests.Unit_Tests.ResearchUnitTests
         private readonly Mock<IResearchRepository> _mockRepository = new Mock<IResearchRepository>();
         private readonly Mock<ServerCallContext> _mockContext = new Mock<ServerCallContext>();
         private readonly Mock<IMapper> _mockMapper = new Mock<IMapper>();
-        private readonly Research_Service _researchService;
+        private readonly ResearchService _researchService;
 
         public ResearchServiceTests()
         {
-            _researchService = new Research_Service(_mockRepository.Object, _mockMapper.Object);
+            _researchService = new ResearchService(_mockRepository.Object, _mockMapper.Object);
         }
 
         [Fact]

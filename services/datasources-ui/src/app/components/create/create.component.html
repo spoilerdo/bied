@@ -1,0 +1,38 @@
+<nb-card class="create-component-container">
+  <nb-card-body>
+    <nb-stepper #stepper orientation="vertical" [disableStepNavigation]="true">
+      <nb-step label="Details" class="step">
+        <app-detail-step
+          [details]="createDataloaderDto.detailsDto"
+          (next)="onNextDetails($event)"
+        ></app-detail-step>
+      </nb-step>
+      <nb-step label="Dataloader information" class="step">
+        <app-data-loader-step
+          [dataloader]="createDataloaderDto.dataloaderDto"
+          (next)="onNextDataloader($event)"
+        ></app-data-loader-step>
+      </nb-step>
+      <nb-step label="Keygen step (optional)" class="step">
+        <app-keygen-step
+          [dataloaderId]="createDataloaderDto.dataloaderId"
+          [skip]="!createDataloaderDto.privateRepository"
+          (next)="onNextKeygen($event)"
+        ></app-keygen-step>
+      </nb-step>
+      <nb-step label="Select a branch" class="step">
+        <app-select-branch-step
+          [dataloaderId]="createDataloaderDto.dataloaderId"
+          [branch]="createDataloaderDto.branchDto"
+          (next)="onNextSelectBranch($event)"
+        ></app-select-branch-step>
+      </nb-step>
+      <nb-step label="Custom fields" class="step">
+        <app-custom-fields-step
+          [customFields]="createDataloaderDto.customFieldsDto"
+          (confirm)="onConfirmCustomFields($event)"
+        ></app-custom-fields-step>
+      </nb-step>
+    </nb-stepper>
+  </nb-card-body>
+</nb-card>

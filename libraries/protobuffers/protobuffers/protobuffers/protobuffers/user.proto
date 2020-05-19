@@ -1,0 +1,70 @@
+syntax = "proto3";
+
+option csharp_namespace = "UserGRPC"; 
+
+import "google/api/annotations.proto";
+import "userInformation.proto";
+
+package User;
+
+service User_Service {
+    rpc GetUsers (Empty) returns (UsersResponse) {
+        option (google.api.http).get = "/user";
+    };
+    rpc GetUser (UserRequest) returns (UserResponse) {
+        option (google.api.http).get = "/user/{id}";
+    };
+    rpc CreateUser (UserCreateRequest) returns (UserResponse) {
+        option (google.api.http) = {
+            post: "/user"
+            body: "*"  
+        };
+    };
+    rpc EditUser (UserEditRequest) returns (UserResponse) {
+        option (google.api.http) = {
+            put: "/user"
+            body: "*"
+        };
+    };
+    rpc DeleteUser (UserRequest) returns (Empty) {
+        option (google.api.http).delete = "/user/{id}";
+    };
+}
+
+message Empty{
+
+}
+
+message UserRequest {
+    string id = 1;
+}
+
+message UserCreateRequest {
+    string firstname = 1;
+    string lastname = 2;
+    string email = 3;
+    string password = 4;
+}
+
+message UserEditRequest {
+    string id = 1;
+    string firstname = 2;
+    string lastname = 3;
+    string email = 4;
+}
+
+message UsersResponse {
+    repeated UserModel users = 1;
+}
+
+message UserResponse {
+    UserModel user =1;
+}
+
+message UserModel {
+    string id = 1;
+    string firstname = 2;
+    string lastname = 3;
+    string email = 4;
+    UserInformation.UserInformation userinfo = 5;
+}

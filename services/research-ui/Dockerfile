@@ -13,9 +13,9 @@ RUN chown -R node:node .
 USER node
 
 COPY --chown=node:node $SERVICE/package.json .
-COPY --chown=node:node yarn.lock .
+COPY --chown=node:node $SERVICE/package-lock.json .
 
-RUN yarn install --pure-lockfile --no-progress
+RUN npm ci
 
 #
 # Base stage
@@ -36,20 +36,22 @@ WORKDIR /usr/src/app
 
 # Reuse build-arg
 ARG SERVICE
-CMD ["yarn", "start"]
+CMD ["npm", "start"]
 
 #
 # Builder stage
 #
 FROM base as builder
 ARG SERVICE
+# Note: BASE_HREF must have a trailing '/' !!!
+ARG BASE_HREF="/"
 
 WORKDIR /usr/src/app
 
 ARG configuration=production
 
 ## Build the angular app in production mode and store the artifacts in dist folder
-RUN yarn build --configuration $configuration
+RUN npm run build -- --configuration $configuration --baseHref=$BASE_HREF
 
 #
 # STAGE 2: Setup

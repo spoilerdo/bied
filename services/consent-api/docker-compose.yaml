@@ -1,0 +1,23 @@
+version: "3.7"
+
+
+
+services:
+  db:
+    image: "mcr.microsoft.com/mssql/server"
+    environment:
+        SA_PASSWORD: "Superl33tpassw0rd!"
+        ACCEPT_EULA: "Y"
+        MSSQL_PID: Express
+    ports:
+      - "1433:1433"
+  web:
+      build: .
+      environment:
+        ASPNETCORE_URLS: "http://*:5050"
+      ports:
+          - "5050:5050"
+      depends_on:
+          - db
+
+    

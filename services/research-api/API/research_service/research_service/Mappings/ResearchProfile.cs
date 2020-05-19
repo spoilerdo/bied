@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using research_service.Persistence.Entities;
+using ResearchGRPC;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,8 @@ namespace research_service.Mapping
         {
             CreateMap<ResearchEntity, Research>()
                 .ForMember(dest => dest.StartDate, opt => opt.MapFrom(src => DateTimeToUnixTime(src.StartDate)))
-                .ForMember(dest => dest.EndDate, opt => opt.MapFrom(src => DateTimeToUnixTime(src.EndDate)));
+                .ForMember(dest => dest.EndDate, opt => opt.MapFrom(src => DateTimeToUnixTime(src.EndDate)))
+                .ForMember(dest => dest.Datasources, opt => opt.MapFrom(src => src.ResearchDataSources));
             CreateMap<ResearchCreateRequest, ResearchEntity>()
                 .ForMember(dest => dest.StartDate, opt => opt.MapFrom(src => UnixTimeToDateTime(src.StartDate)))
                 .ForMember(dest => dest.EndDate, opt => opt.MapFrom(src => UnixTimeToDateTime(src.EndDate)));

@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+import "datasource.proto";
+
+service Consent_Service {
+  rpc GetConsents (UserIdRequest) returns (Consents);
+  rpc GetConsent (ConsentIdRequest) returns (Consent);
+  rpc CreateConsent (ConsentRequest) returns (Consent);
+  rpc DeleteAllConsent (UserIdRequest) returns (ConsentEmptyResponse);
+  rpc DeleteConsent (ConsentIdRequest) returns (ConsentEmptyResponse);
+  rpc EditConsent (ConsentEditRequest) returns (Consent);
+}
+
+message Consents {
+  repeated Consent consents = 1;
+}
+
+message UserIdRequest {
+  string id = 1;
+}
+
+message ConsentRequest {
+  string userId = 1;
+  string datasourceId = 2;
+  bool consent = 3;
+  int64 uts = 4;
+}
+
+message ConsentIdRequest {
+  string consentId = 1;
+}
+
+message ConsentEditRequest {
+    string id = 1;
+    string userId = 2;
+    string datasourceId = 3;
+    bool consent = 4;
+    int64 uts = 5;
+}
+
+message ConsentEmptyResponse {}
+
+message Consent {
+  string id = 1;
+  string userId = 2;
+  Datasource datasource = 3;
+  bool consent = 4;
+  int64 uts = 5;
+}
