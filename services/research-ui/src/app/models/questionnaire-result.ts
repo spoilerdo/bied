@@ -12,7 +12,7 @@ export interface QuestionnaireAnswer {
   userId: string;
   name: string;
   description: string;
-  questions: Question[];
+  questions: QuestionAnswer[];
 }
 
 export interface Question {

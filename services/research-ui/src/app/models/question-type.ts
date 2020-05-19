@@ -5,4 +5,6 @@ export enum QuestionType {
   NUMERIC = 3,
   DATE = 4,
   TIME = 5,
+  DROPDOWN = 6,
+  RADIO = 7,
 }

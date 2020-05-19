@@ -1,15 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-
+import { BiedQuestionComponent } from 'src/app/components/bied-question/bied-question.component';
+import { QuestionTypeDecorator } from 'src/app/decorators/questiontype.decorator';
+import { QuestionType } from 'src/app/models/question-type';
 @Component({
   selector: 'app-dropdown',
   templateUrl: './dropdown.component.html',
-  styleUrls: ['./dropdown.component.scss']
+  styleUrls: ['./dropdown.component.scss'],
 })
-export class DropdownComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
+@QuestionTypeDecorator(QuestionType.DROPDOWN)
+export class DropdownComponent extends BiedQuestionComponent implements OnInit {
+  constructor() {
+    super();
   }
 
+  ngOnInit(): void {}
 }
