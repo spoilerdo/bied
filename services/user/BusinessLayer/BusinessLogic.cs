@@ -7,7 +7,7 @@ using System.Text;
 using AuthenticationService;
 using System;
 using UserService;
-using UserServiceProto;
+using UserGRPC;
 
 namespace BusinessLayer
 {
