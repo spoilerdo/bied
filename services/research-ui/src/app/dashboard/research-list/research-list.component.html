@@ -5,7 +5,7 @@
       <nb-toggle class="mleft" [(checked)]="Filtering" status="basic">Filter</nb-toggle>
     </div>
   </nb-card-header>
-  <nb-card-header @myInsertRemoveTrigger *ngIf="Filtering" class="appear">
+  <nb-card-header *ngIf="Filtering" class="appear">
     <div class="flex-wrapper spacebetween">
       <input
         type="text"
@@ -17,7 +17,7 @@
         (ngModelChange)="searchValueEmitter($event)"
         nbInput
       />
-      <p @myInsertRemoveTrigger id="search-information" *ngIf="searchValue.length > 0">
+      <p id="search-information" *ngIf="searchValue.length > 0">
         <span>Resultaten: {{ researches.length }}</span>
       </p>
       <nb-select
