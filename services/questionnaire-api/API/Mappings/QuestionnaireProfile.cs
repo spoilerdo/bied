@@ -1,6 +1,7 @@
 using AutoMapper;
 using Questionnaire.Persistence.Entities;
-using Questionnaire.GRPC;
+using Questionnaire.Services;
+using QuestionnaireGRPC;
 using MongoDB.Entities;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,7 @@ namespace Questionnaire.Mappings
     {
         public QuestionnaireProfile()
         {
-            CreateMap<QuestionnaireEntity, QuestionnaireResponse>()
+            CreateMap<QuestionnaireEntity, QuestionnaireGRPC.Questionnaire>()
                 .ForMember(dest => dest.Question, opt => opt.MapFrom(src => src.Question));
             CreateMap<QuestionnaireCreateRequest, QuestionnaireEntity>()
                 .ForMember(dest => dest.Question, opt => opt.MapFrom(src => src.Question));
