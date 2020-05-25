@@ -1,6 +1,38 @@
 <nb-card class="list">
   <nb-card-header>
-    Recente onderzoeken
+    <div class="flex-wrapper">
+      Recente onderzoeken
+      <nb-toggle class="mleft" [(checked)]="Filtering" status="basic">Filter</nb-toggle>
+    </div>
+  </nb-card-header>
+  <nb-card-header *ngIf="Filtering" class="appear">
+    <div class="flex-wrapper spacebetween">
+      <input
+        type="text"
+        placeholder="Zoek term"
+        status="info"
+        id="searchbar"
+        class="adjusted-width"
+        [(ngModel)]="searchValue"
+        (ngModelChange)="searchValueEmitter($event)"
+        nbInput
+      />
+      <p id="search-information" *ngIf="searchValue.length > 0">
+        <span>Resultaten: {{ researches.length }}</span>
+      </p>
+      <nb-select
+        placeholder="Volgorde"
+        satus="info"
+        class="adjusted-width"
+        [(selected)]="selectedFilter"
+        (selectedChange)="selectedOrderChange($event)"
+      >
+        <nb-option [value]="orderType.DATEZ" selected> Eind publicatie ▲ </nb-option>
+        <nb-option [value]="orderType.DATEA">Eind publicatie ▼</nb-option>
+        <nb-option [value]="orderType.ALFAA">Alfabetisch A-Z</nb-option>
+        <nb-option [value]="orderType.ALFAZ">Alfabetisch Z-A</nb-option>
+      </nb-select>
+    </div>
   </nb-card-header>
   <nb-list>
     <nb-list-item *ngFor="let research of researches" style="padding: 0.1rem 1rem;">

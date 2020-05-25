@@ -1,0 +1,38 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: consent-gateway
+  namespace: consent-api
+spec:
+  selector:
+    app: istio-ingressgateway # This is the default ingress-gateway
+  servers:
+    - port:
+        number: 80
+        name: http
+        protocol: HTTP
+      hosts:
+        - "consent.fontysbied.nl"
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: consent-api
+  namespace: consent-api
+spec:
+  gateways:
+    - consent-gateway
+  hosts:
+    - "consent.fontysbied.nl" # What inbound Host should be routed. (eg. 'research.bied.nl')
+  http:
+    - match:
+        - uri:
+            prefix: "/consent"
+      rewrite:
+        uri: "/consent"
+      route:
+        # routes it toward this host. Usually a Kubernetes native 'Service', this should be a FQDN in production
+        - destination:
+            host: consent-api
+            port:
+              number: 5050
