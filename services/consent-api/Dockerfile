@@ -7,8 +7,9 @@ FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build
 WORKDIR /app
 
 # Copy csproj and restore as distinct layers
-COPY ./API/consent_service/consent_service/*.csproj ./
-RUN dotnet restore
+COPY ./API/consent_service/consent_service/*.csproj .
+COPY ./API/consent_service/consent_service/NuGet.Config .
+RUN dotnet restore --verbosity n
 
 # Copy everything else and build
 COPY ./API/consent_service/consent_service/. ./
