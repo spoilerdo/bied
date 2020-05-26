@@ -5,12 +5,12 @@ using Xunit;
 using Moq;
 using Questionnaire.Persistence.Repositories;
 using Questionnaire.Persistence.Entities;
-using Questionnaire.GRPC;
 using ApiService_tests.Mock;
 using Microsoft.Extensions.Logging;
 using Questionnaire.Services;
 using Grpc.Core;
 using Questionnaire.Mappings;
+using QuestionnaireGRPC;
 
 namespace ApiService_tests
 {
@@ -45,7 +45,7 @@ namespace ApiService_tests
             };
 
             // ACT
-            QuestionnaireResponse result = await _questionnaireService.CreateQuestionnaire(request, _mockContext.Object);
+            QuestionnaireGRPC.Questionnaire result = await _questionnaireService.CreateQuestionnaire(request, _mockContext.Object);
 
             //ASSERT
             Assert.NotNull(result);
@@ -93,7 +93,7 @@ namespace ApiService_tests
             };
 
             // ACT
-            QuestionnaireResponse result = await _questionnaireService.GetQuestionnaire(request, _mockContext.Object);
+            QuestionnaireGRPC.Questionnaire result = await _questionnaireService.GetQuestionnaire(request, _mockContext.Object);
 
             //ASSERT
             Assert.NotNull(result);
@@ -192,7 +192,7 @@ namespace ApiService_tests
             };
 
             // ACT
-            QuestionnaireResponse result = await _questionnaireService.UpdateQuestionnaire(request, _mockContext.Object);
+            QuestionnaireGRPC.Questionnaire result = await _questionnaireService.UpdateQuestionnaire(request, _mockContext.Object);
 
             //ASSERT
             Assert.NotNull(result);
