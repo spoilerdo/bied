@@ -1,8 +1,8 @@
 using System;
 using System.Threading.Tasks;
 using Grpc.Core;
+using QuestionnaireGRPC;
 using Microsoft.Extensions.Logging;
-using Questionnaire.GRPC;
 using Questionnaire.Persistence.Repositories;
 using Questionnaire.Persistence.Entities;
 using AutoMapper;
@@ -17,7 +17,6 @@ namespace Questionnaire.Services
         private readonly ILogger<QuestionnaireService> _logger;
         private readonly IQuestionnaireRepository _repository;
         private readonly IMapper _mapper;
-
         public QuestionnaireService(ILogger<QuestionnaireService> logger, IMapper mapper, IQuestionnaireRepository repository)
         {
             _logger = logger;
@@ -32,7 +31,7 @@ namespace Questionnaire.Services
         /// <param name="request">The data to create a questionnaire from</param>
         /// <param name="context">The server context</param>
         /// <returns>created Questionnaire or error indicating reason for failure</returns>
-        public override async Task<QuestionnaireResponse> CreateQuestionnaire(QuestionnaireCreateRequest request, ServerCallContext context)
+        public override async Task<QuestionnaireGRPC.Questionnaire> CreateQuestionnaire(QuestionnaireCreateRequest request, ServerCallContext context)
         {
             // TODO: Validate questions.
             if(string.IsNullOrWhiteSpace(request.Name)) {
@@ -52,7 +51,7 @@ namespace Questionnaire.Services
             { // TODO sort errors and throw dedicated exceptions.
                 throw new RpcException(new Status(StatusCode.Internal, e.Message));
             }
-            return _mapper.Map<QuestionnaireResponse>(response);
+            return _mapper.Map<QuestionnaireGRPC.Questionnaire>(response);
         }
 
 
@@ -62,7 +61,7 @@ namespace Questionnaire.Services
         /// <param name="request">The data to get a questionnaire with</param>
         /// <param name="context">The server context</param>
         /// <returns>found Questionnaire or error indicating reason for failure</returns>
-        public override async Task<QuestionnaireResponse> GetQuestionnaire(QuestionnaireIdRequest request, ServerCallContext context)
+        public override async Task<QuestionnaireGRPC.Questionnaire> GetQuestionnaire(QuestionnaireIdRequest request, ServerCallContext context)
         {
             QuestionnaireEntity response;
             try
@@ -76,7 +75,7 @@ namespace Questionnaire.Services
             if(response == null) {
                 throw new RpcException(new Status(StatusCode.NotFound, $"Entity with id '{request.Id}' not found'"));
             }
-            return _mapper.Map<QuestionnaireResponse>(response);
+            return _mapper.Map<QuestionnaireGRPC.Questionnaire>(response);
         }
 
 
@@ -86,7 +85,7 @@ namespace Questionnaire.Services
         /// <param name="request">The data to Update a questionnaire with</param>
         /// <param name="context">The server context</param>
         /// <returns>updated Questionnaire or error indicating reason for failure</returns>
-        public override async Task<QuestionnaireResponse> UpdateQuestionnaire(QuestionnaireEditRequest request, ServerCallContext context)
+        public override async Task<QuestionnaireGRPC.Questionnaire> UpdateQuestionnaire(QuestionnaireEditRequest request, ServerCallContext context)
         {
             // TODO: Validate questionnaire.
             QuestionnaireEntity response;
@@ -98,7 +97,7 @@ namespace Questionnaire.Services
             { // TODO sort errors and throw dedicated exceptions.
                 throw new RpcException(new Status(StatusCode.Internal, e.Message));
             }
-            return _mapper.Map<QuestionnaireResponse>(response);
+            return _mapper.Map<QuestionnaireGRPC.Questionnaire>(response);
         }
 
 

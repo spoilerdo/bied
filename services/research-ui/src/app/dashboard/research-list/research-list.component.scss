@@ -9,3 +9,27 @@
     flex: 1;
   }
 }
+
+.flex-wrapper {
+  display: flex;
+}
+
+.mleft {
+  margin-left: auto;
+}
+
+.spacebetween {
+  justify-content: space-around;
+}
+
+.adjusted-width {
+  width: 80%;
+}
+
+#search-information {
+  text-align: center;
+}
+
+#search-information span {
+  display: block;
+}

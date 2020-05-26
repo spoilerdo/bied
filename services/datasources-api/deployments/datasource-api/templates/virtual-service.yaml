@@ -1,0 +1,21 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: {{ include "datasource-api.fullname" . }}
+spec:
+  gateways:
+    - {{ include "datasource-api.fullname" . }}-gateway
+  hosts:
+    - "*" # What inbound Host should be routed. (eg. 'research.bied.nl')
+  http:
+    - match:
+        - uri:
+            prefix: /api/datasources
+      rewrite:
+        uri: /
+      route:
+        # routes it toward this host. Usually a Kubernetes native 'Service', this should be a FQDN in production
+        - destination:
+            host: {{ include "datasource-api.fullname" . }}
+            port:
+              number: 3000

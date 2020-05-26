@@ -1,0 +1,19 @@
+<div class="item-container">
+  <div class="research-details">
+    <img
+      class="image"
+      src="https://www.jvc-julianadorp.nl/wp-content/uploads/20161129enquete_.jpg"
+      alt="research image"
+    />
+
+    <div class="research-information">
+      <p>Started: {{ startString }}</p>
+      <p>{{ finishString }}</p>
+      <p>{{ research.description }}</p>
+    </div>
+  </div>
+
+  <div class="research-datasources">
+    <app-datasources-list [researchId]="1"></app-datasources-list>
+  </div>
+</div>

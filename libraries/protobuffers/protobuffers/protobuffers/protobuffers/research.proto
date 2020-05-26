@@ -33,8 +33,6 @@ service Research_Service {
     option (google.api.http).delete = "/research/{id}";
   };
 
-  rpc AddDatasourceToResearch (Datasource.Datasource) returns (Research);
-  rpc RemoveDatasourceFromResearch (DatasourceIdResearchRequest) returns (Research);
   rpc InviteUsersToResearch (EmailRequests) returns (EmailEmptyResponse);
 }
 
@@ -46,7 +44,8 @@ message ResearchIdRequest {
   string id = 1;
 }
 
-message GetResearchesRequest {}
+message GetResearchesRequest {
+}
 
 message ResearchCreateRequest {
   string name = 1;
@@ -71,12 +70,9 @@ message ResearchEditRequest {
 
 message ResearchEmptyResponse {}
 
-message DatasourceIdResearchRequest {
-  string id = 1;
-}
-
 message EmailRequests {
-  repeated string email = 1;
+  string researchId = 1;
+  repeated string email = 2;
 }
 
 message EmailEmptyResponse {}

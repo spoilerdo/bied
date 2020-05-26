@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -32,13 +33,21 @@ const nebularModules = [
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, ...nebularModules,ThemeModule.forRoot(),
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    ...nebularModules,
+    ThemeModule.forRoot(),
     NbLayoutModule,
     NbSidebarModule.forRoot(),
     NbEvaIconsModule,
 
     // Pages
-    DashboardModule,],
+    DashboardModule,
+
+    BrowserAnimationsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
   entryComponents: [RemoveDialogComponent, RenameDialogComponent, QuestionnaireCardComponent],

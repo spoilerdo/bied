@@ -1,0 +1,18 @@
+apiVersion: kubedb.com/v1alpha1
+kind: MongoDB
+metadata:
+  name: mongo-questionnaire
+  namespace: questionnaire-api
+spec:
+  databaseSecret:
+    secretName: mongodb-questionnaire-secret
+  version: "3.4-v3"
+  storageType: Durable
+  storage:
+    # storageClassName: "standard"
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: 1Gi
+  terminationPolicy: Resume

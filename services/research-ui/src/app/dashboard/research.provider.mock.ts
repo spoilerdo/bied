@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Research } from './models/research';
 import { ResearchProvider } from './research.provider';
 import * as moment from 'moment';
+import { SortingTypes } from './models/sortingTypes';
+import { SortArrObj, Arrangement } from '../Utility';
 
 @Injectable()
 export class ResearchMockProvider extends ResearchProvider {
@@ -75,5 +77,32 @@ export class ResearchMockProvider extends ResearchProvider {
   }
   inviteUsersToResearch(): void {
     throw new Error('Method not implemented.');
+  }
+  searchResearch(searchValue: string): Research[] {
+    const dataArr = Object.values(this.store);
+    const regexp = new RegExp(searchValue, 'i');
+    if (searchValue.length > 0) {
+      return dataArr.filter((e) => regexp.test(e.name));
+    }
+    return dataArr;
+  }
+
+  orderResearch(order: SortingTypes, data: Research[]): Research[] {
+    switch (order) {
+      // START SORTING ON END DATE
+      case SortingTypes.DATEA:
+        return SortArrObj(data, 'endDate', Arrangement.ASCENDING);
+      case SortingTypes.DATEZ:
+        return SortArrObj(data, 'endDate', Arrangement.DESCENDING);
+
+      // START SORTING ON ALPHABETICAL ORDER
+      case SortingTypes.ALFAA:
+        return SortArrObj(data, 'name', Arrangement.ASCENDING);
+      case SortingTypes.ALFAZ:
+        return SortArrObj(data, 'name', Arrangement.DESCENDING);
+
+      default:
+        return SortArrObj(data, 'name', Arrangement.ASCENDING);
+    }
   }
 }
