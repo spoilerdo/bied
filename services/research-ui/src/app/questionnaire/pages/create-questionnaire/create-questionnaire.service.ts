@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { NbViewportRulerAdapter } from '@nebular/theme';
 
@@ -17,7 +17,7 @@ export class CreateQuestionnaireService {
     private readonly formBuilder: FormBuilder,
   ) {}
 
-  addQuestion(): void {
+  public addQuestion(): void {
     const questionGroups = this.questionnaireForm.controls.questionGroups as FormArray;
     const selectedQuestionGroup = questionGroups.controls.find(
       (group) => group.value.id === this.selectedQuestionGroupID,
@@ -25,7 +25,30 @@ export class CreateQuestionnaireService {
     const questions = selectedQuestionGroup.controls.questions as FormArray;
     const { controls } = questions;
     const id = controls[controls.length - 1] ? controls[controls.length - 1].value.id + 1 : 0;
-    questions.push(this.formBuilder.group({ id }));
+    questions.push(
+      this.formBuilder.group({
+        id,
+        questionGroupID: selectedQuestionGroup.controls.id,
+        label: ['', [Validators.required]],
+        required: false,
+        questionType: [null, [Validators.required]],
+        questionData: [{}, [Validators.required]],
+      }),
+    );
+  }
+
+  public addQuestionGroup(): void {
+    const questionGroups = this.questionnaireForm.controls.questionGroups as FormArray;
+    const { controls } = questionGroups;
+    const id = controls[controls.length - 1] ? controls[controls.length - 1].value.id + 1 : 0;
+    questionGroups.push(
+      this.formBuilder.group({
+        id,
+        title: ['', [Validators.required, Validators.maxLength(255)]],
+        description: ['', [Validators.maxLength(1000)]],
+        questions: this.formBuilder.array([]),
+      }),
+    );
   }
 
   get $actionBarOffset(): Observable<number> {
@@ -34,7 +57,10 @@ export class CreateQuestionnaireService {
 
   set actionBarOffset(offset: number) {
     const scrollPosition = this.viewportRulerAdapter.getViewportScrollPosition().top;
-    const actionBarOffset = offset < this.actionBarOffsetBase ? 1 : offset - this.actionBarOffsetBase + scrollPosition;
+    const actionBarOffset = offset < this.actionBarOffsetBase ? 0.001 : offset - this.actionBarOffsetBase + scrollPosition;
+    console.log('offset', offset);
+    console.log('scroll', scrollPosition);
+    console.log(actionBarOffset);
     this.ActionBarOffset.next(actionBarOffset);
   }
 }

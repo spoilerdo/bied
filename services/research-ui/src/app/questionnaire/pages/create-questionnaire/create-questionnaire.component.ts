@@ -20,23 +20,10 @@ export class CreateQuestionnaireComponent implements OnInit {
       description: '',
       questionGroups: this.formBuilder.array([]),
     });
-    this.addQuestionGroup();
+    this.createQuestionnaireService.addQuestionGroup();
     this.createQuestionnaireService.selectedQuestionGroupID = 0;
     this.createQuestionnaireService.actionBarOffsetBase = this.ref.nativeElement.getBoundingClientRect().top;
-    this.createQuestionnaireService.actionBarOffset = 0;
-  }
-
-  addQuestionGroup(): void {
-    const { controls } = this.questionGroups;
-    const id = controls[controls.length - 1] ? controls[controls.length - 1].value.id + 1 : 0;
-    this.questionGroups.push(
-      this.formBuilder.group({
-        id,
-        title: ['', [Validators.required, Validators.maxLength(255)]],
-        description: ['', [Validators.maxLength(1000)]],
-        questions: this.formBuilder.array([]),
-      }),
-    );
+    this.createQuestionnaireService.actionBarOffset = -14;
   }
 
   saveQuestionnaire() {

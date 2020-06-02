@@ -1,13 +1,21 @@
 <nb-card class="action-bar">
   <button
     nbButton
-    id="add-question"
     ghost
     (click)="createQuestionnaireService.addQuestion()"
     nbTooltip="Add question"
     nbTooltipPlacement="right"
   >
     <nb-icon icon="plus-circle-outline"></nb-icon>
+  </button>
+  <button
+    nbButton
+    ghost
+    (click)="createQuestionnaireService.addQuestionGroup()"
+    nbTooltip="Add question group"
+    nbTooltipPlacement="right"
+  >
+    <nb-icon icon="layers-outline"></nb-icon>
   </button>
   <button
     nbButton
