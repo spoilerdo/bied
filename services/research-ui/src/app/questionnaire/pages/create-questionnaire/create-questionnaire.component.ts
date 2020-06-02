@@ -23,7 +23,7 @@ export class CreateQuestionnaireComponent implements OnInit {
     this.createQuestionnaireService.addQuestionGroup();
     this.createQuestionnaireService.selectedQuestionGroupID = 0;
     this.createQuestionnaireService.actionBarOffsetBase = this.ref.nativeElement.getBoundingClientRect().top;
-    this.createQuestionnaireService.actionBarOffset = -14;
+    this.createQuestionnaireService.actionBarOffset = 0;
   }
 
   saveQuestionnaire() {

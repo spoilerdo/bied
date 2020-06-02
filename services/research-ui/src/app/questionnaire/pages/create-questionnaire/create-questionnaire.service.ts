@@ -57,9 +57,8 @@ export class CreateQuestionnaireService {
 
   set actionBarOffset(offset: number) {
     const scrollPosition = this.viewportRulerAdapter.getViewportScrollPosition().top;
-    const actionBarOffset = offset < this.actionBarOffsetBase ? 0.001 : offset - this.actionBarOffsetBase + scrollPosition;
-    console.log('offset', offset);
-    console.log('scroll', scrollPosition);
+    const actionBarOffset =
+      offset < this.actionBarOffsetBase ? 0.1 : offset - this.actionBarOffsetBase + scrollPosition - 13.9;
     console.log(actionBarOffset);
     this.ActionBarOffset.next(actionBarOffset);
   }

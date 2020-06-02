@@ -21,6 +21,7 @@ export class QuestionComponent {
   ) {}
 
   questionClick() {
+    console.log(this.ref.nativeElement.getBoundingClientRect().top);
     this.createQuestionnaireService.actionBarOffset = this.ref.nativeElement.getBoundingClientRect().top;
     this.createQuestionnaireService.selectedQuestionGroupID = this.f.questionGroupID.value;
   }
