@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using DatasourceGRPC;
 using Grpc.Core;
+using Microsoft.AspNetCore.Authorization;
 using research_service.Persistence.Entities;
 using research_service.Persistence.Repositories.Researches;
 using ResearchGRPC;
@@ -13,6 +14,7 @@ namespace research_service.Services
     /// <summary>
     /// Responsible for handling the GRPC protobuffer service logic
     /// </summary>
+    [Authorize]
     public class ResearchService : Research_Service.Research_ServiceBase
     {
         private readonly IResearchRepository _researchRepository;

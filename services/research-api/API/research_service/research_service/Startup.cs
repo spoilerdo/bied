@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using Grpc.AspNetCore.FluentValidation;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -44,11 +46,15 @@ namespace research_service
                 x.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(Configuration.GetValue<byte[]>("jwtKey")),
-                    ValidateIssuer = false,
-                    ValidateAudience = false
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("4o-648t0b-Sj0IS6EfKnhLJOthYbJJf8s26B4GCHq2PD_DmoCKX6vj7pGrQ-X7FkmvDiadjqQyneygSu8mrMZ1vrh1TtFTpU9K0KvRvluvvjt3VTVTOgDjsifhKoVsU61FLj67gbRUql6kEgi9LeG5Extr1tlhxqRro7CeoU48c")),
+                    ValidateIssuer = true,
+                    ValidIssuer = Configuration.GetValue<string>("jwtAuthentication:Issuer"),
+                    ValidateAudience = true,
+                    ValidAudience = Configuration.GetValue<string>("jwtAuthentication:Audience")
                 };
             });
+
+            services.AddAuthorization(); 
 
             services.AddGrpc(options => options.EnableMessageValidation());
             services.AddValidator<ResearchIdRequestValidator>();
@@ -74,6 +80,9 @@ namespace research_service
             }
 
             app.UseRouting();
+
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
