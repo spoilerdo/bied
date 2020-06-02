@@ -10,7 +10,7 @@ import {
   NbThemeModule,
   NbToggleModule,
 } from '@nebular/theme';
-import { CoreModule } from '../../../../@core/core.module';
+import { CoreModule } from '../../../../../@core/core.module';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';

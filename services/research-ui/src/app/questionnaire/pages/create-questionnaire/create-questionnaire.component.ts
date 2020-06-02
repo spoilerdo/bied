@@ -1,7 +1,6 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { CreateQuestionnaireService } from './create-questionnaire.service';
-import { NbViewportRulerAdapter } from '@nebular/theme';
 
 @Component({
   selector: 'app-create-questionnaire',
@@ -10,7 +9,7 @@ import { NbViewportRulerAdapter } from '@nebular/theme';
 })
 export class CreateQuestionnaireComponent implements OnInit {
   constructor(
-    private readonly createQuestionnaireService: CreateQuestionnaireService,
+    public readonly createQuestionnaireService: CreateQuestionnaireService,
     private readonly formBuilder: FormBuilder,
     public readonly ref: ElementRef,
   ) {}
@@ -19,33 +18,36 @@ export class CreateQuestionnaireComponent implements OnInit {
     this.createQuestionnaireService.questionnaireForm = this.formBuilder.group({
       title: '',
       description: '',
-      questions: this.formBuilder.array([]),
+      questionGroups: this.formBuilder.array([]),
     });
+    this.addQuestionGroup();
+    this.createQuestionnaireService.selectedQuestionGroupID = 0;
     this.createQuestionnaireService.actionBarOffsetBase = this.ref.nativeElement.getBoundingClientRect().top;
     this.createQuestionnaireService.actionBarOffset = 0;
   }
 
-  addQuestion(): void {
-    const { controls } = this.questions;
+  addQuestionGroup(): void {
+    const { controls } = this.questionGroups;
     const id = controls[controls.length - 1] ? controls[controls.length - 1].value.id + 1 : 0;
-    this.questions.push(this.formBuilder.group({ id }));
+    this.questionGroups.push(
+      this.formBuilder.group({
+        id,
+        title: ['', [Validators.required, Validators.maxLength(255)]],
+        description: ['', [Validators.maxLength(1000)]],
+        questions: this.formBuilder.array([]),
+      }),
+    );
   }
 
   saveQuestionnaire() {
     console.log(this.f);
   }
 
-  onRemoveQuestion(id: number) {
-    const questionToRemove = this.questions.controls.find((question) => question.value.id === id);
-    const questionIndex = this.questions.controls.indexOf(questionToRemove);
-    this.questions.removeAt(questionIndex);
-  }
-
   get f() {
     return this.createQuestionnaireService.questionnaireForm.controls;
   }
 
-  get questions(): FormArray {
-    return this.f.questions as FormArray;
+  get questionGroups(): FormArray {
+    return this.f.questionGroups as FormArray;
   }
 }

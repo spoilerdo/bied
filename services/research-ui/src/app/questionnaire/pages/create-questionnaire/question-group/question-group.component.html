@@ -1,0 +1,20 @@
+<form [formGroup]="questionGroupForm">
+  <nb-card>
+    <nb-card-body>
+      <div class="form-control">
+        <label for="questionnaire-title" class="label">Title</label>
+        <input nbInput fullWidth id="questionnaire-title" formControlName="title" />
+      </div>
+      <div class="form-control">
+        <label for="questionnaire-description" class="label">Description</label>
+        <textarea nbInput fullWidth id="questionnaire-description" formControlName="description"></textarea>
+      </div>
+    </nb-card-body>
+  </nb-card>
+
+  <app-question
+    *ngFor="let question of questions.controls"
+    [questionForm]="question"
+    (remove)="onRemoveQuestion($event)"
+  ></app-question>
+</form>

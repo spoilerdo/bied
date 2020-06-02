@@ -1,7 +1,7 @@
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { QuestionType } from '../enums/question-type.enum';
-import { CreateQuestionnaireService } from '../create-questionnaire.service';
+import { QuestionType } from '../../enums/question-type.enum';
+import { CreateQuestionnaireService } from '../../create-questionnaire.service';
 
 @Component({
   selector: 'app-question',

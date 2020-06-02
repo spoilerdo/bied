@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { CreateQuestionnaireService } from '../create-questionnaire.service';
 
 @Component({
   selector: 'app-action-bar',
@@ -6,6 +7,8 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./action-bar.component.scss'],
 })
 export class ActionBarComponent {
-  @Output() addQuestion: EventEmitter<void> = new EventEmitter<void>();
+  @Output() addQuestionGroup: EventEmitter<void> = new EventEmitter<void>();
   @Output() saveQuestionnaire: EventEmitter<void> = new EventEmitter<void>();
+
+  constructor(public readonly createQuestionnaireService: CreateQuestionnaireService) {}
 }
