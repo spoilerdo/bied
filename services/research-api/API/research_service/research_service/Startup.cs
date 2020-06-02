@@ -46,7 +46,7 @@ namespace research_service
                 x.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("4o-648t0b-Sj0IS6EfKnhLJOthYbJJf8s26B4GCHq2PD_DmoCKX6vj7pGrQ-X7FkmvDiadjqQyneygSu8mrMZ1vrh1TtFTpU9K0KvRvluvvjt3VTVTOgDjsifhKoVsU61FLj67gbRUql6kEgi9LeG5Extr1tlhxqRro7CeoU48c")),
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration.GetValue<string>("jwtAuthentication:jwtKey"))),
                     ValidateIssuer = true,
                     ValidIssuer = Configuration.GetValue<string>("jwtAuthentication:Issuer"),
                     ValidateAudience = true,

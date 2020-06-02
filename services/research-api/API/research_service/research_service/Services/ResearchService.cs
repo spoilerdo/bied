@@ -110,18 +110,6 @@ namespace research_service.Services
         }
 
         /// <summary>
-        /// Add data source to research
-        /// </summary>
-        /// <param name="request">data source to add to research</param>
-        /// <param name="context">the server context</param>
-        /// <returns>Updated research or message indicating reason for failure</returns>
-        public override Task<Research> AddDatasourceToResearch(Datasource request, ServerCallContext context)
-        {
-
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
         /// Handle sending invites for specific research
         /// </summary>
         /// <param name="request">The emails to send invite to</param>
@@ -132,15 +120,6 @@ namespace research_service.Services
             throw new NotImplementedException();
         }
 
-        /// <summary>
-        /// Remmove data source from research
-        /// </summary>
-        /// <param name="request">data source to remove from research</param>
-        /// <param name="context">the server context</param>
-        /// <returns>updated research or message indicating failure</returns>
-        public override Task<Research> RemoveDatasourceFromResearch(DatasourceIdResearchRequest request, ServerCallContext context)
-        {
-            throw new NotImplementedException();
-        }
+
     }
 }
