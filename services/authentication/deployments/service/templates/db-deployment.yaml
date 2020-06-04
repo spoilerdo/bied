@@ -19,6 +19,9 @@ spec:
         - name: db
           image: mcr.microsoft.com/mssql/server
           imagePullPolicy: IfNotPresent
+          resources:
+            limits:
+              cpu: "50m"
           ports:
             - containerPort: 1433
           env:

@@ -15,4 +15,7 @@ spec:
     resources:
       requests:
         storage: 1Gi
+      limit: 
+        cpu: "50m"
+
   terminationPolicy: Resume

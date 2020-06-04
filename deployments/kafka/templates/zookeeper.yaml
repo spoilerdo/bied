@@ -16,6 +16,9 @@ spec:
       containers:
       - name: zoo1
         image: digitalwonderland/zookeeper
+        resources:
+          limits:
+            cpu: "50m"
         ports:
         - containerPort: 2181
         env:
