@@ -22,6 +22,9 @@ spec:
         - name: consent-api
           image: consent-api:latest
           imagePullPolicy: IfNotPresent
+          resources:
+            limits:
+              cpu: "50m"
           ports:
             - containerPort: 5050
           env:
