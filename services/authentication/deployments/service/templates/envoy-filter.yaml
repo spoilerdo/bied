@@ -24,7 +24,7 @@ spec:
           config:
             proto_descriptor: /etc/envoy/authentication.pb
             services:
-              - HealthCheck.HealthCheck
+              - HealthCheck.HealthCheck_Service
               - Authentication.Authentication
             print_options:
               add_whitespace: true

@@ -24,7 +24,7 @@ spec:
           config:
             proto_descriptor: /etc/envoy/research.pb
             services:
-              - HealthCheck.HealthCheck
+              - HealthCheck.HealthCheck_Service
               - Research.Research_Service
             print_options:
               add_whitespace: true

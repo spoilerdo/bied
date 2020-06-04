@@ -24,7 +24,7 @@ spec:
           config:
             proto_descriptor: /etc/envoy/user.pb
             services:
-              - HealthCheck.HealthCheck
+              - HealthCheck.HealthCheck_Service
               - User.User_Service
             print_options:
               add_whitespace: true
