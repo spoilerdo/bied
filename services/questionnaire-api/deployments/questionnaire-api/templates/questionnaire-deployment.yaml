@@ -1,7 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: questionnaire-api
   name: questionnaire-api
 spec:
   replicas: 1

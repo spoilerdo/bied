@@ -3,7 +3,6 @@ apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
   name: research-gateway
-  namespace: research-api
 spec:
   selector:
     app: istio-ingressgateway # This is the default ingress-gateway
@@ -19,7 +18,6 @@ apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
   name: research-api
-  namespace: research-api
 spec:
   gateways:
     - research-gateway

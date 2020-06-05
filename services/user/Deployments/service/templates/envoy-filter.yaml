@@ -1,7 +1,6 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: EnvoyFilter
 metadata:
-  namespace: user-api
   name: user-api-filter
 spec:
   workloadSelector:
