@@ -1,24 +1,26 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: authentication
   labels:
-    io.kompose.service: db
-  name: db
+    io.kompose.service: authentication-db
+  name: authentication-db
 spec:
   replicas: 1
   selector:
     matchLabels:
-      io.kompose.service: db
+      io.kompose.service: authentication-db
   template:
     metadata:
       labels:
-        io.kompose.service: db
+        io.kompose.service: authentication-db
     spec:
       containers:
-        - name: db
+        - name: authentication-db
           image: mcr.microsoft.com/mssql/server
           imagePullPolicy: IfNotPresent
+          resources:
+            limits:
+              cpu: "50m"
           ports:
             - containerPort: 1433
           env:

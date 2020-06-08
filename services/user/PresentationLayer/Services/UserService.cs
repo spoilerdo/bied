@@ -3,11 +3,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using BusinessLayer;
 using Grpc.Core;
-using UserServiceProto;
+using UserGRPC;
 
 namespace UserService
 {
-    public class UserServiceImp : UserServiceProto.User_Service.User_ServiceBase
+    public class UserServiceImp : UserGRPC.User_Service.User_ServiceBase
     {
         BusinessLogic Logic { get; set; }
 

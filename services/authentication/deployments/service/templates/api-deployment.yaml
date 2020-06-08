@@ -1,7 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: authentication
   labels:
     io.kompose.service: authentication
   name: authentication
@@ -22,6 +21,9 @@ spec:
         - name: authentication
           image: authentication:latest
           imagePullPolicy: IfNotPresent
+          resources:
+            limits:
+              cpu: "50m"
           ports:
             - containerPort: 3010
           env:

@@ -2,7 +2,6 @@ apiVersion: kubedb.com/v1alpha1
 kind: MongoDB
 metadata:
   name: mongo-questionnaire
-  namespace: questionnaire-api
 spec:
   databaseSecret:
     secretName: mongodb-questionnaire-secret
@@ -15,4 +14,7 @@ spec:
     resources:
       requests:
         storage: 1Gi
+      limit: 
+        cpu: "50m"
+
   terminationPolicy: Resume

@@ -20,6 +20,9 @@ spec:
         - name: kafka
           image: wurstmeister/kafka
           imagePullPolicy: IfNotPresent
+          resources:
+            limits:
+              cpu: "50m"
           ports:
             - containerPort: 9092
           env:
