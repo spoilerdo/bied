@@ -8,7 +8,6 @@
 apiVersion: networking.istio.io/v1beta1
 kind: Gateway
 metadata:
-  namespace: questionnaire-api
   name: questionnaire-api-gateway
 spec:
   selector:
