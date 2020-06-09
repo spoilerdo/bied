@@ -15,8 +15,8 @@ service User_Service {
         option (google.api.http).get = "/user/{id}";
     };
 
-    rpc FindUser(Username) returns (UserResponse) {
-        option (google.api.http).get = "/user/byname/{username}";
+    rpc FindUserByEmail (Email) returns (UserResponse) {
+        option (google.api.http).get = "/user/byEmail/{email}";
     } 
     rpc CreateUser (UserCreateRequest) returns (UserResponse) {
         option (google.api.http) = {
@@ -39,8 +39,8 @@ message Empty{
 
 }
 
-message Username {
-    string username = 1;
+message Email {
+    string email = 1;
 }
 
 message UserRequest {

@@ -21,7 +21,7 @@ namespace UserService
         {
             return DoOrThrow(() => new UserResponse()
             {
-                User = ConvertToProtoModel(Logic.CreateUser(req.Firstname,req.Lastname,req.Email,req.Password))
+                User = ConvertToProtoModel(Logic.CreateUser(req.Firstname, req.Lastname, req.Email, req.Password))
             }, context);
         }
 
@@ -40,6 +40,18 @@ namespace UserService
         }
 
 
+        public override Task<UserResponse> FindUserByEmail(Email request, ServerCallContext context)
+        {
+            return DoOrThrow(() => new UserResponse()
+            {
+                User = ConvertToProtoModel(Logic.GetUserByEmail(request.Email_))
+            }, context);
+        }
+
+        public override Task<UserResponse> FindUser(Username request, ServerCallContext context)
+        {
+        }
+
         public override Task<Empty> DeleteUser(UserRequest request, ServerCallContext context)
         {
             return DoOrThrowEmpty(() => Logic.DeleteUser(Guid.Parse(request.Id)), context);
@@ -53,7 +65,7 @@ namespace UserService
                 var reply = new UsersResponse();
                 reply.Users.AddRange(users);
                 return reply;
-            },context);
+            }, context);
         }
 
         private static UserModel ConvertToProtoModel(User user)

@@ -33,6 +33,16 @@ namespace BusinessLayer
             return user;
         }
 
+        public User GetUserByEmail(string email)
+        {
+            var user = Context.Users.SingleOrDefault(u => u.Email == u.Email);
+
+            if (user == null)
+                throw new BusinessException("Could not find user with email=" + email);
+
+            return user;
+        }
+
         public void UpdateUser(User user)
         {
             Context.Users.Update(user);
