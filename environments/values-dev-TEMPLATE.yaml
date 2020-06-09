@@ -1,0 +1,4 @@
+# This file is meant for configurating global things such as the storageClass (minikube and docker desktop) both use other names.
+# Copy this file and rename it to: "values-dev.yaml". Change the values to your needs and done!
+global:
+  storageClassName: "hostpath"

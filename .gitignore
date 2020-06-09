@@ -40,3 +40,4 @@ Thumbs.db
 services/email-service/.vscode/
 
 /.env
+/environments/values-dev.yaml
