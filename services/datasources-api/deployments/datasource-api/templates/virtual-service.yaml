@@ -10,7 +10,7 @@ spec:
   http:
     - match:
         - uri:
-            prefix: /api/datasources
+            prefix: /api/datasources/
       rewrite:
         uri: /
       route:
@@ -18,4 +18,4 @@ spec:
         - destination:
             host: {{ include "datasource-api.fullname" . }}
             port:
-              number: 3000
+              number: 80
