@@ -1,7 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: email-service
   name: email-service
 spec:
   replicas: 1
@@ -15,6 +14,7 @@ spec:
       annotations:
         sidecar.istio.io/userVolume: '[{"name":"descriptor","configmap":{"name":"email-bied-set","items":[{"key":"mail.pb","path":"mail.pb"}, {"key":"template.pb","path":"template.pb"}]}}]'
         sidecar.istio.io/userVolumeMount: '[{"name":"descriptor","mountPath":"/etc/envoy"}]'
+        sidecar.istio.io/rewriteAppHTTPProbers: "false"
     spec:
       containers:
         - name: email-service

@@ -7,7 +7,6 @@
 apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
-  namespace: email-service
   name: email-virtual-service
 spec:
   gateways:
