@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: questionnaire-api
-          image: questionnaire-api:latest
+          image: "{{ .Values.global.services.questionnaire_api.name }}:{{ .Values.global.services.questionnaire_api.tag }}"
           imagePullPolicy: IfNotPresent
           resources:
             requests:

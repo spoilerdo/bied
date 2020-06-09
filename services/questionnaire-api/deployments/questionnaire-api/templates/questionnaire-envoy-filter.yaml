@@ -23,8 +23,7 @@ spec:
           config:
             proto_descriptor: /etc/envoy/questionnaire.pb
             services:
-              - HealthCheck.HealthCheck
-              - Questionnaire.Questionnaire
+              - Questionnaire.Questionnaire_Service
             print_options:
               add_whitespace: true
               always_print_primitive_fields: true

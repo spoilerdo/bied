@@ -12,7 +12,7 @@ spec:
       labels:
         app: email-service
       annotations:
-        sidecar.istio.io/userVolume: '[{"name":"descriptor","configmap":{"name":"email-bied-set","items":[{"key":"mail.pb","path":"mail.pb"}, {"key":"template.pb","path":"template.pb"}]}}]'
+        sidecar.istio.io/userVolume: '[{"name":"descriptor","configmap":{"name":"email-bied-set","items":[{"key":"mail.pb","path":"mail.pb"}]}}]'
         sidecar.istio.io/userVolumeMount: '[{"name":"descriptor","mountPath":"/etc/envoy"}]'
         sidecar.istio.io/rewriteAppHTTPProbers: "false"
     spec:

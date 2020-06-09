@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: consent-api
-          image: consent-api:latest
+          image: "{{ .Values.global.services.consent_api.name }}:{{ .Values.global.services.consent_api.tag }}"
           imagePullPolicy: IfNotPresent
           resources:
             requests:

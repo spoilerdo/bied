@@ -13,12 +13,17 @@ spec:
     - ReadWriteOnce
     resources:
       requests:
-        storage: {{ .Values.storage }}
+        storage: {{ .Values.storage }}    
   podTemplate:
-      spec:
-          args:
-          - --default-authentication-plugin=mysql_native_password
-  terminationPolicy: DoNotTerminate
+    metadata:
+        labels:
+          app: mysql
+        annotations:
+          sidecar.istio.io/inject: "false"
+    spec:
+        args:
+        - --default-authentication-plugin=mysql_native_password
+  terminationPolicy: Delete
   init:
     scriptSource:
       configMap:

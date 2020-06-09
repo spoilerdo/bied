@@ -13,11 +13,15 @@ spec:
     metadata:
       labels:
         io.kompose.service: user-db
+      annotations:
+        sidecar.istio.io/inject: "false"
     spec:
       containers:
         - name: user-db
           image: mcr.microsoft.com/mssql/server
           imagePullPolicy: IfNotPresent
+          securityContext:
+            privileged: true
           resources:
             limits:
               cpu: "50m"

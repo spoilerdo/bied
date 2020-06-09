@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: user-api
-          image: user-api:latest
+          image: "{{ .Values.global.services.user.name }}:{{ .Values.global.services.user.tag }}"
           imagePullPolicy: IfNotPresent
           resources:
             limits:
