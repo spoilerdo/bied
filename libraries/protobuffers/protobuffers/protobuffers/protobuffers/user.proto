@@ -15,7 +15,7 @@ service User_Service {
         option (google.api.http).get = "/user/{id}";
     };
 
-    rpc FindUser(Username) returns UserRepsonse {
+    rpc FindUser(Username) returns (UserResponse) {
         option (google.api.http).get = "/user/byname/{username}";
     } 
     rpc CreateUser (UserCreateRequest) returns (UserResponse) {
