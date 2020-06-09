@@ -8,6 +8,7 @@ import { BranchEntity } from './database/entities/branch.entity';
 import { CommitEntity } from './database/entities/commit.entity';
 import { DataLoaderEntity } from './database/entities/data-loader.entity';
 import { RepositoryEntity } from './database/entities/repository.entity';
+import { InitialDatabase1591602924293 } from './database/migrations/1591602924293-InitialDatabase';
 
 const ENTITIES = [
   BranchEntity,
@@ -26,7 +27,9 @@ const ENTITIES = [
       password: process.env.MYSQL_PASSWORD,
       database: 'data-operator',
       entities: ENTITIES,
-      synchronize: true,
+      migrations: [
+        InitialDatabase1591602924293
+      ]
     }),
     TypeOrmModule.forFeature(ENTITIES),
   ],

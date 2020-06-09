@@ -3,7 +3,6 @@ apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
   name: authentication-gateway
-  namespace: authentication
 spec:
   selector:
     app: istio-ingressgateway # This is the default ingress-gateway
@@ -19,7 +18,6 @@ apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
   name: authentication
-  namespace: authentication
 spec:
   gateways:
     - authentication-gateway

@@ -1,7 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: consent-api
   labels:
     io.kompose.service: consent-api
   name: consent-api

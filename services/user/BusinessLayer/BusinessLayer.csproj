@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Bied.Protobuffers" Version="1.0.0" />
+    <PackageReference Include="Bied.Protobuffers" Version="1.0.8" />
     <PackageReference Include="Google.Api.Gax" Version="3.0.0" />
     <PackageReference Include="Google.Api.Gax.Grpc" Version="3.0.0" />
     <PackageReference Include="Grpc" Version="2.27.0" />

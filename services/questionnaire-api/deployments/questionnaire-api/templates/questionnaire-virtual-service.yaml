@@ -7,7 +7,6 @@
 apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
-  namespace: questionnaire-api
   name: questionnaire-virtual-service
 spec:
   gateways:
@@ -20,7 +19,9 @@ spec:
     # workshop-demo service.
     - match:
         - uri:
-            prefix: ""
+            prefix: /api/questionnaire
+      rewrite:
+        uri: /
       route:
         - destination:
             # This routes the the traffic to the following domain

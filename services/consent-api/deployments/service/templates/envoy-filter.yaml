@@ -1,7 +1,6 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: EnvoyFilter
 metadata:
-  namespace: consent-api
   name: consent-api-filter
 spec:
   workloadSelector:

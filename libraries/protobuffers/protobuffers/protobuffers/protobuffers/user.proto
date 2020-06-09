@@ -14,6 +14,10 @@ service User_Service {
     rpc GetUser (UserRequest) returns (UserResponse) {
         option (google.api.http).get = "/user/{id}";
     };
+
+    rpc FindUser(Username) returns UserRepsonse {
+        option (google.api.http).get = "/user/byname/{username}";
+    } 
     rpc CreateUser (UserCreateRequest) returns (UserResponse) {
         option (google.api.http) = {
             post: "/user"
@@ -33,6 +37,10 @@ service User_Service {
 
 message Empty{
 
+}
+
+message Username {
+    string username = 1;
 }
 
 message UserRequest {

@@ -69,18 +69,20 @@ namespace AuthenticationServer
             if (!VerifyPassword(userId, password))
                 throw new BusinessException($"Wrong credentials");
 
-
-            var payload = new JwtPayload
-            {
-               { "userId", userId},
-            };
-
             string key = privateJwtKey;
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256Signature);
 
-            var header = new JwtHeader(credentials);
-            var token = new JwtSecurityToken(header, payload);
+            //set expiration time so JWT is not valid indefinitely
+
+            var token = new JwtSecurityToken(
+                issuer: "Bied",
+                audience: "User",
+                notBefore: DateTime.UtcNow,
+                expires: DateTime.UtcNow.AddDays(1),
+                signingCredentials: credentials);
+
+            token.Payload["userId"] = userId;
 
             var handler = new JwtSecurityTokenHandler();
             var tokenString = handler.WriteToken(token);
