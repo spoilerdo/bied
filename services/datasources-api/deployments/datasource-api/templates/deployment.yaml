@@ -26,6 +26,13 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.global.services.datasources_api.name }}:{{ .Values.global.services.datasources_api.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          resources:
+            requests:
+              cpu: "10m"
+              memory: "64Mi"
+            limits:
+              cpu: "100m"
+              memory: "512Mi"
           ports:
             - containerPort: {{ .Values.containerPort }}
               name: http

@@ -19,8 +19,12 @@ spec:
           image: mcr.microsoft.com/mssql/server
           imagePullPolicy: IfNotPresent
           resources:
+            requests:
+              cpu: "10m"
+              memory: "256Mi"
             limits:
-              cpu: "50m"
+              cpu: "100m"
+              memory: "512Mi"
           ports:
             - containerPort: 1433
           env:
@@ -30,4 +34,3 @@ spec:
               value: Express
             - name: SA_PASSWORD
               value: Superl33tpassw0rd!
-       
