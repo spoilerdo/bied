@@ -1,4 +1,3 @@
 name: mysql-datasource
-namespace: default
 storage: 1Gi
-storageClass: 'hostpath'
+storageClass: 'standard'
