@@ -21,9 +21,9 @@ spec:
         value:
           name: envoy.grpc_json_transcoder
           config:
-            proto_descriptor: /etc/envoy/bied.pb
+            proto_descriptor: /etc/envoy/mail.pb
             services:
-              - Email.Email
+              - Email.Mailer
             print_options:
               add_whitespace: true
               always_print_primitive_fields: true

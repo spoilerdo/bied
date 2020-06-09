@@ -21,7 +21,7 @@ spec:
         value:
           name: envoy.grpc_json_transcoder
           config:
-            proto_descriptor: /etc/envoy/bied.pb
+            proto_descriptor: /etc/envoy/questionnaire.pb
             services:
               - HealthCheck.HealthCheck
               - Questionnaire.Questionnaire
