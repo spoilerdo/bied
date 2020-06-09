@@ -22,8 +22,12 @@ spec:
           image: authentication:latest
           imagePullPolicy: IfNotPresent
           resources:
+            requests:
+              cpu: "10m"
+              memory: "64Mi"
             limits:
-              cpu: "50m"
+              cpu: "100m"
+              memory: "512Mi"
           ports:
             - containerPort: 3010
           env:

@@ -10,11 +10,13 @@ spec:
   storage:
     # storageClassName: "standard"
     accessModes:
-    - ReadWriteOnce
+      - ReadWriteOnce
     resources:
       requests:
-        storage: 1Gi
-      limit: 
-        cpu: "50m"
+        cpu: "10m"
+        memory: "256Mi"
+      limits:
+        cpu: "100m"
+        memory: "512Mi"
 
   terminationPolicy: Resume
