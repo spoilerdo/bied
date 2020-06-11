@@ -4,7 +4,7 @@ metadata:
   name: {{ include "datasource-api.fullname" . }}
 spec:
   gateways:
-    - {{ include "datasource-api.fullname" . }}-gateway
+    - bied-gateway
   hosts:
     - "*" # What inbound Host should be routed. (eg. 'research.bied.nl')
   http:

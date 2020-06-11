@@ -1,26 +1,10 @@
-  
-apiVersion: networking.istio.io/v1alpha3
-kind: Gateway
-metadata:
-  name: research-gateway
-spec:
-  selector:
-    app: istio-ingressgateway # This is the default ingress-gateway
-  servers:
-    - port:
-        number: 80
-        name: http
-        protocol: HTTP
-      hosts:
-        - "*"
----
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
   name: research-api
 spec:
   gateways:
-    - research-gateway
+    - bied-gateway
   hosts:
     - "*" # What inbound Host should be routed. (eg. 'research.bied.nl')
   http:
