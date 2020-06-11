@@ -1,0 +1,54 @@
+<div *ngIf="questionnaire" style="display: flex; justify-content: center; margin: 0px 400px;">
+  <nb-card status="success" style="min-width: 800px;">
+    <nb-card-body>
+      <nb-stepper
+        [selectedIndex]="questionnaire.currentQuestionnaireSectionId"
+        orientation="horizontal"
+        disableStepNavigation
+      >
+        <nb-step [completed]="completedStep(0)" label="Introduction">
+          <app-introduction-step [questionnaire]="questionnaire"></app-introduction-step>
+          <nb-card-footer style="display: flex; justify-content: flex-end;">
+            <button name="beginnen-button" nbButton status="basic" (click)="navigateToQuestions()">
+              {{ questionnaire.startButtonText }}
+            </button>
+          </nb-card-footer>
+        </nb-step>
+        <nb-step
+          *ngFor="let questionSection of getQuestionSections(); let i = index"
+          [completed]="completedStep(1 + i)"
+          [label]="questionSection.title"
+          [stepControl]="myForms[i]"
+        >
+          <div *ngIf="questionnaire.currentQuestionnaireSectionId === i + 1">
+            <app-questions-step
+              #questionSections
+              name="questions-step"
+              [questionnaire]="questionnaire"
+              [questionsForm]="myForms[i]"
+            ></app-questions-step>
+            <nb-card-footer style="display: flex; justify-content: space-between;">
+              <button nbButton status="basic" (click)="navigateBack()">{{ getPreviousButtonText() }}</button>
+              <button
+                nbButton
+                status="basic"
+                [disabled]="(isLastSection() && !validateQuestionnaire()) || (!validateSection(i))"
+                (click)="navigateForward()"
+              >
+                {{ getNextButtonText() }}
+              </button>
+            </nb-card-footer>
+          </div>
+        </nb-step>
+        <nb-step label="results">
+          <app-results-step [questionnaire]="questionnaire"></app-results-step>
+          <nb-card-footer>
+            <button nbButton status="basic" (click)="navigateToLastQuestion()">
+              Vorige
+            </button>
+          </nb-card-footer>
+        </nb-step>
+      </nb-stepper>
+    </nb-card-body>
+  </nb-card>
+</div>
