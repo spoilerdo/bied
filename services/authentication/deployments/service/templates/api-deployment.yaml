@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: authentication
-          image: authentication:latest
+          image: "{{ .Values.global.services.authentication.name }}:{{ .Values.global.services.authentication.tag }}"
           imagePullPolicy: IfNotPresent
           resources:
             requests:

@@ -1,11 +1,11 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: EnvoyFilter
 metadata:
-  name: questionnaire-api-filter
+  name: email-service-filter
 spec:
   workloadSelector:
     labels:
-      app: questionnaire-api
+      app: email-service
   configPatches:
     - applyTo: HTTP_FILTER
       match:
@@ -21,9 +21,9 @@ spec:
         value:
           name: envoy.grpc_json_transcoder
           config:
-            proto_descriptor: /etc/envoy/questionnaire.pb
+            proto_descriptor: /etc/envoy/mail.pb
             services:
-              - Questionnaire.Questionnaire_Service
+              - Email.Mailer
             print_options:
               add_whitespace: true
               always_print_primitive_fields: true

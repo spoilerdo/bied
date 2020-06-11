@@ -12,12 +12,12 @@ spec:
       labels:
         app: questionnaire-api
       annotations:
-        sidecar.istio.io/userVolume: '[{"name":"descriptor","configmap":{"name":"questionnaire-bied-set","items":[{"key":"bied.pb","path":"bied.pb"}]}}]'
+        sidecar.istio.io/userVolume: '[{"name":"descriptor","configmap":{"name":"questionnaire-bied-set","items":[{"key":"questionnaire.pb","path":"questionnaire.pb"}]}}]'
         sidecar.istio.io/userVolumeMount: '[{"name":"descriptor","mountPath":"/etc/envoy"}]'
     spec:
       containers:
         - name: questionnaire-api
-          image: questionnaire-api:latest
+          image: "{{ .Values.global.services.questionnaire_api.name }}:{{ .Values.global.services.questionnaire_api.tag }}"
           imagePullPolicy: IfNotPresent
           resources:
             requests:

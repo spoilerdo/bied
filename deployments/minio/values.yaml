@@ -172,7 +172,8 @@ securityContext:
   fsGroup: 1000
 
 # Additational pod annotations
-podAnnotations: {}
+podAnnotations:
+  sidecar.istio.io/inject: "false"
 
 # Additional pod labels
 podLabels: {}
@@ -195,10 +196,13 @@ readinessProbe:
 ## Configure resource requests and limits
 ## ref: http://kubernetes.io/docs/user-guide/compute-resources/
 ##
-resources:
-  requests:
-    memory: 256Mi
-    cpu: 150m
+# resources:
+#   requests:
+#     memory: 256Mi
+#     cpu: 50m
+#   limit:
+#     cpu: 100m
+#     memory: 1Gi
 
 ## Create a bucket after minio install
 ##

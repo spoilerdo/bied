@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: research-api
-          image: research-api:latest
+          image: "{{ .Values.global.services.research_api.name }}:{{ .Values.global.services.research_api.tag }}"
           imagePullPolicy: IfNotPresent
           resources:
             requests:
