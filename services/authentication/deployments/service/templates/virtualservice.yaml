@@ -6,11 +6,11 @@ spec:
   gateways:
     - bied-gateway
   hosts:
-    - "authentication.fontysbied.nl" # What inbound Host should be routed. (eg. 'authentication.bied.nl')
+    - "{{ .Values.global.authentication.host }}"
   http:
     - match:
         - uri:
-            prefix: "/auth"
+            prefix: "{{ .Values.global.authentication.route }}/"
       rewrite:
         uri: "/auth"
       route:
