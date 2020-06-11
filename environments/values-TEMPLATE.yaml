@@ -9,3 +9,9 @@ global:
   authentication_ui:
     host: "*"
     route: /authentication
+  consent:
+    host: "*"
+    route: /api/consent
+  consent_ui:
+    host: "*"
+    route: /consent
