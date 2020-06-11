@@ -6,3 +6,7 @@ global:
   authentication_ui:
     host: "*"
     route: /authentication
+
+  research_ui:
+    host: "*"
+    route: /research
