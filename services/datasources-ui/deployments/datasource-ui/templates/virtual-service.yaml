@@ -6,11 +6,11 @@ spec:
   gateways:
     - bied-gateway
   hosts:
-    - "*" # What inbound Host should be routed. (eg. 'research.bied.nl')
+    - "{{ .Values.global.datasources_ui.host }}"
   http:
     - match:
         - uri:
-            prefix: /
+            prefix: "{{ .Values.global.datasources_ui.route }}"
       rewrite:
         uri: /
       route:

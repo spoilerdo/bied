@@ -10,7 +10,7 @@ spec:
   http:
     - match:
         - uri:
-            prefix: "{{ .Values.global.authentication.route }}/"
+            prefix: "{{ .Values.global.authentication.route }}"
       rewrite:
         uri: "/auth"
       route:
