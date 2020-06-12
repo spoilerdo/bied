@@ -1,4 +1,0 @@
-#kijken of dit mogelijk is met een yaml file, aangezien we een proto.pb file moeten importen
-#helm met .files.get krijgt een utf8 error met .pb extensies, met json of YAML gebeurt dit niet.
-#voor nu wordt dit gedaan op het cluster om de configmap te genereren:
-# kubectl create configmap user-bied-set --from-file=libraries/protobuffers/protobuffers/protobuffers/protobuffers/user.pb

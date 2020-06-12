@@ -1,0 +1,24 @@
+replicaCount: 1
+
+image:
+  pullPolicy: IfNotPresent
+
+containerPort: 80
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: "questionnaire-ui"
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+service:
+  port: 80
+  targetPort: 80
