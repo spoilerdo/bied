@@ -1,0 +1,8 @@
+# Copy this file and rename it to "values-dev.yaml"
+# then change the storageClassName to "hostpath" if
+# you're using docker desktop or to "standard" if you're using minikube
+global:
+  storageClassName: "standard"
+  user_service:
+    host: "*"
+    route: /api/user

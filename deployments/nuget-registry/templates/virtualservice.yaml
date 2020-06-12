@@ -1,27 +1,10 @@
 apiVersion: networking.istio.io/v1alpha3
-kind: Gateway
-metadata:
-  name: nuget-gateway
-  namespace: nugetregistry
-spec:
-  selector:
-    app: istio-ingressgateway # This is the default ingress-gateway
-  servers:
-    - port:
-        number: 80
-        name: http
-        protocol: http
-      hosts:
-        - "nuget.fontysbied.nl"
----
-apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
   name: nuget-virual-service
-  namespace: nugetregistry
 spec:
   gateways:
-    - nuget-gateway
+    - bied-gateway
   hosts:
     - "nuget.fontysbied.nl" # What inbound Host should be routed. (eg. 'research.bied.nl')
   http:

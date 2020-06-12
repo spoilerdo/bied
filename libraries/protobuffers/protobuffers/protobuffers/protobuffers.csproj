@@ -3,14 +3,14 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.4</Version>
+    <Version>1.0.13</Version>
     <PackageId>Bied.Protobuffers</PackageId>
     <Description>BIED protobuffers Nuget package used for ASP core services</Description>
     <Copyright>AGPL-3.0-or-later</Copyright>
     <PackageProjectUrl>https://github.com/Choem/bied/</PackageProjectUrl>
     <Authors>S66-BIED</Authors>
     <Company>S66-BIED</Company>
-    <PackageReleaseNotes>Removed data source calls from research api, datasource team will handle this (told in project meeting).</PackageReleaseNotes>
+    <PackageReleaseNotes>Updated User proto</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
