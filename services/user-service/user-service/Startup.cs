@@ -84,7 +84,7 @@ namespace UserSvc
             {
                 using (var context = serviceScope.ServiceProvider.GetService<IdentityContext>())
                 {
-                    context.Database.EnsureCreated();
+                    context.Database.Migrate();
                 }
             }
         }
