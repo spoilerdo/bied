@@ -46,7 +46,10 @@ namespace consent_service
             services.AddAutoMapper(typeof(Startup));
             services.AddDbContext<ConsentDbContext>(options =>
             {
-                options.UseSqlServer(Configuration.GetConnectionString("DbConnection"));
+                options.UseMySql(Configuration.GetConnectionString("DbConnection"), builder =>
+                {
+                    builder.EnableRetryOnFailure(5, TimeSpan.FromSeconds(10), null);
+                });
             });
             services.AddScoped<IConsentRepository, ConsentRepository>();
         }

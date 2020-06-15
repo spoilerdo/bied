@@ -8,6 +8,6 @@ spec:
     component: nugetregistry
   ports:
     - name: http
-      port: 8080
+      port: 5000
       targetPort: http
       protocol: TCP
