@@ -1,7 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: kafka
   name: zookeeper-deployment-1
 spec:
   selector:
@@ -31,7 +30,6 @@ apiVersion: v1
 kind: Service
 metadata:
   name: zoo1
-  namespace: kafka
   labels:
     app: zookeeper-1
 spec:

@@ -1,29 +1,12 @@
 apiVersion: networking.istio.io/v1alpha3
-kind: Gateway
-metadata:
-  name: kafka-manager
-  namespace: kafka
-spec:
-  selector:
-    app: istio-ingressgateway # This is the default ingress-gateway
-  servers:
-    - port:
-        number: 80
-        name: http
-        protocol: http
-      hosts:
-        - "kafka.fontysbied.nl"
----
-apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
   name: kafka-manager
-  namespace: kafka
 spec:
   gateways:
-    - kafka-manager
+    - bied-gateway
   hosts:
-    - "kafka.fontysbied.nl" # What inbound Host should be routed. (eg. 'research.bied.nl')
+    - "*" # What inbound Host should be routed. (eg. 'research.bied.nl')
   http:
     - match:
         - uri:

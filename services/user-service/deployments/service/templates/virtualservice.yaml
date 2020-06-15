@@ -1,19 +1,22 @@
+  
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: nuget-virual-service
+  name: user-api
 spec:
   gateways:
     - bied-gateway
   hosts:
-    - "nuget.fontysbied.nl" # What inbound Host should be routed. (eg. 'research.bied.nl')
+    - "{{ .Values.global.user.host }}" # What inbound Host should be routed. (eg. 'research.bied.nl')
   http:
     - match:
         - uri:
-            prefix: /
+            prefix: "{{ .Values.global.user.route }}"
+      rewrite:
+        uri: /user
       route:
         # routes it toward this host. Usually a Kubernetes native 'Service', this should be a FQDN in production
         - destination:
-            host: nugetregistry-service
+            host: user-api
             port:
-              number: 8080
+              number: 5050
