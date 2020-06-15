@@ -43,15 +43,13 @@ CMD ["npm", "start"]
 #
 FROM base as builder
 ARG SERVICE
-# Note: BASE_HREF must have a trailing '/' !!!
-ARG BASE_HREF="/"
 
 WORKDIR /usr/src/app
 
-ARG configuration=production
+ARG configuration=development
 
 ## Build the angular app in production mode and store the artifacts in dist folder
-RUN npm run build -- --configuration $configuration --baseHref=$BASE_HREF
+RUN npm run build -- --configuration $configuration
 
 #
 # STAGE 2: Setup
