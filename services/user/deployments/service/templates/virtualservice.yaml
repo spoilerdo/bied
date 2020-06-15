@@ -1,21 +1,21 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: {{ include "datasource-api.fullname" . }}
+  name: {{ include "user.fullname" . }}
 spec:
   gateways:
     - bied-gateway
   hosts:
-    - "{{ .Values.global.datasources.host }}" # What inbound Host should be routed. (eg. 'research.bied.nl')
+    - "{{ .Values.global.user.host }}" # What inbound Host should be routed. (eg. 'research.bied.nl')
   http:
     - match:
         - uri:
-            prefix: "{{ .Values.global.datasources.route }}"
+            prefix: "{{ .Values.global.user.route }}"
       rewrite:
         uri: /
       route:
         # routes it toward this host. Usually a Kubernetes native 'Service', this should be a FQDN in production
         - destination:
-            host: {{ include "datasource-api.fullname" . }}
+            host: {{ include "user.fullname" . }}
             port:
-              number: 80
+              number: 5050

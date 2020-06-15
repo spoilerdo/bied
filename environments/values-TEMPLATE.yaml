@@ -9,12 +9,30 @@ global:
   authentication_ui:
     host: "*"
     route: /authentication
+  questionnaire_api:
+    host: "*"
+    route: /api/questionnaire
+  questionnaire_ui:
+    host: "*"
+    route: /questionnaire
   consent:
     host: "*"
     route: /api/consent
   consent_ui:
     host: "*"
     route: /consent
+  datasources:
+    host: "*"
+    route: /api/datasources
+  datasources_ui:
+    host: "*"
+    route: /datasources
+  research:
+    host: "*"
+    route: /api/research
+  research_ui:
+    host: "*"
+    route: /research
   user_service:
     host: "*"
     route: /api/user
