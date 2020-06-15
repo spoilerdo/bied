@@ -1,0 +1,17 @@
+@import '../styles/themes';
+
+@include nb-install-component() {
+  .thumbnail-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    // padding: 0.625rem;
+
+    .thumbnail {
+      height: 120px;
+      width: 120px;
+      border-radius: nb-theme(card-border-radius);
+    }
+  }
+}

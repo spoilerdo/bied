@@ -7,7 +7,6 @@ import {
   NbButtonModule,
   NbCardModule,
   NbCheckboxModule,
-  NbDatepickerModule,
   NbIconModule,
   NbInputModule,
   NbLayoutModule,
@@ -15,19 +14,30 @@ import {
   NbRadioModule,
   NbSelectModule,
   NbToggleModule,
+  NbContextMenuModule,
+  NbActionsModule,
   NbTooltipModule,
+  NbDatepickerModule,
 } from '@nebular/theme';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { QuestionnaireOverviewComponent } from './pages/questionnaire-overview/questionnaire-overview.component';
+import { QuestionnaireCardComponent } from './pages/questionnaire-overview/questionnaire-card/questionnaire-card.component';
+import { RemoveDialogComponent } from './pages/questionnaire-overview/questionnaire-card/remove-dialog/remove-dialog.component';
+import { TruncatePipe } from './utils/TruncatePipe';
+import { RenameDialogComponent } from './pages/questionnaire-overview/questionnaire-card/rename-dialog/rename-dialog.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { QuestionnairePaginatorComponent } from './pages/questionnaire-overview/questionnaire-paginator/questionnaire-paginator.component';
+import { PaginationComponent } from './pages/questionnaire-overview/pagination/pagination.component';
 import { CreateQuestionnaireComponent } from './pages/create-questionnaire/create-questionnaire.component';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { QuestionComponent } from './pages/create-questionnaire/question-group/question/question.component';
-import { ChoiceQuestionComponent } from './pages/create-questionnaire/question-group/question/choice-question/choice-question.component';
-import { TextQuestionComponent } from './pages/create-questionnaire/question-group/question/text-question/text-question.component';
-import { DateQuestionComponent } from './pages/create-questionnaire/question-group/question/date-question/date-question.component';
-import { TimeQuestionComponent } from './pages/create-questionnaire/question-group/question/time-question/time-question.component';
-import { LikertQuestionComponent } from './pages/create-questionnaire/question-group/question/likert-question/likert-question.component';
-import { CoreModule } from '../@core/core.module';
-import { ActionBarComponent } from './pages/create-questionnaire/action-bar/action-bar.component';
 import { QuestionGroupComponent } from './pages/create-questionnaire/question-group/question-group.component';
+import { ActionBarComponent } from './pages/create-questionnaire/action-bar/action-bar.component';
+import { QuestionComponent } from './pages/create-questionnaire/question-group/question/question.component';
+import { LikertQuestionComponent } from './pages/create-questionnaire/question-group/question/likert-question/likert-question.component';
+import { ChoiceQuestionComponent } from './pages/create-questionnaire/question-group/question/choice-question/choice-question.component';
+import { TimeQuestionComponent } from './pages/create-questionnaire/question-group/question/time-question/time-question.component';
+import { DateQuestionComponent } from './pages/create-questionnaire/question-group/question/date-question/date-question.component';
+import { TextQuestionComponent } from './pages/create-questionnaire/question-group/question/text-question/text-question.component';
+import { CoreModule } from '../@core/core.module';
 import { CreateQuestionnaireService } from './pages/create-questionnaire/create-questionnaire.service';
 
 const nebularModules = [
@@ -39,26 +49,46 @@ const nebularModules = [
   NbIconModule,
   NbListModule,
   NbToggleModule,
+  NbContextMenuModule,
+  NbActionsModule,
+  NbTooltipModule,
   NbCheckboxModule,
   NbRadioModule,
-  NbTooltipModule,
   NbDatepickerModule,
 ];
 
 @NgModule({
   declarations: [
+    // Questionnaire overview
     QuestionnaireComponent,
+    QuestionnaireOverviewComponent,
+    QuestionnaireCardComponent,
+    RemoveDialogComponent,
+    RenameDialogComponent,
+    TruncatePipe,
+    RenameDialogComponent,
+    PaginationComponent,
+    QuestionnairePaginatorComponent,
+    // Questionnaire create
     CreateQuestionnaireComponent,
-    QuestionComponent,
-    ChoiceQuestionComponent,
-    TextQuestionComponent,
-    DateQuestionComponent,
-    TimeQuestionComponent,
-    LikertQuestionComponent,
-    ActionBarComponent,
     QuestionGroupComponent,
+    ActionBarComponent,
+    QuestionComponent,
+    LikertQuestionComponent,
+    ChoiceQuestionComponent,
+    TimeQuestionComponent,
+    DateQuestionComponent,
+    TextQuestionComponent,
+  ],
+  imports: [
+    CommonModule,
+    QuestionnaireRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgxPaginationModule,
+    CoreModule,
+    ...nebularModules,
   ],
   providers: [CreateQuestionnaireService],
-  imports: [CommonModule, QuestionnaireRoutingModule, ReactiveFormsModule, CoreModule, ...nebularModules],
 })
 export class QuestionnaireModule {}

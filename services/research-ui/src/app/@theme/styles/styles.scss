@@ -1,14 +1,15 @@
-// Import bootstrap grid
-@import '~bootstrap/scss/functions';
-@import '~bootstrap/scss/variables';
-@import '~bootstrap/scss/mixins';
-@import '~bootstrap/scss/grid';
-
-// Setup Nebular
+// this is our just created themes.scss file, make sure the path to the file is correct
 @import 'themes';
+
+// framework component styles
 @import '~@nebular/theme/styles/globals';
+@import 'grid';
 
 // install the framework styles
 @include nb-install() {
   @include nb-theme-global();
+}
+
+.blank-link {
+  text-decoration: none;
 }

@@ -1,0 +1,29 @@
+apiVersion: kubedb.com/v1alpha1
+kind: MongoDB
+metadata:
+  name: mongo-questionnaire
+spec:
+  databaseSecret:
+    secretName: mongodb-questionnaire-secret
+  version: "3.4-v3"
+  storageType: Durable
+  podTemplate:
+    metadata:
+      labels:
+        app: mongodb
+      annotations:
+        sidecar.istio.io/inject: "false"
+  storage:
+    storageClassName: {{ .Values.global.storageClassName }}
+    accessModes:
+      - ReadWriteOnce
+    resources:
+      requests:
+        cpu: "10m"
+        memory: "256Mi"
+        storage: 1Gi
+      limits:
+        cpu: "100m"
+        memory: "512Mi"
+
+  terminationPolicy: Resume

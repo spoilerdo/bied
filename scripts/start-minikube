@@ -61,7 +61,7 @@ $MINIKUBE_START_PREFIX minikube start \
     --extra-config=kubelet.authorization-mode=Webhook \
     --extra-config=scheduler.address=0.0.0.0 \
     --extra-config=controller-manager.address=0.0.0.0 \
-    --kubernetes-version=v1.13.11 \
+    --kubernetes-version=v1.15.9 \
     --cpus=$CPUS \
     --insecure-registry "10.0.0.0/24" \
     --memory=$MEMORY \
@@ -93,4 +93,7 @@ if [ "$MINIKUBE_STATUS" != "Stopped" ]; then
     echo "waiting 2 minutes for crds to be ready"
     sleep 180
     helm install kubedb-catalog --version v0.13.0-rc.0 --namespace kube-system appscode/kubedb-catalog
+
+    ## label for istio sidecar injection
+    kubectl label namespace default istio-injection=enabled
 fi

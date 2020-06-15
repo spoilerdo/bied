@@ -1,0 +1,23 @@
+<nb-card status="primary" class="rename-dialog-card">
+  <nb-card-header>Delete questionnaire?</nb-card-header>
+  <nb-card-body class="rename-dialog-body">
+    Please type the current name <b>"{{ questionnaire.name }}"</b> first to confirm:
+    <div>
+      <input fullWidth nbInput [(ngModel)]="oldTitle" id="rename-dialog-old-name" />
+    </div>
+    New name:
+    <div>
+      <input fullWidth nbInput [(ngModel)]="newTitle" id="rename-dialog-new-name" />
+      <button nbButton status="basic" id="rename-dialog-cancel" (click)="close()">Cancel</button>
+      <button
+        id="rename-dialog-rename"
+        nbButton
+        status="success"
+        (click)="rename()"
+        [disabled]="oldTitle !== questionnaire.name || newTitle.length < 5"
+      >
+        Rename
+      </button>
+    </div>
+  </nb-card-body>
+</nb-card>

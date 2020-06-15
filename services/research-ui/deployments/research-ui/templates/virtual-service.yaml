@@ -1,0 +1,21 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: {{ include "research-ui.fullname" . }}
+spec:
+  gateways:
+    - bied-gateway
+  hosts:
+    - "{{ .Values.global.research_ui.host }}" # What inbound Host should be routed. (eg. 'research.bied.nl')
+  http:
+    - match:
+        - uri:
+            prefix: "{{ .Values.global.research_ui.route }}"
+      rewrite:
+        uri: /
+      route:
+        # routes it toward this host. Usually a Kubernetes native 'Service', this should be a FQDN in production
+        - destination:
+            host: {{ include "research-ui.fullname" . }}
+            port:
+              number: 80

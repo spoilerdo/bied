@@ -9,21 +9,23 @@ spec:
       component: nugetregistry
   template:
     metadata:
-        labels:
-            component: nugetregistry
+      labels:
+        component: nugetregistry
     spec:
       containers:
-      - name: baget
-        image: loicsharma/baget:latest
-        resources:
-          limits:
-            cpu: 200m
-        ports:
-        - containerPort: 80
-        volumeMounts:
-        - name: baget-persistent-storage
-          mountPath: /var/baget
-        env:
+        - name: baget
+          image: loicsharma/baget:latest
+          resources:
+            limits:
+              cpu: 200m
+          ports:
+            - name: http
+              containerPort: 5000
+              protocol: TCP
+          volumeMounts:
+            - name: baget-persistent-storage
+              mountPath: /var/baget
+          env:
             - name: ApiKey
               value: 9a1ec93c-cb39-4744-a8fc-9a0f7e5f49fa
             - name: Storage__Type

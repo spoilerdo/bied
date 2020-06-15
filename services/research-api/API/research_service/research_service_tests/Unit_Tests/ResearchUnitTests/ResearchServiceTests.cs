@@ -5,6 +5,7 @@ using research_service.Common;
 using research_service.Persistence.Entities;
 using research_service.Persistence.Repositories.Researches;
 using research_service.Services;
+using ResearchGRPC;
 using System;
 using System.Collections.Generic;
 using System.Text;

@@ -1,0 +1,21 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: consent-api
+spec:
+  gateways:
+    - bied-gateway
+  hosts:
+    - "{{ .Values.global.consent.host }}" # What inbound Host should be routed. (eg. 'research.bied.nl')
+  http:
+    - match:
+        - uri:
+            prefix: {{ .Values.global.consent.route }}
+      rewrite:
+        uri: "/consent"
+      route:
+        # routes it toward this host. Usually a Kubernetes native 'Service', this should be a FQDN in production
+        - destination:
+            host: consent-api
+            port:
+              number: 5050

@@ -1,0 +1,43 @@
+---
+#
+# VirtualService; This determines how requests are routed.
+#
+# See:            https://istio.io/docs/concepts/traffic-management/#virtual-service-example
+#
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: questionnaire-virtual-service
+spec:
+  gateways:
+    - bied-gateway
+  hosts:
+    - "*" # What inbound Host should be routed. (eg. 'research.bied.nl')
+  http:
+    # We add an HTTP Entry that matches to `/api/health` and
+    # rewrites this to `/health`, it then proxies it to the
+    # workshop-demo service.
+    - match:
+        - uri:
+            prefix: /api/questionnaire
+      rewrite:
+        uri: /
+      route:
+        - destination:
+            # This routes the the traffic to the following domain
+            # which resolves in the service we created.
+            host: questionnaire-api-service
+            port:
+              number: 5000
+    # - match:
+    #     - uri:
+    #         prefix: "/api/healthcheck"
+    #   rewrite:
+    #     uri: "/get"
+    #   route:
+    #     - destination:
+    #         # This routes the the traffic to the following domain
+    #         # which resolves in the service we created.
+    #         host: questionnaire-api-service
+    #         port:
+    #           number: 5000

@@ -2,19 +2,54 @@ syntax = "proto3";
 
 option csharp_namespace = "UserGRPC"; 
 
-import "userInformation.proto";
-package UserServiceProto;
+import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
+import "user-role.proto";
+
+package User;
 
 service User_Service {
-    rpc GetUsers (Empty) returns (UsersResponse);
-    rpc GetUser (UserRequest) returns (UserResponse);
-    rpc CreateUser (UserCreateRequest) returns (UserResponse);
-    rpc EditUser (UserEditRequest) returns (UserResponse);
-    rpc DeleteUser (UserRequest) returns (Empty);
+    rpc GetUsers (Empty) returns (UsersResponse) {
+        option (google.api.http).get = "/user";
+    };
+
+    rpc GetUser (UserRequest) returns (UserResponse) {
+        option (google.api.http).get = "/user/{id}";
+    };
+
+    rpc CreateUser (UserCreateRequest) returns (UserResponse) {
+        option (google.api.http) = {
+            post: "/user"
+            body: "*"  
+        };
+    };
+
+    rpc EditUser (UserEditRequest) returns (UserResponse) {
+        option (google.api.http) = {
+            put: "/user"
+            body: "*"
+        };
+    };
+
+    rpc DeleteUser (UserRequest) returns (Empty) {
+        option (google.api.http).delete = "/user/{id}";
+    };
+
+    rpc Login (LoginRequest) returns (LoginResponse) {
+        option (google.api.http) = {
+            post: "/user/login"
+            body: "*"  
+        };
+    };
 }
 
 message Empty{
 
+}
+
+message LoginRequest {
+    string username = 1;
+    string password = 2;
 }
 
 message UserRequest {
@@ -25,7 +60,9 @@ message UserCreateRequest {
     string firstname = 1;
     string lastname = 2;
     string email = 3;
-    string password = 4;
+    string username = 4;
+    string password = 5;
+    UserRole.UserRole role = 6;
 }
 
 message UserEditRequest {
@@ -33,6 +70,7 @@ message UserEditRequest {
     string firstname = 2;
     string lastname = 3;
     string email = 4;
+    string username = 5;
 }
 
 message UsersResponse {
@@ -40,7 +78,12 @@ message UsersResponse {
 }
 
 message UserResponse {
-    UserModel user =1;
+    UserModel user = 1;
+}
+
+message LoginResponse {
+    string token = 1;
+    google.protobuf.Timestamp expiration = 2;
 }
 
 message UserModel {
@@ -48,5 +91,6 @@ message UserModel {
     string firstname = 2;
     string lastname = 3;
     string email = 4;
-    UserInformation userinfo = 5;
+    string username = 5;
+    UserRole.UserRole role = 6;
 }

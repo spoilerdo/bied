@@ -1,0 +1,13 @@
+<div class="question-container">
+  {{ question }}
+  <nb-icon *ngIf="information" [nbTooltip]="information" nbTooltipStatus="primary" icon="info-outline"></nb-icon>
+</div>
+
+<div style="display: flex; flex: 1; justify-content: space-between;">
+  <nb-checkbox
+    *ngFor="let option of options; let i = index"
+    [checked]="optionChecked(option.name)"
+    (checkedChange)="toggle($event, i)"
+    >{{ option.name }}</nb-checkbox
+  >
+</div>

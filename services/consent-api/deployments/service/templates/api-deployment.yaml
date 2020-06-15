@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: consent-api
+  name: consent-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: consent-api
+  template:
+    metadata:
+      labels:
+        io.kompose.service: consent-api
+      annotations:
+        sidecar.istio.io/userVolume: '[{"name":"descriptor","configmap":{"name":"consent-bied-set","items":[{"key":"consent.pb","path":"consent.pb"}]}}]'
+        sidecar.istio.io/userVolumeMount: '[{"name":"descriptor","mountPath":"/etc/envoy"}]'
+    spec:
+      containers:
+        - name: consent-api
+          image: "{{ .Values.global.services.consent_api.name }}:{{ .Values.global.services.consent_api.tag }}"
+          imagePullPolicy: IfNotPresent
+          resources:
+            requests:
+              cpu: "10m"
+              memory: "64Mi"
+            limits:
+              cpu: "100m"
+              memory: "512Mi"
+          ports:
+            - containerPort: 5050
+          env:
+            - name: ASPNETCORE_URLS
+              value: http://*:5050
+            - name: ASPNETCORE_ENVIRONMENT
+              value: "Production"

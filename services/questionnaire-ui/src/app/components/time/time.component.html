@@ -1,0 +1,14 @@
+<div class="question-container">
+    {{ question }}
+    <nb-icon *ngIf="information" [nbTooltip]="information" nbTooltipStatus="primary" icon="info-outline"></nb-icon>
+  </div>
+
+<!--
+    For the time being this is a dropdown box. Nebular doesn't have a TimePicker availeble
+    This might be something to look into later, to see if it can be improved upon.    
+-->
+<nb-select placeholder="" [(selected)]="answer">
+    <nb-option *ngFor="let time of timeArr" [value]="time.name" (click)="setAnswer(time.name)">
+        {{ time.name }}
+    </nb-option>
+</nb-select>

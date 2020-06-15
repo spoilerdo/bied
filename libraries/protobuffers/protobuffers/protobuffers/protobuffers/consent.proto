@@ -1,14 +1,36 @@
 syntax = "proto3";
+option csharp_namespace = "ConsentGRPC";
 
+package Consent;
+
+import "google/api/annotations.proto";
 import "datasource.proto";
 
 service Consent_Service {
-  rpc GetConsents (UserIdRequest) returns (Consents);
-  rpc GetConsent (ConsentIdRequest) returns (Consent);
-  rpc CreateConsent (ConsentRequest) returns (Consent);
-  rpc DeleteAllConsent (UserIdRequest) returns (ConsentEmptyResponse);
-  rpc DeleteConsent (ConsentIdRequest) returns (ConsentEmptyResponse);
-  rpc EditConsent (ConsentEditRequest) returns (Consent);
+  rpc GetConsents (UserIdRequest) returns (Consents) {
+    option (google.api.http).get = "/consent";
+  };
+  rpc GetConsent (ConsentIdRequest) returns (Consent) {
+    option (google.api.http).get = "/consent/{id}";
+  };
+  rpc CreateConsent (ConsentRequest) returns (Consent) {
+    option (google.api.http) = {
+      post: "/consent"
+      body: "*" 
+    };
+  };
+  rpc DeleteAllConsent (UserIdRequest) returns (ConsentEmptyResponse) {
+    option (google.api.http).delete = "/consent/all";
+  };
+  rpc DeleteConsent (ConsentIdRequest) returns (ConsentEmptyResponse) {
+    option (google.api.http).delete = "/consent/{id}";
+  };
+  rpc EditConsent (ConsentEditRequest) returns (Consent) {
+    option (google.api.http) = {
+      put: "/consent"
+      body: "*"
+    };
+  };
 }
 
 message Consents {
@@ -31,11 +53,11 @@ message ConsentIdRequest {
 }
 
 message ConsentEditRequest {
-    string id = 1;
-    string userId = 2;
-    string datasourceId = 3;
-    bool consent = 4;
-    int64 uts = 5;
+  string id = 1;
+  string userId = 2;
+  string datasourceId = 3;
+  bool consent = 4;
+  int64 uts = 5;
 }
 
 message ConsentEmptyResponse {}
@@ -43,7 +65,7 @@ message ConsentEmptyResponse {}
 message Consent {
   string id = 1;
   string userId = 2;
-  Datasource datasource = 3;
+  Datasource.Datasource datasource = 3;
   bool consent = 4;
   int64 uts = 5;
 }

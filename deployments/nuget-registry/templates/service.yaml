@@ -7,5 +7,7 @@ spec:
   selector:
     component: nugetregistry
   ports:
-    - port: 8080
-      targetPort: 80
+    - name: http
+      port: 5000
+      targetPort: http
+      protocol: TCP

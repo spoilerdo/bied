@@ -1,0 +1,8 @@
+<nb-list>
+  <nb-list-item *ngFor="let research of researches" style="padding: 0;">
+    <nb-card style="width: 100%; padding: 0;">
+      <nb-card-header>{{ research.name }}</nb-card-header>
+      <app-research-list-item [research]="research"></app-research-list-item>
+    </nb-card>
+  </nb-list-item>
+</nb-list>

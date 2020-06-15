@@ -1,17 +1,38 @@
 syntax = "proto3";
 option csharp_namespace = "ResearchGRPC"; 
 
+package Research;
+
+import "google/api/annotations.proto";
 import "datasource.proto";
 
 service Research_Service {
-  rpc GetResearches (GetResearchesRequest) returns (Researches);
-  rpc GetResearch (ResearchIdRequest) returns (Research);
-  rpc CreateResearch (ResearchCreateRequest) returns (Research);
-  rpc EditResearch (ResearchEditRequest) returns (Research);
-  rpc DeleteResearch (ResearchIdRequest) returns (ResearchEmptyResponse);
+  rpc GetResearches (GetResearchesRequest) returns (Researches) {
+    option (google.api.http).get = "/research";
+  };
 
-  rpc AddDatasourceToResearch (Datasource) returns (Research);
-  rpc RemoveDatasourceFromResearch (DatasourceIdResearchRequest) returns (Research);
+  rpc GetResearch (ResearchIdRequest) returns (Research) {
+    option (google.api.http).get = "/research/{id}";
+  };
+
+  rpc CreateResearch (ResearchCreateRequest) returns (Research) {
+    option (google.api.http) = {
+      post: "/research"
+      body: "*"
+    };
+  };
+
+  rpc EditResearch (ResearchEditRequest) returns (Research) {
+    option (google.api.http) = {
+      put: "/research"
+      body: "*"
+    };
+  };
+
+  rpc DeleteResearch (ResearchIdRequest) returns (ResearchEmptyResponse) {
+    option (google.api.http).delete = "/research/{id}";
+  };
+
   rpc InviteUsersToResearch (EmailRequests) returns (EmailEmptyResponse);
 }
 
@@ -23,7 +44,8 @@ message ResearchIdRequest {
   string id = 1;
 }
 
-message GetResearchesRequest {}
+message GetResearchesRequest {
+}
 
 message ResearchCreateRequest {
   string name = 1;
@@ -48,12 +70,9 @@ message ResearchEditRequest {
 
 message ResearchEmptyResponse {}
 
-message DatasourceIdResearchRequest {
-  string id = 1;
-}
-
 message EmailRequests {
-  repeated string email = 1;
+  string researchId = 1;
+  repeated string email = 2;
 }
 
 message EmailEmptyResponse {}
@@ -67,5 +86,5 @@ message Research {
   int64 endDate = 6;
   bool active = 7;
   string ownerId = 8;
-  repeated Datasource datasources = 9;
+  repeated Datasource.Datasource datasources = 9;
 }

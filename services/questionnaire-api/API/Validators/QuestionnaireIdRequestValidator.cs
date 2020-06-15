@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Questionnaire.GRPC;
+using QuestionnaireResultGRPC;
 
 namespace API.Validators
 {

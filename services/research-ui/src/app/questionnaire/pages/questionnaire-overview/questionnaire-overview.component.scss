@@ -1,0 +1,17 @@
+.questionnaire-overview-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  .questionnaire-card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .questionnaire-overview-paginator {
+    margin-top: auto;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+  }
+}

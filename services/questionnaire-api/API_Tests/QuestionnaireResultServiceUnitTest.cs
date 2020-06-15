@@ -1,14 +1,12 @@
-using System;
 using System.Collections.Generic;
-using ApiService_tests.Mock;
 using AutoMapper;
 using Grpc.Core;
 using Microsoft.Extensions.Logging;
 using Moq;
-using Questionnaire.GRPC;
 using Questionnaire.Persistence.Entities;
 using Questionnaire.Persistence.Repositories;
 using Questionnaire.Services;
+using QuestionnaireResultGRPC;
 using Xunit;
 
 namespace API_Tests

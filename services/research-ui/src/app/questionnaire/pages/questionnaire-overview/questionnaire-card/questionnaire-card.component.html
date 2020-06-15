@@ -1,0 +1,35 @@
+<nb-card status="primary" class="questionnaire-card" [ngClass]="{ popup: popup === true }">
+  <nb-card-header class="questionnaire-card-header">
+    {{ questionnaire.name | truncate: 20 }}
+    <nb-icon
+      class="icon option"
+      id="questionnaire-card-open"
+      icon="arrow-up-outline"
+      nbTooltip="Enlarge"
+      (click)="openCardPopup()"
+    ></nb-icon>
+  </nb-card-header>
+  <nb-card-body>
+    <ng-container *ngIf="popup === false; else fullText">
+      {{ questionnaire.description | truncate: 100:true }}
+    </ng-container>
+    <ng-template #fullText>
+      {{ questionnaire.description }}
+    </ng-template>
+  </nb-card-body>
+
+  <nb-actions class="card-actions" size="small">
+    <nb-action class="card-action" (click)="openRenameDialog()" id="questionnaire-card-rename">
+      <nb-icon class="icon edit" icon="edit-outline" nbTooltip="Rename"></nb-icon>
+    </nb-action>
+    <nb-action class="card-action" (click)="duplicateQuestionnaire()" id="questionnaire-card-copy">
+      <nb-icon class="icon copy" icon="copy-outline" nbTooltip="Duplicate"></nb-icon>
+    </nb-action>
+    <nb-action class="card-action" (click)="openRemoveConfirmation()" id="questionnaire-card-remove">
+      <nb-icon class="icon remove" icon="trash-2-outline" nbTooltip="Remove"></nb-icon>
+    </nb-action>
+    <nb-action class="card-action" [nbContextMenu]="cardContextItems">
+      <nb-icon class="icon option" icon="more-vertical-outline" nbTooltip="More options"></nb-icon>
+    </nb-action>
+  </nb-actions>
+</nb-card>

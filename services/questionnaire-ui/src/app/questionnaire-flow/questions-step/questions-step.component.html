@@ -1,0 +1,7 @@
+<div>
+  <form [formGroup]="questionsForm">
+    <nb-list-item *ngFor="let question of getQuestions(questionnaire.currentQuestionnaireSectionId)">
+      <ng-container #containers></ng-container>
+    </nb-list-item>
+  </form>
+</div>

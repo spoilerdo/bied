@@ -5,11 +5,15 @@ scripts:
     command: bash
     args: ["./scripts/start-minikube"]
     bindings: []
-  - name: set-docker-env
-    command: minikube
-    args: ["docker-env", "-p", "bied-dev", "--shell", "none"]
+  - name: set-minikube-context
+    command: bash
+    args: ["./scripts/set-minikube-context"]
     bindings: ["pre-build", "pre-deploy"]
     environments: ["dev"]
+  - name: create-proto-configmaps
+    command: bash
+    args: ["./scripts/create-proto-configmaps"]
+    bindings: ["pre-deploy"]
 template: project
 version: v0.0.0+unreleased
 buildPath: "<projectDir>"
