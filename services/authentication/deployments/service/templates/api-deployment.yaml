@@ -1,7 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: authentication
   labels:
     io.kompose.service: authentication
   name: authentication
@@ -20,8 +19,15 @@ spec:
     spec:
       containers:
         - name: authentication
-          image: authentication:latest
+          image: "{{ .Values.global.services.authentication.name }}:{{ .Values.global.services.authentication.tag }}"
           imagePullPolicy: IfNotPresent
+          resources:
+            requests:
+              cpu: "10m"
+              memory: "64Mi"
+            limits:
+              cpu: "100m"
+              memory: "512Mi"
           ports:
             - containerPort: 3010
           env:

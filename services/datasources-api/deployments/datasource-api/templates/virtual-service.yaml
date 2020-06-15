@@ -4,13 +4,13 @@ metadata:
   name: {{ include "datasource-api.fullname" . }}
 spec:
   gateways:
-    - {{ include "datasource-api.fullname" . }}-gateway
+    - bied-gateway
   hosts:
-    - "*" # What inbound Host should be routed. (eg. 'research.bied.nl')
+    - "{{ .Values.global.datasources.host }}" # What inbound Host should be routed. (eg. 'research.bied.nl')
   http:
     - match:
         - uri:
-            prefix: /api/datasources
+            prefix: "{{ .Values.global.datasources.route }}"
       rewrite:
         uri: /
       route:
@@ -18,4 +18,4 @@ spec:
         - destination:
             host: {{ include "datasource-api.fullname" . }}
             port:
-              number: 3000
+              number: 80

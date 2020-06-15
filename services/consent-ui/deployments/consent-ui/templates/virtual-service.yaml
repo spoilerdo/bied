@@ -1,0 +1,21 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: {{ include "consent-ui.fullname" . }}
+spec:
+  gateways:
+    - bied-gateway
+  hosts:
+    - "{{ .Values.global.consent_ui.host }}"
+  http:
+    - match:
+        - uri:
+            prefix: {{ .Values.global.consent_ui.route }}
+      rewrite:
+        uri: /
+      route:
+        # routes it toward this host. Usually a Kubernetes native 'Service', this should be a FQDN in production
+        - destination:
+            host: {{ include "consent-ui.fullname" . }}
+            port:
+              number: 80

@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: user-db
+  name: user-db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: user-db
+  template:
+    metadata:
+      labels:
+        io.kompose.service: user-db
+      annotations:
+        sidecar.istio.io/inject: "false"
+    spec:
+      containers:
+        - name: user-db
+          image: mcr.microsoft.com/mssql/server
+          imagePullPolicy: IfNotPresent
+          securityContext:
+            privileged: true
+          resources:
+            limits:
+              cpu: "50m"
+          ports:
+            - containerPort: 1433
+          env:
+            - name: ACCEPT_EULA
+              value: "Y"
+            - name: MSSQL_PID
+              value: Express
+            - name: SA_PASSWORD
+              value: Superl33tpassw0rd!
+       

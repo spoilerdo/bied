@@ -1,7 +1,6 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: EnvoyFilter
 metadata:
-  namespace: questionnaire-api
   name: questionnaire-api-filter
 spec:
   workloadSelector:
@@ -22,10 +21,9 @@ spec:
         value:
           name: envoy.grpc_json_transcoder
           config:
-            proto_descriptor: /etc/envoy/bied.pb
+            proto_descriptor: /etc/envoy/questionnaire.pb
             services:
-              - HealthCheck.HealthCheck
-              - Questionnaire.Questionnaire
+              - Questionnaire.Questionnaire_Service
             print_options:
               add_whitespace: true
               always_print_primitive_fields: true

@@ -1,14 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  namespace: consent-api
   labels:
-    io.kompose.service: db
-  name: db
+    io.kompose.service: consent-db
+  name: consent-db
 spec:
   ports:
   - name: "1433"
     port: 1433
     targetPort: 1433
   selector:
-    io.kompose.service: db
+    io.kompose.service: consent-db

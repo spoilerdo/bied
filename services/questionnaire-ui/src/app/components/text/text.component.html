@@ -1,0 +1,6 @@
+<div class="question-container">
+  {{ question }}
+  <nb-icon *ngIf="information" [nbTooltip]="information" nbTooltipStatus="primary" icon="info-outline"></nb-icon>
+</div>
+
+<textarea [value]="answer" (input)="setAnswer($event.target.value)" nbInput placeholder=""></textarea>

@@ -27,6 +27,7 @@ import { TruncatePipe } from './utils/TruncatePipe';
 import { RenameDialogComponent } from './pages/questionnaire-overview/questionnaire-card/rename-dialog/rename-dialog.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { PaginationComponent } from '../@core/pagination/pagination.component';
+import { QuestionnairePaginatorComponent } from './pages/questionnaire-overview/questionnaire-paginator/questionnaire-paginator.component';
 
 const nebularModules = [
   NbLayoutModule,
@@ -62,6 +63,8 @@ const nebularModules = [
     ReactiveFormsModule,
     ...nebularModules,
     NgxPaginationModule,
+    NbCheckboxModule,
+    NbRadioModule,
   ],
 })
 export class QuestionnaireModule {}

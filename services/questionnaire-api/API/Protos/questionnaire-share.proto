@@ -1,0 +1,17 @@
+syntax = "proto3";
+option csharp_namespace = "Questionnaire.GRPC";
+
+service questionnaire_share_service {
+    rpc MailQuestionnaire (MailQuestionnaireRequest) returns (MailQuestionnaireResult);
+}
+
+message MailQuestionnaireRequest {
+    string questionnaireId = 1;
+    repeated string emails = 2;
+
+}
+
+message MailQuestionnaireResult {
+    string status = 1;
+    string message = 2;
+}

@@ -1,34 +1,16 @@
-  
-apiVersion: networking.istio.io/v1alpha3
-kind: Gateway
-metadata:
-  name: authentication-gateway
-  namespace: authentication
-spec:
-  selector:
-    app: istio-ingressgateway # This is the default ingress-gateway
-  servers:
-    - port:
-        number: 80
-        name: http
-        protocol: HTTP
-      hosts:
-        - "authentication.fontysbied.nl"
----
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
   name: authentication
-  namespace: authentication
 spec:
   gateways:
-    - authentication-gateway
+    - bied-gateway
   hosts:
-    - "authentication.fontysbied.nl" # What inbound Host should be routed. (eg. 'authentication.bied.nl')
+    - "{{ .Values.global.authentication.host }}"
   http:
     - match:
         - uri:
-            prefix: "/auth"
+            prefix: "{{ .Values.global.authentication.route }}"
       rewrite:
         uri: "/auth"
       route:

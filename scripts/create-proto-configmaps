@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+set -e # If anything fails - exit immediately.
+set -u # Treat reference to undefined variables as errors
+
+ROOT_PATH=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )/..
+
+kubectl delete configmap email-bied-set || true
+kubectl create configmap email-bied-set --from-file=$ROOT_PATH/libraries/protobuffers/protobuffers/protobuffers/protobuffers/template.pb --from-file=$ROOT_PATH/libraries/protobuffers/protobuffers/protobuffers/protobuffers/mail.pb
+
+kubectl delete configmap user-bied-set || true
+kubectl create configmap user-bied-set --from-file=$ROOT_PATH/libraries/protobuffers/protobuffers/protobuffers/protobuffers/user.pb
+
+kubectl delete configmap research-bied-set || true
+kubectl create configmap research-bied-set --from-file=$ROOT_PATH/libraries/protobuffers/protobuffers/protobuffers/protobuffers/research.pb
+
+kubectl delete configmap questionnaire-bied-set || true
+kubectl create configmap questionnaire-bied-set --from-file=$ROOT_PATH/libraries/protobuffers/protobuffers/protobuffers/protobuffers/questionnaire.pb
+
+kubectl delete configmap consent-bied-set || true
+kubectl create configmap consent-bied-set --from-file=$ROOT_PATH/libraries/protobuffers/protobuffers/protobuffers/protobuffers/consent.pb
+
+kubectl delete configmap authentication-bied-set || true
+kubectl create configmap authentication-bied-set --from-file=libraries/protobuffers/protobuffers/protobuffers/protobuffers/authentication.pb

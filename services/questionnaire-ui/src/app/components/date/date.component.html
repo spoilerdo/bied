@@ -1,0 +1,7 @@
+<div class="question-container">
+    {{ question }}
+    <nb-icon *ngIf="information" [nbTooltip]="information" nbTooltipStatus="primary" icon="info-outline"></nb-icon>
+  </div>
+  
+<input nbInput [nbDatepicker]="datepicker" [formControl]="formControl" style="max-width: 175px;">
+<nb-datepicker #datepicker format="DD MMMM YYYY" (dateChange)="setAnswer($event)"></nb-datepicker>

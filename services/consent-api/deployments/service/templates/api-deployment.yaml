@@ -1,7 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: consent-api
   labels:
     io.kompose.service: consent-api
   name: consent-api
@@ -20,8 +19,15 @@ spec:
     spec:
       containers:
         - name: consent-api
-          image: consent-api:latest
+          image: "{{ .Values.global.services.consent_api.name }}:{{ .Values.global.services.consent_api.tag }}"
           imagePullPolicy: IfNotPresent
+          resources:
+            requests:
+              cpu: "10m"
+              memory: "64Mi"
+            limits:
+              cpu: "100m"
+              memory: "512Mi"
           ports:
             - containerPort: 5050
           env:
