@@ -15,3 +15,6 @@ global:
   consent_ui:
     host: "*"
     route: /consent
+  user_service:
+    host: "*"
+    route: /api/user
