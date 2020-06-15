@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Grpc.Core;
 using QuestionnaireGRPC;
@@ -11,10 +9,10 @@ using AutoMapper;
 
 namespace Questionnaire.Services
 {
-    /// <summary>
-    /// Responsible for handling the GRPC protobuffer service logic
-    /// </summary>
-    public class QuestionnaireService : Questionnaire_Service.Questionnaire_ServiceBase
+  /// <summary>
+  /// Responsible for handling the GRPC protobuffer service logic
+  /// </summary>
+  public class QuestionnaireService : Questionnaire_Service.Questionnaire_ServiceBase
     {
         private readonly ILogger<QuestionnaireService> _logger;
         private readonly IQuestionnaireRepository _repository;
@@ -35,11 +33,19 @@ namespace Questionnaire.Services
         /// <returns>created Questionnaire or error indicating reason for failure</returns>
         public override async Task<QuestionnaireGRPC.Questionnaire> CreateQuestionnaire(QuestionnaireCreateRequest request, ServerCallContext context)
         {
-            // TODO: Validate questionnaire.
+            // TODO: Validate questions.
+            if(string.IsNullOrWhiteSpace(request.Name)) {
+                throw new RpcException(new Status(StatusCode.InvalidArgument, "Name is required"));
+            }
+
             QuestionnaireEntity response;
             try
             {
-                response = await _repository.CreateQuestionnaire(_mapper.Map<QuestionnaireEntity>(request));
+                QuestionnaireEntity entity = _mapper.Map<QuestionnaireEntity>(request);
+                response = await _repository.CreateQuestionnaire(entity);
+            }
+            catch(AutoMapperMappingException) {
+                throw new RpcException(new Status(StatusCode.InvalidArgument, "Not all required fields are filled in"));
             }
             catch (Exception e)
             { // TODO sort errors and throw dedicated exceptions.
@@ -65,6 +71,9 @@ namespace Questionnaire.Services
             catch (Exception e)
             { // TODO sort errors and throw dedicated exceptions.
                 throw new RpcException(new Status(StatusCode.Internal, e.Message));
+            }
+            if(response == null) {
+                throw new RpcException(new Status(StatusCode.NotFound, $"Entity with id '{request.Id}' not found'"));
             }
             return _mapper.Map<QuestionnaireGRPC.Questionnaire>(response);
         }
@@ -94,6 +103,7 @@ namespace Questionnaire.Services
 
         /// <summary>
         /// Deletes a questionnaire with the given parameters
+        /// Returns an empty response even if nothing is deleted without errors
         /// </summary>
         /// <param name="request">The data to delete a questionnaire with</param>
         /// <param name="context">The server context</param>

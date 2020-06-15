@@ -3,13 +3,14 @@
   <nb-card-body class="rename-dialog-body">
     Please type the current name <b>"{{ questionnaire.name }}"</b> first to confirm:
     <div>
-      <input fullWidth nbInput [(ngModel)]="oldTitle" />
+      <input fullWidth nbInput [(ngModel)]="oldTitle" id="rename-dialog-old-name" />
     </div>
     New name:
     <div>
-      <input fullWidth nbInput [(ngModel)]="newTitle" />
-      <button nbButton status="basic" (click)="close()">Cancel</button>
+      <input fullWidth nbInput [(ngModel)]="newTitle" id="rename-dialog-new-name" />
+      <button nbButton status="basic" id="rename-dialog-cancel" (click)="close()">Cancel</button>
       <button
+        id="rename-dialog-rename"
         nbButton
         status="success"
         (click)="rename()"

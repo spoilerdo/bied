@@ -7,9 +7,15 @@
     </div>
     Please type <b>"{{ questionnaire.name }}"</b> in the text box to delete the questionnaire:
     <div>
-      <input fullWidth nbInput [(ngModel)]="typedTitle" />
-      <button nbButton status="basic" (click)="close()">Cancel</button>
-      <button nbButton status="danger" (click)="remove()" [disabled]="typedTitle !== questionnaire.name">
+      <input fullWidth nbInput [(ngModel)]="typedTitle" id="remove-dialog-input" />
+      <button nbButton status="basic" (click)="close()" id="remove-dialog-cancel">Cancel</button>
+      <button
+        nbButton
+        status="danger"
+        (click)="remove()"
+        id="remove-dialog-remove"
+        [disabled]="typedTitle !== questionnaire.name"
+      >
         Remove
       </button>
     </div>
