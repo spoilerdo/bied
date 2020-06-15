@@ -33,6 +33,6 @@ global:
   research_ui:
     host: "*"
     route: /research
-  user_service:
+  user:
     host: "*"
     route: /api/user
