@@ -10,7 +10,7 @@ spec:
     secretName: user-db-auth
   storageType: "Durable"
   storage:
-    storageClassName: "standard"
+    storageClassName: {{ .Values.global.storageClassName }}
     accessModes:
     - ReadWriteOnce
     resources:
