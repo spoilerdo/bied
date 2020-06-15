@@ -7,24 +7,36 @@ We tested it to run it on Minikube or docker desktop.
 
 ### Start a local cluster:
 #### Use Minikube
-If you want to run it on Minikube you need to **add an .env file** to the root of this project with the following content: `RUNNER=minikube`.
-
 0. Begin with configuring the correct drivers: https://minikube.sigs.k8s.io/docs/drivers/
-1. Install Kip: https://github.com/debugged-software/kip/releases  
-2. Run kip check to see if you installed all the dependencies  
-3. Start your local cluster: `minikube start -p bied-dev --cpus 4 --memory 6144 --kubernetes-version=1.13.11`
-4. Stop the cluster`minikube -p bied-dev stop`
-5. Run kip to initiate the project: `kip run start-minikube`
-6. Use Kip to deploy charts or services to the cluster (more information can be found on the official [github](https://github.com/debugged-software/kip/releases) page).
+1. In the map [environments](../../environments/values-TEMPLATE.yaml) you need to copy the file values-TEMPLATE.yaml to values.yaml. Change storageClassName to **standard** if this isn't already.
+2. You also need to **add an .env file** to the root of this project with the following content: `RUNNER=minikube`.
+3. Install Kip: https://github.com/debugged-software/kip/releases  
+4. Run kip check to see if you installed all the dependencies  
+5. Start your local cluster: `minikube start -p bied-dev --cpus 4 --memory 8192 --kubernetes-version=1.13.11`
+6. Stop the cluster`minikube -p bied-dev stop`
+7. Run kip to initiate the project: `kip run start-minikube`
+8. Use Kip to deploy charts or services to the cluster (more information can be found on the official [github](https://github.com/debugged-software/kip/releases) page). But its important to deploy ISTIO first (`kip deploy -c istio`)
 
 #### Use Docker Dekstop
 0. Install docker desktop: https://www.docker.com/products/docker-desktop
-1. Install Kip: https://github.com/debugged-software/kip/releases  
-2. run `kip check` to see if you installed all the dependencies  
-3. In the setting activate Kubernetes and wait until it is started.
-4. Run `kip build`
-5. check if there are any crashes: `kubectl get all --all-namespaces`
-6. Use Kip to deploy charts or services to the cluster (more information can be found on the official [github](https://github.com/debugged-software/kip/releases) page).
+1. In the map [environments](../../environments/values-TEMPLATE.yaml) you need to copy the file values-TEMPLATE.yaml to values.yaml.
+Change storageClassName to **hostpath** if this isn't already.
+2. You also need to **add an .env file** to the root of this project with the following content: `RUNNER=docker`.
+3. Install Kip: https://github.com/debugged-software/kip/releases  
+4. run `kip check` to see if you installed all the dependencies  
+5. In the setting activate Kubernetes and wait until it is started.
+6. Before building run the following command: `kubectl label namespace default istio-injection=enabled`
+7. Than you need to build you cluster again with the following commands:
+   - `helm repo add appscode https://charts.appscode.com/stable/`
+   - `helm repo update`
+   - `helm install kubedb-operator --version v0.13.0-rc.0 --namespace kube-system appscode/kubedb`
+   - `kubectl rollout status -w deployment/kubedb-operator --namespace=kube-system`
+   - Wait ~2 minutes
+   - `helm install kubedb-catalog --version v0.13.0-rc.0 --namespace kube-system appscode/kubedb-catalog`
+   - `kubectl label namespace default istio-injection=enabled`
+8. Run `kip build`
+9. check if there are any crashes: `kubectl get all --all-namespaces`
+10. Use Kip to deploy charts or services to the cluster (more information can be found on the official [github](https://github.com/debugged-software/kip/releases) page). But its important to deploy ISTIO first (`kip deploy -c istio`)
 
 
 #### Deploy something with Helm:
