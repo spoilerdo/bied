@@ -1,4 +1,0 @@
-image:
-  repository: nginx
-  pullPolicy: IfNotPresent
-  tag: ""
