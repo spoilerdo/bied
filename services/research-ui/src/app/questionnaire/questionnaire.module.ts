@@ -55,6 +55,7 @@ const nebularModules = [
     TruncatePipe,
     RenameDialogComponent,
     PaginationComponent,
+    QuestionnairePaginatorComponent,
   ],
   imports: [
     CommonModule,
