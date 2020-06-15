@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+if type minikube 2> /dev/null; then
+  eval $(minikube docker-env -p bied-dev -u)
+fi
+
+# Get root path
+ROOT_PATH=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )/..
+
+# Build libraries and create mount string
+kip build -s consent-ui -e tele -k dev -- --target dev
+
+# Inject project in local cluster
+telepresence \
+  --swap-deployment consent-ui \
+  --docker-run \
+    -v $ROOT_PATH/src:/usr/src/app/src \
+    -v /var/run/docker.sock:/var/run/docker.sock \
+    eu.gcr.io/s66-2-271821/consent-ui:dev -p 80 \
+    npm run start:tele

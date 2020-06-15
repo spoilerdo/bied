@@ -1,10 +1,30 @@
 <nb-layout>
   <nb-layout-header fixed>
-    BIED S-66
+    <div
+      style="
+        display: flex;
+        flex: 1;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      "
+    >
+      <span>BIED S-66</span>
+      <button
+        nbButton
+        ghost
+        status="primary"
+        [nbContextMenuTag]="'profile'"
+        [nbContextMenu]="profileItems$ | async"
+      >
+        <nb-icon icon="person-outline"></nb-icon>
+      </button>
+    </div>
   </nb-layout-header>
   <nb-sidebar>
-    <nb-menu [items]="menuItems"></nb-menu>
+    <nb-menu [tag]="'sidebar'" [items]="sidebarItems"></nb-menu>
   </nb-sidebar>
+
   <nb-layout-column>
     <router-outlet></router-outlet>
   </nb-layout-column>

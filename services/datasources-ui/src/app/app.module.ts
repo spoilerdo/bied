@@ -19,6 +19,7 @@ import {
   NbSelectModule,
   NbIconModule,
   NbCheckboxModule,
+  NbContextMenuModule,
 } from "@nebular/theme";
 import { NbEvaIconsModule } from "@nebular/eva-icons";
 import { OverviewComponent } from "./components/overview/overview.component";
@@ -30,6 +31,7 @@ import { DataLoaderStepComponent } from "./components/create/steps/data-loader-s
 import { CustomFieldsStepComponent } from "./components/create/steps/custom-fields-step/custom-fields-step.component";
 import { SelectBranchStepComponent } from "./components/create/steps/select-branch-step/select-branch-step.component";
 import { KeygenStepComponent } from "./components/create/steps/keygen-step/keygen-step.component";
+import { CommonModule } from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -62,6 +64,8 @@ import { KeygenStepComponent } from "./components/create/steps/keygen-step/keyge
     NbIconModule,
     NbCheckboxModule,
     ClipboardModule,
+    CommonModule,
+    NbContextMenuModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

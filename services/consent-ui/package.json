@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "start:tele": "ng serve --port 80 --disable-host-check --poll=2000",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
