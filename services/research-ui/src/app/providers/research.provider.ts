@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
-import { Research } from './models/research';
-import { SortingTypes } from './models/sortingTypes';
+import { Research } from '../models/research';
+import { SortingTypes } from '../models/sortingTypes';
 
 @Injectable()
 export class ResearchProvider {
   getResearches(): Research[] {
     throw new Error('Method not implemented.');
   }
-  getResearch(id: number): Research {
+  getResearch(id: string): Research {
     throw new Error('Method not implemented.');
   }
   createResearch(): Research {

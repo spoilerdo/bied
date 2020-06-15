@@ -1,7 +1,7 @@
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ResearchListComponent } from './research-list.component';
-import { Research } from '../models/research';
+import { Research } from '../../models/research';
 import * as moment from 'moment';
 import { ResearchListModule } from './research-list.module';
 import { DebugElement } from '@angular/core';

@@ -1,0 +1,56 @@
+<ngx-header-card title="{{ research?.name || 'Loading' }}" icon="assets/research-icon.svg">
+  <button nbButton status="warning"><nb-icon icon="edit-outline"></nb-icon> Bewerken</button>
+</ngx-header-card>
+
+<div *ngIf="!!research">
+  <div class="row">
+    <!-- Summary: thumbnail, stats, description -->
+    <div class="col-sm-12 col-md-6">
+      <nb-card>
+        <nb-card-body>
+          <div class="row">
+            <div class="col-auto">
+              <ngx-thumbnail src="https://picsum.photos/200/300?random=1" alt="Research thumbnail"></ngx-thumbnail>
+            </div>
+            <div class="col" style="padding-right: 0; padding-left: 0;">
+              <!-- Stats -->
+              <table>
+                <tr *ngFor="let stat of stats">
+                  <td width="30%">
+                    <strong>{{ stat[0] }}</strong>
+                  </td>
+                  <td width="70%">{{ stat[1] }}</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <!-- Description -->
+          <div class="row">
+            <div class="col">
+              <p>
+                {{ research.description }}
+              </p>
+            </div>
+          </div>
+        </nb-card-body>
+      </nb-card>
+    </div>
+
+    <!--  -->
+    <div class="col-sm-12 col-md-6">
+      <nb-card>
+        <nb-card-header>Manage research</nb-card-header>
+        <nb-card-body>
+          <i>Placeholder for invites / links to questionnaire</i>
+        </nb-card-body>
+      </nb-card>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <nb-card>
+        <nb-card-header>Datasources</nb-card-header>
+      </nb-card>
+    </div>
+  </div>
+</div>

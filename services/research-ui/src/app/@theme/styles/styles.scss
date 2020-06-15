@@ -3,6 +3,7 @@
 
 // framework component styles
 @import '~@nebular/theme/styles/globals';
+@import 'grid';
 
 // install the framework styles
 @include nb-install() {

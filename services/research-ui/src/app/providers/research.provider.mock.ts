@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
-import { Research } from './models/research';
+import { Research } from '../models/research';
 import { ResearchProvider } from './research.provider';
 import * as moment from 'moment';
-import { SortingTypes } from './models/sortingTypes';
+import { SortingTypes } from '../models/sortingTypes';
 import { SortArrObj, Arrangement } from '../Utility';
 
 @Injectable()
 export class ResearchMockProvider extends ResearchProvider {
-  private readonly store: { [index: number]: Research } = {
-    0: Object.assign(new Research(), {
+  private readonly store: { [index: string]: Research } = {
+    '0': Object.assign(new Research(), {
       id: 0,
       name: 'Identifying the mockability of services',
       description:
@@ -19,7 +19,7 @@ export class ResearchMockProvider extends ResearchProvider {
       active: true,
       ownerId: 0,
     }),
-    1: Object.assign(new Research(), {
+    '1': Object.assign(new Research(), {
       id: 1,
       name: 'Spreading and containing a global pandemic',
       description:
@@ -30,7 +30,7 @@ export class ResearchMockProvider extends ResearchProvider {
       active: true,
       ownerId: 0,
     }),
-    2: Object.assign(new Research(), {
+    '2': Object.assign(new Research(), {
       id: 2,
       name: 'Invloed van Lockdown op sociaal contact',
       description:
@@ -41,7 +41,7 @@ export class ResearchMockProvider extends ResearchProvider {
       active: true,
       ownerId: 0,
     }),
-    3: Object.assign(new Research(), {
+    '3': Object.assign(new Research(), {
       id: 3,
       name: 'Gedrag jongeren naar aanleiding van vuurwerkverbod',
       description:
@@ -57,7 +57,7 @@ export class ResearchMockProvider extends ResearchProvider {
   getResearches(): Research[] {
     return Object.values(this.store);
   }
-  getResearch(id: number): Research {
+  getResearch(id: string): Research {
     return this.store[id];
   }
   createResearch(): Research {

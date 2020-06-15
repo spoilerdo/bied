@@ -1,7 +1,5 @@
 <!-- Thumbnail (left container) -->
-<div class="thumbnail-container">
-  <img src="{{ research.imageUrl }}" alt="{{ research.name }}" class="thumbnail" />
-</div>
+<ngx-thumbnail src="{{ research.imageUrl }}" alt="{{ research.name }}" style="padding: 0.625rem;"></ngx-thumbnail>
 <!-- Details (right container) -->
 <div class="details">
   <!-- (top container) -->
@@ -21,6 +19,6 @@
   <p class="description">{{ research.description }}</p>
 
   <span class="metadata text-hint"
-    >Uitegevoerd door: <span class="lead-researcher">{{ research.ownerId }}</span></span
+    >Uitegevoerd door: <span class="lead-researcher">{{ ownerName }}</span></span
   >
 </div>

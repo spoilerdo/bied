@@ -1,7 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { trigger, transition, style, animate, stagger, query } from '@angular/animations';
-import { Research } from '../models/research';
-import { SortingTypes } from '../models/sortingTypes';
+import { Research } from '../../models/research';
+import { SortingTypes } from '../../models/sortingTypes';
 
 @Component({
   selector: 'ngx-research-list',

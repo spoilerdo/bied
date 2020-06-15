@@ -1,8 +1,17 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
-import { NbThemeModule, NbLayoutModule, NbCardModule } from '@nebular/theme';
+import { NbThemeModule, NbCardModule } from '@nebular/theme';
+import { HeaderCardComponent } from './header-card/header-card.component';
+import { ThumbnailComponent } from './thumbnail/thumbnail.component';
+
+const components = [
+  HeaderCardComponent,
+  ThumbnailComponent
+]
+
 @NgModule({
-  imports: [],
-  exports: [],
+  imports: [NbCardModule],
+  declarations: components,
+  exports: components,
 })
 export class ThemeModule {
   static forRoot(): ModuleWithProviders {
