@@ -51,9 +51,10 @@ namespace UserSvc
             });
 
             //register identity and create db
-            services.AddIdentityCore<ApplicationUser>(options => { });
-            new IdentityBuilder(typeof(ApplicationUser), typeof(IdentityRole), services)
+            services.AddIdentity<ApplicationUser, IdentityRole>(options => { })
+                .AddRoles<IdentityRole>()
                 .AddRoleManager<RoleManager<IdentityRole>>()
+                .AddDefaultTokenProviders()
                 .AddSignInManager<SignInManager<ApplicationUser>>()
                 .AddEntityFrameworkStores<IdentityContext>();
         }
@@ -62,6 +63,7 @@ namespace UserSvc
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             UpdateDatabase(app);
+            CreateRoles(app);
 
             app.UseRouting();
 
@@ -85,6 +87,31 @@ namespace UserSvc
                 using (var context = serviceScope.ServiceProvider.GetService<IdentityContext>())
                 {
                     context.Database.Migrate();
+                }
+            }
+        }
+
+        private static void CreateRoles(IApplicationBuilder app)
+        {
+            using (var serviceScope = app.ApplicationServices
+               .GetRequiredService<IServiceScopeFactory>()
+               .CreateScope())
+            {
+                using (var roleManager = serviceScope.ServiceProvider.GetService<RoleManager<IdentityRole>>())
+                {
+                    if (!roleManager.RoleExistsAsync("User").Result)
+                    {
+                        IdentityRole role = new IdentityRole();
+                        role.Name = "User";
+                        IdentityResult roleResult = roleManager.CreateAsync(role).Result;
+                    }
+
+                    if (!roleManager.RoleExistsAsync("Researcher").Result)
+                    {
+                        IdentityRole role = new IdentityRole();
+                        role.Name = "Researcher";
+                        IdentityResult roleResult = roleManager.CreateAsync(role).Result;
+                    }
                 }
             }
         }

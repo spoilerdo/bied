@@ -6,7 +6,7 @@ spec:
   gateways:
     - bied-gateway
   hosts:
-    - "*" # What inbound Host should be routed. (eg. 'research.bied.nl')
+    - "kafka.fontysbied.nl" # What inbound Host should be routed. (eg. 'research.bied.nl')
   http:
     - match:
         - uri:

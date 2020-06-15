@@ -1,0 +1,10 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "UserRoleGRPC"; 
+
+package UserRole;
+
+enum UserRole {
+	User = 0;
+	Researcher = 1;
+}

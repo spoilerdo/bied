@@ -4,6 +4,7 @@ option csharp_namespace = "UserGRPC";
 
 import "google/api/annotations.proto";
 import "google/protobuf/timestamp.proto";
+import "user-role.proto";
 
 package User;
 
@@ -61,6 +62,7 @@ message UserCreateRequest {
     string email = 3;
     string username = 4;
     string password = 5;
+    UserRole.UserRole role = 6;
 }
 
 message UserEditRequest {
@@ -90,4 +92,5 @@ message UserModel {
     string lastname = 3;
     string email = 4;
     string username = 5;
+    UserRole.UserRole role = 6;
 }

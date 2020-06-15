@@ -22,12 +22,14 @@ namespace UserSvc.Services
     {
         private UserManager<ApplicationUser> _userManager;
         private SignInManager<ApplicationUser> _signInManager;
+        private RoleManager<IdentityRole> _roleManager;
         private readonly IMapper _mapper;
         private readonly IConfiguration _configuration;
-        public UserService(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, IMapper mapper, IConfiguration configuration)
+        public UserService(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, RoleManager<IdentityRole> roleManager ,IMapper mapper, IConfiguration configuration)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _roleManager = roleManager;
             _mapper = mapper;
             _configuration = configuration;
         }
@@ -52,9 +54,21 @@ namespace UserSvc.Services
             var result = await _userManager.CreateAsync(userToCreate, request.Password);
             if (result.Succeeded)
             {
+                var currentUser = await _userManager.FindByNameAsync(request.Username);
+                //add role to the created user
+                await _userManager.AddToRoleAsync(currentUser, System.Enum.GetName(typeof(UserRoleGRPC.UserRole), request.Role));
+                
                 return new UserResponse()
                 {
-                    User = _mapper.Map<UserModel>(userToCreate)
+                    User = new UserModel
+                    {
+                        Username = currentUser.UserName,
+                        Email = currentUser.Email,
+                        Firstname = currentUser.FirstName,
+                        Lastname = currentUser.LastName,
+                        Id = currentUser.Id,
+                        Role = request.Role
+                    }
                 };
             }
 
@@ -93,7 +107,21 @@ namespace UserSvc.Services
             var user = await _userManager.FindByIdAsync(request.Id);
             if(user != null)
             {
-                return _mapper.Map<UserResponse>(user);
+                //fetch role of user
+                var rolesOfUser = await _userManager.GetRolesAsync(user);
+                var role = rolesOfUser.FirstOrDefault();
+                return new UserResponse()
+                {
+                    User = new UserModel
+                    {
+                        Username = user.UserName,
+                        Email = user.Email,
+                        Firstname = user.FirstName,
+                        Lastname = user.LastName,
+                        Id = user.Id,
+                        Role = (UserRoleGRPC.UserRole)System.Enum.Parse(typeof(UserRoleGRPC.UserRole), role)
+                    }
+                };
             }
             throw new RpcException(new Status(StatusCode.NotFound, "User not found"));
         }
@@ -114,13 +142,28 @@ namespace UserSvc.Services
             if (result.Succeeded)
             {
                 //get any claims from the logged in user
-                var foundClaims = await _userManager.GetClaimsAsync(user);
-                //union these claims with custom claims
-                var claims = new[]
+                List<Claim> claims = (List<Claim>) await _userManager.GetClaimsAsync(user);
+                //create custom claims and merge them with the claims within .NET identity
+                claims.Add(new Claim(JwtRegisteredClaimNames.Sub, user.UserName));
+                claims.Add(new Claim(JwtRegisteredClaimNames.Email, user.Email));
+
+                //get roles from the logged in user
+                var foundRoles = await _userManager.GetRolesAsync(user);
+                foreach(var userRole in foundRoles)
                 {
-                    new Claim(JwtRegisteredClaimNames.Sub, user.UserName),
-                    new Claim(JwtRegisteredClaimNames.Email, user.Email),
-                }.Union(foundClaims);
+                    //add role claim 
+                    claims.Add(new Claim(ClaimTypes.Role, userRole));
+                    //fetch any custom claims for this role
+                    var role = await _roleManager.FindByNameAsync(userRole);
+                    if (role != null)
+                    {
+                        var roleClaims = await _roleManager.GetClaimsAsync(role);
+                        foreach (Claim roleClaim in roleClaims)
+                        {
+                            claims.Add(roleClaim);
+                        }
+                    }
+                }
 
                 var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration.GetValue<string>("jwtData:JwtKey")));
                 var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
