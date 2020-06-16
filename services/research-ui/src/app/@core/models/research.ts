@@ -7,6 +7,5 @@ export class Research {
   endDate: number;
   active: boolean;
   ownerId: string;
-  owner?: string;
   // Datasource datasources = 9;
 }

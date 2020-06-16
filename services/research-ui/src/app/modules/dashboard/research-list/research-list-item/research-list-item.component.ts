@@ -1,6 +1,6 @@
 import { Component, Input, SimpleChanges } from '@angular/core';
 import { Research } from '../../../models/research';
-import { UserProvider } from 'src/app/@core/services/user.provider';
+import { UserProvider } from 'src/app/@core/services/user.service';
 
 @Component({
   selector: 'research-list-item',

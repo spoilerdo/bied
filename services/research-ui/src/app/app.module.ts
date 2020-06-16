@@ -18,9 +18,9 @@ import { QuestionnaireCardComponent } from './questionnaire/pages/questionnaire-
 import { DashboardModule } from './dashboard/dashboard.module';
 import { NbLayoutModule } from '@nebular/theme';
 import { ResearchDetailsModule } from './research-details/research-details.module';
-import { ResearchProvider } from './@core/services/research.provider';
-import { ResearchMockProvider } from './@core/services/research.provider.mock';
-import { UserProvider } from './@core/services/user.provider';
+import { ResearchProvider } from './@core/services/research/research.service';
+import { ResearchMockProvider } from './@core/services/research/research.provider.mock';
+import { UserProvider } from './@core/services/user.service';
 
 const nebularModules = [
   NbThemeModule.forRoot(),
