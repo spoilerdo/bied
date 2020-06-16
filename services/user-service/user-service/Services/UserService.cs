@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 using UserGRPC;
 using UserSvc.Domain;
 using UserSvc.Persistence.Context;
+using UserSvc.Security.Token;
 
 namespace UserSvc.Services
 {
@@ -23,15 +24,16 @@ namespace UserSvc.Services
         private UserManager<ApplicationUser> _userManager;
         private SignInManager<ApplicationUser> _signInManager;
         private RoleManager<IdentityRole> _roleManager;
+        private readonly ITokenGenerator _tokenGenerator;
         private readonly IMapper _mapper;
-        private readonly IConfiguration _configuration;
-        public UserService(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, RoleManager<IdentityRole> roleManager ,IMapper mapper, IConfiguration configuration)
+
+        public UserService(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, RoleManager<IdentityRole> roleManager , IMapper mapper, ITokenGenerator tokenGenerator)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _roleManager = roleManager;
             _mapper = mapper;
-            _configuration = configuration;
+            _tokenGenerator = tokenGenerator;
         }
 
         public override async Task<UserResponse> CreateUser(UserCreateRequest request, ServerCallContext context)
@@ -138,53 +140,113 @@ namespace UserSvc.Services
         public override async Task<LoginResponse> Login(LoginRequest request, ServerCallContext context)
         {
             var user = await _userManager.FindByNameAsync(request.Username);
+            if(user == null)
+            {
+                throw new RpcException(new Status(StatusCode.NotFound, "User not found"));
+            }
+
             var result = await _signInManager.CheckPasswordSignInAsync(user, request.Password, false);
             if (result.Succeeded)
             {
-                //get any claims from the logged in user
-                List<Claim> claims = (List<Claim>) await _userManager.GetClaimsAsync(user);
-                //create custom claims and merge them with the claims within .NET identity
-                claims.Add(new Claim(JwtRegisteredClaimNames.Sub, user.UserName));
-                claims.Add(new Claim(JwtRegisteredClaimNames.Email, user.Email));
-
-                //get roles from the logged in user
-                var foundRoles = await _userManager.GetRolesAsync(user);
-                foreach(var userRole in foundRoles)
-                {
-                    //add role claim 
-                    claims.Add(new Claim(ClaimTypes.Role, userRole));
-                    //fetch any custom claims for this role
-                    var role = await _roleManager.FindByNameAsync(userRole);
-                    if (role != null)
-                    {
-                        var roleClaims = await _roleManager.GetClaimsAsync(role);
-                        foreach (Claim roleClaim in roleClaims)
-                        {
-                            claims.Add(roleClaim);
-                        }
-                    }
-                }
-
-                var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration.GetValue<string>("jwtData:JwtKey")));
-                var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-
-                var token = new JwtSecurityToken(
-                         issuer: _configuration.GetValue<string>("jwtData:Issuer"),
-                         audience: _configuration.GetValue<string>("jwtData:Audience"),
-                         claims: claims,
-                         notBefore: DateTime.UtcNow,
-                         expires: DateTime.UtcNow.AddDays(1),
-                         signingCredentials: creds
-                );
+                //get any claims from the logged in user and generate token
+                List<Claim> claims = await GetClaimsForUser(user);
+                var token = _tokenGenerator.GenerateToken(claims);
+                //fetch refreshtoken and store in database
+                var refreshToken = _tokenGenerator.GenerateRefreshToken();
+                refreshToken.User = user;
+                user.RefreshTokens.Add(refreshToken);
+                await _userManager.UpdateAsync(user);
 
                 return new LoginResponse()
                 {
                     Token = new JwtSecurityTokenHandler().WriteToken(token),
-                    Expiration = Timestamp.FromDateTime(token.ValidTo)
+                    Expiration = Timestamp.FromDateTime(token.ValidTo),
+                    RefreshToken = _mapper.Map<UserGRPC.RefreshToken>(refreshToken)
                 };
             }
 
             throw new RpcException(new Status(StatusCode.Unauthenticated, "Invalid login"));
+        }
+
+        public override async Task<RefreshResponse> Refresh(RefreshRequest request, ServerCallContext context)
+        {
+            //first we decrypt the token
+            JwtSecurityToken token = new JwtSecurityTokenHandler().ReadJwtToken(request.Token);
+
+            //check if token is expired
+            if(token.ValidTo >= DateTime.UtcNow)
+            {
+                throw new RpcException(new Status(StatusCode.InvalidArgument, "Token is still valid!"));
+            }
+
+            //fetch username from token
+            var username = token.Claims.Where(x => x.Type == JwtRegisteredClaimNames.Sub).FirstOrDefault();
+            if(username == null)
+            {
+                throw new RpcException(new Status(StatusCode.NotFound, "user not found from token"));
+            }
+
+            //fetch user from data store (with relations)
+            var user = await _userManager.Users.Include(x => x.RefreshTokens).SingleOrDefaultAsync(x => x.UserName == username.Value);
+            if (user == null)
+            {
+                throw new RpcException(new Status(StatusCode.NotFound, "User not found"));
+            }
+
+            //check if refreshtoken is valid
+            Domain.RefreshToken refreshToken = user.RefreshTokens.Where(x => x.Token == request.RefreshToken).FirstOrDefault();
+            if (refreshToken != null)
+            {
+                //check if token is expired
+                if(refreshToken.Expiration <= DateTime.UtcNow)
+                {
+                    //remove refresh token from user
+                    user.RefreshTokens.Remove(refreshToken);
+                    await _userManager.UpdateAsync(user);
+
+                    throw new RpcException(new Status(StatusCode.Unauthenticated, "Refresh token expired"));
+                }
+
+                //every check passed, generate new JWT token
+                List<Claim> claims = await GetClaimsForUser(user);
+                var jwtToken = _tokenGenerator.GenerateToken(claims);
+
+                return new RefreshResponse
+                {
+                    Token = new JwtSecurityTokenHandler().WriteToken(jwtToken),
+                    Expiration = Timestamp.FromDateTime(jwtToken.ValidTo)
+                };
+            }
+
+            throw new RpcException(new Status(StatusCode.Unauthenticated, "Refresh token not valid"));
+        }
+
+        private async Task<List<Claim>> GetClaimsForUser(ApplicationUser user)
+        {
+            //get any claims from the logged in user
+            List<Claim> claims = (List<Claim>)await _userManager.GetClaimsAsync(user);
+            //create custom claims and add them to the claims within .NET identity
+            claims.Add(new Claim(JwtRegisteredClaimNames.Sub, user.UserName));
+            claims.Add(new Claim(JwtRegisteredClaimNames.Email, user.Email));
+            //get roles from the logged in user
+            var foundRoles = await _userManager.GetRolesAsync(user);
+            foreach (var userRole in foundRoles)
+            {
+                //add role claim 
+                claims.Add(new Claim(ClaimTypes.Role, userRole));
+                //fetch any custom claims for this role
+                var role = await _roleManager.FindByNameAsync(userRole);
+                if (role != null)
+                {
+                    var roleClaims = await _roleManager.GetClaimsAsync(role);
+                    foreach (Claim roleClaim in roleClaims)
+                    {
+                        claims.Add(roleClaim);
+                    }
+                }
+            }
+
+            return claims;
         }
 
         private async Task<List<string>> ValidatePassword(string password)

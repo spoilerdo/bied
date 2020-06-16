@@ -3,14 +3,14 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.15</Version>
+    <Version>1.0.18</Version>
     <PackageId>Bied.Protobuffers</PackageId>
     <Description>BIED protobuffers Nuget package used for ASP core services</Description>
     <Copyright>AGPL-3.0-or-later</Copyright>
     <PackageProjectUrl>https://github.com/Choem/bied/</PackageProjectUrl>
     <Authors>S66-BIED</Authors>
     <Company>S66-BIED</Company>
-    <PackageReleaseNotes>Updated User proto</PackageReleaseNotes>
+    <PackageReleaseNotes>Once again we update the user proto, very cool.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>

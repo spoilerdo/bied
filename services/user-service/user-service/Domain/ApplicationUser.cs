@@ -10,5 +10,12 @@ namespace UserSvc.Domain
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
+
+        public List<RefreshToken> RefreshTokens { get; set; }
+
+        public ApplicationUser()
+        {
+            this.RefreshTokens = new List<RefreshToken>();
+        }
     }
 }
