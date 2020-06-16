@@ -132,7 +132,7 @@ node {
 
                     sh 'kubectl config set-context --current --namespace default'
 
-                    sh "kip deploy -e prod"
+                    sh "kip deploy -e prod -k ${gitData.GIT_COMMIT}"
                 }
             }
         } finally {
