@@ -80,7 +80,7 @@ node {
                 /*
                  * Build all services of a kip project in the production environment
                  */
-                sh "kip build -e prod -k ${env.GIT_COMMIT}"
+                sh "kip build -e prod -k ${gitData.GIT_COMMIT}"
             }
             stage('Run tests') {
                 def buildStatus = load 'ci/scripts/groovy/buildStatus.groovy'
@@ -119,7 +119,7 @@ node {
 
                     sh 'gcloud auth configure-docker --project s66-2-271821'
 
-                    sh "kip push -e prod -k ${env.GIT_COMMIT}"
+                    sh "kip push -e prod -k ${gitData.GIT_COMMIT}"
                 }
                 stage('Deploy') {
                     // Authenticate with gcloud
