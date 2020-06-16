@@ -77,7 +77,7 @@
                   "maximumWarning": "6kb"
                 }
               ],
-              "baseHref": "/authentication/"
+              "baseHref": "/questionnaire/"
             }
           }
         },
