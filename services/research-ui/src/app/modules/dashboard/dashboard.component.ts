@@ -1,7 +1,8 @@
+import { ResearchService } from './../../@core/services/research/research.service';
 import { Component, OnInit } from '@angular/core';
-import { ResearchProvider } from '../providers/research.provider';
-import { Research } from '../models/research';
-import { SortingTypes } from '../models/sortingTypes';
+import { Research } from '../../@core/models/research';
+import { SortingTypes } from '../../@core/models/sortingTypes';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,23 +10,23 @@ import { SortingTypes } from '../models/sortingTypes';
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
-  researches: Research[];
+  public researches$: Observable<Research[]>;
   order: SortingTypes;
 
-  constructor(readonly researchProvider: ResearchProvider) {}
+  constructor(readonly researchService: ResearchService) {}
 
   ngOnInit(): void {
-    this.researches = this.researchProvider.getResearches();
+    this.researches$ = this.researchService.getResearches();
     this.order = SortingTypes.ALFAA;
   }
 
   searchEvent(searchTerm: string) {
-    this.researches = this.researchProvider.searchResearch(searchTerm);
-    this.researches = this.researchProvider.orderResearch(this.order, this.researches);
+    this.researches$ = this.researchService.searchResearch(searchTerm);
+    this.researches$ = this.researchService.orderResearch(this.order);
   }
 
   orderEvent(_order: SortingTypes) {
     this.order = _order;
-    this.researches = this.researchProvider.orderResearch(_order, this.researches);
+    this.researches$ = this.researchService.orderResearch(_order);
   }
 }

@@ -4,14 +4,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Research } from '../../models/research';
 import { SortingTypes } from '../../models/sortingTypes';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable, BehaviorSubject, of } from 'rxjs';
 import { pluck } from 'rxjs/operators';
 import { SortArrObj, Arrangement } from 'src/app/Utility';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ResearchProvider {
+export class ResearchService {
   private researchesSubject = new BehaviorSubject<Research[]>(null);
 
   constructor(private httpClient: HttpClient) {}
@@ -66,29 +66,29 @@ export class ResearchProvider {
   inviteUsersToResearch(): void {
     throw new Error('Method not implemented.');
   }
-  searchResearch(searchTerm: string): Research[] {
+  searchResearch(searchTerm: string): Observable<Research[]> {
     const regexp = new RegExp(searchTerm, 'i');
     if (searchTerm.length > 0) {
-      return this.researchesSubject.value.filter(r => regexp.test(r.name));
+      return of(this.researchesSubject.value.filter(r => regexp.test(r.name)));
     }
-    return this.researchesSubject.value;
+    return this.researchesSubject;
   }
-  orderResearch(order: SortingTypes, data: Research[]): Research[] {
+  orderResearch(order: SortingTypes): Observable<Research[]> {
     switch (order) {
       // START SORTING ON END DATE
       case SortingTypes.DATEA:
-        return SortArrObj(data, 'endDate', Arrangement.ASCENDING);
+        return of(SortArrObj(this.researchesSubject.value, 'endDate', Arrangement.ASCENDING));
       case SortingTypes.DATEZ:
-        return SortArrObj(data, 'endDate', Arrangement.DESCENDING);
+        return of(SortArrObj(this.researchesSubject.value, 'endDate', Arrangement.DESCENDING));
 
       // START SORTING ON ALPHABETICAL ORDER
       case SortingTypes.ALFAA:
-        return SortArrObj(data, 'name', Arrangement.ASCENDING);
+        return of(SortArrObj(this.researchesSubject.value, 'name', Arrangement.ASCENDING));
       case SortingTypes.ALFAZ:
-        return SortArrObj(data, 'name', Arrangement.DESCENDING);
+        return of(SortArrObj(this.researchesSubject.value, 'name', Arrangement.DESCENDING));
 
       default:
-        return SortArrObj(data, 'name', Arrangement.ASCENDING);
+        return of(SortArrObj(this.researchesSubject.value, 'name', Arrangement.ASCENDING));
     }
   }
 

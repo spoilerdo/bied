@@ -2,6 +2,7 @@
   <button nbButton status="success"><nb-icon icon="plus-circle-outline"></nb-icon> Nieuw</button>
 </ngx-header-card>
 
+<div *ngIf="researches$ | async as researches">
 <ngx-research-list
   style="flex: 1;"
   [researches]="researches"
@@ -9,3 +10,4 @@
   (orderEvent)="orderEvent($event)"
 >
 </ngx-research-list>
+</div>
