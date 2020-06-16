@@ -41,10 +41,22 @@ service User_Service {
             body: "*"  
         };
     };
+
+    rpc Refresh (RefreshRequest) returns (RefreshResponse) {
+        option (google.api.http) = {
+            post: "/user/refresh"
+            body: "*"
+        };
+    };
 }
 
 message Empty{
 
+}
+
+message RefreshRequest {
+    string token = 1;
+    string refreshToken = 2;
 }
 
 message LoginRequest {
@@ -84,6 +96,12 @@ message UserResponse {
 message LoginResponse {
     string token = 1;
     google.protobuf.Timestamp expiration = 2;
+    RefreshToken refreshToken = 3;
+}
+
+message RefreshResponse {
+    string token = 1;
+    google.protobuf.Timestamp expiration = 2;
 }
 
 message UserModel {
@@ -93,4 +111,9 @@ message UserModel {
     string email = 4;
     string username = 5;
     UserRole.UserRole role = 6;
+}
+
+message RefreshToken {
+    string token = 1;
+    google.protobuf.Timestamp expiration = 2;
 }
