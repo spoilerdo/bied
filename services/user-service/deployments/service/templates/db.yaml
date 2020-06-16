@@ -17,7 +17,7 @@ spec:
       requests:
         storage: 1Gi
       limits:
-        cpu: "60m"
+        cpu: "50m"
   podTemplate:
     metadata:
         annotations:

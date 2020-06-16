@@ -23,10 +23,10 @@ spec:
           imagePullPolicy: IfNotPresent
           resources:
             limits:
-              cpu:  60m
+              cpu:  50m
               memory: 256Mi
             requests:
-              cpu:  60m
+              cpu:  50m
               memory: 128Mi
           env:
             - name: WATCH_NAMESPACE

@@ -17,7 +17,7 @@ spec:
           image: loicsharma/baget:latest
           resources:
             limits:
-              cpu:  60m
+              cpu:  50m
           ports:
             - name: http
               containerPort: 5000

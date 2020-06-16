@@ -23,14 +23,14 @@ spec:
         k8s:
           resources:
             requests:
-              cpu:  60m
+              cpu:  50m
               memory: 40Mi
     pilot:
       enabled: true
       k8s:
         resources:
           requests:
-            cpu:  60m
+            cpu:  50m
             memory: 512Mi
     sidecarInjector:
       enabled: false
