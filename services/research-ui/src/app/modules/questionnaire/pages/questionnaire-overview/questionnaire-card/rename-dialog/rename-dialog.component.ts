@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NbDialogRef } from '@nebular/theme';
-import { Questionnaire } from 'src/app/models/questionnaire';
+import { Questionnaire } from 'src/app/@core/models/questionnaire';
 
 @Component({
   selector: 'app-rename-dialog',

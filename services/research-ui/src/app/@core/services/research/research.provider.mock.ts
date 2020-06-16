@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Research } from '../../models/research';
-import { ResearchProvider } from './research.service';
 import * as moment from 'moment';
 import { SortingTypes } from '../../models/sortingTypes';
 import { SortArrObj, Arrangement } from '../../../Utility';
 
 @Injectable()
-export class ResearchMockProvider extends ResearchProvider {
+export class ResearchMockProvider {
   private readonly store: { [index: string]: Research } = {
     '0': Object.assign(new Research(), {
       id: 0,

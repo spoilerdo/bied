@@ -1,4 +1,4 @@
-export class UserProvider {
+export class UserService {
   async getFullnameById(id: number): Promise<string> {
     console.warn('#getFullnameById is not implemented!');
     return 'John Doe';

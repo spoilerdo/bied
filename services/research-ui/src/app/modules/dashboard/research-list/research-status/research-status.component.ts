@@ -9,8 +9,8 @@ import * as moment from 'moment';
 export class ResearchStatusComponent {
   @Input() startDate: Date;
   @Input() endDate: Date;
-  statusText: string = 'loading...';
-  statusColor: string = 'hint';
+  statusText = 'loading...';
+  statusColor = 'hint';
 
   ngOnChanges(changes: SimpleChanges) {
     const now = moment();

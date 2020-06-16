@@ -12,15 +12,12 @@ import {
   NbDialogModule,
   NbSidebarModule,
 } from '@nebular/theme';
-import { RemoveDialogComponent } from './questionnaire/pages/questionnaire-overview/questionnaire-card/remove-dialog/remove-dialog.component';
-import { RenameDialogComponent } from './questionnaire/pages/questionnaire-overview/questionnaire-card/rename-dialog/rename-dialog.component';
-import { QuestionnaireCardComponent } from './questionnaire/pages/questionnaire-overview/questionnaire-card/questionnaire-card.component';
-import { DashboardModule } from './dashboard/dashboard.module';
+import { RemoveDialogComponent } from './modules/questionnaire/pages/questionnaire-overview/questionnaire-card/remove-dialog/remove-dialog.component';
+import { RenameDialogComponent } from './modules/questionnaire/pages/questionnaire-overview/questionnaire-card/rename-dialog/rename-dialog.component';
+import { QuestionnaireCardComponent } from './modules/questionnaire/pages/questionnaire-overview/questionnaire-card/questionnaire-card.component';
+import { DashboardModule } from './modules/dashboard/dashboard.module';
 import { NbLayoutModule } from '@nebular/theme';
-import { ResearchDetailsModule } from './research-details/research-details.module';
-import { ResearchProvider } from './@core/services/research/research.service';
-import { ResearchMockProvider } from './@core/services/research/research.provider.mock';
-import { UserProvider } from './@core/services/user.service';
+import { ResearchDetailsModule } from './modules/research-details/research-details.module';
 
 const nebularModules = [
   NbThemeModule.forRoot(),
@@ -46,11 +43,6 @@ const nebularModules = [
     ResearchDetailsModule,
   ],
   providers: [
-    {
-      provide: ResearchProvider,
-      useClass: ResearchMockProvider,
-    },
-    UserProvider,
     BrowserAnimationsModule,
   ],
   bootstrap: [AppComponent],

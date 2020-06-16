@@ -1,6 +1,6 @@
+import { Questionnaire } from 'src/app/@core/models/questionnaire';
 import { Component, OnInit } from '@angular/core';
 import { NbDialogRef } from '@nebular/theme';
-import { Questionnaire } from 'src/app/models/questionnaire';
 
 @Component({
   selector: 'app-remove-dialog',

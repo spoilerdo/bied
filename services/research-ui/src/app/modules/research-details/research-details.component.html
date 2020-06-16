@@ -1,3 +1,4 @@
+<div *ngIf="research$ | async as research">
 <ngx-header-card title="{{ research?.name || 'Loading' }}" icon="assets/research-icon.svg">
   <button nbButton status="warning"><nb-icon icon="edit-outline"></nb-icon> Bewerken</button>
 </ngx-header-card>
@@ -53,4 +54,5 @@
       </nb-card>
     </div>
   </div>
+</div>
 </div>

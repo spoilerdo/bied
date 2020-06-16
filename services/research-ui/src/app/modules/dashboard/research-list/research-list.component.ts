@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { Research } from '../../models/research';
-import { SortingTypes } from '../../models/sortingTypes';
+import { Research } from '../../../@core/models/research';
+import { SortingTypes } from '../../../@core/models/sortingTypes';
 
 @Component({
   selector: 'ngx-research-list',
@@ -12,9 +12,9 @@ export class ResearchListComponent {
   @Output() searchEvent = new EventEmitter();
   @Output() orderEvent = new EventEmitter();
 
-  Filtering: boolean = false;
-  selectedFilter: number = 0;
-  searchValue: string = '';
+  Filtering = false;
+  selectedFilter = 0;
+  searchValue = '';
   orderType = SortingTypes;
 
   selectedOrderChange(order: SortingTypes) {
