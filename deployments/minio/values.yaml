@@ -199,9 +199,9 @@ readinessProbe:
 # resources:
 #   requests:
 #     memory: 256Mi
-#     cpu: 50m
+#     cpu:  60m
 #   limit:
-#     cpu: 70m
+#     cpu:  60m
 #     memory: 1Gi
 
 ## Create a bucket after minio install
