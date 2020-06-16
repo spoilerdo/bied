@@ -24,11 +24,11 @@ class Service {
  * NOTE! If you have a new service don't forget to add it here!
  */
 def services = [
-    new Service(
-        'authentication-ui', 
-        'services/authentication-ui/', 
-        ServiceType.Angular
-    )
+    // new Service(
+    //     'authentication-ui', 
+    //     'services/authentication-ui/', 
+    //     ServiceType.Angular
+    // )
 ];
 
 node {
