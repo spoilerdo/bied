@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+set -e # If anything fails - exit immediately.
+set -u # Treat reference to undefined variables as errors
+
+MINIKUBE_STATUS=$(minikube status -p bied-dev | awk '/host:/ {print $2}')
+
+HOST=false
+
+while [[ "$@" != "" ]]; do
+    case $1 in
+        -h | --host ) HOST=true
+                                ;;
+        * )                     usage
+                                exit 1
+    esac
+    shift
+done
+
+if [ "$MINIKUBE_STATUS" == "Running" ]; then
+    SEVER_URL=$(minikube ip -p bied-dev)
+    INGRESS_PORT=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.spec.ports[?(@.name=="http2")].nodePort}')
+    if [ "$HOST" = true ] ; then
+        echo $SEVER_URL:$INGRESS_PORT
+    else
+        echo "http://$SEVER_URL:$INGRESS_PORT"
+    fi
+else
+    echo "Minikube is not running"
+fi
