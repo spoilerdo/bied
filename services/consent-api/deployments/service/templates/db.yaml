@@ -26,6 +26,8 @@ spec:
       env:
       - name: MYSQL_DATABASE
         value: consent
+      - name: MYSQL_ROOT_HOST
+        value: '%'
   terminationPolicy: Delete
 ---
 apiVersion: v1
