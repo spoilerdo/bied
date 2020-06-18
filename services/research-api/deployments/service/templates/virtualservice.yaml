@@ -6,13 +6,13 @@ spec:
   gateways:
     - bied-gateway
   hosts:
-    - "*" # What inbound Host should be routed. (eg. 'research.bied.nl')
+    - "{{ .Values.global.research.host }}" # What inbound Host should be routed. (eg. 'research.bied.nl')
   http:
     - match:
         - uri:
-            prefix: /api/research
+            prefix: {{ .Values.global.research.route }}
       rewrite:
-        uri: /
+        uri: "/research"
       route:
         # routes it toward this host. Usually a Kubernetes native 'Service', this should be a FQDN in production
         - destination:
