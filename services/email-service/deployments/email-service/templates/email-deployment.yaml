@@ -23,5 +23,12 @@ spec:
           env:
             - name: ASPNETCORE_ENVIRONMENT
               value: "Production"
+          resources:
+            requests:
+              cpu: "10m"
+              memory: "64Mi"
+            limits:
+              cpu: "70m"
+              memory: "512Mi"
           ports:
             - containerPort: 5000
