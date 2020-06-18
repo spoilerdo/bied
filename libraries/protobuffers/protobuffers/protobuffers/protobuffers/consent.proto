@@ -22,11 +22,11 @@ service Consent_Service {
     };
   };
 
-  rpc DeleteAllUserConsent (UserRequest) returns (ConsentEmptyResponse) {
+  rpc DeleteAllUserConsent (UserRequest) returns (Empty) {
     option (google.api.http).delete = "/consent/all/{id}";
   };
 
-  rpc DeleteConsent (ConsentRequest) returns (ConsentEmptyResponse) {
+  rpc DeleteConsent (ConsentRequest) returns (Empty) {
     option (google.api.http).delete = "/consent/{id}";
   };
 
@@ -57,6 +57,18 @@ message ConsentCreateRequest {
 }
 
 message ConsentEditRequest {
+  string id = 1;
+  string userId = 2;
+  string datasourceId = 3;
+  bool consent = 4; 
+  int64 uts = 5;
+}
+
+message Consents {
+  repeated Consent consents = 1;
+}
+
+message Consent {
   string id = 1;
   string userId = 2;
   string datasourceId = 3;
