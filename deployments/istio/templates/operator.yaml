@@ -44,6 +44,15 @@ spec:
             cpu: 200m
             memory: 512Mi
   values:
+    global:
+      proxy:
+        resources:
+          requests:
+            cpu: 10m
+            memory: 64Mi
+          limits:
+            cpu: 200m
+            memory: 512Mi
     gateways:
       istio-ingressgateway:
         autoscaleEnabled: false
