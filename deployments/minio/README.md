@@ -1,24 +1,20 @@
-MinIO
-=====
+# MinIO
 
 [MinIO](https://min.io) is a distributed object storage service for high performance, high scale data infrastructures. It is a drop in replacement for AWS S3 in your own environment. It uses erasure coding to provide highly resilient storage that can tolerate failures of upto n/2 nodes. It runs on cloud, container, kubernetes and bare-metal environments. It is simple enough to be deployed in seconds, and can scale to 100s of peta bytes. MinIO is suitable for storing objects such as photos, videos, log files, backups, VM and container images.
 
 MinIO supports [distributed mode](https://docs.minio.io/docs/distributed-minio-quickstart-guide). In distributed mode, you can pool multiple drives (even on different machines) into a single object storage server.
 
-Introduction
-------------
+## Introduction
 
 This chart bootstraps MinIO deployment on a [Kubernetes](http://kubernetes.io) cluster using the [Helm](https://helm.sh) package manager.
 
-Prerequisites
--------------
+## Prerequisites
 
--	Kubernetes 1.4+ with Beta APIs enabled for default standalone mode.
--   Kubernetes 1.5+ with Beta APIs enabled to run MinIO in [distributed mode](#distributed-minio).
--	PV provisioner support in the underlying infrastructure.
+- Kubernetes 1.4+ with Beta APIs enabled for default standalone mode.
+- Kubernetes 1.5+ with Beta APIs enabled to run MinIO in [distributed mode](#distributed-minio).
+- PV provisioner support in the underlying infrastructure.
 
-Installing the Chart
---------------------
+## Installing the Chart
 
 Install this chart using:
 
@@ -57,8 +53,7 @@ To update your MinIO server configuration while it is deployed in a release, you
 
 You can also check the history of upgrades to a release using `helm history my-release`. Replace `my-release` with the actual release name.
 
-Uninstalling the Chart
-----------------------
+## Uninstalling the Chart
 
 Assuming your release is named as `my-release`, delete it using the command:
 
@@ -68,8 +63,7 @@ $ helm delete my-release
 
 The command removes all the Kubernetes components associated with the chart and deletes the release.
 
-Upgrading the Chart
--------------------
+## Upgrading the Chart
 
 You can use Helm to update MinIO version in a live release. Assuming your release is named as `my-release`, get the values using the command:
 
@@ -85,13 +79,12 @@ $ helm upgrade -f old_values.yaml my-release stable/minio
 
 Default upgrade strategies are specified in the `values.yaml` file. Update these fields if you'd like to use a different strategy.
 
-Configuration
--------------
+## Configuration
 
 The following table lists the configurable parameters of the MinIO chart and their default values.
 
 | Parameter                                 | Description                                                                                                                             | Default                                    |
-|:------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------|
+| :---------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------- | :----------------------------------------- |
 | `nameOverride`                            | Provide a name in place of `minio`                                                                                                      | `""`                                       |
 | `fullnameOverride`                        | Provide a name to substitute for the full names of resources                                                                            | `""`                                       |
 | `image.repository`                        | Image repository                                                                                                                        | `minio/minio`                              |
@@ -101,7 +94,7 @@ The following table lists the configurable parameters of the MinIO chart and the
 | `mcImage.tag`                             | mc image tag. Possible values listed [here](https://hub.docker.com/r/minio/mc/tags/).                                                   | `RELEASE.2020-01-03T20-33-14Z`             |
 | `mcImage.pullPolicy`                      | mc Image pull policy                                                                                                                    | `IfNotPresent`                             |
 | `ingress.enabled`                         | Enables Ingress                                                                                                                         | `false`                                    |
-| `ingress.labels     `                     | Ingress labels                                                                                                                          | `{}`                                       |
+| `ingress.labels`                          | Ingress labels                                                                                                                          | `{}`                                       |
 | `ingress.annotations`                     | Ingress annotations                                                                                                                     | `{}`                                       |
 | `ingress.hosts`                           | Ingress accepted hostnames                                                                                                              | `[]`                                       |
 | `ingress.tls`                             | Ingress TLS configuration                                                                                                               | `[]`                                       |
@@ -130,7 +123,7 @@ The following table lists the configurable parameters of the MinIO chart and the
 | `persistence.storageClass`                | Storage class name of PVC                                                                                                               | `nil`                                      |
 | `persistence.accessMode`                  | ReadWriteOnce or ReadOnly                                                                                                               | `ReadWriteOnce`                            |
 | `persistence.subPath`                     | Mount a sub directory of the persistent volume if set                                                                                   | `""`                                       |
-| `resources`                               | CPU/Memory resource requests/limits                                                                                                     | Memory: `256Mi`, CPU: `100m`               |
+| `resources`                               | CPU/Memory resource requests/limits                                                                                                     | Memory: `256Mi`, CPU: `70m`                |
 | `priorityClassName`                       | Pod priority settings                                                                                                                   | `""`                                       |
 | `securityContext.enabled`                 | Enable to run containers as non-root. NOTE: if `persistence.enabled=false` then securityContext will be automatically disabled          | `true`                                     |
 | `securityContext.runAsUser`               | User id of the user for the container                                                                                                   | `1000`                                     |
@@ -201,8 +194,7 @@ $ helm install --name my-release -f values.yaml stable/minio
 
 > **Tip**: You can use the default [values.yaml](values.yaml)
 
-Distributed MinIO
------------
+## Distributed MinIO
 
 This chart provisions a MinIO server in standalone mode, by default. To provision MinIO server in [distributed mode](https://docs.minio.io/docs/distributed-minio-quickstart-guide), set the `mode` field to `distributed`,
 
@@ -229,8 +221,7 @@ $ helm install --set mode=distributed,replicas=8,zones=2 stable/minio
 1. StatefulSets need persistent storage, so the `persistence.enabled` flag is ignored when `mode` is set to `distributed`.
 2. When uninstalling a distributed MinIO release, you'll need to manually delete volumes associated with the StatefulSet.
 
-NAS Gateway
------------
+## NAS Gateway
 
 ### Prerequisites
 
@@ -253,8 +244,7 @@ $ helm install --set nasgateway.enabled=true,nasgateway.replicas=8 stable/minio
 
 This provisions MinIO NAS gateway with 8 instances.
 
-Persistence
------------
+## Persistence
 
 This chart provisions a PersistentVolumeClaim and mounts corresponding persistent volume to default location `/export`. You'll need physical storage available in the Kubernetes cluster for this to work. If you'd rather use `emptyDir`, disable PersistentVolumeClaim by:
 
@@ -262,10 +252,9 @@ This chart provisions a PersistentVolumeClaim and mounts corresponding persisten
 $ helm install --set persistence.enabled=false stable/minio
 ```
 
-> *"An emptyDir volume is first created when a Pod is assigned to a Node, and exists as long as that Pod is running on that node. When a Pod is removed from a node for any reason, the data in the emptyDir is deleted forever."*
+> _"An emptyDir volume is first created when a Pod is assigned to a Node, and exists as long as that Pod is running on that node. When a Pod is removed from a node for any reason, the data in the emptyDir is deleted forever."_
 
-Existing PersistentVolumeClaim
-------------------------------
+## Existing PersistentVolumeClaim
 
 If a Persistent Volume Claim already exists, specify it during installation.
 
@@ -277,8 +266,7 @@ If a Persistent Volume Claim already exists, specify it during installation.
 $ helm install --set persistence.existingClaim=PVC_NAME stable/minio
 ```
 
-NetworkPolicy
--------------
+## NetworkPolicy
 
 To enable network policy for MinIO,
 install [a networking plugin that implements the Kubernetes
@@ -296,29 +284,30 @@ For more precise policy, set `networkPolicy.allowExternal=true`. This will
 only allow pods with the generated client label to connect to MinIO.
 This label will be displayed in the output of a successful install.
 
-Existing secret
----------------
+## Existing secret
 
 Instead of having this chart create the secret for you, you can supply a preexisting secret, much
 like an existing PersistentVolumeClaim.
 
 First, create the secret:
+
 ```bash
 $ kubectl create secret generic my-minio-secret --from-literal=accesskey=foobarbaz --from-literal=secretkey=foobarbazqux
 ```
 
 Then install the chart, specifying that you want to use an existing secret:
+
 ```bash
 $ helm install --set existingSecret=my-minio-secret stable/minio
 ```
 
 The following fields are expected in the secret
+
 1. `accesskey` - the access key ID
 2. `secretkey` - the secret key
 3. `gcs_key.json` - The GCS key if you are using the GCS gateway feature. This is optional.
 
-Configure TLS
--------------
+## Configure TLS
 
 To enable TLS for MinIO containers, acquire TLS certificates from a CA or create self-signed certificates. While creating / acquiring certificates ensure the corresponding domain names are set as per the standard [DNS naming conventions](https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/#pod-identity) in a Kubernetes StatefulSet (for a distributed MinIO setup). Then create a secret using
 
@@ -332,8 +321,7 @@ Then install the chart, specifying that you want to use the TLS secret:
 $ helm install --set tls.enabled=true,tls.certSecret=tls-ssl-minio stable/minio
 ```
 
-Pass environment variables to MinIO containers
-----------------------------------------------
+## Pass environment variables to MinIO containers
 
 To pass environment variables to MinIO containers when deploying via Helm chart, use the below command line format
 
@@ -343,8 +331,7 @@ $ helm install --set environment.MINIO_BROWSER=on,environment.MINIO_DOMAIN=domai
 
 You can add as many environment variables as required, using the above format. Just add `environment.<VARIABLE_NAME>=<value>` under `set` flag.
 
-Create buckets after install
----------------------------
+## Create buckets after install
 
 Install the chart, specifying the buckets you want to create after install:
 
@@ -353,6 +340,7 @@ $ helm install --set buckets[0].name=bucket1,buckets[0].policy=none,buckets[0].p
 ```
 
 Description of the configuration parameters used above -
+
 1. `buckets[].name` - name of the bucket to create, must be a string with length > 0
 2. `buckets[].policy` - Can be one of none|download|upload|public
 3. `buckets[].purge` - Purge if bucket exists already
