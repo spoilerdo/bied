@@ -40,25 +40,25 @@ namespace research_service
              * Current release as of now (2.27.0) has this bug -> https://github.com/grpc/grpc-dotnet/issues/773
              * Bug has been fixed and merged to develop. Will be part of next release which is not out right now. -> https://github.com/grpc/grpc-dotnet/pull/774
             */
-            services.AddAuthentication(x =>
-            {
-                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            })
-            .AddJwtBearer(x =>
-            {
-                x.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration.GetValue<string>("jwtAuthentication:jwtKey"))),
-                    ValidateIssuer = true,
-                    ValidIssuer = Configuration.GetValue<string>("jwtAuthentication:Issuer"),
-                    ValidateAudience = true,
-                    ValidAudience = Configuration.GetValue<string>("jwtAuthentication:Audience")
-                };
-            });
+            // services.AddAuthentication(x =>
+            // {
+            //     x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            //     x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            // })
+            // .AddJwtBearer(x =>
+            // {
+            //     x.TokenValidationParameters = new TokenValidationParameters
+            //     {
+            //         ValidateIssuerSigningKey = true,
+            //         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration.GetValue<string>("jwtAuthentication:jwtKey"))),
+            //         ValidateIssuer = true,
+            //         ValidIssuer = Configuration.GetValue<string>("jwtAuthentication:Issuer"),
+            //         ValidateAudience = true,
+            //         ValidAudience = Configuration.GetValue<string>("jwtAuthentication:Audience")
+            //     };
+            // });
 
-            services.AddAuthorization(); 
+            // services.AddAuthorization(); 
             services.AddGrpc(options => options.EnableMessageValidation());
 
             services.AddValidator<ResearchIdRequestValidator>();

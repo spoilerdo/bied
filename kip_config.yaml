@@ -14,6 +14,15 @@ scripts:
     command: bash
     args: ["./scripts/create-proto-configmaps"]
     bindings: ["pre-deploy"]
+  - name: ip
+    command: bash
+    args: ["./scripts/ip"]
+  - name: set-deploy-host
+    command: bash
+    args:
+      ["-c", "echo KIP_HELM_ARGS=--set global.serverHost=$(kip run ip -- -h)"]
+    bindings: ["pre-deploy"]
+    environments: ["dev"]
 template: project
 version: v0.0.0+unreleased
 buildPath: "<projectDir>"
