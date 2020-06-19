@@ -16,10 +16,8 @@ spec:
         storage: {{ .Values.storage }}    
   podTemplate:
     metadata:
-        labels:
-          app: mysql
-        annotations:
-          sidecar.istio.io/inject: "false"
+      labels:
+        app: mysql
     spec:
         args:
         - --default-authentication-plugin=mysql_native_password
