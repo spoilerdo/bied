@@ -48,6 +48,10 @@ service User_Service {
             body: "*"
         };
     };
+
+    rpc GetJwk (Empty) returns (JwksResponse) {
+        option (google.api.http).get = "/user/jwk";
+    };
 }
 
 message Empty{
@@ -116,4 +120,16 @@ message UserModel {
 message RefreshToken {
     string token = 1;
     google.protobuf.Timestamp expiration = 2;
+}
+
+message Jwk {
+    string use = 1;
+    string kty = 2;
+    string alg = 3;
+    string n = 4;
+    string e = 5;
+}
+
+message JwksResponse {
+    repeated Jwk keys = 1;
 }

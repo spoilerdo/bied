@@ -10,7 +10,7 @@
     <PackageProjectUrl>https://github.com/Choem/bied/</PackageProjectUrl>
     <Authors>S66-BIED</Authors>
     <Company>S66-BIED</Company>
-    <PackageReleaseNotes>updated user proto for refresh token functionality</PackageReleaseNotes>
+    <PackageReleaseNotes>added JWK endpoint</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
