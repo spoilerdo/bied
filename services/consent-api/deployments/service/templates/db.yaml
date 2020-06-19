@@ -25,7 +25,7 @@ spec:
         value: consent
       - name: MYSQL_ROOT_HOST
         value: '%'
-  terminationPolicy: Delete
+  terminationPolicy: DoNotTerminate
 ---
 apiVersion: v1
 kind: Secret

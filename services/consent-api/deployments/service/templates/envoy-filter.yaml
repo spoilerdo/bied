@@ -23,7 +23,7 @@ spec:
           config:
             proto_descriptor: /etc/envoy/consent.pb
             services:
-              - HealthCheck.HealthCheck
+              - HealthCheck.HealthCheck_Service
               - Consent.Consent_Service
             print_options:
               add_whitespace: true
