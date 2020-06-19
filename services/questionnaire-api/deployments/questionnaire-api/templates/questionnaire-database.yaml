@@ -23,7 +23,7 @@ spec:
       labels:
         app: mongodb
   storage:
-    storageClassName: {{ .Values.global.storageClassName }}
+    storageClassName: { { .Values.global.storageClassName } }
     accessModes:
       - ReadWriteOnce
     resources:

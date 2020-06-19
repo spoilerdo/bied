@@ -10,9 +10,9 @@ spec:
     secretName: research-db-auth
   storageType: "Durable"
   storage:
-    storageClassName: {{ .Values.global.storageClassName }}
+    storageClassName: { { .Values.global.storageClassName } }
     accessModes:
-    - ReadWriteOnce
+      - ReadWriteOnce
     resources:
       requests:
         storage: 1Gi
@@ -23,16 +23,16 @@ spec:
       args:
         - --default-authentication-plugin=mysql_native_password
       env:
-      - name: MYSQL_DATABASE
-        value: research
-      - name: MYSQL_ROOT_HOST
-        value: '%'
+        - name: MYSQL_DATABASE
+          value: research
+        - name: MYSQL_ROOT_HOST
+          value: "%"
   terminationPolicy: Delete
 ---
 apiVersion: v1
 kind: Secret
 metadata:
-  name:  research-db-auth
+  name: research-db-auth
 type: Opaque
 data:
   user: cm9vdA==

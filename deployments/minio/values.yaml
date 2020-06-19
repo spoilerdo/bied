@@ -127,7 +127,8 @@ service:
   externalIPs: []
   #   - externalIp1
 
-  annotations: {}
+  annotations:
+    {}
     # prometheus.io/scrape: 'true'
     # prometheus.io/path:   '/minio/prometheus/metrics'
     # prometheus.io/port:   '9000'
@@ -137,10 +138,12 @@ service:
 
 ingress:
   enabled: false
-  labels: {}
+  labels:
+    {}
     # node-role.kubernetes.io/ingress: platform
 
-  annotations: {}
+  annotations:
+    {}
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
     # kubernetes.io/ingress.allow-http: "false"
@@ -217,7 +220,8 @@ defaultBucket:
 ## Create multiple buckets after minio install
 ## Enabling `defaultBucket` will take priority over this list
 ##
-buckets: []
+buckets:
+  []
   # - name: bucket1
   #   policy: none
   #   purge: false
