@@ -172,8 +172,7 @@ securityContext:
   fsGroup: 1000
 
 # Additational pod annotations
-podAnnotations:
-  sidecar.istio.io/inject: "false"
+podAnnotations: {}
 
 # Additional pod labels
 podLabels: {}
