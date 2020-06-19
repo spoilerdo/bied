@@ -7,6 +7,7 @@ using consent_service.Persistence.Repositories.Consents;
 using Grpc.Core;
 using System.Collections.Generic;
 using ConsentGRPC;
+using Microsoft.Extensions.Logging;
 
 namespace consent_service.Services
 {
@@ -17,14 +18,19 @@ namespace consent_service.Services
   {
     private readonly IConsentRepository _consentRepository;
     private readonly IMapper _mapper;
-    public ConsentService(IConsentRepository consentRepository, IMapper mapper)
+
+    private readonly ILogger<ConsentService> _logger;
+    public ConsentService(IConsentRepository consentRepository, IMapper mapper, ILogger<ConsentService> logger)
     {
       _consentRepository = consentRepository;
       _mapper = mapper;
+      _logger = logger;
     }
 
     public override async Task<Consents> GetUserConsents(UserRequest request, ServerCallContext context)
     {
+      _logger.LogInformation("Get User Consents");
+      _logger.LogInformation(request.Id);
       var consents = await _consentRepository.GetConsents(new Guid(request.Id));
 
       if (!consents.Success)
@@ -40,6 +46,9 @@ namespace consent_service.Services
 
     public override async Task<Consent> GetConsent(ConsentRequest request, ServerCallContext context)
     {
+      _logger.LogInformation("Get Consent");
+      _logger.LogInformation(request.Id);
+
       var consent = await _consentRepository.GetConsent(new Guid(request.Id));
 
       if (!consent.Success)
@@ -52,6 +61,7 @@ namespace consent_service.Services
 
     public override async Task<Consent> CreateConsent(ConsentCreateRequest request, ServerCallContext context)
     {
+      _logger.LogInformation("Create Consent");
       var createdConsent = await _consentRepository.CreateConsent(_mapper.Map<ConsentEntity>(request));
 
       if (!createdConsent.Success)
@@ -64,6 +74,7 @@ namespace consent_service.Services
 
     public override async Task<Consent> EditConsent(ConsentEditRequest request, ServerCallContext context)
     {
+      _logger.LogInformation("Edit Consent");
       var editedConsent = await _consentRepository.EditConsent(_mapper.Map<ConsentEntity>(request));
 
       if (!editedConsent.Success)
@@ -76,6 +87,7 @@ namespace consent_service.Services
 
     public override async Task<Empty> DeleteConsent(ConsentRequest request, ServerCallContext context)
     {
+      _logger.LogInformation("Delete Consent");
       var deletedConsent = await _consentRepository.DeleteConsent(new Guid(request.Id));
 
       if (!deletedConsent.Success)
@@ -86,8 +98,9 @@ namespace consent_service.Services
       return new Empty();
     }
 
-    public override async Task<UserRequest> DeleteAllUserConsent(UserRequest request, ServerCallContext context)
+    public override async Task<Empty> DeleteAllUserConsent(UserRequest request, ServerCallContext context)
     {
+      _logger.LogInformation("Delete All User Consent");
       var deletedConsents = await _consentRepository.DeleteAllConsent(new Guid(request.Id));
 
       if (!deletedConsents.Success)

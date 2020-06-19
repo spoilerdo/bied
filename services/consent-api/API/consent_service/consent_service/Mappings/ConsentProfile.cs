@@ -11,8 +11,6 @@ namespace consent_service.Mapping
     {
       CreateMap<ConsentEntity, Consent>()
           .ForMember(dest => dest.Uts, opt => opt.MapFrom(src => DateTimeToUnixTime(src.Uts)));
-      CreateMap<ConsentRequest, ConsentEntity>()
-          .ForMember(dest => dest.Uts, opt => opt.MapFrom(src => UnixTimeToDateTime(src.Uts)));
       CreateMap<ConsentCreateRequest, ConsentEntity>()
           .ForMember(dest => dest.Uts, opt => opt.MapFrom(src => UnixTimeToDateTime(src.Uts)));
       CreateMap<ConsentEditRequest, ConsentEntity>()
