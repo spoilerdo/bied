@@ -8,6 +8,17 @@ spec:
   version: "3.4-v3"
   storageType: Durable
   podTemplate:
+    spec:
+      readinessProbe:
+        tcpSocket:
+          port: 27017
+        initialDelaySeconds: 5
+        periodSeconds: 10
+      livenessProbe:
+        tcpSocket:
+          port: 27017
+        initialDelaySeconds: 15
+        periodSeconds: 30
     metadata:
       labels:
         app: mongodb
@@ -23,7 +34,7 @@ spec:
         memory: "256Mi"
         storage: 1Gi
       limits:
-        cpu: "100m"
+        cpu: "70m"
         memory: "512Mi"
 
-  terminationPolicy: Resume
+  terminationPolicy: Delete

@@ -7,12 +7,12 @@ using HealthCheckGRPC;
 using Microsoft.Extensions.Logging;
 using AutoMapper;
 
-namespace HealthCheck_Service.Services
+namespace HealthCheck.Services
 {
     /// <summary>
     /// Responsible for handling the GRPC protobuffer service logic
     /// </summary>
-    public class HealthCheckService : HealthCheck.HealthCheckBase
+    public class HealthCheckService : HealthCheck_Service.HealthCheck_ServiceBase
     {
         private readonly ILogger<HealthCheckService> _logger;
         private readonly IMapper _mapper;

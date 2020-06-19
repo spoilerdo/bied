@@ -6,6 +6,7 @@ using consent_service.Persistence.Entities;
 using consent_service.Persistence.Repositories.Consents;
 using Grpc.Core;
 using System.Collections.Generic;
+using ConsentGRPC;
 
 namespace consent_service.Services
 {

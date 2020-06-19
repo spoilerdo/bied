@@ -24,11 +24,11 @@ class Service {
  * NOTE! If you have a new service don't forget to add it here!
  */
 def services = [
-    new Service(
-        'authentication-ui', 
-        'services/authentication-ui/', 
-        ServiceType.Angular
-    )
+    // new Service(
+    //     'authentication-ui', 
+    //     'services/authentication-ui/', 
+    //     ServiceType.Angular
+    // )
 ];
 
 node {
@@ -80,7 +80,7 @@ node {
                 /*
                  * Build all services of a kip project in the production environment
                  */
-                sh 'kip build -e prod'
+                sh "kip build -e prod -k ${gitData.GIT_COMMIT}"
             }
             stage('Run tests') {
                 def buildStatus = load 'ci/scripts/groovy/buildStatus.groovy'
@@ -119,7 +119,7 @@ node {
 
                     sh 'gcloud auth configure-docker --project s66-2-271821'
 
-                    sh 'kip push -e prod'
+                    sh "kip push -e prod -k ${gitData.GIT_COMMIT}"
                 }
                 stage('Deploy') {
                     // Authenticate with gcloud
@@ -132,7 +132,7 @@ node {
 
                     sh 'kubectl config set-context --current --namespace default'
 
-                    sh "kip deploy -e prod"
+                    sh "kip deploy -e prod -k ${gitData.GIT_COMMIT}"
                 }
             }
         } finally {

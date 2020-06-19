@@ -17,6 +17,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using UserSvc.Domain;
 using UserSvc.Persistence.Context;
+using UserSvc.Security.Token;
 using UserSvc.Services;
 using UserSvc.Validation;
 
@@ -49,7 +50,7 @@ namespace UserSvc
                     builder.EnableRetryOnFailure(5, TimeSpan.FromSeconds(10), null);
                 });
             });
-
+            services.AddScoped<ITokenGenerator, TokenGenerator>();
             //register identity and create db
             services.AddIdentity<ApplicationUser, IdentityRole>(options => { })
                 .AddRoles<IdentityRole>()

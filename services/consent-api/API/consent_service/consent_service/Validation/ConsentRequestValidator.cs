@@ -1,5 +1,6 @@
 using System.Net.Cache;
 using FluentValidation;
+using ConsentGRPC;
 
 namespace consent_service.Validation
 {

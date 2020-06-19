@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: cpu-limit-range
+spec:
+  limits:
+  - default:
+      cpu:  70m
+    defaultRequest:
+      cpu:  70m
+    type: Container

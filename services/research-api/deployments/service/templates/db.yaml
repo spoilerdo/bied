@@ -16,6 +16,8 @@ spec:
     resources:
       requests:
         storage: 1Gi
+      limits:
+        cpu: "70m"
   podTemplate:
     metadata:
         annotations:
@@ -26,6 +28,8 @@ spec:
       env:
       - name: MYSQL_DATABASE
         value: research
+      - name: MYSQL_ROOT_HOST
+        value: '%'
   terminationPolicy: Delete
 ---
 apiVersion: v1

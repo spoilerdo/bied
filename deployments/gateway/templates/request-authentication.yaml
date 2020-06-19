@@ -1,0 +1,11 @@
+# apiVersion: security.istio.io/v1beta1
+# kind: RequestAuthentication
+# metadata:
+#   name: jwt-authentication
+# spec:
+#   selector:
+#     matchLabels:
+#       tic.security: jwt-authentication
+#   jwtRules:
+#   - issuer: "bied"
+#     jwksUri: "http://{{ .Values.global.serverHost }}/api/user"
