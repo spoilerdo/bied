@@ -2,6 +2,7 @@
 # then change the storageClassName to "hostpath" if
 # you're using docker desktop or to "standard" if you're using minikube
 global:
+  environment: "dev"
   storageClassName: "standard"
   authentication:
     host: "*"

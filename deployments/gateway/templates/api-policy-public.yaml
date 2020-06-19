@@ -1,0 +1,21 @@
+# define all public API calls here!
+apiVersion: "security.istio.io/v1beta1"
+kind: "AuthorizationPolicy"
+metadata:
+  name: "auth-policy-public"
+spec:
+  selector:
+    matchLabels:
+      tic.security: jwt-authentication
+  action: ALLOW
+  rules:
+  - from:
+    - source:
+        notRequestPrincipals: ["*"]
+    to:
+    - operation:
+        methods: ["POST"]
+        paths: []
+    - operation:
+        methods: ["GET"]
+        paths: []
