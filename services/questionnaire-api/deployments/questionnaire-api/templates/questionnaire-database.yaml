@@ -22,10 +22,8 @@ spec:
     metadata:
       labels:
         app: mongodb
-      annotations:
-        sidecar.istio.io/inject: "false"
   storage:
-    storageClassName: {{ .Values.global.storageClassName }}
+    storageClassName: { { .Values.global.storageClassName } }
     accessModes:
       - ReadWriteOnce
     resources:
