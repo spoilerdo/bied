@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.16</Version>
+    <Version>1.0.22</Version>
     <PackageId>Bied.Protobuffers</PackageId>
     <Description>BIED protobuffers Nuget package used for ASP core services</Description>
     <Copyright>AGPL-3.0-or-later</Copyright>
