@@ -11,11 +11,13 @@ We tested it to run it on Minikube or docker desktop.
 1. In the map [environments](../../environments/values-TEMPLATE.yaml) you need to copy the file values-TEMPLATE.yaml to values.yaml. Change storageClassName to **standard** if this isn't already.
 2. You also need to **add an .env file** to the root of this project with the following content: `RUNNER=minikube`.
 3. Install Kip: https://github.com/debugged-software/kip/releases  
-4. Run kip check to see if you installed all the dependencies  
+4. Run `kip check` to see if you installed all the dependencies  
 5. Start your local cluster: `minikube start -p bied-dev --cpus 4 --memory 8192 --kubernetes-version=1.13.11`
 6. Stop the cluster`minikube -p bied-dev stop`
 7. Run kip to initiate the project: `kip run start-minikube`
-8. Use Kip to deploy charts or services to the cluster (more information can be found on the official [github](https://github.com/debugged-software/kip/releases) page). But its important to deploy ISTIO first (`kip deploy -c istio`)
+8. Run `kip build`
+9. check if there are any crashes: `kubectl get all --all-namespaces`
+10. Use Kip to deploy charts or services to the cluster (more information can be found on the official [github](https://github.com/debugged-software/kip/releases) page). But its important to deploy ISTIO first (`kip deploy -c istio`)
 
 #### Use Docker Dekstop
 0. Install docker desktop: https://www.docker.com/products/docker-desktop
