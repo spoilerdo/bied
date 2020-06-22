@@ -41,3 +41,5 @@ services/email-service/.vscode/
 
 /.env
 /environments/values-dev.yaml
+
+telepresence.log

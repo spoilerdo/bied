@@ -1,6 +1,7 @@
-import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
 import { environment } from "src/environments/environment";
+
 import { CreateDataloaderDto } from "../components/create/dtos/createDataloaderDto";
 
 @Injectable({
@@ -8,6 +9,10 @@ import { CreateDataloaderDto } from "../components/create/dtos/createDataloaderD
 })
 export class DataLoaderService {
   constructor(private http: HttpClient) {}
+
+  findAll() {
+    return this.http.get(`${environment.apiUrl}/dataloaders`);
+  }
 
   saveDataloaderStep(createDataLoaderDto: CreateDataloaderDto) {
     return this.http.post(

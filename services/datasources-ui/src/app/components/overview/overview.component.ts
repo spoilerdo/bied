@@ -1,26 +1,37 @@
-import { Component, OnInit } from '@angular/core';
-import { NbMenuService } from '@nebular/theme';
-import { filter, map } from 'rxjs/operators';
+import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
+import { NbMenuService } from "@nebular/theme";
+import { BehaviorSubject } from "rxjs";
+import { filter, map } from "rxjs/operators";
+
+import { Dataloader } from "../../../app/models/dataloader";
+import { DataloaderType } from "../../../app/models/dataloaderType";
+import { DataLoaderService } from "../../../app/services/dataloader.service";
 
 @Component({
-  selector: 'app-overview',
-  templateUrl: './overview.component.html',
-  styleUrls: ['./overview.component.scss']
+  selector: "app-overview",
+  templateUrl: "./overview.component.html",
+  styleUrls: ["./overview.component.scss"],
 })
 export class OverviewComponent implements OnInit {
-  actionItems = [
-    { title: 'Delete' },
-  ];
+  public dataloaders: BehaviorSubject<Dataloader[]> = new BehaviorSubject([]);
 
-  constructor(private nbMenuService: NbMenuService) { }
+  constructor(
+    private dataloaderService: DataLoaderService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-    this.nbMenuService.onItemClick()
-      .pipe(
-        filter(({ tag }) => tag === 'action-context-menu'),
-        map(({ item: { title } }) => title),
-      )
-      .subscribe(title => console.log(`${title} was clicked!`));
+    this.dataloaderService.findAll().subscribe((response: any) => {
+      if (response.data) {
+        this.dataloaders.next(
+          response.data.map((item) => Dataloader.fromJson(item))
+        );
+      }
+    });
   }
 
+  navigateToCreate() {
+    this.router.navigateByUrl("datasources/create");
+  }
 }
