@@ -10,11 +10,14 @@ using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
+using System.Security.Cryptography;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using UserGRPC;
 using UserSvc.Domain;
 using UserSvc.Persistence.Context;
+using UserSvc.Security.Jwk;
 using UserSvc.Security.Token;
 
 namespace UserSvc.Services
@@ -25,15 +28,17 @@ namespace UserSvc.Services
         private SignInManager<ApplicationUser> _signInManager;
         private RoleManager<IdentityRole> _roleManager;
         private readonly ITokenGenerator _tokenGenerator;
+        private readonly IJwkGenerator _jwkGenerator;
         private readonly IMapper _mapper;
 
-        public UserService(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, RoleManager<IdentityRole> roleManager , IMapper mapper, ITokenGenerator tokenGenerator)
+        public UserService(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, RoleManager<IdentityRole> roleManager , IMapper mapper, ITokenGenerator tokenGenerator, IJwkGenerator jwkGenerator)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _roleManager = roleManager;
             _mapper = mapper;
             _tokenGenerator = tokenGenerator;
+            _jwkGenerator = jwkGenerator;
         }
 
         public override async Task<UserResponse> CreateUser(UserCreateRequest request, ServerCallContext context)
@@ -157,8 +162,10 @@ namespace UserSvc.Services
                 user.RefreshTokens.Add(refreshToken);
                 await _userManager.UpdateAsync(user);
 
+
                 return new LoginResponse()
                 {
+
                     Token = new JwtSecurityTokenHandler().WriteToken(token),
                     Expiration = Timestamp.FromDateTime(token.ValidTo),
                     RefreshToken = _mapper.Map<UserGRPC.RefreshToken>(refreshToken)
@@ -219,6 +226,18 @@ namespace UserSvc.Services
             }
 
             throw new RpcException(new Status(StatusCode.Unauthenticated, "Refresh token not valid"));
+        }
+
+        public override Task<JwksResponse> GetJwk(UserGRPC.Empty request, ServerCallContext context)
+        {
+            var jwk = _jwkGenerator.GenerateJwk();
+
+            IEnumerable<JsonWebKey> jwkList = new List<JsonWebKey> { jwk };
+
+            return Task.FromResult(new JwksResponse
+            {
+                Keys = { _mapper.Map<IEnumerable<Jwk>>(jwkList) }
+            });
         }
 
         private async Task<List<Claim>> GetClaimsForUser(ApplicationUser user)

@@ -4,27 +4,43 @@ option csharp_namespace = "ConsentGRPC";
 package Consent;
 
 import "google/api/annotations.proto";
-import "datasource.proto";
 
 service Consent_Service {
-  rpc GetConsents (UserIdRequest) returns (Consents) {
-    option (google.api.http).get = "/consent";
+  rpc GetUserConsents (UserRequest) returns (Consents) {
+    // option (google.api.http).get = "/consent/all/{id}";
+    option (google.api.http) = {
+      get: "/consent/all/{id}"
+    };
   };
-  rpc GetConsent (ConsentIdRequest) returns (Consent) {
-    option (google.api.http).get = "/consent/{id}";
+
+  rpc GetConsent (ConsentRequest) returns (Consent) {
+    // option (google.api.http).get = "/consent/{id}";
+    option (google.api.http) = {
+      get: "/consent/{id}"
+    };
   };
-  rpc CreateConsent (ConsentRequest) returns (Consent) {
+
+  rpc CreateConsent (ConsentCreateRequest) returns (Consent) {
     option (google.api.http) = {
       post: "/consent"
       body: "*" 
     };
   };
-  rpc DeleteAllConsent (UserIdRequest) returns (ConsentEmptyResponse) {
-    option (google.api.http).delete = "/consent/all";
+
+  rpc DeleteAllUserConsent (UserRequest) returns (Empty) {
+    // option (google.api.http).delete = "/consent/all/{id}";
+    option (google.api.http) = {
+      delete: "/consent/all/{id}"
+    };
   };
-  rpc DeleteConsent (ConsentIdRequest) returns (ConsentEmptyResponse) {
-    option (google.api.http).delete = "/consent/{id}";
+
+  rpc DeleteConsent (ConsentRequest) returns (Empty) {
+    // option (google.api.http).delete = "/consent/{id}";
+    option (google.api.http) = {
+      delete: "/consent/{id}"
+    };
   };
+
   rpc EditConsent (ConsentEditRequest) returns (Consent) {
     option (google.api.http) = {
       put: "/consent"
@@ -33,39 +49,40 @@ service Consent_Service {
   };
 }
 
-message Consents {
-  repeated Consent consents = 1;
+message Empty {
 }
 
-message UserIdRequest {
+message UserRequest {
   string id = 1;
 }
 
 message ConsentRequest {
+  string id = 1;
+}
+
+message ConsentCreateRequest {
   string userId = 1;
   string datasourceId = 2;
   bool consent = 3;
   int64 uts = 4;
 }
 
-message ConsentIdRequest {
-  string consentId = 1;
-}
-
 message ConsentEditRequest {
   string id = 1;
   string userId = 2;
   string datasourceId = 3;
-  bool consent = 4;
+  bool consent = 4; 
   int64 uts = 5;
 }
 
-message ConsentEmptyResponse {}
+message Consents {
+  repeated Consent consents = 1;
+}
 
 message Consent {
   string id = 1;
   string userId = 2;
-  Datasource.Datasource datasource = 3;
-  bool consent = 4;
+  string datasourceId = 3;
+  bool consent = 4; 
   int64 uts = 5;
 }

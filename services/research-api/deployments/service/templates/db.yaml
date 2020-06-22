@@ -19,9 +19,6 @@ spec:
       limits:
         cpu: "70m"
   podTemplate:
-    metadata:
-        annotations:
-          sidecar.istio.io/inject: "false"
     spec:
       args:
         - --default-authentication-plugin=mysql_native_password

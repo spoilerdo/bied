@@ -17,6 +17,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using UserSvc.Domain;
 using UserSvc.Persistence.Context;
+using UserSvc.Security.Jwk;
 using UserSvc.Security.Token;
 using UserSvc.Services;
 using UserSvc.Validation;
@@ -51,6 +52,7 @@ namespace UserSvc
                 });
             });
             services.AddScoped<ITokenGenerator, TokenGenerator>();
+            services.AddScoped<IJwkGenerator, JwkGenerator>();
             //register identity and create db
             services.AddIdentity<ApplicationUser, IdentityRole>(options => { })
                 .AddRoles<IdentityRole>()

@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: user-api
-          image:  "{{ .Values.global.services.user_service.name }}:{{ .Values.global.services.user_service.tag }}"
+          image: "{{ .Values.global.services.user_service.name }}:{{ .Values.global.services.user_service.tag }}"
           imagePullPolicy: IfNotPresent
           resources:
             requests:
@@ -35,3 +35,10 @@ spec:
               value: http://*:5050
             - name: ASPNETCORE_ENVIRONMENT
               value: "Production"
+          volumeMounts:
+            - mountPath: /app/key
+              name: key-data
+      volumes:
+        - name: key-data
+          secret:
+            secretName: user-service-keys
