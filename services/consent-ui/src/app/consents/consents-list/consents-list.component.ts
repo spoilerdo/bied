@@ -23,7 +23,10 @@ export class ConsentsListComponent implements OnInit {
       // Getting the datasource is something implemented here (mock implementation)
       // Maybe this could be done in the consent api itself.
       result.consents.forEach((consent: any) =>{
-        consent.datasource = this.datasourceService.getDatasourceById('571f3537-89f8-493c-8aac-dc9efff5ef82') as Datasource;
+        // TODO
+        // this.datasourceService.getDatasourceById('571f3537-89f8-493c-8aac-dc9efff5ef82').subscribe(data => {
+        //   consent.datasource = data as Datasource;
+        // })
       })
 
       this.consents = result.consents as Consent[];

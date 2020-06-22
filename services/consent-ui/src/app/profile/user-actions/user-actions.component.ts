@@ -48,17 +48,19 @@ export class UserActionsComponent implements OnInit {
     this.dialogService.open(ConfirmationModalComponent, { context: { text: 'Are you sure you wanna delete all data and consent?' , title: 'Delete all data'} })
       .onClose.subscribe((result: any) => {
         if (result) {
-          const consentSucces: boolean = this.consentService.deleteAllConsent(this.id)
-          const datasourceSuccess: boolean = this.datasourceService.deleteAllData(this.id); // Placeholder for succesfully deleted
-          const status = consentSucces && datasourceSuccess ? "success" : "danger";
+          
+          // TODO Both deletions should pass before continuing with the status responses
+          // const consentSucces: boolean = this.consentService.deleteAllConsent(this.id)
+          // const datasourceSuccess: boolean = this.datasourceService.deleteAllData(this.id); // Placeholder for succesfully deleted
+          // const status = consentSucces && datasourceSuccess ? "success" : "danger";
 
-          if (consentSucces && datasourceSuccess) {
-            this.toastService.show('Succesfully deleted all consents', `Success`, { status })
-            this.toastService.show('Succesfully deleted all data', `Success`, { status })
-          } else {
-            this.toastService.show('Failed to delete all consents', 'Failed', { status })
-            this.toastService.show('Failed to delete all data', 'Failed', { status })
-          }
+          // if (consentSucces && datasourceSuccess) {
+          //   this.toastService.show('Succesfully deleted all consents', `Success`, { status })
+          //   this.toastService.show('Succesfully deleted all data', `Success`, { status })
+          // } else {
+          //   this.toastService.show('Failed to delete all consents', 'Failed', { status })
+          //   this.toastService.show('Failed to delete all data', 'Failed', { status })
+          // }
         }
       })
   }

@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { ResearchProvider } from './research.provider';
 import { Research } from '../models/research';
 import { Datasource } from '../models/datasource';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class ResearchMockProvider extends ResearchProvider {
@@ -19,16 +20,16 @@ export class ResearchMockProvider extends ResearchProvider {
       endDate: this.endDate,
       active: true,
       ownerId: '1',
-      datasources: [this.datasourceService.getDatasourceById('1')]
+      datasources: [] // this.datasourceService.getDatasourceById('1'), The research api should return the datasource with the research
     }
-  ]
+  ];
 
-  getResearchById(id: string): Research {
+  getResearchById(id: string) {
     const research = this.store.find(x => x.id === id)
-    return research;
+    return research as unknown as Observable<any>;
   }
 
-  getResearches(): Research[] {
-    return this.store;
+  getResearches() {
+    return this.store as unknown as Observable<any>;
   }
 }

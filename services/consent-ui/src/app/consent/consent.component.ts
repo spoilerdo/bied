@@ -54,8 +54,11 @@ export class ConsentComponent implements OnInit {
         const _uts = +this.consent.uts;
         const date = new Date(_uts * 1000);
         this.consent.uts = date;
-        
-        this.consent.datasource = this.datasourceService.getDatasourceById(this.consent.datasourceId)
+
+        // TODO
+        // this.datasourceService.getDatasourceById(this.consent.datasourceId).subscribe(data => {
+        //   this.consent.datasource = data as Datasource[];
+        // })
 
         if (this.consent.consent) {
           this.items.push({
