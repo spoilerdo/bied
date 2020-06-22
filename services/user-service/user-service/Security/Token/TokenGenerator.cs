@@ -3,6 +3,7 @@ using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
+using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Security.Cryptography;
@@ -41,8 +42,8 @@ namespace UserSvc.Security.Token
 
         public JwtSecurityToken GenerateToken(List<Claim> claims)
         {
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration.GetValue<string>("jwtData:JwtKey")));
-            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+            RSA rsa = ReadKeyFromFile("key/rsa_key");
+            var creds = new SigningCredentials(new RsaSecurityKey(rsa), SecurityAlgorithms.RsaSha256);
 
             return new JwtSecurityToken(
                      issuer: _configuration.GetValue<string>("jwtData:Issuer"),
@@ -53,5 +54,38 @@ namespace UserSvc.Security.Token
                      signingCredentials: creds
             );
         }
+
+        private static RSA ReadKeyFromFile(string filename)
+        {
+            string pemContents = System.IO.File.ReadAllText(filename);
+            const string RsaPrivateKeyHeader = "-----BEGIN RSA PRIVATE KEY-----";
+            const string RsaPrivateKeyFooter = "-----END RSA PRIVATE KEY-----";
+
+            if (pemContents.StartsWith(RsaPrivateKeyHeader))
+            {
+                int endIdx = pemContents.IndexOf(
+                    RsaPrivateKeyFooter,
+                    RsaPrivateKeyHeader.Length,
+                    StringComparison.Ordinal);
+
+                string base64 = pemContents.Substring(
+                    RsaPrivateKeyHeader.Length,
+                    endIdx - RsaPrivateKeyHeader.Length);
+
+                byte[] der = Convert.FromBase64String(base64);
+                RSA rsa = RSA.Create();
+                rsa.ImportRSAPrivateKey(der, out _);
+                return rsa;
+            }
+
+            // "BEGIN PRIVATE KEY" (ImportPkcs8PrivateKey),
+            // "BEGIN ENCRYPTED PRIVATE KEY" (ImportEncryptedPkcs8PrivateKey),
+            // "BEGIN PUBLIC KEY" (ImportSubjectPublicKeyInfo),
+            // "BEGIN RSA PUBLIC KEY" (ImportRSAPublicKey)
+            // could any/all be handled here.
+            throw new InvalidOperationException();
+        }
+
+
     }
 }

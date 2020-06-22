@@ -3,7 +3,24 @@
 set -e # If anything fails - exit immediately.
 set -u # Treat reference to undefined variables as errors
 
-MINIKUBE_STATUS=$(minikube status -p bied-dev | awk '/host:/ {print $2}')
+# Get project root path
+ROOT_PATH=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )/..
+
+read_var() {
+    VAR=$(grep "^$1=" $2 | xargs)
+    IFS="=" read -ra VAR <<< "$VAR"
+    IFS=" "
+    if [ ${#VAR[@]} -ge 2 ]; then
+      echo ${VAR[1]}
+    fi
+}
+
+RUNNER=$(read_var RUNNER $ROOT_PATH/.env)
+MINIKUBE_STATUS=
+
+if [ "$RUNNER" == "minikube" ]; then
+    MINIKUBE_STATUS=$(minikube status -p bied-dev | awk '/host:/ {print $2}')
+fi
 
 HOST=false
 
@@ -17,14 +34,16 @@ while [[ "$@" != "" ]]; do
     shift
 done
 
+INGRESS_PORT=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.spec.ports[?(@.name=="http2")].nodePort}')
+
 if [ "$MINIKUBE_STATUS" == "Running" ]; then
     SEVER_URL=$(minikube ip -p bied-dev)
-    INGRESS_PORT=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.spec.ports[?(@.name=="http2")].nodePort}')
-    if [ "$HOST" = true ] ; then
-        echo $SEVER_URL:$INGRESS_PORT
-    else
-        echo "http://$SEVER_URL:$INGRESS_PORT"
-    fi
+elif [ "$RUNNER" != "minikube" ]; then
+    SEVER_URL="localhost"
+fi
+
+if [ "$HOST" = true ] ; then
+    echo $SEVER_URL:$INGRESS_PORT
 else
-    echo "Minikube is not running"
+    echo "http://$SEVER_URL:$INGRESS_PORT"
 fi

@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+set -e # If anything fails - exit immediately.
+set -u # Treat reference to undefined variables as errors
+
+ROOT_PATH=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )/..
+
+# Add user-service keys to secret
+kubectl delete secret user-service-keys || true
+kubectl create secret generic user-service-keys --from-file=$ROOT_PATH/services/user-service/user-service/key/rsa_key --from-file=$ROOT_PATH/services/user-service/user-service/key/rsa_key.pub
