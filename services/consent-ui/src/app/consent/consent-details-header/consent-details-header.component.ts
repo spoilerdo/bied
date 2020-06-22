@@ -17,7 +17,8 @@ export class ConsentDetailsHeaderComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.checked = this.consent.consent
+    if (this.consent && this.consent.consent)
+      this.checked = this.consent.consent
   }
 
   switchConsentClicked() {  

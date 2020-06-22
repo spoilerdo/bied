@@ -46,17 +46,26 @@ export class ConsentComponent implements OnInit {
 
     this.route.params.subscribe(params => {      
       this.id = params['id'];
-      this.consent = this.consentService.getConsentById(this.id);
-      this.consent.datasource = this.datasourceService.getDatasourceById(this.consent.datasourceId)
+      // this.consent = 
+      
+      this.consentService.getConsentById(this.id).subscribe(data => {
+        this.consent = data as Consent; 
+        // this.consent.uts = new Date(+this.consent.uts);
+        const _uts = +this.consent.uts;
+        const date = new Date(_uts * 1000);
+        this.consent.uts = date;
+        
+        this.consent.datasource = this.datasourceService.getDatasourceById(this.consent.datasourceId)
 
-      if (this.consent.consent) {
-        this.items.push({
-          header: this.consent.consent ? `Consent given` : 'Consent rejected',
-          date: this.consent.uts,
-          color: this.consent.consent ? this.green : this.red
-        })     
-        this.items = this.items.sort((a,b)=>a.date.getTime()-b.date.getTime()).reverse();   
-      }     
+        if (this.consent.consent) {
+          this.items.push({
+            header: this.consent.consent ? `Consent given` : 'Consent rejected',
+            date: this.consent.uts,
+            color: this.consent.consent ? this.green : this.red
+          })     
+          this.items = this.items.sort((a,b)=>a.date.getTime()-b.date.getTime()).reverse();   
+        }  
+      })        
     })
   }
 

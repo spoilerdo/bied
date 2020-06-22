@@ -12,7 +12,6 @@ export class UserStatsComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log('UserId', this.id)
   }
 
 }

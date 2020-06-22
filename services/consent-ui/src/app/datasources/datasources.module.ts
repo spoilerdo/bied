@@ -6,7 +6,6 @@ import { NbListModule, NbLayoutModule } from '@nebular/theme';
 import { DatasourceProvider } from '../providers/datasource.provider';
 import { DatasourceMockProvider } from '../providers/datasource.provider.mock';
 import { ConsentProvider } from '../providers/consent.provider';
-import { ConsentMockProvider } from '../providers/consent.provider.mock';
 import { ConsentModule } from '../consent/consent.module';
 import { StatusIndicatorModule } from '../status-indicator/status-indicator.module';
 
@@ -26,7 +25,7 @@ import { StatusIndicatorModule } from '../status-indicator/status-indicator.modu
     },
     {
       provide: ConsentProvider,
-      useClass: ConsentMockProvider
+      useClass: ConsentProvider
     }
   ],
   exports: [DatasourcesListComponent, DatasourceListItemComponent]

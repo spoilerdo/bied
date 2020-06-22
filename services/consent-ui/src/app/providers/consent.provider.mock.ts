@@ -26,6 +26,7 @@ export class ConsentMockProvider extends ConsentProvider {
       consent.datasource = this.datasourceService.getDatasourceById(consent.datasourceId);
     });
     return consents;
+    // return [];
   }
 
   getConsentById(consentId: string): Consent {
@@ -37,7 +38,6 @@ export class ConsentMockProvider extends ConsentProvider {
   }
 
   deleteAllConsent(userId: string): boolean {
-    console.log(`Delete all consent called for user: ${userId}`)
     return Math.random() >= 0.5;
   }
 }

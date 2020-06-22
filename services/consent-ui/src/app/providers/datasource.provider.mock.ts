@@ -6,7 +6,7 @@ import { Datasource } from '../models/datasource';
 export class DatasourceMockProvider extends DatasourceProvider {
   private readonly store: Datasource[] = [
     {
-      id: '1',
+      id: '571f3537-89f8-493c-8aac-dc9efff5ef82',
       name: 'Twitter data',
       description: "Fetches information about the tweets you make on twitter",
       reference: "1",
@@ -26,7 +26,6 @@ export class DatasourceMockProvider extends DatasourceProvider {
   }
 
   deleteAllData(userId: string): boolean {
-    console.log(`Delete all data called for user: ${userId}`)
     return Math.random() >= 0.5;
   }
 }

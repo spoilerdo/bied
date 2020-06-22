@@ -5,7 +5,6 @@ import { NbCardModule, NbListModule, NbIconModule, NbPopoverModule, NbLayoutModu
 import { ConsentsListComponent } from './consents-list/consents-list.component';
 import { ConsentsListItemComponent } from './consents-list/consents-list-item/consents-list-item.component';
 import { ConsentProvider } from '../providers/consent.provider';
-import { ConsentMockProvider } from '../providers/consent.provider.mock';
 import { DatasourceProvider } from '../providers/datasource.provider';
 import { DatasourceMockProvider } from '../providers/datasource.provider.mock';
 import { StatusIndicatorModule } from '../status-indicator/status-indicator.module';
@@ -27,7 +26,7 @@ import { StatusIndicatorModule } from '../status-indicator/status-indicator.modu
   providers: [
     {
       provide: ConsentProvider,
-      useClass: ConsentMockProvider
+      useClass: ConsentProvider
     },
     {
       provide: DatasourceProvider,

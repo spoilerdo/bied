@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { ConsentRoutingModule } from './consent-routing.module';
 import { ConsentProvider } from '../providers/consent.provider';
-import { ConsentMockProvider } from '../providers/consent.provider.mock';
 import { DatasourceProvider } from '../providers/datasource.provider';
 import { DatasourceMockProvider } from '../providers/datasource.provider.mock';
 import { ConsentDetailsHeaderComponent } from './consent-details-header/consent-details-header.component';
@@ -30,7 +29,7 @@ import { StatusIndicatorModule } from '../status-indicator/status-indicator.modu
   providers: [
     {
       provide: ConsentProvider,
-      useClass: ConsentMockProvider
+      useClass: ConsentProvider
     },
     {
       provide: DatasourceProvider,

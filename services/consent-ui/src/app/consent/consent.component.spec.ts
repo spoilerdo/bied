@@ -2,13 +2,10 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from "@angular/router/testing";
 import { ConsentComponent } from './consent.component';
 import { ConsentProvider } from '../providers/consent.provider';
-import { ConsentMockProvider } from '../providers/consent.provider.mock';
 import { DatasourceProvider } from '../providers/datasource.provider';
-import { DatasourceMockProvider } from '../providers/datasource.provider.mock';
 import { Consent } from '../models/consent';
 import { Datasource } from '../models/datasource';
 import { DebugElement } from '@angular/core';
-import { componentFactoryName } from '@angular/compiler';
 
 describe('ConsentComponent', () => {
   const consent: Consent = Object.assign(new Consent, ({
@@ -71,7 +68,6 @@ describe('ConsentComponent', () => {
 
   describe('Switch consent method', () => {
     it('should switch consent', () => {          
-      console.log(component.consent.consent)  
       expect(component.consent.consent).toBeTrue();
 
       component.switchConsent();

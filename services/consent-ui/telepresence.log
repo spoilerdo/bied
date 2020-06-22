@@ -1,408 +1,637 @@
-   0.0 TEL | Telepresence 0.104 launched at Mon Jun 15 15:22:32 2020
-   0.0 TEL |   /usr/bin/telepresence --swap-deployment consent-ui --docker-run -v /home/chiem/Documents/projects/bied/services/consent-ui/scripts/../src:/usr/src/app/src -v /var/run/docker.sock:/var/run/docker.sock eu.gcr.io/s66-2-271821/consent-ui:dev -p 80 npm run start:tele
-   0.0 TEL | uname: uname_result(system='Linux', node='chiem-XPS-15-7590', release='5.3.0-55-generic', version='#49-Ubuntu SMP Thu May 21 12:47:19 UTC 2020', machine='x86_64', processor='x86_64')
+   0.0 TEL | Telepresence 0.105 launched at Mon Jun 22 07:10:10 2020
+   0.0 TEL |   /usr/bin/telepresence --swap-deployment consent-ui --docker-run -v /home/mike/projects/bied/services/consent-ui/scripts/../src:/usr/src/app/src -v /var/run/docker.sock:/var/run/docker.sock eu.gcr.io/s66-2-271821/consent-ui:dev -p 80 npm run start:tele
+   0.0 TEL | uname: uname_result(system='Linux', node='mike-laptop', release='5.3.0-59-generic', version='#53~18.04.1-Ubuntu SMP Thu Jun 4 14:58:26 UTC 2020', machine='x86_64', processor='x86_64')
    0.0 TEL | Platform: linux
    0.0 TEL | WSL: False
-   0.0 TEL | Python 3.7.5 (default, Feb 16 2020, 02:51:19)
-   0.0 TEL | [GCC 9.2.1 20191008]
+   0.0 TEL | Python 3.6.9 (default, Apr 18 2020, 01:56:04)
+   0.0 TEL | [GCC 8.4.0]
    0.0 TEL | BEGIN SPAN main.py:40(main)
    0.0 TEL | BEGIN SPAN startup.py:83(set_kube_command)
    0.0 TEL | Found kubectl -> /usr/local/bin/kubectl
    0.0 TEL | [1] Capturing: kubectl config current-context
    0.1 TEL | [1] captured in 0.07 secs.
    0.1 TEL | [2] Capturing: kubectl --context bied-dev version --short
-   0.2 TEL | [2] captured in 0.11 secs.
+   0.2 TEL | [2] captured in 0.08 secs.
    0.2 TEL | [3] Capturing: kubectl --context bied-dev config view -o json
-   0.3 TEL | [3] captured in 0.10 secs.
-   0.3 TEL | [4] Capturing: kubectl --context bied-dev get ns default
-   0.5 TEL | [4] captured in 0.16 secs.
-   0.5 TEL | [5] Capturing: kubectl --context bied-dev api-versions
-   0.6 TEL | [5] captured in 0.15 secs.
-   0.6 TEL | Command: kubectl 1.16.3
-   0.6 TEL | Context: bied-dev, namespace: default, version: 1.15.9
-   0.6 TEL | END SPAN startup.py:83(set_kube_command)    0.6s
-   0.6 TEL | Found ssh -> /usr/bin/ssh
-   0.6 TEL | [6] Capturing: ssh -V
-   0.6 TEL | [6] captured in 0.01 secs.
-   0.6 TEL | Found docker -> /usr/bin/docker
-   0.6 TEL | [7] Capturing: docker run --rm -v /tmp/tel-4b1mwdi2:/tel alpine:3.6 cat /tel/session_id.txt
-   1.6   7 | b42e0872844b46e2ad0283a0e4300f7e
-   1.6 TEL | [7] captured in 0.97 secs.
+   0.2 TEL | [3] captured in 0.05 secs.
+   0.2 TEL | [4] Capturing: kubectl --context bied-dev get ns default
+   0.3 TEL | [4] captured in 0.07 secs.
+   0.3 TEL | [5] Capturing: kubectl --context bied-dev api-versions
+   0.4 TEL | [5] captured in 0.07 secs.
+   0.4 TEL | Command: kubectl 1.18.2
+   0.4 TEL | Context: bied-dev, namespace: default, version: 1.15.9
+   0.4 >>> | Warning: kubectl 1.18.2 may not work correctly with cluster version 1.15.9 due to the version discrepancy. See https://kubernetes.io/docs/setup/version-skew-policy/ for more information.
+   0.4 >>> | 
+   0.4 TEL | END SPAN startup.py:83(set_kube_command)    0.3s
+   0.4 TEL | Found ssh -> /usr/bin/ssh
+   0.4 TEL | [6] Capturing: ssh -V
+   0.4 TEL | [6] captured in 0.02 secs.
+   0.4 TEL | Found docker -> /usr/bin/docker
+   0.4 TEL | [7] Capturing: docker run --rm -v /tmp/tel-o1bvv97l:/tel alpine:3.6 cat /tel/session_id.txt
+   1.5   7 | c1c748c1cea345cc9bb393780ecee251
+   1.6 TEL | [7] captured in 1.18 secs.
    1.6 TEL | Found sudo -> /usr/bin/sudo
    1.6 TEL | [8] Running: sudo -n echo -n
-   1.6 TEL | [8] ran in 0.01 secs.
-   1.6 TEL | Found sshfs -> /usr/bin/sshfs
-   1.6 TEL | Found fusermount -> /usr/bin/fusermount
-   1.6 >>> | Volumes are rooted at $TELEPRESENCE_ROOT. See https://telepresence.io/howto/volumes.html for details.
-   1.6 TEL | [9] Running: kubectl --context bied-dev --namespace default get pods telepresence-connectivity-check --ignore-not-found
-   1.7 TEL | [9] ran in 0.08 secs.
-   2.1 TEL | Scout info: {'latest_version': '0.105', 'application': 'telepresence', 'notices': []}
-   2.1 TEL | BEGIN SPAN deployment.py:193(supplant_deployment)
-   2.1 >>> | Starting network proxy to cluster by swapping out Deployment consent-ui with a proxy
-   2.1 TEL | BEGIN SPAN remote.py:75(get_deployment_json)
-   2.1 TEL | [10] Capturing: kubectl --context bied-dev --namespace default get deployment -o json consent-ui
-   2.2 TEL | [10] captured in 0.08 secs.
-   2.2 TEL | END SPAN remote.py:75(get_deployment_json)    0.1s
-   2.2 TEL | [11] Running: kubectl --context bied-dev --namespace default delete deployment consent-ui-b42e0872844b46e2ad0283a0e4300f7e --ignore-not-found
-   2.2 TEL | [11] ran in 0.08 secs.
-   2.2 TEL | [12] Running: kubectl --context bied-dev --namespace default apply -f -
-   2.4  12 | deployment.extensions/consent-ui-b42e0872844b46e2ad0283a0e4300f7e created
-   2.4 TEL | [12] ran in 0.18 secs.
-   2.4 TEL | [13] Running: kubectl --context bied-dev --namespace default scale deployment consent-ui --replicas=0
-   2.5  13 | deployment.extensions/consent-ui scaled
-   2.5 TEL | [13] ran in 0.10 secs.
-   2.5 TEL | END SPAN deployment.py:193(supplant_deployment)    0.4s
-   2.5 TEL | BEGIN SPAN remote.py:142(get_remote_info)
-   2.5 TEL | BEGIN SPAN remote.py:75(get_deployment_json)
-   2.5 TEL | [14] Capturing: kubectl --context bied-dev --namespace default get deployment -o json --selector=telepresence=b42e0872844b46e2ad0283a0e4300f7e
-   2.6 TEL | [14] captured in 0.08 secs.
-   2.6 TEL | END SPAN remote.py:75(get_deployment_json)    0.1s
-   2.6 TEL | Searching for Telepresence pod:
-   2.6 TEL |   with name consent-ui-b42e0872844b46e2ad0283a0e4300f7e-*
-   2.6 TEL |   with labels {'app.kubernetes.io/instance': 'consent-ui-consent-ui', 'app.kubernetes.io/name': 'consent-ui', 'telepresence': 'b42e0872844b46e2ad0283a0e4300f7e'}
-   2.6 TEL | [15] Capturing: kubectl --context bied-dev --namespace default get pod -o json --selector=telepresence=b42e0872844b46e2ad0283a0e4300f7e
-   2.7 TEL | [15] captured in 0.08 secs.
-   2.7 TEL | Checking consent-ui-b42e0872844b46e2ad0283a0e4300f7e-cdd85868c-vz4qg
-   2.7 TEL | Looks like we've found our pod!
-   2.7 TEL | BEGIN SPAN remote.py:104(wait_for_pod)
-   2.7 TEL | [16] Capturing: kubectl --context bied-dev --namespace default get pod consent-ui-b42e0872844b46e2ad0283a0e4300f7e-cdd85868c-vz4qg -o json
-   2.8 TEL | [16] captured in 0.09 secs.
-   3.0 TEL | [17] Capturing: kubectl --context bied-dev --namespace default get pod consent-ui-b42e0872844b46e2ad0283a0e4300f7e-cdd85868c-vz4qg -o json
-   3.1 TEL | [17] captured in 0.08 secs.
-   3.3 TEL | [18] Capturing: kubectl --context bied-dev --namespace default get pod consent-ui-b42e0872844b46e2ad0283a0e4300f7e-cdd85868c-vz4qg -o json
-   3.4 TEL | [18] captured in 0.08 secs.
-   3.7 TEL | [19] Capturing: kubectl --context bied-dev --namespace default get pod consent-ui-b42e0872844b46e2ad0283a0e4300f7e-cdd85868c-vz4qg -o json
-   3.7 TEL | [19] captured in 0.08 secs.
-   4.0 TEL | [20] Capturing: kubectl --context bied-dev --namespace default get pod consent-ui-b42e0872844b46e2ad0283a0e4300f7e-cdd85868c-vz4qg -o json
-   4.1 TEL | [20] captured in 0.08 secs.
-   4.3 TEL | [21] Capturing: kubectl --context bied-dev --namespace default get pod consent-ui-b42e0872844b46e2ad0283a0e4300f7e-cdd85868c-vz4qg -o json
-   4.4 TEL | [21] captured in 0.09 secs.
-   4.7 TEL | [22] Capturing: kubectl --context bied-dev --namespace default get pod consent-ui-b42e0872844b46e2ad0283a0e4300f7e-cdd85868c-vz4qg -o json
-   4.8 TEL | [22] captured in 0.09 secs.
-   5.0 TEL | [23] Capturing: kubectl --context bied-dev --namespace default get pod consent-ui-b42e0872844b46e2ad0283a0e4300f7e-cdd85868c-vz4qg -o json
-   5.1 TEL | [23] captured in 0.08 secs.
-   5.3 TEL | [24] Capturing: kubectl --context bied-dev --namespace default get pod consent-ui-b42e0872844b46e2ad0283a0e4300f7e-cdd85868c-vz4qg -o json
-   5.4 TEL | [24] captured in 0.08 secs.
-   5.7 TEL | [25] Capturing: kubectl --context bied-dev --namespace default get pod consent-ui-b42e0872844b46e2ad0283a0e4300f7e-cdd85868c-vz4qg -o json
-   5.8 TEL | [25] captured in 0.09 secs.
-   6.0 TEL | [26] Capturing: kubectl --context bied-dev --namespace default get pod consent-ui-b42e0872844b46e2ad0283a0e4300f7e-cdd85868c-vz4qg -o json
-   6.1 TEL | [26] captured in 0.09 secs.
-   6.1 TEL | END SPAN remote.py:104(wait_for_pod)    3.4s
-   6.1 TEL | END SPAN remote.py:142(get_remote_info)    3.6s
-   6.1 TEL | BEGIN SPAN connect.py:37(connect)
-   6.1 TEL | [27] Launching kubectl logs: kubectl --context bied-dev --namespace default logs -f consent-ui-b42e0872844b46e2ad0283a0e4300f7e-cdd85868c-vz4qg --container consent-ui --tail=10
-   6.1 TEL | [28] Launching kubectl port-forward: kubectl --context bied-dev --namespace default port-forward consent-ui-b42e0872844b46e2ad0283a0e4300f7e-cdd85868c-vz4qg 41901:8022
-   6.1 TEL | [29] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 41901 telepresence@127.0.0.1 /bin/true
-   6.1 TEL | [29] exit 255 in 0.01 secs.
-   6.2  28 | Forwarding from 127.0.0.1:41901 -> 8022
-   6.2  28 | Forwarding from [::1]:41901 -> 8022
-   6.4 TEL | [30] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 41901 telepresence@127.0.0.1 /bin/true
-   6.4  28 | Handling connection for 41901
-   6.8 TEL | [30] ran in 0.42 secs.
-   6.8 >>> | Forwarding remote port 80 to local port 80.
-   6.8 >>> | 
-   6.8 TEL | Launching Web server for proxy poll
-   6.8 TEL | [31] Launching SSH port forward (socks and proxy poll): ssh -N -oServerAliveInterval=1 -oServerAliveCountMax=10 -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 41901 telepresence@127.0.0.1 -L127.0.0.1:35217:127.0.0.1:9050 -R9055:127.0.0.1:33261
-   6.8 TEL | END SPAN connect.py:37(connect)    0.7s
-   6.8 TEL | BEGIN SPAN remote_env.py:29(get_remote_env)
-   6.8 TEL | [32] Capturing: kubectl --context bied-dev --namespace default exec consent-ui-b42e0872844b46e2ad0283a0e4300f7e-cdd85868c-vz4qg --container consent-ui -- python3 podinfo.py
-   6.8  28 | Handling connection for 41901
-   8.6 TEL | [32] captured in 1.80 secs.
-   8.6 TEL | END SPAN remote_env.py:29(get_remote_env)    1.8s
-   8.6 TEL | BEGIN SPAN mount.py:30(mount_remote_volumes)
-   8.6 TEL | [33] Running: sudo sshfs -p 41901 -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -o allow_other telepresence@127.0.0.1:/ /tmp/tel-4b1mwdi2/fs
-   8.6  28 | Handling connection for 41901
-   8.8 TEL | [33] ran in 0.25 secs.
-   8.8 TEL | END SPAN mount.py:30(mount_remote_volumes)    0.3s
-   8.8 TEL | BEGIN SPAN container.py:127(run_docker_command)
-   8.8 TEL | [34] Launching Network container: docker run -p=80 --publish=127.0.0.1:36671:38022/tcp --hostname=consent-ui-b42e0872844b46e2ad0283a0e4300f7e-cdd85868c-vz4qg --dns=10.96.0.10 --dns-search=default.svc.cluster.local --dns-search=svc.cluster.local --dns-search=cluster.local --dns-opt=ndots:5 --rm --privileged --name=telepresence-1592227361-7006018-21471 datawire/telepresence-local:0.104 proxy '{"cidrs": ["0/0"], "expose_ports": [[80, 80]], "to_pod": [], "from_pod": []}'
-   8.8 TEL | [35] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 36671 root@127.0.0.1 /bin/true
-   8.9 TEL | [35] exit 255 in 0.01 secs.
-   9.1 TEL | [36] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 36671 root@127.0.0.1 /bin/true
-   9.2  34 | [INFO  tini (1)] Spawned child process 'python3' with pid '7'
-   9.4  34 |    0.0 TEL | Telepresence 0+unknown launched at Mon Jun 15 13:22:42 2020
-   9.4  34 |    0.0 TEL |   /usr/bin/entrypoint.py proxy '{"cidrs": ["0/0"], "expose_ports": [[80, 80]], "to_pod": [], "from_pod": []}'
-   9.4  34 |    0.0 TEL | uname: uname_result(system='Linux', node='consent-ui-b42e0872844b46e2ad0283a0e4300f7e-cdd85868c-vz4qg', release='5.3.0-55-generic', version='#49-Ubuntu SMP Thu May 21 12:47:19 UTC 2020', machine='x86_64', processor='')
-   9.4  34 |    0.0 TEL | Platform: linux
-   9.4  34 |    0.0 TEL | WSL: False
-   9.4  34 |    0.0 TEL | Python 3.6.8 (default, Apr 22 2019, 10:28:12)
-   9.4  34 |    0.0 TEL | [GCC 6.3.0]
-   9.4  34 |    0.0 TEL | [1] Running: /usr/sbin/sshd -e
-   9.4  34 |    0.0 TEL | [1] ran in 0.00 secs.
-   9.4  34 |    0.0 TEL | [2] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 38023 telepresence@127.0.0.1 /bin/true
-   9.4  34 |    0.0 TEL | [2] exit 255 in 0.01 secs.
-   9.6  34 |    0.3 TEL | [3] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 38023 telepresence@127.0.0.1 /bin/true
-   9.6  34 |    0.3 TEL | [3] exit 255 in 0.01 secs.
-   9.9  34 |    0.5 TEL | [4] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 38023 telepresence@127.0.0.1 /bin/true
-   9.9  34 |    0.5 TEL | [4] exit 255 in 0.01 secs.
-  10.1  34 |    0.8 TEL | [5] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 38023 telepresence@127.0.0.1 /bin/true
-  10.2  34 |    0.8 TEL | [5] exit 255 in 0.01 secs.
-  10.2 TEL | [36] ran in 1.07 secs.
-  10.2 TEL | [37] Launching Local SSH port forward: ssh -N -oServerAliveInterval=1 -oServerAliveCountMax=10 -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 36671 root@127.0.0.1 -R 38023:127.0.0.1:41901
-  10.2 TEL | [38] Running: docker run --network=container:telepresence-1592227361-7006018-21471 --rm datawire/telepresence-local:0.104 wait
-  10.4  34 |    1.0 TEL | [6] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 38023 telepresence@127.0.0.1 /bin/true
-  10.4  28 | Handling connection for 41901
-  10.6  38 | [INFO  tini (1)] Spawned child process 'python3' with pid '6'
-  10.8  34 |    1.4 TEL | [6] ran in 0.37 secs.
-  10.8  34 |    1.4 TEL | [7] Capturing: netstat -n
-  10.8  34 |    1.4 TEL | [7] captured in 0.01 secs.
-  10.8  34 |    1.4 TEL | [8] Launching SSH port forward (exposed ports): ssh -N -oServerAliveInterval=1 -oServerAliveCountMax=10 -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 38023 telepresence@127.0.0.1 -R '*:80:127.0.0.1:80'
-  10.8  34 |    1.4 TEL | Everything launched. Waiting to exit...
-  10.8  28 | Handling connection for 41901
-  10.8  34 |    1.4 TEL | BEGIN SPAN runner.py:725(wait_for_exit)
-  11.0  34 | Starting sshuttle proxy.
-  11.2  34 | firewall manager: Starting firewall with Python version 3.6.8
-  11.2  34 | firewall manager: ready method name nat.
-  11.2  34 | IPv6 enabled: False
-  11.2  34 | UDP enabled: False
-  11.2  34 | DNS enabled: True
-  11.2  34 | TCP redirector listening on ('127.0.0.1', 12300).
-  11.2  34 | DNS listening on ('127.0.0.1', 12300).
-  11.2  34 | Starting client with Python version 3.6.8
-  11.2  34 | c : connecting to server...
-  11.2  28 | Handling connection for 41901
-  11.4  34 | Warning: Permanently added '[127.0.0.1]:38023' (ECDSA) to the list of known hosts.
-  14.2  34 | Starting server with Python version 3.6.8
-  14.2  34 |  s: latency control setting = True
-  14.4  34 |  s: available routes:
-  14.4  34 |  s:   2/172.17.0.0/16
-  14.4  34 | c : Connected.
-  14.4  34 | firewall manager: setting up.
-  14.4  34 | >> iptables -t nat -N sshuttle-12300
-  14.4  34 | >> iptables -t nat -F sshuttle-12300
-  14.4  34 | >> iptables -t nat -I OUTPUT 1 -j sshuttle-12300
-  14.4  34 | >> iptables -t nat -I PREROUTING 1 -j sshuttle-12300
-  14.4  34 | >> iptables -t nat -A sshuttle-12300 -j RETURN --dest 172.17.0.2/32 -p tcp
-  14.5  34 | >> iptables -t nat -A sshuttle-12300 -j RETURN --dest 172.17.0.1/32 -p tcp
-  14.5  34 | >> iptables -t nat -A sshuttle-12300 -j RETURN --dest 127.0.0.1/32 -p tcp
-  14.5  34 | >> iptables -t nat -A sshuttle-12300 -j REDIRECT --dest 0.0.0.0/0 -p tcp --to-ports 12300 -m ttl ! --ttl 42
-  14.5  34 | >> iptables -t nat -A sshuttle-12300 -j REDIRECT --dest 10.96.0.10/32 -p udp --dport 53 --to-ports 12300 -m ttl ! --ttl 42
-  14.5  34 | >> iptables -t nat -A sshuttle-12300 -j REDIRECT --dest 224.0.0.252/32 -p udp --dport 5355 --to-ports 12300 -m ttl ! --ttl 42
-  14.5  34 | conntrack v1.4.4 (conntrack-tools): 0 flow entries have been deleted.
-  15.8  27 | Retrieving this pod's namespace from the process environment
-  15.8  27 | Pod's namespace is 'default'
-  15.8  27 | Listening...
-  15.8  27 | 2020-06-15T13:22:46+0000 [-] Loading ./forwarder.py...
-  15.8  27 | 2020-06-15T13:22:48+0000 [-] /etc/resolv.conf changed, reparsing
-  15.8  27 | 2020-06-15T13:22:48+0000 [-] Resolver added ('10.96.0.10', 53) to server list
-  15.8  27 | 2020-06-15T13:22:48+0000 [-] SOCKSv5Factory starting on 9050
-  15.8  27 | 2020-06-15T13:22:48+0000 [socks.SOCKSv5Factory#info] Starting factory <socks.SOCKSv5Factory object at 0x7ff23083d7f0>
-  15.8  27 | 2020-06-15T13:22:48+0000 [-] DNSDatagramProtocol starting on 9053
-  15.8  27 | 2020-06-15T13:22:48+0000 [-] Starting protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7ff23083dba8>
-  15.8  27 | 2020-06-15T13:22:48+0000 [-] Loaded.
-  15.8  27 | 2020-06-15T13:22:48+0000 [twisted.scripts._twistd_unix.UnixAppLogger#info] twistd 19.10.0 (/usr/bin/python3.6 3.6.8) starting up.
-  15.8  27 | 2020-06-15T13:22:48+0000 [twisted.scripts._twistd_unix.UnixAppLogger#info] reactor class: twisted.internet.epollreactor.EPollReactor.
-  15.9  34 | c : DNS request from ('172.17.0.2', 55707) to None: 62 bytes
-  15.9  34 | c : DNS request from ('172.17.0.2', 50682) to None: 54 bytes
-  16.9  38 | [INFO  tini (1)] Main child exited normally (with status '100')
-  17.0 TEL | [38] exit 100 in 6.82 secs.
-  17.0 TEL | [39] Capturing: docker run --help
-  17.0 TEL | [39] captured in 0.05 secs.
-  17.0 TEL | END SPAN container.py:127(run_docker_command)    8.2s
-  17.0 >>> | Setup complete. Launching your container.
-  17.0 TEL | Everything launched. Waiting to exit...
-  17.0 TEL | BEGIN SPAN runner.py:725(wait_for_exit)
-  31.6 TEL | [40] Running: sudo -n echo -n
-  31.7 TEL | [40] ran in 0.01 secs.
-  45.9 TEL | (proxy checking local liveness)
-  45.9  27 | 2020-06-15T13:23:18+0000 [Poll#info] Checkpoint
-  61.7 TEL | [41] Running: sudo -n echo -n
-  61.7 TEL | [41] ran in 0.01 secs.
-  75.8 TEL | (proxy checking local liveness)
-  75.8  27 | 2020-06-15T13:23:48+0000 [Poll#info] Checkpoint
-  91.7 TEL | [42] Running: sudo -n echo -n
-  91.7 TEL | [42] ran in 0.01 secs.
- 105.8 TEL | (proxy checking local liveness)
- 105.9  27 | 2020-06-15T13:24:18+0000 [Poll#info] Checkpoint
- 121.8 TEL | [43] Running: sudo -n echo -n
- 121.8 TEL | [43] ran in 0.01 secs.
- 135.8 TEL | (proxy checking local liveness)
- 135.8  27 | 2020-06-15T13:24:48+0000 [Poll#info] Checkpoint
- 151.8 TEL | [44] Running: sudo -n echo -n
- 151.8 TEL | [44] ran in 0.01 secs.
- 165.8 TEL | (proxy checking local liveness)
- 165.8  27 | 2020-06-15T13:25:18+0000 [Poll#info] Checkpoint
- 181.8 TEL | [45] Running: sudo -n echo -n
- 181.9 TEL | [45] ran in 0.02 secs.
- 195.8 TEL | (proxy checking local liveness)
- 195.8  27 | 2020-06-15T13:25:48+0000 [Poll#info] Checkpoint
- 211.9 TEL | [46] Running: sudo -n echo -n
- 211.9 TEL | [46] ran in 0.01 secs.
- 225.8 TEL | (proxy checking local liveness)
- 225.9  27 | 2020-06-15T13:26:18+0000 [Poll#info] Checkpoint
- 241.9 TEL | [47] Running: sudo -n echo -n
- 241.9 TEL | [47] ran in 0.01 secs.
- 255.8 TEL | (proxy checking local liveness)
- 255.8  27 | 2020-06-15T13:26:48+0000 [Poll#info] Checkpoint
- 271.9 TEL | [48] Running: sudo -n echo -n
- 272.0 TEL | [48] ran in 0.02 secs.
- 285.8 TEL | (proxy checking local liveness)
- 285.8  27 | 2020-06-15T13:27:18+0000 [Poll#info] Checkpoint
- 302.0 TEL | [49] Running: sudo -n echo -n
- 302.0 TEL | [49] ran in 0.01 secs.
- 315.8 TEL | (proxy checking local liveness)
- 315.8  27 | 2020-06-15T13:27:48+0000 [Poll#info] Checkpoint
- 332.0 TEL | [50] Running: sudo -n echo -n
- 332.0 TEL | [50] ran in 0.01 secs.
- 345.8 TEL | (proxy checking local liveness)
- 345.8  27 | 2020-06-15T13:28:18+0000 [Poll#info] Checkpoint
- 362.1 TEL | [51] Running: sudo -n echo -n
- 362.1 TEL | [51] ran in 0.02 secs.
- 375.8 TEL | (proxy checking local liveness)
- 375.8  27 | 2020-06-15T13:28:48+0000 [Poll#info] Checkpoint
- 392.1 TEL | [52] Running: sudo -n echo -n
- 392.1 TEL | [52] ran in 0.01 secs.
- 405.8 TEL | (proxy checking local liveness)
- 405.8  27 | 2020-06-15T13:29:18+0000 [Poll#info] Checkpoint
- 422.2 TEL | [53] Running: sudo -n echo -n
- 422.2 TEL | [53] ran in 0.02 secs.
- 435.8 TEL | (proxy checking local liveness)
- 435.9  27 | 2020-06-15T13:29:48+0000 [Poll#info] Checkpoint
- 452.2 TEL | [54] Running: sudo -n echo -n
- 452.2 TEL | [54] ran in 0.02 secs.
- 465.8 TEL | (proxy checking local liveness)
- 465.8  27 | 2020-06-15T13:30:18+0000 [Poll#info] Checkpoint
- 482.2 TEL | [55] Running: sudo -n echo -n
- 482.3 TEL | [55] ran in 0.01 secs.
- 495.8 TEL | (proxy checking local liveness)
- 495.8  27 | 2020-06-15T13:30:48+0000 [Poll#info] Checkpoint
- 512.3 TEL | [56] Running: sudo -n echo -n
- 512.3 TEL | [56] ran in 0.01 secs.
- 525.8 TEL | (proxy checking local liveness)
- 525.8  27 | 2020-06-15T13:31:18+0000 [Poll#info] Checkpoint
- 542.3 TEL | [57] Running: sudo -n echo -n
- 542.3 TEL | [57] ran in 0.02 secs.
- 555.8 TEL | (proxy checking local liveness)
- 555.8  27 | 2020-06-15T13:31:48+0000 [Poll#info] Checkpoint
- 572.4 TEL | [58] Running: sudo -n echo -n
- 572.4 TEL | [58] ran in 0.01 secs.
- 585.8 TEL | (proxy checking local liveness)
- 585.8  27 | 2020-06-15T13:32:18+0000 [Poll#info] Checkpoint
- 602.4 TEL | [59] Running: sudo -n echo -n
- 602.4 TEL | [59] ran in 0.01 secs.
- 615.8 TEL | (proxy checking local liveness)
- 615.8  27 | 2020-06-15T13:32:48+0000 [Poll#info] Checkpoint
- 632.4 TEL | [60] Running: sudo -n echo -n
- 632.4 TEL | [60] ran in 0.01 secs.
- 645.8 TEL | (proxy checking local liveness)
- 645.8  27 | 2020-06-15T13:33:18+0000 [Poll#info] Checkpoint
- 662.5 TEL | [61] Running: sudo -n echo -n
- 662.5 TEL | [61] ran in 0.01 secs.
- 675.8 TEL | (proxy checking local liveness)
- 675.8  27 | 2020-06-15T13:33:48+0000 [Poll#info] Checkpoint
- 692.5 TEL | [62] Running: sudo -n echo -n
- 692.5 TEL | [62] ran in 0.01 secs.
- 705.8 TEL | (proxy checking local liveness)
- 705.8  27 | 2020-06-15T13:34:18+0000 [Poll#info] Checkpoint
- 722.5 TEL | [63] Running: sudo -n echo -n
- 722.6 TEL | [63] ran in 0.01 secs.
- 735.8 TEL | (proxy checking local liveness)
- 735.8  27 | 2020-06-15T13:34:48+0000 [Poll#info] Checkpoint
- 752.6 TEL | [64] Running: sudo -n echo -n
- 752.6 TEL | [64] ran in 0.01 secs.
- 765.8 TEL | (proxy checking local liveness)
- 765.9  27 | 2020-06-15T13:35:18+0000 [Poll#info] Checkpoint
- 782.6 TEL | [65] Running: sudo -n echo -n
- 782.6 TEL | [65] ran in 0.02 secs.
- 795.8 TEL | (proxy checking local liveness)
- 795.8  27 | 2020-06-15T13:35:48+0000 [Poll#info] Checkpoint
- 812.7 TEL | [66] Running: sudo -n echo -n
- 812.7 TEL | [66] ran in 0.01 secs.
- 825.8 TEL | (proxy checking local liveness)
- 825.8  27 | 2020-06-15T13:36:18+0000 [Poll#info] Checkpoint
- 842.7 TEL | [67] Running: sudo -n echo -n
- 842.7 TEL | [67] ran in 0.01 secs.
- 855.8 TEL | (proxy checking local liveness)
- 855.8  27 | 2020-06-15T13:36:48+0000 [Poll#info] Checkpoint
- 872.7 TEL | [68] Running: sudo -n echo -n
- 872.7 TEL | [68] ran in 0.01 secs.
- 885.8 TEL | (proxy checking local liveness)
- 885.8  27 | 2020-06-15T13:37:18+0000 [Poll#info] Checkpoint
- 902.8 TEL | [69] Running: sudo -n echo -n
- 902.8 TEL | [69] ran in 0.01 secs.
- 915.8 TEL | (proxy checking local liveness)
- 915.8  27 | 2020-06-15T13:37:48+0000 [Poll#info] Checkpoint
- 932.8 TEL | [70] Running: sudo -n echo -n
- 932.8 TEL | [70] ran in 0.01 secs.
- 937.3 >>> | Keyboard interrupt (Ctrl-C/Ctrl-Break) pressed
- 937.3 >>> | Exit cleanup in progress
- 937.3 TEL | (Cleanup) Terminate local container
- 937.3 TEL | Shutting down containers...
- 937.3 TEL | Killing local container...
- 937.3 TEL | [71] Running: docker stop --time=1 telepresence-1592227369-85545-21471
- 937.5  71 | telepresence-1592227369-85545-21471
- 937.5 TEL | [71] ran in 0.22 secs.
- 937.5 TEL | (Cleanup) Kill BG process [37] Local SSH port forward
- 937.5 TEL | Main process (docker run --name=telepresence-1592227369-85545-21471 --network=container:telepresence-1592227361-7006018-21471 -e=TELEPRESENCE_POD -e=TELEPRESENCE_CONTAINER -e=TELEPRESENCE_MOUNTS -e=TELEPRESENCE_CONTAINER_NAMESPACE -e=RESEARCH_UI_PORT_80_TCP_PROTO -e=RESEARCH_API_SERVICE_HOST -e=USER_API_PORT -e=CONSENT_DB_SERVICE_PORT_DB -e=CONSENT_UI_SERVICE_PORT -e=MYSQL_DATASOURCE_PORT_3306_TCP_ADDR -e=DATASOURCE_API_PORT_80_TCP -e=AUTHENTICATION_UI_SERVICE_PORT -e=MYSQL_DATASOURCE_PORT_3306_TCP -e=CONSENT_DB_PORT -e=ZOO1_SERVICE_PORT_FOLLOWER -e=CONSENT_API_SERVICE_PORT_GRPC -e=CONSENT_API_PORT_5050_TCP_ADDR -e=EMAIL_SERVICE_SERVICE_SERVICE_PORT -e=MINIO_PORT_9000_TCP_ADDR -e=KAFKA_MANAGER_SERVICE_HOST -e=KAFKA_MANAGER_SERVICE_PORT_HTTP -e=RESEARCH_DB_PORT_3306_TCP_PORT -e=CONSENT_API_PORT -e=CONSENT_UI_PORT -e=USER_DB_PORT_3306_TCP_PORT -e=MYSQL_DATASOURCE_SERVICE_HOST -e=RESEARCH_DB_PORT_3306_TCP_PROTO -e=RESEARCH_UI_PORT_80_TCP -e=RESEARCH_DB_PORT_3306_TCP -e=CONSENT_DB_SERVICE_HOST -e=DATASOURCE_UI_PORT_80_TCP_ADDR -e=MYSQL_DATASOURCE_PORT_3306_TCP_PORT -e=DATASOURCE_API_SERVICE_PORT -e=KAFKA_MANAGER_PORT -e=CONSENT_API_SERVICE_HOST -e=CONSENT_UI_PORT_80_TCP -e=USER_DB_SERVICE_HOST -e=KUBERNETES_PORT_443_TCP_PORT -e=DATASOURCE_API_SERVICE_HOST -e=RESEARCH_API_PORT_5050_TCP_ADDR -e=RESEARCH_UI_PORT -e=RESEARCH_DB_SERVICE_PORT -e=USER_API_SERVICE_HOST -e=QUESTIONNAIRE_UI_PORT_80_TCP_ADDR -e=MONGO_QUESTIONNAIRE_PORT_27017_TCP_PORT -e=KUBERNETES_PORT_443_TCP_ADDR -e=KAFKA_MANAGER_PORT_9000_TCP_ADDR -e=EMAIL_SERVICE_SERVICE_PORT -e=KAFKA_MANAGER_SERVICE_PORT -e=KAFKA_MANAGER_PORT_9000_TCP_PORT -e=USER_API_PORT_5050_TCP_PORT -e=NUGETREGISTRY_SERVICE_PORT_5000_TCP_PORT -e=MYSQL_DATASOURCE_PORT -e=AUTHENTICATION_UI_SERVICE_HOST -e=RESEARCH_DB_PORT -e=MONGO_QUESTIONNAIRE_PORT -e=MONGO_QUESTIONNAIRE_PORT_27017_TCP -e=CONSENT_UI_SERVICE_HOST -e=NUGETREGISTRY_SERVICE_PORT_5000_TCP_PROTO -e=ZOO1_PORT_2181_TCP_PORT -e=ZOO1_PORT_2181_TCP_PROTO -e=ZOO1_PORT_3888_TCP_ADDR -e=DATASOURCE_UI_PORT_80_TCP -e=MINIO_PORT_9000_TCP_PORT -e=RESEARCH_API_PORT -e=RESEARCH_API_PORT_5050_TCP_PROTO -e=MINIO_PORT_9000_TCP_PROTO -e=ZOO1_PORT_2888_TCP_PROTO -e=QUESTIONNAIRE_UI_SERVICE_HOST -e=CONSENT_UI_PORT_80_TCP_ADDR -e=KAFKA_SERVICE_PORT_9093_TCP_PROTO -e=QUESTIONNAIRE_API_SERVICE_PORT_5000_TCP_ADDR -e=DATASOURCE_API_PORT_80_TCP_PORT -e=AUTHENTICATION_UI_PORT_80_TCP_PORT -e=ZOO1_PORT_3888_TCP_PROTO -e=CONSENT_API_PORT_5050_TCP_PORT -e=KUBERNETES_PORT_443_TCP -e=DATASOURCE_UI_PORT -e=DATASOURCE_API_PORT -e=AUTHENTICATION_UI_PORT_80_TCP_ADDR -e=RESEARCH_UI_PORT_80_TCP_ADDR -e=ZOO1_SERVICE_PORT -e=ZOO1_PORT_2181_TCP_ADDR -e=KUBERNETES_SERVICE_PORT -e=NUGETREGISTRY_SERVICE_SERVICE_PORT_HTTP -e=MINIO_SERVICE_HOST -e=MINIO_PORT -e=RESEARCH_UI_SERVICE_HOST -e=KAFKA_SERVICE_PORT_9093_TCP_ADDR -e=USER_DB_SERVICE_PORT -e=NUGETREGISTRY_SERVICE_SERVICE_HOST -e=NUGETREGISTRY_SERVICE_PORT -e=DATASOURCE_API_PORT_80_TCP_ADDR -e=MINIO_SERVICE_PORT -e=MINIO_PORT_9000_TCP -e=AUTHENTICATION_UI_PORT_80_TCP_PROTO -e=MONGO_QUESTIONNAIRE_SERVICE_HOST -e=DATASOURCE_UI_PORT_80_TCP_PORT -e=NUGETREGISTRY_SERVICE_PORT_5000_TCP_ADDR -e=MYSQL_DATASOURCE_SERVICE_PORT_DB -e=RESEARCH_API_PORT_5050_TCP_PORT -e=CONSENT_DB_PORT_3306_TCP_ADDR -e=KAFKA_SERVICE_PORT_9093_TCP_PORT -e=ZOO1_PORT -e=ZOO1_PORT_2888_TCP_ADDR -e=USER_DB_SERVICE_PORT_DB -e=EMAIL_SERVICE_SERVICE_PORT_5000_TCP_ADDR -e=ZOO1_SERVICE_PORT_LEADER -e=ZOO1_PORT_2181_TCP -e=EMAIL_SERVICE_SERVICE_PORT_5000_TCP_PROTO -e=KUBERNETES_SERVICE_PORT_HTTPS -e=RESEARCH_API_PORT_5050_TCP -e=MONGO_QUESTIONNAIRE_SERVICE_PORT -e=CONSENT_UI_PORT_80_TCP_PORT -e=USER_DB_PORT_3306_TCP -e=EMAIL_SERVICE_SERVICE_SERVICE_PORT_GRPC -e=MYSQL_DATASOURCE_PORT_3306_TCP_PROTO -e=KAFKA_MANAGER_PORT_9000_TCP_PROTO -e=QUESTIONNAIRE_API_SERVICE_SERVICE_HOST -e=KUBERNETES_PORT -e=DATASOURCE_UI_SERVICE_HOST -e=DATASOURCE_UI_SERVICE_PORT -e=RESEARCH_API_SERVICE_PORT -e=ZOO1_SERVICE_HOST -e=ZOO1_SERVICE_PORT_CLIENT -e=CONSENT_API_SERVICE_PORT -e=USER_DB_PORT -e=NUGETREGISTRY_SERVICE_PORT_5000_TCP -e=MINIO_SERVICE_PORT_HTTP -e=RESEARCH_DB_PORT_3306_TCP_ADDR -e=USER_API_PORT_5050_TCP_ADDR -e=MONGO_QUESTIONNAIRE_SERVICE_PORT_DB -e=CONSENT_UI_PORT_80_TCP_PROTO -e=KAFKA_SERVICE_SERVICE_HOST -e=QUESTIONNAIRE_API_SERVICE_PORT_5000_TCP_PORT -e=AUTHENTICATION_UI_PORT -e=RESEARCH_DB_SERVICE_PORT_DB -e=CONSENT_DB_SERVICE_PORT -e=QUESTIONNAIRE_UI_PORT -e=QUESTIONNAIRE_UI_PORT_80_TCP -e=QUESTIONNAIRE_API_SERVICE_PORT_5000_TCP -e=QUESTIONNAIRE_API_SERVICE_PORT_5000_TCP_PROTO -e=NUGETREGISTRY_SERVICE_SERVICE_PORT -e=ZOO1_PORT_3888_TCP_PORT -e=CONSENT_API_PORT_5050_TCP -e=CONSENT_API_PORT_5050_TCP_PROTO -e=USER_DB_PORT_3306_TCP_PROTO -e=EMAIL_SERVICE_SERVICE_PORT_5000_TCP_PORT -e=MONGO_QUESTIONNAIRE_PORT_27017_TCP_PROTO -e=ZOO1_PORT_2888_TCP -e=RESEARCH_API_SERVICE_PORT_GRPC -e=USER_API_PORT_5050_TCP_PROTO -e=CONSENT_DB_PORT_3306_TCP_PROTO -e=ZOO1_PORT_3888_TCP -e=QUESTIONNAIRE_UI_SERVICE_PORT -e=QUESTIONNAIRE_UI_PORT_80_TCP_PORT -e=EMAIL_SERVICE_SERVICE_PORT_5000_TCP -e=RESEARCH_UI_PORT_80_TCP_PORT -e=USER_DB_PORT_3306_TCP_ADDR -e=USER_API_SERVICE_PORT_GRPC -e=CONSENT_DB_PORT_3306_TCP -e=USER_API_SERVICE_PORT -e=KAFKA_SERVICE_SERVICE_PORT -e=QUESTIONNAIRE_API_SERVICE_SERVICE_PORT_GRPC -e=KUBERNETES_PORT_443_TCP_PROTO -e=MYSQL_DATASOURCE_SERVICE_PORT -e=RESEARCH_DB_SERVICE_HOST -e=EMAIL_SERVICE_SERVICE_SERVICE_HOST -e=AUTHENTICATION_UI_PORT_80_TCP -e=KAFKA_MANAGER_PORT_9000_TCP -e=RESEARCH_UI_SERVICE_PORT -e=QUESTIONNAIRE_API_SERVICE_PORT -e=KUBERNETES_SERVICE_HOST -e=USER_API_PORT_5050_TCP -e=CONSENT_DB_PORT_3306_TCP_PORT -e=QUESTIONNAIRE_UI_PORT_80_TCP_PROTO -e=MONGO_QUESTIONNAIRE_PORT_27017_TCP_ADDR -e=KAFKA_SERVICE_PORT -e=QUESTIONNAIRE_API_SERVICE_SERVICE_PORT -e=ZOO1_PORT_2888_TCP_PORT -e=KAFKA_SERVICE_PORT_9093_TCP -e=DATASOURCE_UI_PORT_80_TCP_PROTO -e=DATASOURCE_API_PORT_80_TCP_PROTO -e=TELEPRESENCE_ROOT -e=TELEPRESENCE_METHOD --volume=/tmp/tel-4b1mwdi2/fs:/tmp/tel-4b1mwdi2/fs --init -v /home/chiem/Documents/projects/bied/services/consent-ui/scripts/../src:/usr/src/app/src -v /var/run/docker.sock:/var/run/docker.sock eu.gcr.io/s66-2-271821/consent-ui:dev npm run start:tele)
- 937.5  34 | Connection to 127.0.0.1 closed by remote host.
- 937.5 TEL | (Cleanup) Kill BG process [34] Network container
- 937.5 TEL | [37] Local SSH port forward: exit 0
- 937.5 TEL |  exited with code 143.
- 937.5 TEL | [72] Running: docker stop --time=1 telepresence-1592227361-7006018-21471
- 937.5  34 |  928.1   8 | Connection to 127.0.0.1 closed by remote host.
- 937.5  34 |  928.1 TEL | [8] SSH port forward (exposed ports): exit 255
- 937.5  34 | >> iptables -t nat -D OUTPUT -j sshuttle-12300
- 937.5  34 | >> iptables -t nat -D PREROUTING -j sshuttle-12300
- 937.5  34 | >> iptables -t nat -F sshuttle-12300
- 937.5  34 | >> iptables -t nat -X sshuttle-12300
- 937.5  34 | firewall manager: Error trying to undo /etc/hosts changes.
- 937.5  34 | firewall manager: ---> Traceback (most recent call last):
- 937.5  34 | firewall manager: --->   File "/usr/lib/python3.6/site-packages/sshuttle/firewall.py", line 274, in main
- 937.5  34 | firewall manager: --->     restore_etc_hosts(port_v6 or port_v4)
- 937.5  34 | firewall manager: --->   File "/usr/lib/python3.6/site-packages/sshuttle/firewall.py", line 50, in restore_etc_hosts
- 937.5  34 | firewall manager: --->     rewrite_etc_hosts({}, port)
- 937.5  34 | firewall manager: --->   File "/usr/lib/python3.6/site-packages/sshuttle/firewall.py", line 29, in rewrite_etc_hosts
- 937.5  34 | firewall manager: --->     os.link(HOSTSFILE, BAKFILE)
- 937.5  34 | firewall manager: ---> OSError: [Errno 18] Cross-device link: '/etc/hosts' -> '/etc/hosts.sbak'
- 937.5  34 | c : fatal: server died with error code 255
- 937.5  34 |  928.2 TEL | Main process (sshuttle-telepresence -v --dns --method nat -e 'ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null' -r telepresence@127.0.0.1:38023 -x 172.17.0.2 -x 172.17.0.1 0/0)
- 937.5  34 |  928.2 TEL |  exited with code 99.
- 937.6  34 | [INFO  tini (1)] Main child exited with signal (with signal 'Terminated')
- 937.9  72 | telepresence-1592227361-7006018-21471
- 937.9 TEL | [72] ran in 0.37 secs.
- 937.9 TEL | (Cleanup) Unmount remote filesystem
- 937.9 TEL | [73] Running: sudo fusermount -z -u /tmp/tel-4b1mwdi2/fs
- 937.9 TEL | [34] Network container: exit 143
- 937.9  73 | fusermount: failed to unmount /tmp/tel-4b1mwdi2/fs: Invalid argument
- 937.9 TEL | [73] exit 1 in 0.01 secs.
- 937.9 TEL | (Cleanup) Unmount remote filesystem failed:
- 937.9 TEL | (Cleanup)   Command '['sudo', 'fusermount', '-z', '-u', '/tmp/tel-4b1mwdi2/fs']' returned non-zero exit status 1.
- 937.9 TEL | (Cleanup) Kill BG process [31] SSH port forward (socks and proxy poll)
- 937.9 TEL | [31] SSH port forward (socks and proxy poll): exit 0
- 937.9 TEL | (Cleanup) Kill Web server for proxy poll
- 938.4 TEL | (Cleanup) Kill BG process [28] kubectl port-forward
- 938.4 TEL | [28] kubectl port-forward: exit -15
- 938.4 TEL | (Cleanup) Kill BG process [27] kubectl logs
- 938.4 TEL | [27] kubectl logs: exit -15
- 938.4 TEL | Background process (kubectl logs) exited with return code -15. Command was:
- 938.4 TEL |   kubectl --context bied-dev --namespace default logs -f consent-ui-b42e0872844b46e2ad0283a0e4300f7e-cdd85868c-vz4qg --container consent-ui --tail=10
- 938.4 TEL | 
- 938.4 TEL | Recent output was:
- 938.4 TEL |   2020-06-15T13:33:18+0000 [Poll#info] Checkpoint
- 938.4 TEL |   2020-06-15T13:33:48+0000 [Poll#info] Checkpoint
- 938.4 TEL |   2020-06-15T13:34:18+0000 [Poll#info] Checkpoint
- 938.4 TEL |   2020-06-15T13:34:48+0000 [Poll#info] Checkpoint
- 938.4 TEL |   2020-06-15T13:35:18+0000 [Poll#info] Checkpoint
- 938.4 TEL |   2020-06-15T13:35:48+0000 [Poll#info] Checkpoint
- 938.4 TEL |   2020-06-15T13:36:18+0000 [Poll#info] Checkpoint
- 938.4 TEL |   2020-06-15T13:36:48+0000 [Poll#info] Checkpoint
- 938.4 TEL |   2020-06-15T13:37:18+0000 [Poll#info] Checkpoint
- 938.4 TEL |   2020-06-15T13:37:48+0000 [Poll#info] Checkpoint
- 938.4 TEL | (Cleanup) Re-scale original deployment
- 938.4 TEL | [74] Running: kubectl --context bied-dev --namespace default scale deployment consent-ui --replicas=1
- 938.5  74 | deployment.extensions/consent-ui scaled
- 938.5 TEL | [74] ran in 0.16 secs.
- 938.5 TEL | (Cleanup) Delete new deployment
- 938.5 >>> | Swapping Deployment consent-ui back to its original state
- 938.5 TEL | [75] Running: kubectl --context bied-dev --namespace default delete deployment consent-ui-b42e0872844b46e2ad0283a0e4300f7e
- 938.7  75 | deployment.extensions "consent-ui-b42e0872844b46e2ad0283a0e4300f7e" deleted
- 938.7 TEL | [75] ran in 0.19 secs.
- 938.7 TEL | (Cleanup) Show version notice
- 938.7 >>> | 
- 938.7 >>> | Telepresence 0.105 is available (you're running 0.104). https://www.telepresence.io/reference/changelog
- 938.7 TEL | (Cleanup) Kill sudo privileges holder
- 938.7 TEL | (Cleanup) Stop time tracking
- 938.7 TEL | END SPAN main.py:40(main)  938.7s
- 938.7 TEL | (Cleanup) Remove temporary directory
- 938.7 TEL | (Cleanup) Save caches
- 938.8 TEL | (sudo privileges holder thread exiting)
+   1.6   8 | sudo: a password is required
+   1.6 TEL | [8] exit 1 in 0.01 secs.
+   1.6 >>> | How Telepresence uses sudo: https://www.telepresence.io/reference/install#dependencies
+   1.6 >>> | Invoking sudo. Please enter your sudo password.
+   1.6 TEL | [9] Running: sudo echo -n
+   4.6 TEL | [9] ran in 3.08 secs.
+   4.7 TEL | Found sshfs -> /usr/bin/sshfs
+   4.7 TEL | Found fusermount -> /bin/fusermount
+   4.7 >>> | Volumes are rooted at $TELEPRESENCE_ROOT. See https://telepresence.io/howto/volumes.html for details.
+   4.7 TEL | [10] Running: kubectl --context bied-dev --namespace default get pods telepresence-connectivity-check --ignore-not-found
+   4.7 TEL | [10] ran in 0.07 secs.
+   5.4 TEL | Scout info: {'latest_version': '0.105', 'application': 'telepresence', 'notices': []}
+   5.4 TEL | BEGIN SPAN deployment.py:283(supplant_deployment)
+   5.4 >>> | Starting network proxy to cluster by swapping out Deployment consent-ui with a proxy
+   5.4 TEL | BEGIN SPAN remote.py:75(get_deployment_json)
+   5.4 TEL | [11] Capturing: kubectl --context bied-dev --namespace default get deployment -o json consent-ui
+   5.5 TEL | [11] captured in 0.08 secs.
+   5.5 TEL | END SPAN remote.py:75(get_deployment_json)    0.1s
+   5.5 TEL | [12] Running: kubectl --context bied-dev --namespace default delete deployment consent-ui-c1c748c1cea345cc9bb393780ecee251 --ignore-not-found
+   5.6 TEL | [12] ran in 0.06 secs.
+   5.6 TEL | [13] Running: kubectl --context bied-dev --namespace default apply -f -
+   5.8  13 | deployment.extensions/consent-ui-c1c748c1cea345cc9bb393780ecee251 created
+   5.8 TEL | [13] ran in 0.23 secs.
+   5.8 TEL | [14] Running: kubectl --context bied-dev --namespace default scale deployment consent-ui --replicas=0
+   5.9  14 | deployment.extensions/consent-ui scaled
+   5.9 TEL | [14] ran in 0.11 secs.
+   5.9 TEL | END SPAN deployment.py:283(supplant_deployment)    0.5s
+   5.9 TEL | BEGIN SPAN remote.py:142(get_remote_info)
+   5.9 TEL | BEGIN SPAN remote.py:75(get_deployment_json)
+   5.9 TEL | [15] Capturing: kubectl --context bied-dev --namespace default get deployment -o json --selector=telepresence=c1c748c1cea345cc9bb393780ecee251
+   6.0 TEL | [15] captured in 0.09 secs.
+   6.0 TEL | END SPAN remote.py:75(get_deployment_json)    0.1s
+   6.0 TEL | Searching for Telepresence pod:
+   6.0 TEL |   with name consent-ui-c1c748c1cea345cc9bb393780ecee251-*
+   6.0 TEL |   with labels {'app.kubernetes.io/instance': 'consent-ui-consent-ui', 'app.kubernetes.io/name': 'consent-ui', 'telepresence': 'c1c748c1cea345cc9bb393780ecee251'}
+   6.0 TEL | [16] Capturing: kubectl --context bied-dev --namespace default get pod -o json --selector=telepresence=c1c748c1cea345cc9bb393780ecee251
+   6.1 TEL | [16] captured in 0.12 secs.
+   6.1 TEL | Checking consent-ui-c1c748c1cea345cc9bb393780ecee251-5c747f44bb-lqj7c
+   6.1 TEL | Looks like we've found our pod!
+   6.1 TEL | BEGIN SPAN remote.py:104(wait_for_pod)
+   6.1 TEL | [17] Capturing: kubectl --context bied-dev --namespace default get pod consent-ui-c1c748c1cea345cc9bb393780ecee251-5c747f44bb-lqj7c -o json
+   6.2 TEL | [17] captured in 0.07 secs.
+   6.5 TEL | [18] Capturing: kubectl --context bied-dev --namespace default get pod consent-ui-c1c748c1cea345cc9bb393780ecee251-5c747f44bb-lqj7c -o json
+   6.5 TEL | [18] captured in 0.07 secs.
+   6.8 TEL | [19] Capturing: kubectl --context bied-dev --namespace default get pod consent-ui-c1c748c1cea345cc9bb393780ecee251-5c747f44bb-lqj7c -o json
+   6.9 TEL | [19] captured in 0.09 secs.
+   7.1 TEL | [20] Capturing: kubectl --context bied-dev --namespace default get pod consent-ui-c1c748c1cea345cc9bb393780ecee251-5c747f44bb-lqj7c -o json
+   7.3 TEL | [20] captured in 0.15 secs.
+   7.5 TEL | [21] Capturing: kubectl --context bied-dev --namespace default get pod consent-ui-c1c748c1cea345cc9bb393780ecee251-5c747f44bb-lqj7c -o json
+   7.7 TEL | [21] captured in 0.17 secs.
+   7.9 TEL | [22] Capturing: kubectl --context bied-dev --namespace default get pod consent-ui-c1c748c1cea345cc9bb393780ecee251-5c747f44bb-lqj7c -o json
+   8.1 TEL | [22] captured in 0.18 secs.
+   8.4 TEL | [23] Capturing: kubectl --context bied-dev --namespace default get pod consent-ui-c1c748c1cea345cc9bb393780ecee251-5c747f44bb-lqj7c -o json
+   8.5 TEL | [23] captured in 0.15 secs.
+   8.8 TEL | [24] Capturing: kubectl --context bied-dev --namespace default get pod consent-ui-c1c748c1cea345cc9bb393780ecee251-5c747f44bb-lqj7c -o json
+   8.9 TEL | [24] captured in 0.12 secs.
+   9.1 TEL | [25] Capturing: kubectl --context bied-dev --namespace default get pod consent-ui-c1c748c1cea345cc9bb393780ecee251-5c747f44bb-lqj7c -o json
+   9.3 TEL | [25] captured in 0.14 secs.
+   9.5 TEL | [26] Capturing: kubectl --context bied-dev --namespace default get pod consent-ui-c1c748c1cea345cc9bb393780ecee251-5c747f44bb-lqj7c -o json
+   9.7 TEL | [26] captured in 0.11 secs.
+   9.9 TEL | [27] Capturing: kubectl --context bied-dev --namespace default get pod consent-ui-c1c748c1cea345cc9bb393780ecee251-5c747f44bb-lqj7c -o json
+  10.0 TEL | [27] captured in 0.13 secs.
+  10.3 TEL | [28] Capturing: kubectl --context bied-dev --namespace default get pod consent-ui-c1c748c1cea345cc9bb393780ecee251-5c747f44bb-lqj7c -o json
+  10.4 TEL | [28] captured in 0.15 secs.
+  10.7 TEL | [29] Capturing: kubectl --context bied-dev --namespace default get pod consent-ui-c1c748c1cea345cc9bb393780ecee251-5c747f44bb-lqj7c -o json
+  10.8 TEL | [29] captured in 0.14 secs.
+  10.8 TEL | END SPAN remote.py:104(wait_for_pod)    4.7s
+  10.8 TEL | END SPAN remote.py:142(get_remote_info)    4.9s
+  10.8 TEL | BEGIN SPAN connect.py:37(connect)
+  10.8 TEL | [30] Launching kubectl logs: kubectl --context bied-dev --namespace default logs -f consent-ui-c1c748c1cea345cc9bb393780ecee251-5c747f44bb-lqj7c --container consent-ui --tail=10
+  10.8 TEL | [31] Launching kubectl port-forward: kubectl --context bied-dev --namespace default port-forward consent-ui-c1c748c1cea345cc9bb393780ecee251-5c747f44bb-lqj7c 41603:8022
+  10.9 TEL | [32] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 41603 telepresence@127.0.0.1 /bin/true
+  10.9 TEL | [32] exit 255 in 0.03 secs.
+  11.0  31 | Forwarding from 127.0.0.1:41603 -> 8022
+  11.0  31 | Forwarding from [::1]:41603 -> 8022
+  11.1 TEL | [33] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 41603 telepresence@127.0.0.1 /bin/true
+  11.1  31 | Handling connection for 41603
+  11.9 TEL | [33] ran in 0.77 secs.
+  11.9 >>> | Forwarding remote port 80 to local port 80.
+  11.9 >>> | 
+  11.9 TEL | Launching Web server for proxy poll
+  11.9 TEL | [34] Launching SSH port forward (socks and proxy poll): ssh -N -oServerAliveInterval=1 -oServerAliveCountMax=10 -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 41603 telepresence@127.0.0.1 -L127.0.0.1:46537:127.0.0.1:9050 -R9055:127.0.0.1:41897
+  11.9 TEL | END SPAN connect.py:37(connect)    1.1s
+  11.9 TEL | BEGIN SPAN remote_env.py:29(get_remote_env)
+  11.9 TEL | [35] Capturing: kubectl --context bied-dev --namespace default exec consent-ui-c1c748c1cea345cc9bb393780ecee251-5c747f44bb-lqj7c --container consent-ui -- python3 podinfo.py
+  11.9  31 | Handling connection for 41603
+  14.4 TEL | [35] captured in 2.50 secs.
+  14.4 TEL | END SPAN remote_env.py:29(get_remote_env)    2.5s
+  14.4 TEL | BEGIN SPAN mount.py:30(mount_remote_volumes)
+  14.4 TEL | [36] Running: sudo sshfs -p 41603 -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -o allow_other telepresence@127.0.0.1:/ /tmp/tel-o1bvv97l/fs
+  14.4  31 | Handling connection for 41603
+  14.8 TEL | [36] ran in 0.36 secs.
+  14.8 TEL | END SPAN mount.py:30(mount_remote_volumes)    0.4s
+  14.8 TEL | BEGIN SPAN container.py:160(run_docker_command)
+  14.8 TEL | [37] Launching Network container: docker run -p=80 --publish=127.0.0.1:44873:38022/tcp --hostname=consent-ui-c1c748c1cea345cc9bb393780ecee251-5c747f44bb-lqj7c --dns=10.96.0.10 --dns-search=default.svc.cluster.local --dns-search=svc.cluster.local --dns-search=cluster.local --dns-opt=ndots:5 --rm --privileged --name=telepresence-1592802625-510159-28600 datawire/telepresence-local:0.105 proxy '{"cidrs": ["0/0"], "expose_ports": [[80, 80]], "to_pod": [], "from_pod": []}'
+  14.8 TEL | [38] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 44873 root@127.0.0.1 /bin/true
+  14.8 TEL | [38] exit 255 in 0.01 secs.
+  15.0 TEL | [39] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 44873 root@127.0.0.1 /bin/true
+  15.2  37 | [INFO  tini (1)] Spawned child process 'python3' with pid '6'
+  15.5  37 |    0.0 TEL | Telepresence 0+unknown launched at Mon Jun 22 05:10:26 2020
+  15.5  37 |    0.0 TEL |   /usr/bin/entrypoint.py proxy '{"cidrs": ["0/0"], "expose_ports": [[80, 80]], "to_pod": [], "from_pod": []}'
+  15.5  37 |    0.0 TEL | uname: uname_result(system='Linux', node='consent-ui-c1c748c1cea345cc9bb393780ecee251-5c747f44bb-lqj7c', release='5.3.0-59-generic', version='#53~18.04.1-Ubuntu SMP Thu Jun 4 14:58:26 UTC 2020', machine='x86_64', processor='')
+  15.5  37 |    0.0 TEL | Platform: linux
+  15.5  37 |    0.0 TEL | WSL: False
+  15.5  37 |    0.0 TEL | Python 3.6.8 (default, Apr 22 2019, 10:28:12)
+  15.5  37 |    0.0 TEL | [GCC 6.3.0]
+  15.5  37 |    0.0 TEL | [1] Running: /usr/sbin/sshd -e
+  15.5  37 |    0.0 TEL | [1] ran in 0.01 secs.
+  15.5  37 |    0.0 TEL | [2] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 38023 telepresence@127.0.0.1 /bin/true
+  15.5  37 |    0.0 TEL | [2] exit 255 in 0.01 secs.
+  15.8  37 |    0.3 TEL | [3] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 38023 telepresence@127.0.0.1 /bin/true
+  15.8  37 |    0.3 TEL | [3] exit 255 in 0.01 secs.
+  16.0  37 |    0.5 TEL | [4] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 38023 telepresence@127.0.0.1 /bin/true
+  16.0  37 |    0.5 TEL | [4] exit 255 in 0.01 secs.
+  16.1 TEL | [39] ran in 1.07 secs.
+  16.1 TEL | [40] Launching Local SSH port forward: ssh -N -oServerAliveInterval=1 -oServerAliveCountMax=10 -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 44873 root@127.0.0.1 -R 38023:127.0.0.1:41603
+  16.1 TEL | [41] Running: docker run --network=container:telepresence-1592802625-510159-28600 --rm datawire/telepresence-local:0.105 wait
+  16.3  37 |    0.8 TEL | [5] Running: ssh -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 38023 telepresence@127.0.0.1 /bin/true
+  16.3  31 | Handling connection for 41603
+  16.5  41 | [INFO  tini (1)] Spawned child process 'python3' with pid '6'
+  17.2  37 |    1.7 TEL | [5] ran in 0.87 secs.
+  17.2  37 |    1.7 TEL | [6] Capturing: netstat -n
+  17.2  37 |    1.7 TEL | [6] captured in 0.01 secs.
+  17.2  37 |    1.7 TEL | [7] Launching SSH port forward (exposed ports): ssh -N -oServerAliveInterval=1 -oServerAliveCountMax=10 -F /dev/null -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -q -p 38023 telepresence@127.0.0.1 -R '*:80:127.0.0.1:80'
+  17.2  37 |    1.7 TEL | Everything launched. Waiting to exit...
+  17.2  31 | Handling connection for 41603
+  17.2  37 |    1.7 TEL | BEGIN SPAN runner.py:726(wait_for_exit)
+  17.4  37 | Starting sshuttle proxy.
+  17.6  37 | firewall manager: Starting firewall with Python version 3.6.8
+  17.6  37 | firewall manager: ready method name nat.
+  17.6  37 | IPv6 enabled: False
+  17.6  37 | UDP enabled: False
+  17.6  37 | DNS enabled: True
+  17.6  37 | TCP redirector listening on ('127.0.0.1', 12300).
+  17.6  37 | DNS listening on ('127.0.0.1', 12300).
+  17.6  37 | Starting client with Python version 3.6.8
+  17.6  37 | c : connecting to server...
+  17.6  31 | Handling connection for 41603
+  18.6  37 | Warning: Permanently added '[127.0.0.1]:38023' (ECDSA) to the list of known hosts.
+  22.0  37 | Starting server with Python version 3.6.8
+  22.0  37 |  s: latency control setting = True
+  22.1  37 |  s: available routes:
+  22.1  37 |  s:   2/172.17.0.0/16
+  22.1  37 | c : Connected.
+  22.1  37 | firewall manager: setting up.
+  22.1  37 | >> iptables -t nat -N sshuttle-12300
+  22.1  37 | >> iptables -t nat -F sshuttle-12300
+  22.1  37 | >> iptables -t nat -I OUTPUT 1 -j sshuttle-12300
+  22.1  37 | >> iptables -t nat -I PREROUTING 1 -j sshuttle-12300
+  22.1  37 | >> iptables -t nat -A sshuttle-12300 -j RETURN --dest 172.17.0.2/32 -p tcp
+  22.1  37 | >> iptables -t nat -A sshuttle-12300 -j RETURN --dest 172.17.0.1/32 -p tcp
+  22.1  37 | >> iptables -t nat -A sshuttle-12300 -j RETURN --dest 127.0.0.1/32 -p tcp
+  22.1  37 | >> iptables -t nat -A sshuttle-12300 -j REDIRECT --dest 0.0.0.0/0 -p tcp --to-ports 12300 -m ttl ! --ttl 42
+  22.1  37 | >> iptables -t nat -A sshuttle-12300 -j REDIRECT --dest 10.96.0.10/32 -p udp --dport 53 --to-ports 12300 -m ttl ! --ttl 42
+  22.1  37 | >> iptables -t nat -A sshuttle-12300 -j REDIRECT --dest 224.0.0.252/32 -p udp --dport 5355 --to-ports 12300 -m ttl ! --ttl 42
+  22.1  37 | conntrack v1.4.4 (conntrack-tools): 0 flow entries have been deleted.
+  24.3  37 | c : DNS request from ('172.17.0.2', 53356) to None: 62 bytes
+  24.6  37 | c : DNS request from ('172.17.0.2', 52092) to None: 54 bytes
+  25.6  41 | [INFO  tini (1)] Main child exited normally (with status '100')
+  25.8 TEL | [41] exit 100 in 9.66 secs.
+  25.8 TEL | [42] Capturing: docker run --help
+  25.9 TEL | [42] captured in 0.07 secs.
+  25.9 TEL | END SPAN container.py:160(run_docker_command)   11.1s
+  25.9 >>> | Setup complete. Launching your container.
+  25.9 TEL | Everything launched. Waiting to exit...
+  25.9 TEL | BEGIN SPAN runner.py:726(wait_for_exit)
+  28.3  30 | Retrieving this pod's namespace from the process environment
+  28.3  30 | Pod's namespace is 'default'
+  28.3  30 | Listening...
+  28.3  30 | 2020-06-22T05:10:37+0000 [-] Loading ./forwarder.py...
+  28.3  30 | 2020-06-22T05:10:39+0000 [-] /etc/resolv.conf changed, reparsing
+  28.3  30 | 2020-06-22T05:10:39+0000 [-] Resolver added ('10.96.0.10', 53) to server list
+  28.3  30 | 2020-06-22T05:10:39+0000 [-] SOCKSv5Factory starting on 9050
+  28.3  30 | 2020-06-22T05:10:39+0000 [socks.SOCKSv5Factory#info] Starting factory <socks.SOCKSv5Factory object at 0x7ff8eb7a57f0>
+  28.3  30 | 2020-06-22T05:10:39+0000 [-] DNSDatagramProtocol starting on 9053
+  28.3  30 | 2020-06-22T05:10:39+0000 [-] Starting protocol <twisted.names.dns.DNSDatagramProtocol object at 0x7ff8eb7a5ac8>
+  28.3  30 | 2020-06-22T05:10:39+0000 [-] Loaded.
+  28.3  30 | 2020-06-22T05:10:39+0000 [twisted.scripts._twistd_unix.UnixAppLogger#info] twistd 20.3.0 (/usr/bin/python3.6 3.6.8) starting up.
+  28.3  30 | 2020-06-22T05:10:39+0000 [twisted.scripts._twistd_unix.UnixAppLogger#info] reactor class: twisted.internet.epollreactor.EPollReactor.
+  34.7 TEL | [43] Running: sudo -n echo -n
+  34.7 TEL | [43] ran in 0.03 secs.
+  58.3 TEL | (proxy checking local liveness)
+  58.3  30 | 2020-06-22T05:11:09+0000 [Poll#info] Checkpoint
+  64.8 TEL | [44] Running: sudo -n echo -n
+  64.8 TEL | [44] ran in 0.02 secs.
+  88.2 TEL | (proxy checking local liveness)
+  88.2  30 | 2020-06-22T05:11:39+0000 [Poll#info] Checkpoint
+  94.8 TEL | [45] Running: sudo -n echo -n
+  94.8 TEL | [45] ran in 0.01 secs.
+ 118.2 TEL | (proxy checking local liveness)
+ 118.2  30 | 2020-06-22T05:12:09+0000 [Poll#info] Checkpoint
+ 124.8 TEL | [46] Running: sudo -n echo -n
+ 124.9 TEL | [46] ran in 0.02 secs.
+ 148.2 TEL | (proxy checking local liveness)
+ 148.2  30 | 2020-06-22T05:12:39+0000 [Poll#info] Checkpoint
+ 154.9 TEL | [47] Running: sudo -n echo -n
+ 154.9 TEL | [47] ran in 0.03 secs.
+ 178.2 TEL | (proxy checking local liveness)
+ 178.2  30 | 2020-06-22T05:13:09+0000 [Poll#info] Checkpoint
+ 184.9 TEL | [48] Running: sudo -n echo -n
+ 185.0 TEL | [48] ran in 0.01 secs.
+ 208.2 TEL | (proxy checking local liveness)
+ 208.2  30 | 2020-06-22T05:13:39+0000 [Poll#info] Checkpoint
+ 215.0 TEL | [49] Running: sudo -n echo -n
+ 215.0 TEL | [49] ran in 0.02 secs.
+ 238.2 TEL | (proxy checking local liveness)
+ 238.2  30 | 2020-06-22T05:14:09+0000 [Poll#info] Checkpoint
+ 245.0 TEL | [50] Running: sudo -n echo -n
+ 245.0 TEL | [50] ran in 0.02 secs.
+ 268.2 TEL | (proxy checking local liveness)
+ 268.2  30 | 2020-06-22T05:14:39+0000 [Poll#info] Checkpoint
+ 275.1 TEL | [51] Running: sudo -n echo -n
+ 275.1 TEL | [51] ran in 0.04 secs.
+ 298.2 TEL | (proxy checking local liveness)
+ 298.2  30 | 2020-06-22T05:15:09+0000 [Poll#info] Checkpoint
+ 305.1 TEL | [52] Running: sudo -n echo -n
+ 305.1 TEL | [52] ran in 0.01 secs.
+ 328.2 TEL | (proxy checking local liveness)
+ 328.2  30 | 2020-06-22T05:15:39+0000 [Poll#info] Checkpoint
+ 335.2 TEL | [53] Running: sudo -n echo -n
+ 335.2 TEL | [53] ran in 0.01 secs.
+ 358.2 TEL | (proxy checking local liveness)
+ 358.2  30 | 2020-06-22T05:16:09+0000 [Poll#info] Checkpoint
+ 365.2 TEL | [54] Running: sudo -n echo -n
+ 365.2 TEL | [54] ran in 0.02 secs.
+ 388.2 TEL | (proxy checking local liveness)
+ 388.3  30 | 2020-06-22T05:16:39+0000 [Poll#info] Checkpoint
+ 395.3 TEL | [55] Running: sudo -n echo -n
+ 395.3 TEL | [55] ran in 0.02 secs.
+ 418.2 TEL | (proxy checking local liveness)
+ 418.2  30 | 2020-06-22T05:17:09+0000 [Poll#info] Checkpoint
+ 425.3 TEL | [56] Running: sudo -n echo -n
+ 425.3 TEL | [56] ran in 0.01 secs.
+ 448.2 TEL | (proxy checking local liveness)
+ 448.2  30 | 2020-06-22T05:17:39+0000 [Poll#info] Checkpoint
+ 455.3 TEL | [57] Running: sudo -n echo -n
+ 455.4 TEL | [57] ran in 0.02 secs.
+ 478.2 TEL | (proxy checking local liveness)
+ 478.2  30 | 2020-06-22T05:18:09+0000 [Poll#info] Checkpoint
+ 485.4 TEL | [58] Running: sudo -n echo -n
+ 485.5 TEL | [58] ran in 0.06 secs.
+ 508.2 TEL | (proxy checking local liveness)
+ 508.2  30 | 2020-06-22T05:18:39+0000 [Poll#info] Checkpoint
+ 515.5 TEL | [59] Running: sudo -n echo -n
+ 515.5 TEL | [59] ran in 0.01 secs.
+ 538.2 TEL | (proxy checking local liveness)
+ 538.2  30 | 2020-06-22T05:19:09+0000 [Poll#info] Checkpoint
+ 545.5 TEL | [60] Running: sudo -n echo -n
+ 545.5 TEL | [60] ran in 0.02 secs.
+ 568.2 TEL | (proxy checking local liveness)
+ 568.2  30 | 2020-06-22T05:19:39+0000 [Poll#info] Checkpoint
+ 575.6 TEL | [61] Running: sudo -n echo -n
+ 575.6 TEL | [61] ran in 0.02 secs.
+ 598.2 TEL | (proxy checking local liveness)
+ 598.2  30 | 2020-06-22T05:20:09+0000 [Poll#info] Checkpoint
+ 605.6 TEL | [62] Running: sudo -n echo -n
+ 605.6 TEL | [62] ran in 0.02 secs.
+ 628.2 TEL | (proxy checking local liveness)
+ 628.2  30 | 2020-06-22T05:20:39+0000 [Poll#info] Checkpoint
+ 635.7 TEL | [63] Running: sudo -n echo -n
+ 635.7 TEL | [63] ran in 0.02 secs.
+ 658.2 TEL | (proxy checking local liveness)
+ 658.2  30 | 2020-06-22T05:21:09+0000 [Poll#info] Checkpoint
+ 665.7 TEL | [64] Running: sudo -n echo -n
+ 665.7 TEL | [64] ran in 0.02 secs.
+ 688.2 TEL | (proxy checking local liveness)
+ 688.2  30 | 2020-06-22T05:21:39+0000 [Poll#info] Checkpoint
+ 695.7 TEL | [65] Running: sudo -n echo -n
+ 695.8 TEL | [65] ran in 0.02 secs.
+ 718.2 TEL | (proxy checking local liveness)
+ 718.2  30 | 2020-06-22T05:22:09+0000 [Poll#info] Checkpoint
+ 725.8 TEL | [66] Running: sudo -n echo -n
+ 725.8 TEL | [66] ran in 0.01 secs.
+ 748.2 TEL | (proxy checking local liveness)
+ 748.2  30 | 2020-06-22T05:22:39+0000 [Poll#info] Checkpoint
+ 755.8 TEL | [67] Running: sudo -n echo -n
+ 755.8 TEL | [67] ran in 0.02 secs.
+ 778.2 TEL | (proxy checking local liveness)
+ 778.2  30 | 2020-06-22T05:23:09+0000 [Poll#info] Checkpoint
+ 785.9 TEL | [68] Running: sudo -n echo -n
+ 785.9 TEL | [68] ran in 0.03 secs.
+ 808.2 TEL | (proxy checking local liveness)
+ 808.3  30 | 2020-06-22T05:23:39+0000 [Poll#info] Checkpoint
+ 815.9 TEL | [69] Running: sudo -n echo -n
+ 815.9 TEL | [69] ran in 0.01 secs.
+ 838.2 TEL | (proxy checking local liveness)
+ 838.2  30 | 2020-06-22T05:24:09+0000 [Poll#info] Checkpoint
+ 846.0 TEL | [70] Running: sudo -n echo -n
+ 846.0 TEL | [70] ran in 0.01 secs.
+ 868.3 TEL | (proxy checking local liveness)
+ 868.3  30 | 2020-06-22T05:24:39+0000 [Poll#info] Checkpoint
+ 876.0 TEL | [71] Running: sudo -n echo -n
+ 876.0 TEL | [71] ran in 0.03 secs.
+ 898.2 TEL | (proxy checking local liveness)
+ 898.2  30 | 2020-06-22T05:25:09+0000 [Poll#info] Checkpoint
+ 906.1 TEL | [72] Running: sudo -n echo -n
+ 906.1 TEL | [72] ran in 0.03 secs.
+ 928.2 TEL | (proxy checking local liveness)
+ 928.2  30 | 2020-06-22T05:25:39+0000 [Poll#info] Checkpoint
+ 936.1 TEL | [73] Running: sudo -n echo -n
+ 936.1 TEL | [73] ran in 0.02 secs.
+ 958.2 TEL | (proxy checking local liveness)
+ 958.2  30 | 2020-06-22T05:26:09+0000 [Poll#info] Checkpoint
+ 966.2 TEL | [74] Running: sudo -n echo -n
+ 966.2 TEL | [74] ran in 0.02 secs.
+ 988.2 TEL | (proxy checking local liveness)
+ 988.2  30 | 2020-06-22T05:26:39+0000 [Poll#info] Checkpoint
+ 996.2 TEL | [75] Running: sudo -n echo -n
+ 996.2 TEL | [75] ran in 0.01 secs.
+1018.2 TEL | (proxy checking local liveness)
+1018.2  30 | 2020-06-22T05:27:09+0000 [Poll#info] Checkpoint
+1026.2 TEL | [76] Running: sudo -n echo -n
+1026.3 TEL | [76] ran in 0.02 secs.
+1048.3 TEL | (proxy checking local liveness)
+1048.3  30 | 2020-06-22T05:27:39+0000 [Poll#info] Checkpoint
+1056.3 TEL | [77] Running: sudo -n echo -n
+1056.3 TEL | [77] ran in 0.04 secs.
+1078.2 TEL | (proxy checking local liveness)
+1078.2  30 | 2020-06-22T05:28:09+0000 [Poll#info] Checkpoint
+1086.4 TEL | [78] Running: sudo -n echo -n
+1086.4 TEL | [78] ran in 0.01 secs.
+1108.2 TEL | (proxy checking local liveness)
+1108.2  30 | 2020-06-22T05:28:39+0000 [Poll#info] Checkpoint
+1116.4 TEL | [79] Running: sudo -n echo -n
+1116.4 TEL | [79] ran in 0.02 secs.
+1138.2 TEL | (proxy checking local liveness)
+1138.2  30 | 2020-06-22T05:29:09+0000 [Poll#info] Checkpoint
+1146.4 TEL | [80] Running: sudo -n echo -n
+1146.4 TEL | [80] ran in 0.01 secs.
+1168.2 TEL | (proxy checking local liveness)
+1168.2  30 | 2020-06-22T05:29:39+0000 [Poll#info] Checkpoint
+1176.5 TEL | [81] Running: sudo -n echo -n
+1176.5 TEL | [81] ran in 0.01 secs.
+1198.2 TEL | (proxy checking local liveness)
+1198.2  30 | 2020-06-22T05:30:09+0000 [Poll#info] Checkpoint
+1206.5 TEL | [82] Running: sudo -n echo -n
+1206.5 TEL | [82] ran in 0.02 secs.
+1228.2 TEL | (proxy checking local liveness)
+1228.2  30 | 2020-06-22T05:30:39+0000 [Poll#info] Checkpoint
+1236.6 TEL | [83] Running: sudo -n echo -n
+1236.6 TEL | [83] ran in 0.02 secs.
+1258.2 TEL | (proxy checking local liveness)
+1258.2  30 | 2020-06-22T05:31:09+0000 [Poll#info] Checkpoint
+1266.6 TEL | [84] Running: sudo -n echo -n
+1266.6 TEL | [84] ran in 0.02 secs.
+1288.2 TEL | (proxy checking local liveness)
+1288.2  30 | 2020-06-22T05:31:39+0000 [Poll#info] Checkpoint
+1296.6 TEL | [85] Running: sudo -n echo -n
+1296.7 TEL | [85] ran in 0.02 secs.
+1318.2 TEL | (proxy checking local liveness)
+1318.2  30 | 2020-06-22T05:32:09+0000 [Poll#info] Checkpoint
+1326.7 TEL | [86] Running: sudo -n echo -n
+1326.7 TEL | [86] ran in 0.02 secs.
+1348.2 TEL | (proxy checking local liveness)
+1348.2  30 | 2020-06-22T05:32:39+0000 [Poll#info] Checkpoint
+1356.7 TEL | [87] Running: sudo -n echo -n
+1356.7 TEL | [87] ran in 0.01 secs.
+1378.2 TEL | (proxy checking local liveness)
+1378.2  30 | 2020-06-22T05:33:09+0000 [Poll#info] Checkpoint
+1386.8 TEL | [88] Running: sudo -n echo -n
+1386.8 TEL | [88] ran in 0.01 secs.
+1408.2 TEL | (proxy checking local liveness)
+1408.2  30 | 2020-06-22T05:33:39+0000 [Poll#info] Checkpoint
+1416.8 TEL | [89] Running: sudo -n echo -n
+1416.8 TEL | [89] ran in 0.03 secs.
+1438.2 TEL | (proxy checking local liveness)
+1438.2  30 | 2020-06-22T05:34:09+0000 [Poll#info] Checkpoint
+1446.8 TEL | [90] Running: sudo -n echo -n
+1446.9 TEL | [90] ran in 0.02 secs.
+1468.2 TEL | (proxy checking local liveness)
+1468.2  30 | 2020-06-22T05:34:39+0000 [Poll#info] Checkpoint
+1476.9 TEL | [91] Running: sudo -n echo -n
+1476.9 TEL | [91] ran in 0.02 secs.
+1498.2 TEL | (proxy checking local liveness)
+1498.2  30 | 2020-06-22T05:35:09+0000 [Poll#info] Checkpoint
+1506.9 TEL | [92] Running: sudo -n echo -n
+1506.9 TEL | [92] ran in 0.02 secs.
+1528.2 TEL | (proxy checking local liveness)
+1528.2  30 | 2020-06-22T05:35:39+0000 [Poll#info] Checkpoint
+1537.0 TEL | [93] Running: sudo -n echo -n
+1537.0 TEL | [93] ran in 0.02 secs.
+1558.3 TEL | (proxy checking local liveness)
+1558.4  30 | 2020-06-22T05:36:09+0000 [Poll#info] Checkpoint
+1567.0 TEL | [94] Running: sudo -n echo -n
+1567.1 TEL | [94] ran in 0.02 secs.
+1588.2 TEL | (proxy checking local liveness)
+1588.2  30 | 2020-06-22T05:36:39+0000 [Poll#info] Checkpoint
+1597.1 TEL | [95] Running: sudo -n echo -n
+1597.1 TEL | [95] ran in 0.05 secs.
+1618.2 TEL | (proxy checking local liveness)
+1618.2  30 | 2020-06-22T05:37:09+0000 [Poll#info] Checkpoint
+1627.2 TEL | [96] Running: sudo -n echo -n
+1627.2 TEL | [96] ran in 0.01 secs.
+1648.2 TEL | (proxy checking local liveness)
+1648.2  30 | 2020-06-22T05:37:39+0000 [Poll#info] Checkpoint
+1657.2 TEL | [97] Running: sudo -n echo -n
+1657.3 TEL | [97] ran in 0.05 secs.
+1678.2 TEL | (proxy checking local liveness)
+1678.2  30 | 2020-06-22T05:38:09+0000 [Poll#info] Checkpoint
+1687.3 TEL | [98] Running: sudo -n echo -n
+1687.3 TEL | [98] ran in 0.01 secs.
+1708.2 TEL | (proxy checking local liveness)
+1708.2  30 | 2020-06-22T05:38:39+0000 [Poll#info] Checkpoint
+1717.3 TEL | [99] Running: sudo -n echo -n
+1717.4 TEL | [99] ran in 0.01 secs.
+1738.2 TEL | (proxy checking local liveness)
+1738.2  30 | 2020-06-22T05:39:09+0000 [Poll#info] Checkpoint
+1747.4 TEL | [100] Running: sudo -n echo -n
+1747.4 TEL | [100] ran in 0.02 secs.
+1768.2 TEL | (proxy checking local liveness)
+1768.2  30 | 2020-06-22T05:39:39+0000 [Poll#info] Checkpoint
+1777.4 TEL | [101] Running: sudo -n echo -n
+1777.5 TEL | [101] ran in 0.02 secs.
+1798.4 TEL | (proxy checking local liveness)
+1798.5  30 | 2020-06-22T05:40:09+0000 [Poll#info] Checkpoint
+1807.5 TEL | [102] Running: sudo -n echo -n
+1807.5 TEL | [102] ran in 0.03 secs.
+1828.5 TEL | (proxy checking local liveness)
+1828.5  30 | 2020-06-22T05:40:39+0000 [Poll#info] Checkpoint
+1837.5 TEL | [103] Running: sudo -n echo -n
+1837.6 TEL | [103] ran in 0.03 secs.
+1858.5 TEL | (proxy checking local liveness)
+1858.5  30 | 2020-06-22T05:41:09+0000 [Poll#info] Checkpoint
+1867.6 TEL | [104] Running: sudo -n echo -n
+1867.6 TEL | [104] ran in 0.01 secs.
+1888.5 TEL | (proxy checking local liveness)
+1888.5  30 | 2020-06-22T05:41:39+0000 [Poll#info] Checkpoint
+1897.6 TEL | [105] Running: sudo -n echo -n
+1897.7 TEL | [105] ran in 0.03 secs.
+1918.5 TEL | (proxy checking local liveness)
+1918.5  30 | 2020-06-22T05:42:09+0000 [Poll#info] Checkpoint
+1927.7 TEL | [106] Running: sudo -n echo -n
+1927.7 TEL | [106] ran in 0.02 secs.
+1948.5 TEL | (proxy checking local liveness)
+1948.5  30 | 2020-06-22T05:42:39+0000 [Poll#info] Checkpoint
+1957.7 TEL | [107] Running: sudo -n echo -n
+1957.8 TEL | [107] ran in 0.04 secs.
+1978.5 TEL | (proxy checking local liveness)
+1978.5  30 | 2020-06-22T05:43:09+0000 [Poll#info] Checkpoint
+1987.8 TEL | [108] Running: sudo -n echo -n
+1987.8 TEL | [108] ran in 0.02 secs.
+2008.6 TEL | (proxy checking local liveness)
+2008.6  30 | 2020-06-22T05:43:39+0000 [Poll#info] Checkpoint
+2017.8 TEL | [109] Running: sudo -n echo -n
+2017.9 TEL | [109] ran in 0.02 secs.
+2038.6 TEL | (proxy checking local liveness)
+2038.6  30 | 2020-06-22T05:44:09+0000 [Poll#info] Checkpoint
+2047.9 TEL | [110] Running: sudo -n echo -n
+2047.9 TEL | [110] ran in 0.02 secs.
+2068.6 TEL | (proxy checking local liveness)
+2068.6  30 | 2020-06-22T05:44:39+0000 [Poll#info] Checkpoint
+2077.9 TEL | [111] Running: sudo -n echo -n
+2078.0 TEL | [111] ran in 0.02 secs.
+2098.6 TEL | (proxy checking local liveness)
+2098.6  30 | 2020-06-22T05:45:09+0000 [Poll#info] Checkpoint
+2108.0 TEL | [112] Running: sudo -n echo -n
+2108.0 TEL | [112] ran in 0.02 secs.
+2128.6 TEL | (proxy checking local liveness)
+2128.6  30 | 2020-06-22T05:45:39+0000 [Poll#info] Checkpoint
+2138.0 TEL | [113] Running: sudo -n echo -n
+2138.0 TEL | [113] ran in 0.01 secs.
+2158.6 TEL | (proxy checking local liveness)
+2158.6  30 | 2020-06-22T05:46:09+0000 [Poll#info] Checkpoint
+2168.1 TEL | [114] Running: sudo -n echo -n
+2168.1 TEL | [114] ran in 0.02 secs.
+2188.6 TEL | (proxy checking local liveness)
+2188.6  30 | 2020-06-22T05:46:39+0000 [Poll#info] Checkpoint
+2198.1 TEL | [115] Running: sudo -n echo -n
+2198.1 TEL | [115] ran in 0.03 secs.
+2218.6 TEL | (proxy checking local liveness)
+2218.6  30 | 2020-06-22T05:47:09+0000 [Poll#info] Checkpoint
+2228.2 TEL | [116] Running: sudo -n echo -n
+2228.2 TEL | [116] ran in 0.02 secs.
+2248.6 TEL | (proxy checking local liveness)
+2248.6  30 | 2020-06-22T05:47:39+0000 [Poll#info] Checkpoint
+2258.2 TEL | [117] Running: sudo -n echo -n
+2258.2 TEL | [117] ran in 0.02 secs.
+2278.6 TEL | (proxy checking local liveness)
+2278.6  30 | 2020-06-22T05:48:09+0000 [Poll#info] Checkpoint
+2288.2 TEL | [118] Running: sudo -n echo -n
+2288.2 TEL | [118] ran in 0.01 secs.
+2308.6 TEL | (proxy checking local liveness)
+2308.6  30 | 2020-06-22T05:48:39+0000 [Poll#info] Checkpoint
+2318.3 TEL | [119] Running: sudo -n echo -n
+2318.3 TEL | [119] ran in 0.01 secs.
+2338.6 TEL | (proxy checking local liveness)
+2338.6  30 | 2020-06-22T05:49:09+0000 [Poll#info] Checkpoint
+2348.3 TEL | [120] Running: sudo -n echo -n
+2348.3 TEL | [120] ran in 0.02 secs.
+2368.5 TEL | (proxy checking local liveness)
+2368.6  30 | 2020-06-22T05:49:39+0000 [Poll#info] Checkpoint
+2378.4 TEL | [121] Running: sudo -n echo -n
+2378.4 TEL | [121] ran in 0.01 secs.
+2398.5 TEL | (proxy checking local liveness)
+2398.5  30 | 2020-06-22T05:50:09+0000 [Poll#info] Checkpoint
+2408.4 TEL | [122] Running: sudo -n echo -n
+2408.5 TEL | [122] ran in 0.06 secs.
+2428.5 TEL | (proxy checking local liveness)
+2428.5  30 | 2020-06-22T05:50:39+0000 [Poll#info] Checkpoint
+2438.5 TEL | [123] Running: sudo -n echo -n
+2438.5 TEL | [123] ran in 0.02 secs.
+2458.5 TEL | (proxy checking local liveness)
+2458.5  30 | 2020-06-22T05:51:09+0000 [Poll#info] Checkpoint
+2468.5 TEL | [124] Running: sudo -n echo -n
+2468.6 TEL | [124] ran in 0.02 secs.
+2488.5 TEL | (proxy checking local liveness)
+2488.5  30 | 2020-06-22T05:51:39+0000 [Poll#info] Checkpoint
+2498.6 TEL | [125] Running: sudo -n echo -n
+2498.6 TEL | [125] ran in 0.02 secs.
+2518.6 TEL | (proxy checking local liveness)
+2518.6  30 | 2020-06-22T05:52:09+0000 [Poll#info] Checkpoint
+2528.6 TEL | [126] Running: sudo -n echo -n
+2528.6 TEL | [126] ran in 0.02 secs.
+2548.5 TEL | (proxy checking local liveness)
+2548.5  30 | 2020-06-22T05:52:39+0000 [Poll#info] Checkpoint
+2558.7 TEL | [127] Running: sudo -n echo -n
+2558.7 TEL | [127] ran in 0.01 secs.
+2578.5 TEL | (proxy checking local liveness)
+2578.5  30 | 2020-06-22T05:53:09+0000 [Poll#info] Checkpoint
+2588.7 TEL | [128] Running: sudo -n echo -n
+2588.7 TEL | [128] ran in 0.02 secs.
+2608.5 TEL | (proxy checking local liveness)
+2608.6  30 | 2020-06-22T05:53:39+0000 [Poll#info] Checkpoint
+2618.7 TEL | [129] Running: sudo -n echo -n
+2618.8 TEL | [129] ran in 0.01 secs.
+2638.5 TEL | (proxy checking local liveness)
+2638.5  30 | 2020-06-22T05:54:09+0000 [Poll#info] Checkpoint
+2648.8 TEL | [130] Running: sudo -n echo -n
+2648.8 TEL | [130] ran in 0.03 secs.
+2668.5 TEL | (proxy checking local liveness)
+2668.5  30 | 2020-06-22T05:54:39+0000 [Poll#info] Checkpoint
+2678.8 TEL | [131] Running: sudo -n echo -n
+2678.8 TEL | [131] ran in 0.02 secs.
+2698.5 TEL | (proxy checking local liveness)
+2698.5  30 | 2020-06-22T05:55:09+0000 [Poll#info] Checkpoint
+2708.9 TEL | [132] Running: sudo -n echo -n
+2708.9 TEL | [132] ran in 0.02 secs.
+2728.5 TEL | (proxy checking local liveness)
+2728.5  30 | 2020-06-22T05:55:39+0000 [Poll#info] Checkpoint
+2738.9 TEL | [133] Running: sudo -n echo -n
+2739.0 TEL | [133] ran in 0.04 secs.
+2758.5 TEL | (proxy checking local liveness)
+2758.5  30 | 2020-06-22T05:56:09+0000 [Poll#info] Checkpoint
+2769.0 TEL | [134] Running: sudo -n echo -n
+2769.0 TEL | [134] ran in 0.01 secs.
+2788.6 TEL | (proxy checking local liveness)
+2788.6  30 | 2020-06-22T05:56:39+0000 [Poll#info] Checkpoint
+2799.0 TEL | [135] Running: sudo -n echo -n
+2799.0 TEL | [135] ran in 0.04 secs.
+2818.5 TEL | (proxy checking local liveness)
+2818.5  30 | 2020-06-22T05:57:09+0000 [Poll#info] Checkpoint
+2829.1 TEL | [136] Running: sudo -n echo -n
+2829.1 TEL | [136] ran in 0.01 secs.
+2848.5 TEL | (proxy checking local liveness)
+2848.5  30 | 2020-06-22T05:57:39+0000 [Poll#info] Checkpoint
+2859.1 TEL | [137] Running: sudo -n echo -n
+2859.2 TEL | [137] ran in 0.03 secs.
+2878.6 TEL | (proxy checking local liveness)
+2878.6  30 | 2020-06-22T05:58:09+0000 [Poll#info] Checkpoint
+2889.2 TEL | [138] Running: sudo -n echo -n
+2889.2 TEL | [138] ran in 0.01 secs.
+2908.5 TEL | (proxy checking local liveness)
+2908.5  30 | 2020-06-22T05:58:39+0000 [Poll#info] Checkpoint
+2919.2 TEL | [139] Running: sudo -n echo -n
+2919.2 TEL | [139] ran in 0.02 secs.
+2938.5 TEL | (proxy checking local liveness)
+2938.5  30 | 2020-06-22T05:59:09+0000 [Poll#info] Checkpoint
+2949.3 TEL | [140] Running: sudo -n echo -n
+2949.3 TEL | [140] ran in 0.03 secs.
+2968.5 TEL | (proxy checking local liveness)
+2968.6  30 | 2020-06-22T05:59:39+0000 [Poll#info] Checkpoint
+2979.3 TEL | [141] Running: sudo -n echo -n
+2979.3 TEL | [141] ran in 0.01 secs.
+2998.6 TEL | (proxy checking local liveness)
+2998.6  30 | 2020-06-22T06:00:09+0000 [Poll#info] Checkpoint
+3009.3 TEL | [142] Running: sudo -n echo -n
+3009.3 TEL | [142] ran in 0.01 secs.
+3028.5 TEL | (proxy checking local liveness)
+3028.5  30 | 2020-06-22T06:00:39+0000 [Poll#info] Checkpoint
+3039.4 TEL | [143] Running: sudo -n echo -n
+3039.4 TEL | [143] ran in 0.02 secs.
+3058.5 TEL | (proxy checking local liveness)
+3058.5  30 | 2020-06-22T06:01:09+0000 [Poll#info] Checkpoint
+3069.4 TEL | [144] Running: sudo -n echo -n
+3069.4 TEL | [144] ran in 0.02 secs.
+3088.5 TEL | (proxy checking local liveness)
+3088.5  30 | 2020-06-22T06:01:39+0000 [Poll#info] Checkpoint
+3099.4 TEL | [145] Running: sudo -n echo -n
+3099.5 TEL | [145] ran in 0.01 secs.
+3118.5 TEL | (proxy checking local liveness)
+3118.5  30 | 2020-06-22T06:02:09+0000 [Poll#info] Checkpoint
+3129.5 TEL | [146] Running: sudo -n echo -n
+3129.5 TEL | [146] ran in 0.02 secs.
+3148.5 TEL | (proxy checking local liveness)
+3148.5  30 | 2020-06-22T06:02:39+0000 [Poll#info] Checkpoint
+3159.5 TEL | [147] Running: sudo -n echo -n
+3159.6 TEL | [147] ran in 0.02 secs.
+3178.5 TEL | (proxy checking local liveness)
+3178.6  30 | 2020-06-22T06:03:09+0000 [Poll#info] Checkpoint
+3189.6 TEL | [148] Running: sudo -n echo -n
+3189.6 TEL | [148] ran in 0.01 secs.
+3208.5 TEL | (proxy checking local liveness)
+3208.6  30 | 2020-06-22T06:03:39+0000 [Poll#info] Checkpoint

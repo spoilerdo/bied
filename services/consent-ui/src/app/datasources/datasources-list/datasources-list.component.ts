@@ -17,6 +17,5 @@ export class DatasourcesListComponent implements OnInit {
 
   ngOnInit(): void {
     this.datasources = this.researchId ? this.researchService.getResearchById('1').datasources : this.datasourceService.getDatasources();
-    console.log("Datasources-list component, datasources", this.datasources)
   }
 }

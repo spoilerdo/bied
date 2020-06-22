@@ -22,12 +22,14 @@ import { ConsentModule } from './consent/consent.module';
 import { ConsentsModule } from './consents/consents.module';
 import { ProfileModule } from './profile/profile.module';
 import { ResearchesModule } from './researches/researches.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     CommonModule,
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     ThemeModule,
