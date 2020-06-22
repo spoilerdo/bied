@@ -16,6 +16,11 @@ export class DatasourcesListComponent implements OnInit {
   constructor(private readonly datasourceService: DatasourceProvider, private readonly researchService: ResearchProvider) { }
 
   ngOnInit(): void {
-    this.datasources = this.researchId ? this.researchService.getResearchById('1').datasources : this.datasourceService.getDatasources();
+    if (this.researchId) {
+      this.researchService.getResearchById('1').subscribe(data => this.datasources = data as Datasource[]);
+    } else {
+      // Datasource are not implemented yet...
+      // this.datasourceService.getDatasources().subscribe(data => this.datasources = data as Datasource[]);      
+    }
   }
 }

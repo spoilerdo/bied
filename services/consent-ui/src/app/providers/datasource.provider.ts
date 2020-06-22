@@ -3,15 +3,15 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class DatasourceProvider {
-  getDatasourceById(id: string): Datasource {
+  getDatasourceById(id: string) {
     throw new Error('Method not implemented');
   }
 
-  deleteAllData(userId: string): boolean {
+  deleteAllData(userId: string) {
     throw new Error('Method not implemented')
   }
 
-  getDatasources(): Datasource[] {
+  getDatasources() {
     throw new Error('Method not implemented')
   }
 }

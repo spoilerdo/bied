@@ -14,7 +14,10 @@ export class ResearchesListComponent implements OnInit {
   constructor(private readonly researchService: ResearchProvider) { }
 
   ngOnInit(): void {
-    this.researches = this.researchService.getResearches();
+    console.log('Researches', this.researches);
+    this.researchService.getResearches().subscribe(data => {
+      this.researches = data as Research[];
+    })
   }
 
 }

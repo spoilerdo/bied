@@ -15,11 +15,11 @@ export class ConsentProvider {
     return this.http.get(`http://192.168.39.179:30027/api/consent/${consentId}`);
   }
 
-  getUserConsentForDatasource(userId: String, datasourceId: String): Consent {
-    throw new Error('Method not implemented')
+  getUserConsentForDatasource(userId: String, datasourceId: String) {
+    return this.http.post(`http://192.168.39.179:30027/api/consent/datasource`, {userId, datasourceId});
   }
 
-  deleteAllConsent(userId: string): boolean {
-    throw new Error(`Method not implemented`)
+  deleteAllConsent(userId: string) {
+    return this.http.delete(`http://192.168.39.179:30027/api/consent/all/${userId}`)
   }
 }

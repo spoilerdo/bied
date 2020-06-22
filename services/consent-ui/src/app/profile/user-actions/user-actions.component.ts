@@ -26,14 +26,20 @@ export class UserActionsComponent implements OnInit {
     this.dialogService.open(ConfirmationModalComponent, { context: { text: 'Are you sure you wanna delete all consents?', title: 'Delete all consent' } })
       .onClose.subscribe((result: any) => {
         if (result) {          
-          const succesfull: boolean = this.consentService.deleteAllConsent(this.id); // Placeholder for succesfully deleted
-          const status = succesfull ? "success" : "danger";
+          this.consentService.deleteAllConsent(this.id).subscribe(result => {
+            let succesfull: boolean = null;
 
-          if (succesfull) {
-            this.toastService.show('Succesfully deleted all consents', `Success`, { status })
-          } else {
-            this.toastService.show('Failed to delete all consents', 'Failed', { status })
-          }
+            if (result)
+              succesfull = true;
+
+            const status = succesfull ? "success" : "danger";
+
+            if (succesfull) {
+              this.toastService.show('Succesfully deleted all consents', `Success`, { status })
+            } else {
+              this.toastService.show('Failed to delete all consents', 'Failed', { status })
+            }
+          }) // Placeholder for succesfully deleted
         }
       })
   }

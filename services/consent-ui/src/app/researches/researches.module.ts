@@ -25,7 +25,6 @@ import { ConsentModule } from '../consent/consent.module';
   providers: [
     {
       provide: ResearchProvider,
-      useClass: ResearchMockProvider
     }
   ]
 })

@@ -15,7 +15,7 @@ export class DatasourceListItemComponent implements OnInit {
   constructor(private readonly consentService: ConsentProvider) { }
 
   ngOnInit(): void {
-    this.consent = this.consentService.getUserConsentForDatasource('1', this.datasource.id); 
+    this.consentService.getUserConsentForDatasource('1', this.datasource.id).subscribe(data => this.consent = data as Consent);
   }
 
   getDateString() {
