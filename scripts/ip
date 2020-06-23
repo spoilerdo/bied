@@ -34,7 +34,11 @@ while [[ "$@" != "" ]]; do
     shift
 done
 
-INGRESS_PORT=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.spec.ports[?(@.name=="http2")].nodePort}')
+if helm ls | grep -q istio; then
+    INGRESS_PORT=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.spec.ports[?(@.name=="http2")].nodePort}')
+else
+    INGRESS_PORT=""
+fi
 
 if [ "$MINIKUBE_STATUS" == "Running" ]; then
     SEVER_URL=$(minikube ip -p bied-dev)
