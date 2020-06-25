@@ -16,7 +16,7 @@ scripts:
     bindings: ["pre-deploy"]
   - name: create-user-service-keys
     command: bash
-    args: ["./scripts/create-proto-configmaps"]
+    args: ["./scripts/create-key-configmap"]
     bindings: ["pre-deploy"]
   - name: ip
     command: bash
